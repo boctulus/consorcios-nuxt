@@ -1,0 +1,19 @@
+- La url de inicio se setea en \pages\index.vue 
+
+export default {
+        mounted()
+        {
+          this.$router.push('/dashboard')
+        }
+}
+
+Igualmente en \pages\login.vue hay una redirección a /dashboard
+
+methods: {
+      login() {
+        this.loading = true;
+        setTimeout(() => {
+          this.$router.push('/dashboard');
+        }, 1000);
+      }
+    }
