@@ -1,10 +1,11 @@
 <template>
   <div id="homePage">
-    <v-container grid-list-xl fluid style="margin-top:-100px;">
+    <v-container grid-list-xl fluid>
       <v-layout row wrap>
         
         <v-flex lg12 sm12 xs12>
-          <RocketPlans></RocketPlans>
+          <v-img :src="require('../assets/b_color1.jpg')" style="margin-top: -200px;"></v-img>
+          <!-- RocketPlans></RocketPlans -->
         </v-flex>
 
       </v-layout>

@@ -2,7 +2,7 @@
   <v-footer height="auto" dark>
     <v-layout justify-center row wrap>
       <v-flex lighten-2 py-3 text-xs-center white--text>
-        &copy;2019 — <strong>LogRocket // Vuetify</strong>
+        &copy;2020 — "El Grove" ~ Administración de consorcios
       </v-flex>
     </v-layout>
   </v-footer>

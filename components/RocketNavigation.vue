@@ -1,6 +1,6 @@
 <template>
     <span>
-        <v-navigation-drawer app v-model="drawer" right dark class="deep-black accent-4">
+        <v-navigation-drawer app v-model="drawer" right dark class="deep-black accent-4" style="opacity: 0.95">
             <v-list style="margin-top:5em;">
                 <transition-group
                     name="staggered-fade"
@@ -17,14 +17,14 @@
 					  v-bind:data-index="index"
                       class="item"
 					>
-                        <v-icon color="#CFA18B" style="margin-right:.5em;">crop_din</v-icon>{{item.msg}}
+                        <v-icon color="#CFA18B" style="margin-right:0.5em;">crop_din</v-icon>{{item.msg}}
 					</li>
                 </transition-group>
             </v-list>      
         </v-navigation-drawer>
 
         <nav style="display:flex; align-items: flex-start; margin: 40px">
-            <v-img :src="require('../assets/logo.png')" :max-width="80"></v-img>
+            <v-img :src="require('../assets/logo.png')" :max-width="80" style="z-index: 9999;"></v-img>
 
             <v-divider></v-divider>
 
