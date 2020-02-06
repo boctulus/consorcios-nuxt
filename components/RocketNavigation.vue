@@ -2,16 +2,24 @@
     <span>
         <v-navigation-drawer app v-model="drawer" right>
             <v-list>
-                <template v-for="(list, i) in lists">
-                    <v-list-tile :key="i">
-                        <v-list-tile-content>
-                            <transition name="component-fade" mode="out-in">
-                                <span v-if="drawer">{{list.msg}}</span>
-                            </transition>
-                        </v-list-tile-content>
-                    </v-list-tile>
-                    <v-divider :key="`divider-${i}`"></v-divider>
-                </template>
+                <transition-group
+                    name="staggered-fade"
+                    tag="ul"
+                    v-bind:css="false"
+                    v-on:before-enter="beforeEnter"
+                    v-on:enter="enter"
+                    v-on:leave="leave"
+                    class="list"
+                >
+                    <li 
+					  v-for="(item, index) in computedList"
+					  v-bind:key="item.msg"
+					  v-bind:data-index="index"
+                      class="item"
+					>
+						<span v-if="drawer">{{item.msg}}</span>
+					</li>
+                </transition-group>
             </v-list>      
         </v-navigation-drawer>
 
@@ -34,7 +42,7 @@ export default {
     data() {
         return {
             drawer: false,
-            lists: [
+            list: [
                 { msg: 'Pricing' },
                 { msg: 'Customers' },
                 { msg: 'Docs' },
@@ -44,6 +52,38 @@ export default {
             ]
         };
     },
+    computed: {
+        computedList: function () {
+            return this.drawer ? this.list : []
+        }
+    },
+    methods: {
+        beforeEnter: function (elem) {
+            elem.style.opacity = 0
+            elem.style.height = 0
+        },
+        enter: function (elem, done) {
+            var delay = elem.dataset.index * 250;
+            console.log(elem.dataset.index);
+            setTimeout(function () {
+                Velocity(
+                    elem,
+                    { opacity: 1, height: '3em' },
+                    { complete: done }
+                )
+            }, delay)
+        },
+        leave: function (elem, done) {
+            var delay = elem.dataset.index * 150
+            setTimeout(function () {
+                Velocity(
+                    elem,
+                    { opacity: 0, height: 0 },
+                    { complete: done }
+                )
+            }, delay)
+        }
+    },
     components: {
         Hamburger
     }
@@ -52,15 +92,11 @@ export default {
 
 
 <style scoped>
-.component-fade-enter-active {
-  transition: opacity 4s ease;
+.list {
+    list-style: none;
 }
 
-.component-fade-leave-active {
-  transition: opacity 4s ease;
-}
-
-.component-fade-enter, .component-fade-leave-to {
-  opacity: 0;
+.item {
+    font-size: 1.2em;
 }
 </style>
