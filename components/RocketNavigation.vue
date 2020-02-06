@@ -1,7 +1,7 @@
 <template>
     <span>
-        <v-navigation-drawer app v-model="drawer" right>
-            <v-list>
+        <v-navigation-drawer app v-model="drawer" right dark class="deep-black accent-4">
+            <v-list style="margin-top:5em;">
                 <transition-group
                     name="staggered-fade"
                     tag="ul"
@@ -17,7 +17,7 @@
 					  v-bind:data-index="index"
                       class="item"
 					>
-						<span v-if="drawer">{{item.msg}}</span>
+                        <v-icon color="#CFA18B" style="margin-right:.5em;">crop_din</v-icon>{{item.msg}}
 					</li>
                 </transition-group>
             </v-list>      
@@ -64,7 +64,6 @@ export default {
         },
         enter: function (elem, done) {
             var delay = elem.dataset.index * 250;
-            console.log(elem.dataset.index);
             setTimeout(function () {
                 Velocity(
                     elem,
