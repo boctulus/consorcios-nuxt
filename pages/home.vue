@@ -5,7 +5,12 @@
         
         <v-flex lg12 sm12 xs12>
           <v-img :src="require('../assets/b_color1.jpg')" lazy-src class="img1" style="margin-top: -200px;">
-           Dentro Img 1
+
+
+            <div class="h1_wrapper">
+              <h1 class="engravers" style="text-align: center;">ADMINISTRACIÓN DE CONDOMINIOS</h1>
+            </div>
+
           </v-img>
           
           <v-img :src="require('../assets/b_bn1.jpg')"    lazy-src class="img2">
@@ -38,17 +43,13 @@
 
 <style scoped>
 
-/*
-.img1:before {
-	content:'';
-	position: absolute;
-  top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	background-color: rgba(208,162,140,0.1);
+h1.engravers {
+  color: #EAD47E;
+}	
+
+.h1_wrapper {
+  margin-top: 15em;
 }
-*/
 
 .img2:before {
 	content:'';
@@ -85,5 +86,49 @@
 	background-color: rgba(161,177,188,0.1);
 }
 */
+
+h1 { font-size: 4em; }
+
+@media (max-width: 575px){
+	h1 { font-size: 35px !important; }
+
+	.modal-dialog {
+		width: 100% !important;
+	}
+}
+ 
+@media (min-width: 576px) and (max-width: 767px){
+	h1 { font-size: 48px !important; }
+
+	.modal-dialog {
+		width: 60% !important;
+	}
+}
+
+@media (min-width: 768px) and (max-width: 991px){
+	h1 { font-size: 60px !important; }
+
+	.modal-dialog {
+		width: 50% !important;
+	}
+}
+
+@media (min-width: 992px) and (max-width: 1199px){
+	h1 { font-size: 55px !important; }
+
+	.modal-dialog {
+		width: 45% !important;
+	}
+}
+
+@media (min-width: 1200px){
+	h1 { 
+    font-size: 55px !important; 
+  }
+	
+	.modal-dialog {
+		width: 33% !important;
+	}
+}
 
 </style>

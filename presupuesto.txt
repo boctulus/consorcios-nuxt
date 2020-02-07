@@ -1,0 +1,27 @@
+PRESUPUESTO
+-----------
+
+-- Base de la aplicación ---- 5 horas
+-- Menú de hamburguesa a la derecha desplegable como panel hacia el lado izquierdo ---- 1 hora
+-- Pié de página de 3 columnas ---- 1 hora
+-- Jumbotrón  ---- 1 hora
+-- Galería de imágenes 0.5 horas
+-- Sección "acerca de..." con formulario de contacto de hasta 5 campos ---- 1 hora
+-- Inclusión de un mapa de Google Maps marcando la ubicación del negocio ---- 1 hora
+-- Enviar WhatsApp via enlace a la API	----- 1 hora
+-- ChatBox básico	----- 5 horas
+-- FAQ con respuestas colapsables ---- 2 horas
+-- Blog	----- 5 horas
+-- Zona de usuarios (incluye formulario de login, un panel de control y un sistema de control de acceso con distintos roles entre ellos el del admin) ---- 15 horas
+-- Sección de descarga de documentos pdf protegidos con contraseña (requiere zona de usuarios) ---- 5 horas
+-- Sistema de calificaciones con estrellas (requiere zona de usuarios) ----- 2 horas
+-- Testeo de la aplicación ---- suma algunas horas pero se puede saber cuando se definan los demás items.
+
+* Logo e imágenes son provistas por el cliente 
+
+En cuanto a "infraestructua" 
+
+-- Dominio .com suele rondar los 12 dólares 
+-- Costo del servidor anualizado y unos 3500 pesos argentinos
+
+Costo de hora-hombre: 450 pesos

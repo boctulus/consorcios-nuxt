@@ -1,0 +1,36 @@
+TODO
+-----------
+
+-- Jumbotrón 
+-- Pié de página de 3 columnas
+-- Galería de imágenes (?)
+-- Sección "acerca de..." con formulario de contacto
+-- Inclusión de un mapa de Google Maps marcando la ubicación del negocio
+-- Enviar WhatsApp via enlace a la API
+-- ChatBox básico
+-- FAQ con respuestas colapsables
+-- Blog
+-- Zona de usuarios (incluye formulario de login, un panel de control y un sistema de control de acceso con distintos roles entre ellos el del admin)
+-- Sección de descarga de documentos pdf protegidos con contraseña
+-- Sistema de calificaciones con estrellas 
+
+
+WEBS de referencia:
+
+https://www.administraciondecondominios.com.mx/    
+ver distintos problemas que puede solucionar, WhatsApp, blog, FAQ
+
+http://www.miscondominios.com/ 
+http://www.administrarsa.com/
+http://www.sixac.com/web/Features.aspx
+
+http://homi.mx/administracion-de-inmuebles.html
+mision, vision, valores (/somos)
+
+http://consorciosdavies.com.ar/post/
+novedades recientes (blog) { Servicio de mantenimiento, Urgencias 24Hs, .. (+)}
+
+---
+
+https://api.whatsapp.com/send?phone=542215712131
+
