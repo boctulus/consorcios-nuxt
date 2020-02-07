@@ -24,11 +24,11 @@
         </v-navigation-drawer>
 
         <nav style="display:flex; align-items: flex-start; margin: 40px">
-            <v-img :src="require('../assets/logo.png')" :max-width="80" style="z-index: 9999;"></v-img>
+            <v-img :src="require('../assets/logo.png')" :max-width="80" style="z-index: 9999;"  ></v-img>
 
             <v-divider></v-divider>
 
-            <Hamburger @click.native="drawer = !drawer" v-bind:class="[drawer ? 'active' : '']" style="z-index: 9999;"></Hamburger>            
+            <Hamburger @click.native="drawer = !drawer" v-bind:class="[drawer ? 'active' : '']" style="z-index: 9999; position: fixed; right: 4em;"></Hamburger>            
         </nav>
     </span>
 </template>

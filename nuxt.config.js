@@ -9,13 +9,12 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: 'Vue Material Admin Template',
+    title: 'Administración de consorcios de La Plata | El Grove',
     meta: [
       {charset: 'utf-8'},
       {name: 'viewport', content: 'width=device-width, initial-scale=1'},
       {
-        hid: 'description', name: 'description', content: 'Vue Material Admin Template is a \n' +
-          '    Google Material Design inspired admin dashboard template built with Vue and Vuetify.'
+        hid: 'description', name: 'description', content: 'Empresa administradora de consorcios en la ciudad de La Plata, Argentina'
       }
     ],
     link: [
