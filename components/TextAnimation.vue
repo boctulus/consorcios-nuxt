@@ -5,16 +5,12 @@
 <script>
 export default {
     name: 'TextAnimation',
-    props: ['forwardDelay', 'backwardDelay'],
+    props: ['forwardDelay', 'backwardDelay', 'clearingDelay', 'messages'],
     data() {
         return {
             text: '',
             pt: 0,
-            list: [
-                { msg: 'Administración de consorcios' },
-                { msg: 'Número 1 en La Plata' },
-                { msg: 'El Grove' }
-            ]
+            list: [ ]
         };
     },
     computed: {    
@@ -27,7 +23,7 @@ export default {
                 }else if (this.list[this.pt].offset == this.list[this.pt].len) {
                     this.list[this.pt].direction = -1;
                     clearTimeout(this.timeout);
-                    this.reverse();
+                    setTimeout(() => {this.reverse(); },this.clearingDelay);                    
                 }
             }else {
                 // reverse
@@ -53,15 +49,19 @@ export default {
         },
         reverse(){
             this.timeout = setInterval(this.changeText, this.backwardDelay);
-        }     
+        }
     },
     created() {
-        for (let i=0; i< this.list.length; i++){
-            this.list[i].len = this.list[i].msg.length;
+         for (let i=0; i< this.messages.length; i++){
+            this.list[i] = {}; 
+            this.list[i].msg = this.messages[i];
+            this.list[i].len = this.messages[i].length;
             this.list[i].offset = 0;
             this.list[i].direction = 1;
         }
-        this.forward();
+        this.forward();       
+    },
+    components: {
     }
 }
 </script>

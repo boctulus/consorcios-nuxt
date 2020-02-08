@@ -6,13 +6,23 @@
         <v-flex lg12 sm12 xs12>
           <v-img :src="require('../assets/b_color1.jpg')" lazy-src class="img1" style="margin-top: -200px;">
 
-
             <div class="h1_wrapper">
               <h1 class="engravers" style="text-align: center;">ADMINISTRACIÓN DE CONDOMINIOS</h1>
             </div>
 
             <div style="text-align: center; font-size: 2em; margin: 2em;" class="animated_text">
-              <TextAnimation forward-delay="80" backward-delay="10"></TextAnimation>
+                
+              <TextAnimation 
+                forward-delay="80" 
+                backward-delay="20" 
+                clearing-delay="2000"
+                v-bind:messages = "['Administración de consorcios',
+                                   'Número 1 en La Plata',
+                                   'El Grove'
+                ]"
+                >
+              </TextAnimation>
+                
             </div>
 
           </v-img>
@@ -36,14 +46,15 @@
 </template>
 
 <script>
-  import TextAnimation from '@/components/TextAnimation';
 
-  export default {
-    layout: 'home',
-    components: {
-      TextAnimation
-    }
+import TextAnimation from '@/components/TextAnimation';
+
+export default {
+  layout: 'home',
+  components: {
+    TextAnimation
   }
+}
 </script>
 
 <style scoped>
