@@ -1,6 +1,6 @@
 <template>
     <span>
-        <v-navigation-drawer app v-model="drawer" right dark class="deep-black accent-4" style="opacity: 0.95">
+        <v-navigation-drawer app v-model="drawer" right dark class="deep-black accent-4" style="opacity: 0.95; z-index: 5000;">
             <v-list style="margin-top:5em;">
                 <transition-group
                     name="staggered-fade"
@@ -23,8 +23,8 @@
             </v-list>      
         </v-navigation-drawer>
 
-        <nav style="display:flex; align-items: flex-start; margin: 40px 0 0 3%">
-            <v-img :src="require('../assets/logo.png')" :max-width="80" style="z-index: 9999;"  ></v-img>
+        <nav class="nav">
+            <v-img :src="require('../assets/logo.png')" class="logo"></v-img>
 
             <v-divider></v-divider>
 
@@ -97,5 +97,40 @@ export default {
 
 .item {
     font-size: 1.2em;
+}
+
+.logo {
+    max-width: 80px;
+    z-index: 9999;
+}
+
+.nav {
+    display:flex; 
+    align-items: flex-start; 
+    margin: 40px 0 0 3%;
+}
+
+@media (max-width: 575px){
+    .logo {
+        width: 10%;
+        z-index: 4999;
+        margin-left: 40%;
+    }
+}
+ 
+@media (min-width: 576px) and (max-width: 767px){
+	
+}
+
+@media (min-width: 768px) and (max-width: 991px){
+	
+}
+
+@media (min-width: 992px) and (max-width: 1199px){
+	
+}
+
+@media (min-width: 1200px){
+	
 }
 </style>
