@@ -11,6 +11,10 @@
               <h1 class="engravers" style="text-align: center;">ADMINISTRACIÓN DE CONDOMINIOS</h1>
             </div>
 
+            <div style="text-align: center; font-size: 2em; margin: 2em;" class="animated_text">
+              <TextAnimation forward-delay="80" backward-delay="10"></TextAnimation>
+            </div>
+
           </v-img>
           
           <v-img :src="require('../assets/b_bn1.jpg')"    lazy-src class="img2">
@@ -32,11 +36,12 @@
 </template>
 
 <script>
-  //import RocketPlans from '@/components/home/Plans';
+  import TextAnimation from '@/components/TextAnimation';
 
   export default {
     layout: 'home',
     components: {
+      TextAnimation
     }
   }
 </script>
@@ -87,10 +92,8 @@ h1.engravers {
 }
 */
 
-h1 { font-size: 4em; }
-
 @media (max-width: 575px){
-	h1 { font-size: 35px !important; }
+	h1, .animated_text { font-size: 35px !important; }
 
 	.modal-dialog {
 		width: 100% !important;
@@ -98,7 +101,7 @@ h1 { font-size: 4em; }
 }
  
 @media (min-width: 576px) and (max-width: 767px){
-	h1 { font-size: 48px !important; }
+	h1, .animated_text { font-size: 48px !important; }
 
 	.modal-dialog {
 		width: 60% !important;
@@ -106,7 +109,7 @@ h1 { font-size: 4em; }
 }
 
 @media (min-width: 768px) and (max-width: 991px){
-	h1 { font-size: 60px !important; }
+	h1, .animated_text { font-size: 60px !important; }
 
 	.modal-dialog {
 		width: 50% !important;
@@ -114,7 +117,7 @@ h1 { font-size: 4em; }
 }
 
 @media (min-width: 992px) and (max-width: 1199px){
-	h1 { font-size: 55px !important; }
+	h1, .animated_text { font-size: 55px !important; }
 
 	.modal-dialog {
 		width: 45% !important;
@@ -122,9 +125,7 @@ h1 { font-size: 4em; }
 }
 
 @media (min-width: 1200px){
-	h1 { 
-    font-size: 55px !important; 
-  }
+	h1, .animated_text { font-size: 55px !important; }
 	
 	.modal-dialog {
 		width: 33% !important;

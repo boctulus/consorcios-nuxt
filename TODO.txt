@@ -2,8 +2,11 @@ TODO
 -----------
 
 -- Jumbotrón 
+
+-- Carousel (galería con textos)
+https://codepen.io/niloydeysarkar/pen/MxZdeE
+
 -- Pié de página de 3 columnas
--- Galería de imágenes (?)
 -- Sección "acerca de..." con formulario de contacto
 -- Inclusión de un mapa de Google Maps marcando la ubicación del negocio
 -- Enviar WhatsApp via enlace a la API
