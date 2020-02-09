@@ -4,7 +4,7 @@
       <v-layout row wrap>
         
         <v-flex lg12 sm12 xs12>
-          <v-img :src="require('../assets/b_color1.jpg')" lazy-src class="img1 full_height_img">
+          <v-img :src="require('../assets/b_color0.jpg')" lazy-src class="img1 full_height_img">
 
             <div class="h1_wrapper">
               <h1 class="engravers" style="text-align: center;">ADMINISTRACIÓN DE CONDOMINIOS</h1>
@@ -62,10 +62,12 @@ export default {
 <style scoped>
 h1.engravers {
   color: #EAD47E;
+  font-weight: 300;
 }	
 
 .h1_wrapper {
   margin-top: 12em;
+  filter: brightness(1.3);
 }
 
 .img2:before {
@@ -117,7 +119,7 @@ h1.engravers {
 @media (max-width: 575px){
 	h1 { font-size: 35px !important; }
   .txt_anim_wrapper { display: none; }
-  
+
   .full_height_img {
     min-height: 50vh;
   }

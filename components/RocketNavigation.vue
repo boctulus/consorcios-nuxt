@@ -97,6 +97,7 @@ export default {
 
 .item {
     font-size: 1.2em;
+    text-transform: uppercase;
 }
 
 .logo {
