@@ -28,7 +28,7 @@
 
             <v-divider></v-divider>
 
-            <Hamburger @click.native="drawer = !drawer" v-bind:class="[drawer ? 'active' : '']" style="z-index: 9999; position: fixed; right: 3%;"></Hamburger>            
+            <Hamburger @click.native="drawer = !drawer" v-bind:class="[drawer ? 'active' : '']" style="z-index: 9999; position: fixed; right: 5%;"></Hamburger>            
         </nav>
     </span>
 </template>

@@ -60,14 +60,19 @@ export default {
 </script>
 
 <style scoped>
-
 h1.engravers {
   color: #EAD47E;
 }	
 
 .h1_wrapper {
-  margin-top: 15em;
+  margin-top: 12em;
 }
+
+/*
+.img1 {
+  margin-top: 140px;
+}
+*/
 
 .img2:before {
 	content:'';
@@ -144,7 +149,7 @@ h1.engravers {
   .txt_anim_wrapper { display: none; }
 
   .full_height_img {
-    height: 100vh;
+    height: 105vh;
   }
 
 	.modal-dialog {
@@ -156,7 +161,7 @@ h1.engravers {
 	h1 { font-size: 55px !important; }
   
   .full_height_img {
-    height: 100vh;
+    height: 105vh;
   }
 
   .txt_anim_wrapper { 
@@ -194,4 +199,13 @@ h1.engravers {
 	}
 }
 
+/*  Correcciones a media queries */
+
+@media (orientation : landscape) and (min-aspect-ratio: 2/1) {	
+  .jumbotron_btn { display: none }
+}
+
+@media (orientation : portrait) and (min-aspect-ratio: 768/1366) {	
+ 
+}
 </style>
