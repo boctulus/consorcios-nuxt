@@ -4,7 +4,7 @@
       <v-layout row wrap>
         
         <v-flex lg12 sm12 xs12>
-          <v-img :src="require('../assets/b_color1.jpg')" lazy-src class="img1 full_height_img" style="margin-top: -142px;">
+          <v-img :src="require('../assets/b_color1.jpg')" lazy-src class="img1 full_height_img">
 
             <div class="h1_wrapper">
               <h1 class="engravers" style="text-align: center;">ADMINISTRACIÓN DE CONDOMINIOS</h1>
@@ -68,12 +68,6 @@ h1.engravers {
   margin-top: 12em;
 }
 
-/*
-.img1 {
-  margin-top: 140px;
-}
-*/
-
 .img2:before {
 	content:'';
 	position: absolute;
@@ -116,11 +110,14 @@ h1.engravers {
   font-size: 1.3em;
 }
 
+.full_height_img {
+    height: 105vh;
+}
+
 @media (max-width: 575px){
 	h1 { font-size: 35px !important; }
   .txt_anim_wrapper { display: none; }
-  .jumbotron_btn { display: none }
-
+  
   .full_height_img {
     min-height: 50vh;
   }
@@ -129,11 +126,14 @@ h1.engravers {
 		width: 100% !important;
 	}
 }
+
+@media (max-width: 575px) and (orientation:landscape) {
+	.jumbotron_btn { display: none }
+}
  
-@media (min-width: 576px) and (max-width: 767px){
+@media (min-width: 576px) and (max-width: 767px) {
 	h1 { font-size: 48px !important; }
   .txt_anim_wrapper { display: none; }
-  .jumbotron_btn { display: none }
 
   .full_height_img {
     min-height: 50vh;
@@ -142,6 +142,10 @@ h1.engravers {
 	.modal-dialog {
 		width: 60% !important;
 	}
+}
+
+@media (min-width: 576px) and (max-width: 767px) and (orientation:landscape) {
+	.jumbotron_btn { display: none }
 }
 
 @media (min-width: 768px) and (max-width: 991px){
@@ -191,7 +195,7 @@ h1.engravers {
   }
 
   .full_height_img {
-    height: 100vh;
+    height: 105vh;
   }
 
 	.modal-dialog {
@@ -201,7 +205,7 @@ h1.engravers {
 
 /*  Correcciones a media queries */
 
-@media (orientation : landscape) and (min-aspect-ratio: 2/1) {	
+@media (orientation : landscape) and (min-aspect-ratio: 2/1) and (max-height: 480px) {	
   .jumbotron_btn { display: none }
 }
 

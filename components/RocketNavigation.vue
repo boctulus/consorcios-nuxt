@@ -24,11 +24,11 @@
         </v-navigation-drawer>
 
         <nav class="nav">
-            <v-img :src="require('../assets/logo.png')" class="logo"></v-img>
+            <img src="https://i.imgur.com/ZdOBkQj.png" class="logo"/>
 
             <v-divider></v-divider>
 
-            <Hamburger @click.native="drawer = !drawer" v-bind:class="[drawer ? 'active' : '']" style="z-index: 9999; position: fixed; right: 5%;"></Hamburger>            
+            <Hamburger @click.native="drawer = !drawer" v-bind:class="[drawer ? 'active' : '']" style="z-index: 9999; position: fixed; right: 5%; top:3vh"></Hamburger>            
         </nav>
     </span>
 </template>
@@ -90,7 +90,7 @@ export default {
 </script>
 
 
-<style scoped>
+<style scoped>  
 .list {
     list-style: none;
 }
@@ -100,37 +100,19 @@ export default {
 }
 
 .logo {
-    max-width: 80px;
-    z-index: 9999;
-}
+    z-index:9999; 
+    width: 65px;
+    position: absolute;
+    top: 5vh;
+    left: 3%; 
+}    
 
 .nav {
     display:flex; 
     align-items: flex-start; 
-    margin: 40px 0 0 3%;
+    position: relative;
+    left: 0;
+    top: 0;
 }
 
-@media (max-width: 575px){
-    .logo {
-        width: 10%;
-        z-index: 4999;
-        margin-left: 40%;
-    }
-}
- 
-@media (min-width: 576px) and (max-width: 767px){
-	
-}
-
-@media (min-width: 768px) and (max-width: 991px){
-	
-}
-
-@media (min-width: 992px) and (max-width: 1199px){
-	
-}
-
-@media (min-width: 1200px){
-	
-}
 </style>
