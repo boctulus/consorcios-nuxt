@@ -102,7 +102,7 @@ export default {
 
 .logo {
     z-index:9999; 
-    width: 65px;
+    width: 4em;
     position: absolute;
     top: 5vh;
     left: 3%; 

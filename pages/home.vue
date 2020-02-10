@@ -59,16 +59,18 @@ export default {
 }
 </script>
 
-<style scoped>
-h1.engravers {
-  color: #EAD47E;
-  font-weight: 300;
-}	
+<script>
+import TextAnimation from '@/components/TextAnimation';
 
-.h1_wrapper {
-  margin-top: 12em;
-  filter: brightness(1.3);
+export default {
+  layout: 'home',
+  components: {
+    TextAnimation
+  }
 }
+</script>
+
+<style scoped>
 
 .img2:before {
 	content:'';
@@ -113,11 +115,24 @@ h1.engravers {
 }
 
 .full_height_img {
-    height: 105vh;
+    min-height: 33.33vh;
+}
+
+h1 {
+  color: #EAD47E;
+  filter: brightness(1.3);
+  font-weight: 300;
+  padding-left:  1em;
+  padding-right: 1em;
+}	
+
+.h1_wrapper {
+  position: relative;
+  margin-top: 30vh;
 }
 
 @media (max-width: 575px){
-	h1 { font-size: 35px !important; }
+	h1 { font-size: 2em !important; }
   .txt_anim_wrapper { display: none; }
 
   .full_height_img {
@@ -134,7 +149,7 @@ h1.engravers {
 }
  
 @media (min-width: 576px) and (max-width: 767px) {
-	h1 { font-size: 48px !important; }
+	h1 { font-size: 3em !important; }
   .txt_anim_wrapper { display: none; }
 
   .full_height_img {
@@ -151,7 +166,7 @@ h1.engravers {
 }
 
 @media (min-width: 768px) and (max-width: 991px){
-	h1 { font-size: 60px !important; }
+	h1 { font-size: 3.5em !important; }
   .txt_anim_wrapper { display: none; }
 
   .full_height_img {
@@ -164,7 +179,7 @@ h1.engravers {
 }
 
 @media (min-width: 992px) and (max-width: 1199px){
-	h1 { font-size: 55px !important; }
+	h1 { font-size: 4em !important; }
   
   .full_height_img {
     height: 105vh;
@@ -185,7 +200,7 @@ h1.engravers {
 }
 
 @media (min-width: 1200px){
-	h1 { font-size: 55px !important; }
+	h1 { font-size: 4.5em !important; }
 	
   .txt_anim_wrapper { 
     font-size: 55px; 
@@ -211,7 +226,7 @@ h1.engravers {
   .jumbotron_btn { display: none }
 }
 
-@media (orientation : portrait) and (min-aspect-ratio: 768/1366) {	
- 
+@media (orientation : landscape) and (min-aspect-ratio: 130 / 100) and (max-aspect-ratio: 139 / 100) {	
+ .txt_anim_wrapper { display: none; }
 }
 </style>
