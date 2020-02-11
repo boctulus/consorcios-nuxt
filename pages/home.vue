@@ -1,6 +1,6 @@
 <template>
   <div id="homePage">
-    <v-container grid-list-xl fluid style="padding: 0 0 0 0;">
+    <v-container fluid style="padding-left: 0; padding-right: 0;">
       <v-layout row wrap>
         
         <v-flex lg12 sm12 xs12>
@@ -19,11 +19,12 @@
                                    'Número 1 en La Plata',
                                    'El Grove'
                 ]"
+                class="txt_anim"
                 >
               </TextAnimation>                
             </div>
 
-            <v-layout justify-center>
+            <v-layout justify-center class="jumbotron_btn_wrapper">
               <v-btn class="jumbotron_btn">Saber más</v-btn>
             </v-layout>              
       
@@ -71,6 +72,49 @@ export default {
 </script>
 
 <style scoped>
+.full_height_img {
+    min-height: 33.33vh;
+}
+
+.h1_wrapper {
+  position: absolute;
+  top: 30vh;
+  width: 100%;
+  text-align: center;
+}
+
+h1 {
+  font-size: 3.5em;
+  color: #EAD47E;
+  filter: brightness(1.3);
+  font-weight: 300;
+  padding-left:  1em;
+  padding-right: 1em;
+}
+
+.txt_anim_wrapper {
+  position: absolute;
+  top: 50vh;
+  width: 100%;
+  text-align: center; 
+}
+
+.txt_anim { 
+  font-size: 3.5em;
+  color: white;
+  font-weight: lighter;
+}
+
+.jumbotron_btn_wrapper {
+  position: absolute;
+  top: 75vh;
+  width: 100%;
+  text-align: center; 
+}
+
+.jumbotron_btn {
+  font-size: 1.3em;
+}
 
 .img2:before {
 	content:'';
@@ -108,29 +152,6 @@ export default {
 }
 */
 
-.jumbotron_btn {
-  position: absolute;
-  top: 75vh;
-  font-size: 1.3em;
-}
-
-.full_height_img {
-    min-height: 33.33vh;
-}
-
-h1 {
-  color: #EAD47E;
-  filter: brightness(1.3);
-  font-weight: 300;
-  padding-left:  1em;
-  padding-right: 1em;
-}	
-
-.h1_wrapper {
-  position: relative;
-  margin-top: 30vh;
-}
-
 @media (max-width: 575px){
 	h1 { font-size: 2em !important; }
   .txt_anim_wrapper { display: none; }
@@ -150,7 +171,6 @@ h1 {
  
 @media (min-width: 576px) and (max-width: 767px) {
 	h1 { font-size: 3em !important; }
-  .txt_anim_wrapper { display: none; }
 
   .full_height_img {
     min-height: 50vh;
@@ -167,7 +187,6 @@ h1 {
 
 @media (min-width: 768px) and (max-width: 991px){
 	h1 { font-size: 3.5em !important; }
-  .txt_anim_wrapper { display: none; }
 
   .full_height_img {
     height: 105vh;
@@ -185,15 +204,6 @@ h1 {
     height: 105vh;
   }
 
-  .txt_anim_wrapper { 
-    font-size: 55px; 
-    height: 20px; 
-    text-align: center; 
-    margin: 2em;
-    color: white;
-    font-weight: lighter;
-  }
-
 	.modal-dialog {
 		width: 45% !important;
 	}
@@ -202,15 +212,6 @@ h1 {
 @media (min-width: 1200px){
 	h1 { font-size: 4.5em !important; }
 	
-  .txt_anim_wrapper { 
-    font-size: 55px; 
-    height: 20px; 
-    text-align: center; 
-    margin: 2em;
-    color: white;
-    font-weight: lighter;
-  }
-
   .full_height_img {
     height: 105vh;
   }
@@ -220,13 +221,4 @@ h1 {
 	}
 }
 
-/*  Correcciones a media queries */
-
-@media (orientation : landscape) and (min-aspect-ratio: 2/1) and (max-height: 480px) {	
-  .jumbotron_btn { display: none }
-}
-
-@media (orientation : landscape) and (min-aspect-ratio: 130 / 100) and (max-aspect-ratio: 139 / 100) {	
- .txt_anim_wrapper { display: none; }
-}
 </style>
