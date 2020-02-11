@@ -10,6 +10,9 @@ https://codepen.io/niloydeysarkar/pen/MxZdeE
 -- Sección "acerca de..." con formulario de contacto
 -- Inclusión de un mapa de Google Maps marcando la ubicación del negocio
 -- Enviar WhatsApp via enlace a la API
+
+https://web.whatsapp.com/send?phone=(+56)9%2051356820&text=fffffffffffffffffffffffffffffffffffffffffffff%0Amensaje%20enviado%20de%20https://voltauxui.cl/
+
 -- ChatBox básico
 -- FAQ con respuestas colapsables
 -- Blog
