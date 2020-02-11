@@ -166,7 +166,8 @@ h1 {
 }
 
 @media (max-width: 575px) and (orientation:landscape) {
-	.jumbotron_btn { display: none }
+	.txt_anim_wrapper { display: none; }
+  .jumbotron_btn { display: none; }
 }
  
 @media (min-width: 576px) and (max-width: 767px) {
@@ -176,12 +177,15 @@ h1 {
     min-height: 50vh;
   }
 
+  .txt_anim_wrapper { display: none; }
+
 	.modal-dialog {
 		width: 60% !important;
 	}
 }
 
 @media (min-width: 576px) and (max-width: 767px) and (orientation:landscape) {
+  .txt_anim_wrapper { display: none; }
 	.jumbotron_btn { display: none }
 }
 
@@ -191,6 +195,8 @@ h1 {
   .full_height_img {
     height: 105vh;
   }
+
+  .txt_anim_wrapper { display: none; }
 
 	.modal-dialog {
 		width: 50% !important;
@@ -203,6 +209,8 @@ h1 {
   .full_height_img {
     height: 105vh;
   }
+
+  .txt_anim_wrapper { display: none; }
 
 	.modal-dialog {
 		width: 45% !important;
