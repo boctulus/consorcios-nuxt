@@ -73,7 +73,7 @@ export default {
 
 <style scoped>
 .full_height_img {
-    min-height: 33.33vh;
+    min-height: 50vh;
 }
 
 .h1_wrapper {
@@ -153,80 +153,235 @@ h1 {
 */
 
 @media (max-width: 575px){
-	h1 { font-size: 2em !important; }
-  .txt_anim_wrapper { display: none; }
+	h1, .txt_anim { font-size: 1.8em !important; }
 
-  .full_height_img {
-    min-height: 50vh;
+  .jumbotron_btn {
+    font-size: 0.8em;
+    padding: 0.15em 0.3em 0.15em 0.3em;
   }
-
-	.modal-dialog {
-		width: 100% !important;
-	}
 }
 
 @media (max-width: 575px) and (orientation:landscape) {
+  .h1_wrapper {
+    position: absolute;
+    top: 40vh;
+    width: 100%;
+    text-align: center;
+  }
+
+  .full_height_img {
+    min-height: 105vh;
+  }
+
 	.txt_anim_wrapper { display: none; }
-  .jumbotron_btn { display: none; }
+
+  .jumbotron_btn_wrapper {
+    position: absolute;
+    top: 68vh;
+    width: 100%;
+    text-align: center; 
+  }
+
 }
- 
-@media (min-width: 576px) and (max-width: 767px) {
-	h1 { font-size: 3em !important; }
+
+@media (max-width: 575px) and (orientation:portrait) {
 
   .full_height_img {
     min-height: 50vh;
   }
 
-  .txt_anim_wrapper { display: none; }
+  .h1_wrapper {
+    position: absolute;
+    top: 25vh;
+    width: 100%;
+    text-align: center;
+  }
 
-	.modal-dialog {
-		width: 60% !important;
-	}
+	.txt_anim_wrapper { display: none; }
+
+  .jumbotron_btn_wrapper {
+    display:none;
+  }
+   
+
+}
+
+
+@media (min-width: 576px) and (max-width: 767px) {
+  h1, .txt_anim { font-size: 2.25em !important; }
+
+  .jumbotron_btn {
+    font-size: 1em;
+    padding: 0.25em 0.5em 0.25em 0.5em;
+  }
 }
 
 @media (min-width: 576px) and (max-width: 767px) and (orientation:landscape) {
   .txt_anim_wrapper { display: none; }
-	.jumbotron_btn { display: none }
+	
+  .h1_wrapper {
+    position: absolute;
+    top: 40vh;
+    width: 100%;
+    text-align: center;
+  }
+
+  .jumbotron_btn_wrapper {
+    position: absolute;
+    top: 70vh;
+    width: 100%;
+    text-align: center; 
+  }
+
+  .jumbotron_btn {
+    font-size: 1em;
+    padding: 0.25em 0.7em 0.25em 0.7em;
+  }
 }
+
+@media (min-width: 576px) and (max-width: 767px) and (orientation:portrait) {
+  .full_height_img {
+    min-height: 50vh;
+  }
+
+  .h1_wrapper {
+    position: absolute;
+    top: 20vh;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .txt_anim_wrapper { display: none; }
+
+  .jumbotron_btn_wrapper {
+    position: absolute;
+    top: 35vh;
+    width: 100%;
+    text-align: center; 
+  }
+}
+
 
 @media (min-width: 768px) and (max-width: 991px){
-	h1 { font-size: 3.5em !important; }
 
+	h1, .txt_anim { font-size: 2.8em !important; }
+
+  .jumbotron_btn {
+    font-size: 1.15em;
+    padding: 0.3em 0.6em 0.3em 0.6em;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) and (orientation:landscape) {
   .full_height_img {
-    height: 105vh;
+    min-height: 105vh;
   }
 
-  .txt_anim_wrapper { display: none; }
+  .h1_wrapper {
+    position: absolute;
+    top: 40vh;
+    width: 100%;
+    text-align: center;
+  }
 
-	.modal-dialog {
-		width: 50% !important;
-	}
+  .txt_anim_wrapper { display: none; } 
+
 }
+
+
+@media (min-width: 768px) and (max-width: 991px) and (orientation:portrait) {
+  .full_height_img {
+    min-height: 50vh;
+  }
+
+  .h1_wrapper {
+    position: absolute;
+    top: 20vh;
+    width: 100%;
+    text-align: center;
+  }
+
+  .jumbotron_btn_wrapper {
+    position: absolute;
+    top: 35vh;
+    width: 100%;
+    text-align: center; 
+  }
+  
+}
+
 
 @media (min-width: 992px) and (max-width: 1199px){
-	h1 { font-size: 4em !important; }
-  
-  .full_height_img {
-    height: 105vh;
+	h1, .txt_anim { font-size: 2.8em !important; }
+
+  .jumbotron_btn {
+    font-size: 1.15em;
+    padding: 0.3em 0.6em 0.3em 0.6em;
   }
-
-  .txt_anim_wrapper { display: none; }
-
-	.modal-dialog {
-		width: 45% !important;
-	}
 }
 
-@media (min-width: 1200px){
-	h1 { font-size: 4.5em !important; }
-	
+@media (min-width: 992px) and (max-width: 1199px) and (orientation:landscape) {
   .full_height_img {
     height: 105vh;
   }
+  
+  .jumbotron_btn_wrapper {
+    position: absolute;
+    top: 70vh;
+    width: 100%;
+    text-align: center; 
+  }
 
-	.modal-dialog {
-		width: 33% !important;
-	}
+}
+
+@media (min-width: 992px) and (max-width: 1199px) and (orientation:portrait) {
+  .full_height_img {
+    min-height: 50vh;
+  }
+
+  .h1_wrapper {
+    position: absolute;
+    top: 20vh;
+    width: 100%;
+    text-align: center;
+  }
+
+  .jumbotron_btn_wrapper {
+    position: absolute;
+    top: 35vh;
+    width: 100%;
+    text-align: center; 
+  }
+  
+}
+
+
+@media (min-width: 1200px){
+	h1, .txt_anim { font-size: 3.5em !important; }
+
+  .jumbotron_btn {
+    font-size: 1.25em;
+    padding: 0.3em 0.5em 0.3em 0.5em;
+  }
+}
+
+@media (min-width: 1200px) and (orientation:landscape) {
+  .full_height_img {
+    height: 105vh;
+  }
+}
+
+@media (min-width: 1200px) and (orientation:portrait) {
+  .full_height_img {
+    min-height: 50vh;
+  }
+
+  .jumbotron_btn_wrapper {
+    position: absolute;
+    top: 35vh;
+    width: 100%;
+    text-align: center; 
+  }
 }
 
 </style>
