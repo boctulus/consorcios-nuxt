@@ -1,12 +1,10 @@
 <template>
-   <v-app id="login">
     <div id="cont">
       <div id="subcont">
           <RocketNavigation></RocketNavigation>     
           <nuxt/>
       </div>
-    </div>
-   </v-app>   
+    </div> 
 </template>
 
 

@@ -7,10 +7,10 @@
           <v-img :src="require('../assets/b_color0.jpg')" lazy-src class="img1 full_height_img">
 
             <div class="h1_wrapper">
-              <h1 class="engravers" style="text-align: center;">ADMINISTRACIÓN DE CONDOMINIOS</h1>
+              <h1 style="text-align: center;">ADMINISTRACIÓN DE CONDOMINIOS</h1>
             </div>
 
-            <div class="txt_anim_wrapper">
+            <div class="txt_anim_wrapper" style="filter: brightness(1.3);">
               <TextAnimation 
                 forward-delay="80" 
                 backward-delay="20" 
@@ -25,7 +25,7 @@
             </div>
 
             <v-layout justify-center class="jumbotron_btn_wrapper">
-              <v-btn class="jumbotron_btn">Saber más</v-btn>
+              <v-btn  dark class="jumbotron_btn">Saber más</v-btn>
             </v-layout>              
        
           </v-img>
@@ -114,6 +114,7 @@ h1 {
 
 .jumbotron_btn {
   font-size: 1.3em;
+  padding: 0.25em 0.5em 0.25em 0.5em
 }
 
 .img2:before {
@@ -361,7 +362,7 @@ h1 {
 
   .jumbotron_btn {
     font-size: 1.25em;
-    padding: 0.3em 0.5em 0.3em 0.5em;
+    padding: 0.3em 0.7em 0.3em 0.7em;
   }
 }
 
@@ -374,6 +375,20 @@ h1 {
 @media (min-width: 1200px) and (orientation:portrait) {
   .full_height_img {
     min-height: 50vh;
+  }
+
+  .h1_wrapper {
+    position: absolute;
+    top: 17.25vh;
+    width: 100%;
+    text-align: center;
+  }
+
+  .txt_anim_wrapper {
+    position: absolute;
+    top: 25vh;
+    width: 100%;
+    text-align: center; 
   }
 
   .jumbotron_btn_wrapper {
