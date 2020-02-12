@@ -27,7 +27,7 @@
             <v-layout justify-center class="jumbotron_btn_wrapper">
               <v-btn class="jumbotron_btn">Saber más</v-btn>
             </v-layout>              
-      
+       
           </v-img>
           
           <v-img :src="require('../assets/b_bn1.jpg')"    lazy-src class="img2 full_height_img">
