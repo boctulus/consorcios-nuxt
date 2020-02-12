@@ -1,8 +1,12 @@
 <template>
     <div id="cont">
       <div id="subcont">
-          <RocketNavigation></RocketNavigation>     
-          <nuxt/>
+          <v-app>
+            <RocketNavigation></RocketNavigation>      
+            <v-content>
+              <nuxt/>
+            </v-content>
+          </v-app>
       </div>
     </div> 
 </template>

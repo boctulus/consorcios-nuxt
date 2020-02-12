@@ -1,51 +1,49 @@
 <template>
-  <div id="homePage">
-    <v-container fluid style="padding-top: 0; padding-left: 0; padding-right: 0;">
-      <v-layout row wrap>
+  <v-container fluid style="padding-top: 0; padding-left: 0; padding-right: 0;">
+    <v-layout row wrap>
+      
+      <v-flex lg12 sm12 xs12>
+        <v-img :src="require('../assets/b_color0.jpg')" lazy-src class="img1 full_height_img">
+
+          <div class="h1_wrapper">
+            <h1 style="text-align: center;">ADMINISTRACIÓN DE CONDOMINIOS</h1>
+          </div>
+
+          <div class="txt_anim_wrapper" style="filter: brightness(1.3);">
+            <TextAnimation 
+              forward-delay="80" 
+              backward-delay="20" 
+              clearing-delay="2000"
+              v-bind:messages = "['Administración de consorcios',
+                                  'Número 1 en La Plata',
+                                  'El Grove'
+              ]"
+              class="txt_anim"
+              >
+            </TextAnimation>                
+          </div>
+
+          <v-layout justify-center class="jumbotron_btn_wrapper">
+            <v-btn  dark class="jumbotron_btn">Saber más</v-btn>
+          </v-layout>              
+      
+        </v-img>
         
-        <v-flex lg12 sm12 xs12>
-          <v-img :src="require('../assets/b_color0.jpg')" lazy-src class="img1 full_height_img">
+        <v-img :src="require('../assets/b_bn1.jpg')"    lazy-src class="img2 full_height_img">
+          Dentro Img 2
+        </v-img>
 
-            <div class="h1_wrapper">
-              <h1 style="text-align: center;">ADMINISTRACIÓN DE CONDOMINIOS</h1>
-            </div>
+        <v-img :src="require('../assets/b_color2.jpg')" lazy-src class="img3 full_height_img">
+          Dentro Img 3
+        </v-img>
 
-            <div class="txt_anim_wrapper" style="filter: brightness(1.3);">
-              <TextAnimation 
-                forward-delay="80" 
-                backward-delay="20" 
-                clearing-delay="2000"
-                v-bind:messages = "['Administración de consorcios',
-                                   'Número 1 en La Plata',
-                                   'El Grove'
-                ]"
-                class="txt_anim"
-                >
-              </TextAnimation>                
-            </div>
+        <v-img :src="require('../assets/b_bn3.jpg')"    lazy-src class="img4 full_height_img">
+          Dentro Img 4
+        </v-img>
+      </v-flex>
 
-            <v-layout justify-center class="jumbotron_btn_wrapper">
-              <v-btn  dark class="jumbotron_btn">Saber más</v-btn>
-            </v-layout>              
-       
-          </v-img>
-          
-          <v-img :src="require('../assets/b_bn1.jpg')"    lazy-src class="img2 full_height_img">
-            Dentro Img 2
-          </v-img>
-
-          <v-img :src="require('../assets/b_color2.jpg')" lazy-src class="img3 full_height_img">
-            Dentro Img 3
-          </v-img>
-
-          <v-img :src="require('../assets/b_bn3.jpg')"    lazy-src class="img4 full_height_img">
-            Dentro Img 4
-          </v-img>
-        </v-flex>
-
-      </v-layout>
-    </v-container>
-  </div>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
