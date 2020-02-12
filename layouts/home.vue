@@ -2,10 +2,8 @@
    <v-app id="login">
     <div id="cont">
       <div id="subcont">
-          <RocketNavigation></RocketNavigation>
-            <v-content>          
-              <nuxt/>
-            </v-content>
+          <RocketNavigation></RocketNavigation>     
+          <nuxt/>
       </div>
     </div>
    </v-app>   

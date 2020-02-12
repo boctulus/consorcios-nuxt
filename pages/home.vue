@@ -1,6 +1,6 @@
 <template>
   <div id="homePage">
-    <v-container fluid style="padding-left: 0; padding-right: 0;">
+    <v-container fluid style="padding-top: 0; padding-left: 0; padding-right: 0;">
       <v-layout row wrap>
         
         <v-flex lg12 sm12 xs12>
