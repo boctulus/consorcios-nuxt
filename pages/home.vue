@@ -173,7 +173,10 @@ h1 {
 	.txt_anim_wrapper { display: none; }
 
   .jumbotron_btn_wrapper {
-    display:none;
+    position: absolute;
+    top: 80vh;
+    width: 100%;
+    text-align: center; 
   }
    
 
@@ -191,7 +194,7 @@ h1 {
 	
   .h1_wrapper {
     position: absolute;
-    top: 60vh;
+    top: 58vh;
     width: 100%;
     text-align: center;
   }
@@ -259,7 +262,9 @@ h1 {
 
 }
 
-
+/* 
+  iPad 
+*/  
 @media (min-width: 768px) and (max-width: 991px) and (orientation:portrait) {
   .full_height_img {
     min-height: 50vh;
@@ -267,14 +272,16 @@ h1 {
 
   .h1_wrapper {
     position: absolute;
-    top: 20vh;
+    top: 25vh;
     width: 100%;
     text-align: center;
   }
 
+  .txt_anim_wrapper { display: none; }
+
   .jumbotron_btn_wrapper {
     position: absolute;
-    top: 35vh;
+    top: 42vh;
     width: 100%;
     text-align: center; 
   }
