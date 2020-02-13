@@ -24,7 +24,7 @@
         </v-navigation-drawer>
 
         <nav class="nav">
-            <img src="https://i.imgur.com/9xTlLKa.png" class="logo"/>
+            <img src="https://i.imgur.com/QyAAKtC.png" class="logo"/>
 
             <v-divider></v-divider>
 
@@ -107,7 +107,7 @@ export default {
 
 .logo {
     z-index:4000; 
-    width: 4em;
+    width: 14em;
     position: absolute;
     top: 5vh;
     left: 3%; 

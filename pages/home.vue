@@ -1,20 +1,19 @@
 <template>
   <v-container fluid style="padding-top: 0; padding-left: 0; padding-right: 0;">
-    <v-layout row wrap>
-      
-      <v-flex lg12 sm12 xs12>
-        <v-img :src="require('../assets/b_color0.jpg')" lazy-src class="img1 full_height_img">
+    
+        <v-img :src="require('../assets/b_color0.jpg')" lazy-src class="img img1 full_height_img"> 
 
           <div class="h1_wrapper">
-            <h1 style="text-align: center;">ADMINISTRACIÓN DE CONDOMINIOS</h1>
+            <h1 style="text-align: center;">ADMINISTRACIÓN DE CONSORCIOS</h1>
           </div>
 
-          <div class="txt_anim_wrapper" style="filter: brightness(1.3);">
+          <div class="txt_anim_wrapper" style="filter: brightness(1.3); font-weight: 500; text-transform: uppercase;">
             <TextAnimation 
               forward-delay="80" 
-              backward-delay="20" 
-              clearing-delay="2000"
-              v-bind:messages = "['Administración de consorcios',
+              backward-delay="15" 
+              clearing-delay="1000"
+              v-bind:messages = "['Seriedad',
+                                  'Eficacia',
                                   'Número 1 en La Plata',
                                   'El Grove'
               ]"
@@ -29,20 +28,19 @@
       
         </v-img>
         
-        <v-img :src="require('../assets/b_bn1.jpg')"    lazy-src class="img2 full_height_img">
-          Dentro Img 2
+        <v-img :src="require('../assets/b_bn1.jpg')"    lazy-src class="img img2 full_height_img">
+         
         </v-img>
 
-        <v-img :src="require('../assets/b_color2.jpg')" lazy-src class="img3 full_height_img">
-          Dentro Img 3
+        <v-img :src="require('../assets/b_color2.jpg')" lazy-src class="img img3 full_height_img">
+          
         </v-img>
 
-        <v-img :src="require('../assets/b_bn3.jpg')"    lazy-src class="img4 full_height_img">
-          Dentro Img 4
-        </v-img>
-      </v-flex>
+        <v-img :src="require('../assets/b_bn3.jpg')"    lazy-src class="img img4 full_height_img">
 
-    </v-layout>
+        </v-img>
+
+
   </v-container>
 </template>
 
@@ -70,6 +68,10 @@ export default {
 </script>
 
 <style scoped>
+.img {
+  width: calc(100% + 17px)
+}
+
 .full_height_img {
     min-height: 50vh;
 }
@@ -83,9 +85,9 @@ export default {
 
 h1 {
   font-size: 3.5em;
-  color: #EAD47E;
+  color: #FFFFFF;
   filter: brightness(1.3);
-  font-weight: 300;
+  font-weight: 400;
   padding-left:  1em;
   padding-right: 1em;
 }
@@ -152,7 +154,7 @@ h1 {
 */
 
 @media (max-width: 575px){
-	h1, .txt_anim { font-size: 1.8em !important; }
+	h1, .txt_anim { font-size: 2em !important; }
 
   .jumbotron_btn {
     font-size: 0.8em;
@@ -160,10 +162,13 @@ h1 {
   }
 }
 
+/*
+  480x360
+*/
 @media (max-width: 575px) and (orientation:landscape) {
   .h1_wrapper {
     position: absolute;
-    top: 40vh;
+    top: 65vh;
     width: 100%;
     text-align: center;
   }
@@ -175,10 +180,7 @@ h1 {
 	.txt_anim_wrapper { display: none; }
 
   .jumbotron_btn_wrapper {
-    position: absolute;
-    top: 68vh;
-    width: 100%;
-    text-align: center; 
+    display: none;
   }
 
 }
@@ -191,7 +193,7 @@ h1 {
 
   .h1_wrapper {
     position: absolute;
-    top: 25vh;
+    top: 60vh;
     width: 100%;
     text-align: center;
   }
@@ -210,8 +212,7 @@ h1 {
   h1, .txt_anim { font-size: 2.25em !important; }
 
   .jumbotron_btn {
-    font-size: 1em;
-    padding: 0.25em 0.5em 0.25em 0.5em;
+    display:none;
   }
 }
 
@@ -220,16 +221,13 @@ h1 {
 	
   .h1_wrapper {
     position: absolute;
-    top: 40vh;
+    top: 60vh;
     width: 100%;
     text-align: center;
   }
 
   .jumbotron_btn_wrapper {
-    position: absolute;
-    top: 70vh;
-    width: 100%;
-    text-align: center; 
+    display:none;
   }
 
   .jumbotron_btn {

@@ -16,20 +16,20 @@ export default {
 @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
 
  #hamburger-icon {
-	 width: 40px;
-	 height: 20px;
+	 width: 28px;
+	 height: 12px;
 	 position: relative;
 	 display: block;
-	 margin: 40px auto 20px auto;
+	 margin: 24px auto 12px auto;
 }
  #hamburger-icon .line {
 	 display: block;
 	 background: #B38C25;
-	 width: 40px;
-	 height: 4px;
+	 width: 28px;
+	 height: 2px;
 	 position: absolute;
 	 left: 0;
-	 border-radius: 2px;
+	 border-radius: 1px;
 	 transition: all 0.4s;
 	 -webkit-transition: all 0.4s;
 	 -moz-transition: all 0.4s;
@@ -44,27 +44,27 @@ export default {
 	 top: 100%;
 }
  #hamburger-icon:hover .line-1, #hamburger-icon:focus .line-1 {
-	 transform: translateY(-2px);
-	 -webkit-transform: translateY(-2px);
-	 -moz-transform: translateY(-2px);
+	 transform: translateY(-1px);
+	 -webkit-transform: translateY(-1px);
+	 -moz-transform: translateY(-1px);
 }
  #hamburger-icon:hover .line-3, #hamburger-icon:focus .line-3 {
-	 transform: translateY(2px);
-	 -webkit-transform: translateY(2px);
-	 -moz-transform: translateY(2px);
+	 transform: translateY(1px);
+	 -webkit-transform: translateY(1px);
+	 -moz-transform: translateY(1px);
 }
  #hamburger-icon.active .line-1 {
-	 transform: translateY(10px) translateX(0) rotate(45deg);
-	 -webkit-transform: translateY(10px) translateX(0) rotate(45deg);
-	 -moz-transform: translateY(10px) translateX(0) rotate(45deg);
+	 transform: translateY(6px) translateX(0) rotate(45deg);
+	 -webkit-transform: translateY(6px) translateX(0) rotate(45deg);
+	 -moz-transform: translateY(6px) translateX(0) rotate(45deg);
 }
  #hamburger-icon.active .line-2 {
 	 opacity: 0;
 }
  #hamburger-icon.active .line-3 {
-	 transform: translateY(-10px) translateX(0) rotate(-45deg);
-	 -webkit-transform: translateY(-10px) translateX(0) rotate(-45deg);
-	 -moz-transform: translateY(-10px) translateX(0) rotate(-45deg);
+	 transform: translateY(-6px) translateX(0) rotate(-45deg);
+	 -webkit-transform: translateY(-6px) translateX(0) rotate(-45deg);
+	 -moz-transform: translateY(-6px) translateX(0) rotate(-45deg);
 }
  h1 {
 	 text-transform: uppercase;

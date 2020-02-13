@@ -3,9 +3,9 @@
       <div id="subcont">
           <v-app>
             <RocketNavigation></RocketNavigation>      
-            <v-content>
+            <!-- v-content-->
               <nuxt/>
-            </v-content>
+            <!--/v-content-->
           </v-app>
       </div>
     </div> 
