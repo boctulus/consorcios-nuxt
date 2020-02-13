@@ -7,7 +7,7 @@
             <h1 style="text-align: center;">ADMINISTRACIÓN DE CONSORCIOS</h1>
           </div>
 
-          <div class="txt_anim_wrapper" style="filter: brightness(1.3); font-weight: 500; text-transform: uppercase;">
+          <div class="txt_anim_wrapper" style="filter: brightness(1.5); font-weight: 500; text-transform: uppercase;">
             <TextAnimation 
               forward-delay="80" 
               backward-delay="15" 
@@ -68,10 +68,6 @@ export default {
 </script>
 
 <style scoped>
-.img {
-  width: calc(100% + 17px)
-}
-
 .full_height_img {
     min-height: 50vh;
 }
@@ -117,44 +113,17 @@ h1 {
   padding: 0.25em 0.5em 0.25em 0.5em
 }
 
-.img2:before {
-	content:'';
-	position: absolute;
-  top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	background-color: rgba(208,162,140,0.5);
-}
+/* 
 
-.img3:before {
-	content:'';
-	position: absolute;
-  top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	background-color: rgba(208,162,140,0.5);
-}
+  Media Queries 
 
-.img4 {
-  background-color: #545B63;
-}
-
-/*
-.img4:before {
-	content:'';
-	position: absolute;
-  top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	background-color: rgba(161,177,188,0.1);
-}
 */
 
+/* 
+  iPhone 5/SE
+*/
 @media (max-width: 575px){
-	h1, .txt_anim { font-size: 2em !important; }
+	h1, .txt_anim { font-size: 2.2em !important; }
 
   .jumbotron_btn {
     font-size: 0.8em;
@@ -163,12 +132,12 @@ h1 {
 }
 
 /*
-  480x360
+  480x360 568x320
 */
 @media (max-width: 575px) and (orientation:landscape) {
   .h1_wrapper {
     position: absolute;
-    top: 65vh;
+    top: 62vh;
     width: 100%;
     text-align: center;
   }
@@ -185,15 +154,18 @@ h1 {
 
 }
 
+/* 
+  360x480
+*/
 @media (max-width: 575px) and (orientation:portrait) {
 
   .full_height_img {
-    min-height: 50vh;
+    min-height: 105vh;
   }
 
   .h1_wrapper {
     position: absolute;
-    top: 60vh;
+    top: 50vh;
     width: 100%;
     text-align: center;
   }
@@ -207,15 +179,13 @@ h1 {
 
 }
 
-
 @media (min-width: 576px) and (max-width: 767px) {
-  h1, .txt_anim { font-size: 2.25em !important; }
-
-  .jumbotron_btn {
-    display:none;
-  }
+  h1, .txt_anim { font-size: 3em !important; }
 }
 
+/*
+  Galaxy S5, Pixel 2, iPhone 5/SE, iPhone 6/7/8
+*/
 @media (min-width: 576px) and (max-width: 767px) and (orientation:landscape) {
   .txt_anim_wrapper { display: none; }
 	
@@ -258,10 +228,12 @@ h1 {
   }
 }
 
-
+/*  
+  iPhone X
+*/
 @media (min-width: 768px) and (max-width: 991px){
 
-	h1, .txt_anim { font-size: 2.8em !important; }
+	h1, .txt_anim { font-size: 3.5em !important; }
 
   .jumbotron_btn {
     font-size: 1.15em;
@@ -276,12 +248,14 @@ h1 {
 
   .h1_wrapper {
     position: absolute;
-    top: 40vh;
+    top: 55vh;
     width: 100%;
     text-align: center;
   }
 
   .txt_anim_wrapper { display: none; } 
+
+  .jumbotron_btn { display: none; } 
 
 }
 
@@ -308,8 +282,11 @@ h1 {
 }
 
 
+/*
+  iPad (1024x768)
+*/
 @media (min-width: 992px) and (max-width: 1199px){
-	h1, .txt_anim { font-size: 2.8em !important; }
+	h1, .txt_anim { font-size: 3.5em !important; }
 
   .jumbotron_btn {
     font-size: 1.15em;
@@ -321,10 +298,24 @@ h1 {
   .full_height_img {
     height: 105vh;
   }
+
+  .h1_wrapper {
+    position: absolute;
+    top: 40vh;
+    width: 100%;
+    text-align: center;
+  }
+
+  .txt_anim_wrapper {
+    position: absolute;
+    top: 55vh;
+    width: 100%;
+    text-align: center; 
+  }
   
   .jumbotron_btn_wrapper {
     position: absolute;
-    top: 70vh;
+    top: 75vh;
     width: 100%;
     text-align: center; 
   }
@@ -365,6 +356,20 @@ h1 {
 @media (min-width: 1200px) and (orientation:landscape) {
   .full_height_img {
     height: 105vh;
+  }
+
+  .h1_wrapper {
+    position: absolute;
+    top: 35vh;
+    width: 100%;
+    text-align: center;
+  }
+
+  .txt_anim_wrapper {
+    position: absolute;
+    top: 55vh;
+    width: 100%;
+    text-align: center; 
   }
 }
 
