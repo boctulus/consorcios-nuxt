@@ -6,6 +6,11 @@
     </a>
 </template>
 
+/* 
+	Animated Hamburger by Steven Fabre 
+	https://www.hongkiat.com/blog/hamburger-menu-animations/
+*/
+
 <script>
 export default {
      name: 'Hamburger',

@@ -123,7 +123,7 @@ h1 {
   iPhone 5/SE
 */
 @media (max-width: 575px){
-	h1, .txt_anim { font-size: 2.2em !important; }
+	h1, .txt_anim { font-size: 2.3em !important; }
 
   .jumbotron_btn {
     font-size: 0.8em;
@@ -160,12 +160,12 @@ h1 {
 @media (max-width: 575px) and (orientation:portrait) {
 
   .full_height_img {
-    min-height: 105vh;
+    min-height: 50.5vh;
   }
 
   .h1_wrapper {
     position: absolute;
-    top: 50.5vh;
+    top: 32vh;
     width: 100%;
     text-align: center;
   }
@@ -173,10 +173,7 @@ h1 {
 	.txt_anim_wrapper { display: none; }
 
   .jumbotron_btn_wrapper {
-    position: absolute;
-    top: 80vh;
-    width: 100%;
-    text-align: center; 
+    display: none; 
   }
    
 
@@ -216,7 +213,7 @@ h1 {
 
   .h1_wrapper {
     position: absolute;
-    top: 20vh;
+    top: 25vh;
     width: 100%;
     text-align: center;
   }
@@ -224,10 +221,7 @@ h1 {
   .txt_anim_wrapper { display: none; }
 
   .jumbotron_btn_wrapper {
-    position: absolute;
-    top: 35vh;
-    width: 100%;
-    text-align: center; 
+    display: none;
   }
 }
 
