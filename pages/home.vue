@@ -69,7 +69,7 @@ export default {
 
 <style scoped>
 .full_height_img {
-    min-height: 50vh;
+    min-height: 50.5vh;
 }
 
 .h1_wrapper {
@@ -90,7 +90,7 @@ h1 {
 
 .txt_anim_wrapper {
   position: absolute;
-  top: 50vh;
+  top: 50.5vh;
   width: 100%;
   text-align: center; 
 }
@@ -165,7 +165,7 @@ h1 {
 
   .h1_wrapper {
     position: absolute;
-    top: 50vh;
+    top: 50.5vh;
     width: 100%;
     text-align: center;
   }
@@ -211,7 +211,7 @@ h1 {
 
 @media (min-width: 576px) and (max-width: 767px) and (orientation:portrait) {
   .full_height_img {
-    min-height: 50vh;
+    min-height: 50.5vh;
   }
 
   .h1_wrapper {
@@ -267,7 +267,7 @@ h1 {
 */  
 @media (min-width: 768px) and (max-width: 991px) and (orientation:portrait) {
   .full_height_img {
-    min-height: 50vh;
+    min-height: 50.5vh;
   }
 
   .h1_wrapper {
@@ -331,7 +331,7 @@ h1 {
 
 @media (min-width: 992px) and (max-width: 1199px) and (orientation:portrait) {
   .full_height_img {
-    min-height: 50vh;
+    min-height: 50.5vh;
   }
 
   .h1_wrapper {
@@ -382,7 +382,7 @@ h1 {
 
 @media (min-width: 1200px) and (orientation:portrait) {
   .full_height_img {
-    min-height: 50vh;
+    min-height: 50.5vh;
   }
 
   .h1_wrapper {
