@@ -123,7 +123,7 @@ h1 {
   iPhone 5/SE
 */
 @media (max-width: 575px){
-	h1, .txt_anim { font-size: 2.3em !important; }
+	h1, .txt_anim { font-size: 2.2em !important; }
 
   .jumbotron_btn {
     font-size: 0.8em;
@@ -165,7 +165,7 @@ h1 {
 
   .h1_wrapper {
     position: absolute;
-    top: 32vh;
+    top: 50.5vh;
     width: 100%;
     text-align: center;
   }
