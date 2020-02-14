@@ -72,7 +72,7 @@ export default {
             elem.style.height = 0
         },
         enter: function (elem, done) {
-            var delay = elem.dataset.index * 250;
+            var delay = elem.dataset.index * 150;
             setTimeout(function () {
                 Velocity(
                     elem,
@@ -82,7 +82,7 @@ export default {
             }, delay)
         },
         leave: function (elem, done) {
-            var delay = elem.dataset.index * 150
+            var delay = elem.dataset.index * 100
             setTimeout(function () {
                 Velocity(
                     elem,
@@ -106,7 +106,7 @@ export default {
 }
 
 .slide-fade-leave-active {
-  transition: all .8s cubic-bezier(1.0, 0.5,    0.8, 1.0);
+  transition: all .6s cubic-bezier(1.0, 0.5,    0.8, 1.0);
 }
 
 .slide-fade-enter, .slide-fade-leave-to
@@ -137,6 +137,8 @@ export default {
     background-color:black;
     width: 21em;
     height: 100%;
+
+    overflow: scroll;
 }
 
 .logo {

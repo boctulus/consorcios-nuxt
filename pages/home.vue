@@ -194,14 +194,19 @@ h1 {
   Galaxy S5, Pixel 2, iPhone 5/SE, iPhone 6/7/8
 */
 @media screen and (min-width: 576px) and (max-width: 767px) and (orientation:landscape) {
-  .txt_anim_wrapper { display: none; }
-	
+
+  .full_height_img {
+    min-height: 105vh;
+  }
+
   .h1_wrapper {
     position: absolute;
     top: 58vh;
     width: 100%;
     text-align: center;
   }
+
+  .txt_anim_wrapper { display: none; }
 
   .jumbotron_btn_wrapper {
     display:none;
