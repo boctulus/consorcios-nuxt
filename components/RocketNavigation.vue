@@ -1,12 +1,12 @@
 <template>
     <span>
-        <v-navigation-drawer app v-model="drawer" right dark class="deep-black accent-4" id="drawer">
+        <div v-show="drawer" class="drawer">
             <div style="margin-top:5em;">
                 <div style="text-align: center;">
                     <img src="https://i.imgur.com/QyAAKtC.png" style="width: 7em;" />
                 </div>
                 
-                <v-list style=" margin-top: 3em;">
+                <v-list style=" margin-top: 3em; background-color: #000000;">
                     <transition-group
                         name="staggered-fade"
                         tag="ul"
@@ -28,7 +28,7 @@
                     </transition-group>
                 </v-list>      
             </div>
-        </v-navigation-drawer>
+        </div>
 
         <nav class="nav">
             <img src="https://i.imgur.com/QyAAKtC.png" class="logo"/>
@@ -107,9 +107,18 @@ export default {
     text-transform: uppercase;
 }
 
-#drawer {
-    opacity: 0.90; 
+.drawer {
+    opacity: 0.85; 
     z-index: 5000;
+    
+    position: fixed;
+    top:0;
+    right: 0;
+    padding-right: 0;
+
+    background-color:black;
+    width: 21em;
+    height: 100%;
 }
 
 .logo {

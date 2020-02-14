@@ -1,9 +1,9 @@
 <template>
     <v-app style="margin-top: -1px;">
       <RocketNavigation></RocketNavigation>      
-      <!-- v-content-->
+      <v-content>
         <nuxt/>
-      <!--/v-content-->
+      </v-content>
     </v-app>
 </template>
 
