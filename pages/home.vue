@@ -122,7 +122,7 @@ h1 {
 /* 
   iPhone 5/SE
 */
-@media (max-width: 575px){
+@media screen and (max-width: 575px){
 	h1, .txt_anim { font-size: 2.2em !important; }
 
   .jumbotron_btn {
@@ -134,7 +134,7 @@ h1 {
 /*
   480x360 568x320
 */
-@media (max-width: 575px) and (orientation:landscape) {
+@media screen and (max-width: 575px) and (orientation:landscape) {
   .h1_wrapper {
     position: absolute;
     top: 62vh;
@@ -157,7 +157,7 @@ h1 {
 /* 
   360x480
 */
-@media (max-width: 575px) and (orientation:portrait) {
+@media screen and (max-width: 575px) and (orientation:portrait) {
 
   .full_height_img {
     min-height: 50.5vh;
@@ -179,14 +179,14 @@ h1 {
 
 }
 
-@media (min-width: 576px) and (max-width: 767px) {
+@media screen and (min-width: 576px) and (max-width: 767px) {
   h1, .txt_anim { font-size: 3em !important; }
 }
 
 /*
   Galaxy S5, Pixel 2, iPhone 5/SE, iPhone 6/7/8
 */
-@media (min-width: 576px) and (max-width: 767px) and (orientation:landscape) {
+@media screen and (min-width: 576px) and (max-width: 767px) and (orientation:landscape) {
   .txt_anim_wrapper { display: none; }
 	
   .h1_wrapper {
@@ -206,7 +206,7 @@ h1 {
   }
 }
 
-@media (min-width: 576px) and (max-width: 767px) and (orientation:portrait) {
+@media screen and (min-width: 576px) and (max-width: 767px) and (orientation:portrait) {
   .full_height_img {
     min-height: 50.5vh;
   }
@@ -228,7 +228,7 @@ h1 {
 /*  
   iPhone X
 */
-@media (min-width: 768px) and (max-width: 991px){
+@media screen and (min-width: 768px) and (max-width: 991px){
 
 	h1, .txt_anim { font-size: 3.5em !important; }
 
@@ -238,7 +238,7 @@ h1 {
   }
 }
 
-@media (min-width: 768px) and (max-width: 991px) and (orientation:landscape) {
+@media screen and (min-width: 768px) and (max-width: 991px) and (orientation:landscape) {
   .full_height_img {
     min-height: 105vh;
   }
@@ -259,7 +259,7 @@ h1 {
 /* 
   iPad 
 */  
-@media (min-width: 768px) and (max-width: 991px) and (orientation:portrait) {
+@media screen and (min-width: 768px) and (max-width: 991px) and (orientation:portrait) {
   .full_height_img {
     min-height: 50.5vh;
   }
@@ -286,7 +286,7 @@ h1 {
 /*
   iPad (1024x768)
 */
-@media (min-width: 992px) and (max-width: 1199px){
+@media screen and (min-width: 992px) and (max-width: 1199px){
 	h1, .txt_anim { font-size: 3.5em !important; }
 
   .jumbotron_btn {
@@ -295,7 +295,7 @@ h1 {
   }
 }
 
-@media (min-width: 992px) and (max-width: 1199px) and (orientation:landscape) {
+@media screen and (min-width: 992px) and (max-width: 1199px) and (orientation:landscape) {
   .full_height_img {
     height: 105vh;
   }
@@ -323,7 +323,7 @@ h1 {
 
 }
 
-@media (min-width: 992px) and (max-width: 1199px) and (orientation:portrait) {
+@media screen and (min-width: 992px) and (max-width: 1199px) and (orientation:portrait) {
   .full_height_img {
     min-height: 50.5vh;
   }
@@ -345,7 +345,7 @@ h1 {
 }
 
 
-@media (min-width: 1200px){
+@media screen and (min-width: 1200px){
 	h1, .txt_anim { font-size: 3.5em !important; }
 
   .jumbotron_btn {
@@ -354,7 +354,7 @@ h1 {
   }
 }
 
-@media (min-width: 1200px) and (orientation:landscape) {
+@media screen and (min-width: 1200px) and (orientation:landscape) {
   .full_height_img {
     height: 105vh;
   }
@@ -374,7 +374,7 @@ h1 {
   }
 }
 
-@media (min-width: 1200px) and (orientation:portrait) {
+@media screen and (min-width: 1200px) and (orientation:portrait) {
   .full_height_img {
     min-height: 50.5vh;
   }
@@ -396,6 +396,36 @@ h1 {
   .jumbotron_btn_wrapper {
     position: absolute;
     top: 35vh;
+    width: 100%;
+    text-align: center; 
+  }
+}
+
+
+/* Dispositivos cuadrados */
+
+@media screen and (min-aspect-ratio:750/1000) and (max-aspect-ratio:1333/1000) {
+  .full_height_img {
+    height: 105vh;
+  }
+
+  .h1_wrapper {
+    position: absolute;
+    top: 35vh;
+    width: 100%;
+    text-align: center;
+  }
+
+  .txt_anim_wrapper {
+    position: absolute;
+    top: 55vh;
+    width: 100%;
+    text-align: center; 
+  }
+  
+  .jumbotron_btn_wrapper {
+    position: absolute;
+    top: 75vh;
     width: 100%;
     text-align: center; 
   }
