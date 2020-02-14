@@ -1,35 +1,37 @@
 <template>
     <span>
-        <div v-show="drawer" class="drawer">
-            <div style="margin-top:5em;">
-                <div style="text-align: center;">
-                    <img src="https://i.imgur.com/QyAAKtC.png" style="width: 7em;" />
-                </div>
-                
-                <v-list style=" margin-top: 3em; background-color: #000000;">
-                    <transition-group
-                        name="staggered-fade"
-                        tag="ul"
-                        v-bind:css="false"
-                        v-on:before-enter="beforeEnter"
-                        v-on:enter="enter"
-                        v-on:leave="leave"
-                        class="list"
-                    >
-
-                        <li 
-                            v-for="(item, index) in computedList"
-                            v-bind:key="item.msg"
-                            v-bind:data-index="index"
-                            class="item"
+        <transition name="slide-fade">
+            <div v-show="drawer" class="drawer">
+                <div style="margin-top:5em;">
+                    <div style="text-align: center;">
+                        <img src="https://i.imgur.com/QyAAKtC.png" style="width: 7em;" />
+                    </div>
+                    
+                    <v-list style="margin-top: 3em; background-color: #000000;">
+                        <transition-group
+                            name="staggered-fade"
+                            tag="ul"
+                            v-bind:css="false"
+                            v-on:before-enter="beforeEnter"
+                            v-on:enter="enter"
+                            v-on:leave="leave"
+                            class="list"
                         >
-                            <v-icon color="#CFA18B" style="margin-right:0.5em;">crop_din</v-icon>{{item.msg}}
-                        </li>
-                    </transition-group>
-                </v-list>      
-            </div>
-        </div>
 
+                            <li 
+                                v-for="(item, index) in computedList"
+                                v-bind:key="item.msg"
+                                v-bind:data-index="index"
+                                class="item"
+                            >
+                                <v-icon color="#CFA18B" style="margin-right:0.5em;">crop_din</v-icon>{{item.msg}}
+                            </li>
+                        </transition-group>
+                    </v-list>      
+                </div>
+            </div>
+        </transition>
+        
         <nav class="nav">
             <img src="https://i.imgur.com/QyAAKtC.png" class="logo"/>
 
@@ -98,6 +100,22 @@ export default {
 
 
 <style scoped>  
+
+.slide-fade-enter-active {
+  transition: all .3s ease;
+}
+
+.slide-fade-leave-active {
+  transition: all .8s cubic-bezier(1.0, 0.5,    0.8, 1.0);
+}
+
+.slide-fade-enter, .slide-fade-leave-to
+{
+  transform: translateX(21em);
+  opacity: 0;
+}
+
+
 .list {
     list-style: none;
 }
