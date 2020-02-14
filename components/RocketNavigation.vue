@@ -1,26 +1,31 @@
 <template>
     <span>
         <v-navigation-drawer app v-model="drawer" right dark class="deep-black accent-4" id="drawer">
-            <v-list style="margin-top:5em;">
-                <transition-group
-                    name="staggered-fade"
-                    tag="ul"
-                    v-bind:css="false"
-                    v-on:before-enter="beforeEnter"
-                    v-on:enter="enter"
-                    v-on:leave="leave"
-                    class="list"
-                >
-                    <li 
-					  v-for="(item, index) in computedList"
-					  v-bind:key="item.msg"
-					  v-bind:data-index="index"
-                      class="item"
-					>
-                        <v-icon color="#CFA18B" style="margin-right:0.5em;">crop_din</v-icon>{{item.msg}}
-					</li>
-                </transition-group>
-            </v-list>      
+            <div style="margin-top:5em;">
+                <img src="https://i.imgur.com/QyAAKtC.png" style="width: 7em; padding-left: 1.5em;" />
+
+                <v-list>
+                    <transition-group
+                        name="staggered-fade"
+                        tag="ul"
+                        v-bind:css="false"
+                        v-on:before-enter="beforeEnter"
+                        v-on:enter="enter"
+                        v-on:leave="leave"
+                        class="list"
+                    >
+
+                        <li 
+                            v-for="(item, index) in computedList"
+                            v-bind:key="item.msg"
+                            v-bind:data-index="index"
+                            class="item"
+                        >
+                            <v-icon color="#CFA18B" style="margin-right:0.5em;">crop_din</v-icon>{{item.msg}}
+                        </li>
+                    </transition-group>
+                </v-list>      
+            </div>
         </v-navigation-drawer>
 
         <nav class="nav">

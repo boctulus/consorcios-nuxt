@@ -402,7 +402,7 @@ h1 {
 }
 
 
-/* Dispositivos cuadrados */
+/* Dispositivos cuadrados o casi */
 
 @media screen and (min-aspect-ratio:750/1000) and (max-aspect-ratio:1333/1000) {
   .full_height_img {
