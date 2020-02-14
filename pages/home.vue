@@ -1,7 +1,7 @@
 <template>
   <v-container fluid style="padding-top: 0; padding-left: 0; padding-right: 0;">
     
-        <v-img :src="require('../assets/b_trans.png')" lazy-src class="img img1 full_height_img"> 
+        <v-img :src="require('../assets/b_color5.jpg')" lazy-src class="img img1 full_height_img"> 
 
           <div class="h1_wrapper">
             <h1 style="text-align: center;">ADMINISTRACIÓN DE CONSORCIOS</h1>
@@ -423,23 +423,17 @@ h1 {
 
   .h1_wrapper {
     position: absolute;
-    top: 35vh;
+    top: 55vh;
     width: 100%;
     text-align: center;
   }
 
   .txt_anim_wrapper {
-    position: absolute;
-    top: 55vh;
-    width: 100%;
-    text-align: center; 
+    display:none; 
   }
   
   .jumbotron_btn_wrapper {
-    position: absolute;
-    top: 75vh;
-    width: 100%;
-    text-align: center; 
+    display:none;
   }
 }
 
