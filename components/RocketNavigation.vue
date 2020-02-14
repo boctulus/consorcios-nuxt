@@ -7,7 +7,7 @@
                         <img src="https://i.imgur.com/QyAAKtC.png" style="width: 7em;" />
                     </div>
                     
-                    <v-list style="margin-top: 3em; background-color: #000000;">
+                    <v-list style="margin-top: 3em; background-color: #000000;" v-show="drawer">
                         <transition-group
                             name="staggered-fade"
                             tag="ul"
