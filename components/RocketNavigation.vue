@@ -2,9 +2,11 @@
     <span>
         <v-navigation-drawer app v-model="drawer" right dark class="deep-black accent-4" id="drawer">
             <div style="margin-top:5em;">
-                <img src="https://i.imgur.com/QyAAKtC.png" style="width: 7em; padding-left: 1.5em;" />
-
-                <v-list>
+                <div style="text-align: center;">
+                    <img src="https://i.imgur.com/QyAAKtC.png" style="width: 7em;" />
+                </div>
+                
+                <v-list style=" margin-top: 3em;">
                     <transition-group
                         name="staggered-fade"
                         tag="ul"
