@@ -1,7 +1,7 @@
 <template>
   <v-container fluid style="padding-top: 0; padding-left: 0; padding-right: 0;">
     
-        <v-img :src="require('../assets/b_color0.jpg')" lazy-src class="img img1 full_height_img"> 
+        <v-img :src="require('../assets/b_trans.png')" lazy-src class="img img1 full_height_img"> 
 
           <div class="h1_wrapper">
             <h1 style="text-align: center;">ADMINISTRACIÓN DE CONSORCIOS</h1>
@@ -27,17 +27,18 @@
           </v-layout>              
       
         </v-img>
-        
-        <v-img :src="require('../assets/b_bn1.jpg')"    lazy-src class="img img2 full_height_img">
-         
-        </v-img>
 
         <v-img :src="require('../assets/b_color2.jpg')" lazy-src class="img img3 full_height_img">
-          
+          <!--  -->
         </v-img>
 
-        <v-img :src="require('../assets/b_bn3.jpg')"    lazy-src class="img img4 full_height_img">
+        <v-img :src="require('../assets/b_bn1.jpg')"    lazy-src class="img img2 full_height_img">
+          <!--  -->
+        </v-img>
 
+        
+        <v-img :src="require('../assets/b_bn3.jpg')"    lazy-src class="img img4 full_height_img">
+          <!--  -->
         </v-img>
 
 
@@ -111,6 +112,11 @@ h1 {
 .jumbotron_btn {
   font-size: 1.3em;
   padding: 0.25em 0.5em 0.25em 0.5em
+}
+
+
+.img1 {
+  background-color: #2D5EAD;
 }
 
 /* 
