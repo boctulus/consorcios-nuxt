@@ -1,10 +1,8 @@
 <template>
-    <v-app style="margin-top: -1px;">
+    <div>
       <RocketNavigation></RocketNavigation>      
-      <v-content>
-        <nuxt/>
-      </v-content>
-    </v-app>
+      <nuxt/>
+    </div>
 </template>
 
 

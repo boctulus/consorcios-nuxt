@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid style="padding-top: 0; padding-left: 0; padding-right: 0;">
+  <div style="margin-top:-30px;">
     
         <v-img :src="require('../assets/b_color5.jpg')" lazy-src class="img img1 full_height_img"> 
 
@@ -38,35 +38,136 @@
 
         
         <v-img :src="require('../assets/b_bn3.jpg')"    lazy-src class="img img4 full_height_img">
-          <!--  -->
+              <b-container>        
+                <b-row><h3 style="font-size: 5em; ">CONTACTO</h3></b-row>             
+                <b-row>
+                  <b-col>
+                      <b-row class="mb-3 contact_info">Teléfono: 55.45.69.78</b-row>
+                      <b-row class="mb-3 contact_info">Teléfono: 65.79.04.90</b-row>
+                      <b-row class="mb-3 contact_info">Correo: info@administraciondecondominios.com.mx</b-row>
+                      <b-row class="mb-3 contact_info">Dirección Gutemberg 142, Col. Anzures, 11590 Ciudad de México, CDMX</b-row>
+                  </b-col>
+
+                  <b-col>  
+                    <b-form-group
+                      label="NOMBRE"
+                      label-for="input-1"
+                    >
+                      <b-form-input id="input-1" trim class="footer-input"></b-form-input>
+                    </b-form-group>   
+
+                    <b-form-group
+                      label="TELEFONO"
+                      label-for="input-2"
+                    >
+                      <b-form-input id="input-2" trim class="footer-input"></b-form-input>
+                    </b-form-group>   
+
+                    <b-form-group
+                      label="EMAIL"
+                      label-for="input-3"
+                    >
+                      <b-form-input id="input-3" trim class="footer-input"></b-form-input>
+                    </b-form-group>   
+
+                    <b-form-group
+                      label="SERVICIO"
+                      label-for="input-4"
+                    >
+                      <b-form-input id="input-4" trim class="footer-input"></b-form-input>
+                    </b-form-group>  
+
+                    <b-form-group
+                      label="CONSULTA"
+                      label-for="input-4"
+                    >
+                      <b-form-textarea
+                        id="input-5"
+                        placeholder="Su consulta"
+                        rows="3"
+                        max-rows="6"
+                        class="footer-input"
+                      ></b-form-textarea>
+                   </b-form-group>
+                  </b-col>
+
+                </b-row>
+              </b-container>  
         </v-img>
 
-
-  </v-container>
+  </div>
 </template>
 
 <script>
-
 import TextAnimation from '@/components/TextAnimation';
 
-export default {
+import { required, email, max } from 'vee-validate/dist/rules'
+import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate'
+
+import Vue from 'vue'
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+// Install BootstrapVue
+Vue.use(BootstrapVue)
+
+// Optionally install the BootstrapVue icon components plugin
+Vue.use(IconsPlugin)
+
+
+setInteractionMode('eager')
+
+extend('required', {
+  ...required,
+  message: 'Field can not be empty',
+})
+
+extend('max', {
+  ...max,
+  message: 'The name field may not be greater than {length} characters',
+})
+
+extend('email', {
+  ...email,
+  message: 'This field must be a valid email',
+})
+
+export default {  
   layout: 'home',
+  data: () => ({
+    name: '',
+    email: '',
+    select: null,
+    items: [
+      'Item 1',
+      'Item 2',
+      'Item 3',
+      'Item 4',
+    ],
+    checkbox: null,
+  }),
+  methods: {
+    submit () {
+      this.$refs.observer.validate()
+    },
+    clear () {
+      this.name = ''
+      this.email = ''
+      this.select = null
+      this.checkbox = null
+      this.$refs.observer.reset()
+    },
+  },
   components: {
-    TextAnimation
+    TextAnimation,
+    ValidationProvider,
+    ValidationObserver,
   }
 }
 </script>
 
-<script>
-import TextAnimation from '@/components/TextAnimation';
-
-export default {
-  layout: 'home',
-  components: {
-    TextAnimation
-  }
-}
-</script>
 
 <style scoped>
 .full_height_img {
@@ -119,6 +220,14 @@ h1 {
   background-color: #2D5EAD;
 }
 
+.footer-input {
+  background-color:rgba(0,0,0,0) !important;
+  border: 1px solid rgb(111, 66, 45) !important;
+}
+
+.contact_info {
+  text-transform: uppercase;
+}
 
 /* 
 

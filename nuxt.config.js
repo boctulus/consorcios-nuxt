@@ -49,8 +49,7 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '@/plugins/vuetify',
-    '@/plugins/vee-validate'
+    '@/plugins/vuetify' 
   ],
 
   /*
@@ -62,7 +61,10 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    transpile: ['vuetify/lib'],
+    transpile: [
+      'vuetify/lib',
+      'vee-validate/dist/rules'
+    ],
     plugins: [new VuetifyLoaderPlugin()],
     loaders: {
       stylus: {
