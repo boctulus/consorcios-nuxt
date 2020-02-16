@@ -257,7 +257,7 @@ h1 {
 
 */
 
-@media screen and (width: 320px){
+@media screen and (max-width: 360px){
   .input_col {
     padding-left: 15px;
     padding-right: 15px;
@@ -266,7 +266,7 @@ h1 {
   .footer-input {
     background-color:rgba(0,0,0,0) !important;
     border: 1px solid rgb(111, 66, 45) !important;  
-    width: 290px; 
+    width: calc(100vw - 30px); 
   }
 
   .label {
