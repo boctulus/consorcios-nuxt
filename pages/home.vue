@@ -295,10 +295,7 @@ h1 {
 */
 @media screen and (max-width: 575px) and (orientation:landscape) {
   .h1_wrapper {
-    position: absolute;
-    top: 62vh;
-    width: 100%;
-    text-align: center;
+    display: none;
   }
 
   .full_height_img {
