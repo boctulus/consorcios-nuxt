@@ -38,34 +38,49 @@
 
         
         <v-img :src="require('../assets/b_bn3.jpg')"    lazy-src class="img img4 full_height_img">
-              <b-container>        
-                <b-row><h3 style="font-size: 5em; ">CONTACTO</h3></b-row>             
+              <b-container style="color: #ffffff;">        
+                <b-row class="mb-5 mt-5"><h3 style="font-size: 5em;">CONTACTO</h3></b-row>             
                 <b-row>
-                  <b-col>
-                      <b-row class="mb-3 contact_info">Teléfono: 55.45.69.78</b-row>
-                      <b-row class="mb-3 contact_info">Teléfono: 65.79.04.90</b-row>
-                      <b-row class="mb-3 contact_info">Correo: info@administraciondecondominios.com.mx</b-row>
-                      <b-row class="mb-3 contact_info">Dirección Gutemberg 142, Col. Anzures, 11590 Ciudad de México, CDMX</b-row>
+                  <b-col md="6">
+                      <b-row class="mb-3 mx-1 contact_info">Teléfono: 55.45.69.78</b-row>
+                      <b-row class="mb-3 mx-1 contact_info">Teléfono: 65.79.04.90</b-row>
+                      <b-row class="mb-3 mx-1 contact_info">Correo: info@administraciondecondominios.com.mx</b-row>
+                      <b-row class="mb-3 mx-1 contact_info">Dirección Gutemberg 142, Col. Anzures, 11590 Ciudad de México, CDMX</b-row>
                   </b-col>
 
-                  <b-col>  
-                    <b-form-group
-                      label="NOMBRE"
-                      label-for="input-1"
-                    >
-                      <b-form-input id="input-1" trim class="footer-input"></b-form-input>
-                    </b-form-group>   
+                  <b-col md="6"  class="mt-3">  
 
-                    <b-form-group
-                      label="TELEFONO"
-                      label-for="input-2"
-                    >
-                      <b-form-input id="input-2" trim class="footer-input"></b-form-input>
-                    </b-form-group>   
+                    <b-row>
+                      <b-col md="6" sm="12">
 
+                        <b-form-group
+                          label="NOMBRE"
+                          label-for="input-1"
+                          class="label"
+                        >
+                          <b-form-input id="input-1" trim class="footer-input"></b-form-input>
+                        </b-form-group>   
+
+                      </b-col>
+                      
+                      <b-col md="6" sm="12">
+
+                        <b-form-group
+                          label="TELEFONO"
+                          label-for="input-2"
+                          class="label"
+                        >
+                          <b-form-input id="input-2" trim class="footer-input"></b-form-input>
+                        </b-form-group>   
+
+                      </b-col>
+                    </b-row>    
+                    
+                    
                     <b-form-group
                       label="EMAIL"
                       label-for="input-3"
+                      class="label"
                     >
                       <b-form-input id="input-3" trim class="footer-input"></b-form-input>
                     </b-form-group>   
@@ -73,6 +88,7 @@
                     <b-form-group
                       label="SERVICIO"
                       label-for="input-4"
+                      class="label"
                     >
                       <b-form-input id="input-4" trim class="footer-input"></b-form-input>
                     </b-form-group>  
@@ -80,6 +96,7 @@
                     <b-form-group
                       label="CONSULTA"
                       label-for="input-4"
+                      class="label"
                     >
                       <b-form-textarea
                         id="input-5"
@@ -168,8 +185,13 @@ export default {
 }
 </script>
 
-
 <style scoped>
+
+.label {
+  font-size:1.35em;
+  font-weight: 600;
+}
+
 .full_height_img {
     min-height: 50.5vh;
 }
