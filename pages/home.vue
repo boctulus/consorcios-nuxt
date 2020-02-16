@@ -39,7 +39,7 @@
         
         <v-img :src="require('../assets/b_bn3.jpg')"    lazy-src class="img img4 full_height_img">
               <b-container style="color: #ffffff;">        
-                <b-row class="mb-5 mt-5 mx-auto"><h3 style="font-size: 4.5em;">CONTACTO</h3></b-row>             
+                <b-row class="mb-5 mt-5 mx-auto"><h3 class="contact_form_h">CONTACTO</h3></b-row>             
                 <b-row>
                   <b-col md="6">
                       <b-row class="mb-3 ml-auto contact_info">Teléfono: 55.45.69.78</b-row>
@@ -236,6 +236,10 @@ h1 {
   background-color: #2D5EAD;
 }
 
+.contact_form_h {
+  font-size: 4.5em;
+}
+
 .contact_info {
   text-transform: uppercase;
 }
@@ -250,7 +254,6 @@ h1 {
   font-weight: 600;
 }
 
-
 /* 
 
   Media Queries 
@@ -258,6 +261,10 @@ h1 {
 */
 
 @media screen and (max-width: 360px){
+  .contact_form_h {
+    font-size: 4em;
+  }
+
   .input_col {
     padding-left: 15px;
     padding-right: 15px;
@@ -267,11 +274,6 @@ h1 {
     background-color:rgba(0,0,0,0) !important;
     border: 1px solid rgb(111, 66, 45) !important;  
     width: calc(100vw - 30px); 
-  }
-
-  .label {
-    font-size:1.35em;
-    font-weight: 600;
   }
 
 }
