@@ -39,13 +39,13 @@
         
         <v-img :src="require('../assets/b_bn3.jpg')"    lazy-src class="img img4 full_height_img">
               <b-container style="color: #ffffff;">        
-                <b-row class="mb-5 mt-5"><h3 style="font-size: 5em;">CONTACTO</h3></b-row>             
+                <b-row class="mb-5 mt-5 mx-auto"><h3 style="font-size: 4.5em;">CONTACTO</h3></b-row>             
                 <b-row>
                   <b-col md="6">
-                      <b-row class="mb-3 mx-1 contact_info">Teléfono: 55.45.69.78</b-row>
-                      <b-row class="mb-3 mx-1 contact_info">Teléfono: 65.79.04.90</b-row>
-                      <b-row class="mb-3 mx-1 contact_info">Correo: info@administraciondecondominios.com.mx</b-row>
-                      <b-row class="mb-3 mx-1 contact_info">Dirección Gutemberg 142, Col. Anzures, 11590 Ciudad de México, CDMX</b-row>
+                      <b-row class="mb-3 ml-auto contact_info">Teléfono: 55.45.69.78</b-row>
+                      <b-row class="mb-3 ml-auto contact_info">Teléfono: 65.79.04.90</b-row>
+                      <b-row class="mb-3 ml-auto contact_info">Correo: info@administraciondecondominios.com.mx</b-row>
+                      <b-row class="mb-3 ml-auto contact_info">Dirección Gutemberg 142, Col. Anzures, 11590 Ciudad de México, CDMX</b-row>
                   </b-col>
 
                   <b-col md="6"  class="mt-3">  
