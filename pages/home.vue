@@ -48,33 +48,33 @@
                       <b-row class="mb-3 ml-auto contact_info">Dirección Gutemberg 142, Col. Anzures, 11590 Ciudad de México, CDMX</b-row>
                   </b-col>
 
-                  <b-col md="6"  class="mt-3">  
+                  <b-col md="6"  class="mt-3 input_col">  
+                    
+                      <b-row>
+                        <b-col md="6" sm="12">
 
-                    <b-row>
-                      <b-col md="6" sm="12">
+                          <b-form-group
+                            label="NOMBRE"
+                            label-for="input-1"
+                            class="label"
+                          >
+                            <b-form-input id="input-1" trim class="footer-input"></b-form-input>
+                          </b-form-group>   
 
-                        <b-form-group
-                          label="NOMBRE"
-                          label-for="input-1"
-                          class="label"
-                        >
-                          <b-form-input id="input-1" trim class="footer-input"></b-form-input>
-                        </b-form-group>   
+                        </b-col>
+                        
+                        <b-col md="6" sm="12">
 
-                      </b-col>
-                      
-                      <b-col md="6" sm="12">
+                          <b-form-group
+                            label="TELEFONO"
+                            label-for="input-2"
+                            class="label"
+                          >
+                            <b-form-input id="input-2" trim class="footer-input"></b-form-input>
+                          </b-form-group>   
 
-                        <b-form-group
-                          label="TELEFONO"
-                          label-for="input-2"
-                          class="label"
-                        >
-                          <b-form-input id="input-2" trim class="footer-input"></b-form-input>
-                        </b-form-group>   
-
-                      </b-col>
-                    </b-row>    
+                        </b-col>
+                      </b-row>    
                     
                     
                     <b-form-group
@@ -187,11 +187,6 @@ export default {
 
 <style scoped>
 
-.label {
-  font-size:1.35em;
-  font-weight: 600;
-}
-
 .full_height_img {
     min-height: 50.5vh;
 }
@@ -237,9 +232,12 @@ h1 {
   padding: 0.25em 0.5em 0.25em 0.5em
 }
 
-
 .img1 {
   background-color: #2D5EAD;
+}
+
+.contact_info {
+  text-transform: uppercase;
 }
 
 .footer-input {
@@ -247,9 +245,11 @@ h1 {
   border: 1px solid rgb(111, 66, 45) !important;
 }
 
-.contact_info {
-  text-transform: uppercase;
+.label {
+  font-size:1.35em;
+  font-weight: 600;
 }
+
 
 /* 
 
@@ -257,10 +257,29 @@ h1 {
 
 */
 
+@media screen and (width: 320px){
+  .input_col {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .footer-input {
+    background-color:rgba(0,0,0,0) !important;
+    border: 1px solid rgb(111, 66, 45) !important;  
+    width: 290px; 
+  }
+
+  .label {
+    font-size:1.35em;
+    font-weight: 600;
+  }
+
+}
+
 /* 
   iPhone 5/SE
 */
-@media screen and (max-width: 575px){
+@media screen and (max-width: 575px) and (orientation:landscape) {
 	h1, .txt_anim { font-size: 2.2em !important; }
 
   .jumbotron_btn {
