@@ -32,7 +32,7 @@
           https://github.com/SSENSE/vue-carousel 
         -->
         <header>
-          <carousel :per-page="1" :autoplay="true" :loop="true">
+          <carousel :per-page="1" :autoplay="true" :loop="true" pagination-position="bottom-overlay">
             <slide>
               <div class="item">
                       <img src="https://cdn.pixabay.com/photo/2017/10/24/10/30/business-2884023_960_720.jpg" alt="images not found">
@@ -246,6 +246,8 @@ export default {
 </script>
 
 <style scoped>
+
+header .VueCarousel-pagination { position: absolute; display: block; }
 
 header .item {
   height: 100vh;
