@@ -28,6 +28,61 @@
       
         </v-img>
 
+        <!-- 
+          https://github.com/SSENSE/vue-carousel 
+        -->
+        <header>
+          <carousel :per-page="1" :autoplay="true" :loop="true">
+            <slide>
+              <div class="item">
+                      <img src="https://cdn.pixabay.com/photo/2017/10/24/10/30/business-2884023_960_720.jpg" alt="images not found">
+                      <div class="cover">
+                          <div class="container">
+                              <div class="header-content">
+                                  <div class="line"></div>
+                                  <h2>Teimagine Digital Experience with</h2>
+                                  <h1>Start-ups and solutions</h1>
+                                  <h4>We help entrepreneurs, start-ups and enterprises shape their ideas into products</h4>
+                              </div>
+                          </div>
+                      </div>
+                  </div>   
+            </slide>
+
+            <slide>
+              <div class="item">
+                      <img src="https://cdn.pixabay.com/photo/2017/05/04/16/37/meeting-2284501_960_720.jpg" alt="images not found">
+                      <div class="cover">
+                          <div class="container">
+                              <div class="header-content">
+                                  <div class="line animated bounceInLeft"></div>
+                                  <h2>Peimagine Digital Experience with</h2>
+                                  <h1>Intelligent Solutions</h1>
+                                  <h4>We help entrepreneurs, start-ups and enterprises shape their ideas into products</h4>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+            </slide>        
+
+            <slide>
+              <div class="item">
+                    <img src="https://cdn.pixabay.com/photo/2016/03/09/09/22/workplace-1245776_960_720.jpg" alt="images not found">
+                    <div class="cover">
+                        <div class="container">
+                            <div class="header-content">
+                                <div class="line animated bounceInLeft"></div>
+                                <h2>Reimagine Digital Experience with</h2>
+                                <h1>Intelligent solutions</h1>
+                                <h4>We help entrepreneurs, start-ups and enterprises shape their ideas into products</h4>
+                            </div>
+                        </div>
+                     </div>
+                </div>    
+            </slide>  
+          </carousel>        
+        </header>
+
         <v-img :src="require('../assets/b_color2.jpg')" lazy-src class="img img3 full_height_img">
           <!--  -->
         </v-img>
@@ -39,16 +94,17 @@
         
         <v-img :src="require('../assets/b_bn3.jpg')"    lazy-src class="img img4 full_height_img">
               <b-container style="color: #ffffff;">        
-                <b-row class="mb-5 mt-5 mx-auto"><h3 class="contact_form_h">CONTACTO</h3></b-row>             
+                <b-row class="mb-5 mt-5 mx-auto"><h3 class="contact_form_h">CONTACTO</h3></b-row>  
+
                 <b-row>
                   <b-col md="6">
                       <b-row class="mb-3 ml-auto contact_info">Teléfono: 55.45.69.78</b-row>
                       <b-row class="mb-3 ml-auto contact_info">Teléfono: 65.79.04.90</b-row>
-                      <b-row class="mb-3 ml-auto contact_info">Correo: info@administraciondecondominios.com.mx</b-row>
+                      <b-row class="mb-3 ml-auto contact_info">Correo: info@elgrove.com</b-row>
                       <b-row class="mb-3 ml-auto contact_info">Dirección Gutemberg 142, Col. Anzures, 11590 Ciudad de México, CDMX</b-row>
                   </b-col>
 
-                  <b-col md="6"  class="mt-3 input_col">  
+                  <b-col md="6"  class="mt-3">  
                     
                       <b-row>
                         <b-col md="6" sm="12">
@@ -116,16 +172,18 @@
 </template>
 
 <script>
-import TextAnimation from '@/components/TextAnimation';
+import TextAnimation from '@/components/TextAnimation'
 
 import { required, email, max } from 'vee-validate/dist/rules'
 import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate'
 
 import Vue from 'vue'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
-
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+import { Carousel, Slide } from 'vue-carousel';
+
 
 // Install BootstrapVue
 Vue.use(BootstrapVue)
@@ -180,12 +238,184 @@ export default {
   components: {
     TextAnimation,
     ValidationProvider,
-    ValidationObserver,
+    ValidationObserver,    
+    Carousel,
+    Slide
   }
 }
 </script>
 
 <style scoped>
+
+header .item {
+  height: 100vh;
+  position: relative;
+}
+
+header .item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+header .item .cover {
+  padding: 75px 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+}
+
+header .item .cover .header-content {
+  position: relative;
+  padding: 56px;
+  overflow: hidden;
+}
+
+header .item .cover .header-content .line {
+  content: "";
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  position: absolute;
+  border: 9px solid #fff;
+  -webkit-clip-path: polygon(0 0, 60% 0, 36% 100%, 0 100%);
+  clip-path: polygon(0 0, 60% 0, 36% 100%, 0 100%);
+}
+
+header .item .cover .header-content h2 {
+  font-weight: 300;
+  font-size: 35px;
+  color: #fff;
+}
+
+header .item .cover .header-content h1 {
+  font-size: 56px;
+  font-weight: 600;
+  margin: 5px 0 20px;
+  word-spacing: 3px;
+  color: #fff;
+}
+
+header .item .cover .header-content h4 {
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 36px;
+  color: #fff;
+}
+
+header .owl-item.active h1 {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  animation-name: fadeInDown;
+  animation-delay: 0.3s;
+}
+
+header .owl-item.active h2 {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  animation-name: fadeInDown;
+  animation-delay: 0.3s;
+}
+
+header .owl-item.active h4 {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  animation-name: fadeInUp;
+  animation-delay: 0.3s;
+}
+
+header .owl-item.active .line {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  animation-name: fadeInLeft;
+  animation-delay: 0.3s;
+}
+
+header .owl-nav .owl-prev {
+  position: absolute;
+  left: 15px;
+  top: 43%;
+  opacity: 0;
+  -webkit-transition: all 0.4s ease-out;
+  transition: all 0.4s ease-out;
+  background: rgba(0, 0, 0, 0.5) !important;
+  width: 40px;
+  cursor: pointer;
+  height: 40px;
+  position: absolute;
+  display: block;
+  z-index: 1000;
+  border-radius: 0;
+}
+
+header .owl-nav .owl-prev span {
+  font-size: 1.6875rem;
+  color: #fff;
+}
+
+header .owl-nav .owl-prev:focus {
+  outline: 0;
+}
+
+header .owl-nav .owl-prev:hover {
+  background: #000 !important;
+}
+
+header .owl-nav .owl-next {
+  position: absolute;
+  right: 15px;
+  top: 43%;
+  opacity: 0;
+  -webkit-transition: all 0.4s ease-out;
+  transition: all 0.4s ease-out;
+  background: rgba(0, 0, 0, 0.5) !important;
+  width: 40px;
+  cursor: pointer;
+  height: 40px;
+  position: absolute;
+  display: block;
+  z-index: 1000;
+  border-radius: 0;
+}
+
+header .owl-nav .owl-next span {
+  font-size: 1.6875rem;
+  color: #fff;
+}
+
+header .owl-nav .owl-next:focus {
+  outline: 0;
+}
+
+header .owl-nav .owl-next:hover {
+  background: #000 !important;
+}
+header:hover .owl-prev {
+  left: 0px;
+  opacity: 1;
+}
+
+header:hover .owl-next {
+  right: 0px;
+  opacity: 1;
+}
+
+/*      */
 
 .full_height_img {
     min-height: 50.5vh;
@@ -236,6 +466,10 @@ h1 {
   background-color: #2D5EAD;
 }
 
+.img4 {
+  background-color: #50575E;
+}
+
 .contact_form_h {
   font-size: 4.5em;
 }
@@ -265,10 +499,12 @@ h1 {
     font-size: 4em;
   }
 
-  .input_col {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
+  /*
+    .input_col {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+  */
 
   .footer-input {
     background-color:rgba(0,0,0,0) !important;

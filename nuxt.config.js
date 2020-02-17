@@ -2,6 +2,8 @@ const pkg = require('./package')
 
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
 
+import webpack from 'webpack'
+
 module.exports = {
   mode: 'spa',
 
@@ -65,7 +67,14 @@ module.exports = {
       'vuetify/lib',
       'vee-validate/dist/rules'
     ],
-    plugins: [new VuetifyLoaderPlugin()],
+    plugins: [
+      new VuetifyLoaderPlugin(),
+      new webpack.ProvidePlugin({
+        // global modules
+        '$': 'jquery',
+        '_': 'lodash'
+      })
+    ],
     loaders: {
       stylus: {
         import: ["~assets/style/variables.styl"]
