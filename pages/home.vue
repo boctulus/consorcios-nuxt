@@ -23,7 +23,10 @@
           </div>
 
           <v-layout justify-center class="jumbotron_btn_wrapper">
-            <v-btn  dark class="jumbotron_btn">Saber más</v-btn>
+            <div class="jumbotron_line_wrapper" style="padding: 20px 10px 25px 10px;">
+              <div class="line"></div>
+              <a href="#" class="jumbotron_btn">SABER MÁS</a>
+            </div>
           </v-layout>              
       
         </v-img>
@@ -104,10 +107,9 @@
 
                 <b-row>
                   <b-col md="6">
-                      <b-row class="mb-3 ml-auto contact_info">Teléfono: 55.45.69.78</b-row>
-                      <b-row class="mb-3 ml-auto contact_info">Teléfono: 65.79.04.90</b-row>
-                      <b-row class="mb-3 ml-auto contact_info">Correo: info@elgrove.com</b-row>
-                      <b-row class="mb-3 ml-auto contact_info">Dirección Gutemberg 142, Col. Anzures, 11590 Ciudad de México, CDMX</b-row>
+                      <b-row class="mb-3 ml-auto contact_info">Teléfono: 15 545-2109</b-row>
+                      <b-row class="mb-3 ml-auto contact_info">Correo: adm.elgrove@outlook.com</b-row>
+                      <b-row class="mb-3 ml-auto contact_info">Dirección: calle 28 nro 167, La Plata, Arg.</b-row>
                   </b-col>
 
                   <b-col md="6"  class="mt-3">  
@@ -251,8 +253,8 @@ export default {
 }
 </script>
 
-<style scoped>
 
+<style scoped>
 header .item {
   height: 100vh;
   position: relative;
@@ -290,7 +292,7 @@ header .item .cover .header-content .line {
   left: 0;
   top: 0;
   position: absolute;
-  border: 9px solid #fff;
+  border: 9px solid #D0A28C;  
   -webkit-clip-path: polygon(0 0, 60% 0, 36% 100%, 0 100%);
   clip-path: polygon(0 0, 60% 0, 36% 100%, 0 100%);
 }
@@ -460,12 +462,35 @@ h1 {
   position: absolute;
   top: 75vh;
   width: 100%;
-  text-align: center; 
+  text-align: center;
+}
+
+.jumbotron_line_wrapper {
+  width: 14em;
+  position: relative;
+}
+
+.jumbotron_line_wrapper .line {
+  content: "";
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  position: absolute;
+  border: 6px solid #D0A28C;  
+  -webkit-clip-path: polygon(0 0, 36% 0, 60% 100%, 0 100%);
+  clip-path: polygon(0 0, 36% 0, 60% 100%, 0 100%);
 }
 
 .jumbotron_btn {
+  color: #ffffff;
   font-size: 1.3em;
   padding: 0.25em 0.5em 0.25em 0.5em
+}
+
+.jumbotron_btn:hover {
+  text-decoration: none;
 }
 
 .img1 {
