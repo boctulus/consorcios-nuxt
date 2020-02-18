@@ -530,19 +530,19 @@ h1 {
     font-size: 4em;
   }
 
-  /*
-    .input_col {
-      padding-left: 15px;
-      padding-right: 15px;
-    }
-  */
-
   .footer-input {
     background-color:rgba(0,0,0,0) !important;
     border: 1px solid rgb(111, 66, 45) !important;  
     width: calc(100vw - 30px); 
   }
 
+}
+
+
+@media screen and (max-width: 767px) {
+	header {
+    display:none;
+  }
 }
 
 /* 
@@ -599,7 +599,7 @@ h1 {
     display: none; 
   }
    
-
+  header { display: none; }  
 }
 
 @media screen and (min-width: 576px) and (max-width: 767px) {
@@ -627,11 +627,7 @@ h1 {
   .jumbotron_btn_wrapper {
     display:none;
   }
-
-  .jumbotron_btn {
-    font-size: 1em;
-    padding: 0.25em 0.7em 0.25em 0.7em;
-  }
+  
 }
 
 @media screen and (min-width: 576px) and (max-width: 767px) and (orientation:portrait) {
@@ -651,6 +647,8 @@ h1 {
   .jumbotron_btn_wrapper {
     display: none;
   }
+
+  header { display: none; }  
 }
 
 /*  
@@ -680,13 +678,13 @@ h1 {
 
   .txt_anim_wrapper { display: none; } 
 
-  .jumbotron_btn { display: none; } 
-
+  .jumbotron_btn_wrapper {
+      display:none;
+   }
+  
 }
 
-/* 
-  iPad 
-*/  
+
 @media screen and (min-width: 768px) and (max-width: 991px) and (orientation:portrait) {
   .full_height_img {
     min-height: 50.5vh;
@@ -708,6 +706,7 @@ h1 {
     text-align: center; 
   }
   
+  header { display: none; }  
 }
 
 
@@ -763,13 +762,18 @@ h1 {
     text-align: center;
   }
 
+  .txt_anim_wrapper {
+    display: none;
+  }
+
   .jumbotron_btn_wrapper {
     position: absolute;
     top: 35vh;
     width: 100%;
     text-align: center; 
   }
-  
+
+  header { display: none; }  
 }
 
 
@@ -827,6 +831,8 @@ h1 {
     width: 100%;
     text-align: center; 
   }
+
+  header { display: none; }  
 }
 
 
