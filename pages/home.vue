@@ -700,7 +700,7 @@ h1 {
 
   .h1_wrapper {
     position: absolute;
-    top: 25vh;
+    top: 27.5vh;
     width: 100%;
     text-align: center;
   }
