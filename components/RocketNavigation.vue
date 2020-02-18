@@ -33,7 +33,7 @@
         </transition>
         
         <nav class="nav">
-            <img src="https://i.imgur.com/QyAAKtC.png" class="logo"/>
+            <img src="https://i.imgur.com/mL8PTQ4.png" class="logo"/>
 
             <v-divider></v-divider>
 
