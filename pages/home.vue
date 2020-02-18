@@ -525,7 +525,37 @@ h1 {
 
 */
 
-@media screen and (max-width: 360px){
+/* Dispositivos cuadrados o casi */
+
+@media screen and (min-aspect-ratio:760/1000) and (max-aspect-ratio:1300/1000) {
+  .full_height_img {
+    height: 105vh;
+  }
+
+  .h1_wrapper {
+    position: absolute;
+    top: 45vh;
+    width: 100%;
+    text-align: center;
+  }
+
+  .txt_anim_wrapper {
+    display:none; 
+  }
+  
+  .jumbotron_btn_wrapper {
+    display:none;
+  }
+}
+
+@media screen and (max-width: 767px) {
+	header {
+    display:none;
+  }
+}
+
+
+@media screen and (max-width: 360px) {
   .contact_form_h {
     font-size: 4em;
   }
@@ -536,19 +566,50 @@ h1 {
     width: calc(100vw - 30px); 
   }
 
+  h1, .txt_anim { font-size: 2em !important; }
 }
 
+@media screen and (max-width: 360px) and (orientation:landscape)  {
+ .h1_wrapper {
+    display: none;
+  }
 
-@media screen and (max-width: 767px) {
-	header {
-    display:none;
+  .full_height_img {
+    min-height: 105vh;
+  }
+
+	.txt_anim_wrapper { display: none; }
+
+  .jumbotron_btn_wrapper {
+    display: none;
   }
 }
+
+@media screen and (max-width: 360px) and (orientation:portrait)  {
+  h1, .txt_anim { font-size: 2em !important; }
+
+  .full_height_img {
+    min-height: 50.5vh;
+  }
+
+  .h1_wrapper {
+    display:none;
+  }
+
+	.txt_anim_wrapper { display: none; }
+
+  .jumbotron_btn_wrapper {
+    display: none; 
+  }
+   
+  header { display: none; }  
+}
+
 
 /* 
   iPhone 5/SE
 */
-@media screen and (max-width: 575px) and (orientation:landscape) {
+@media screen and (min-width: 360px) and (max-width: 575px) {
 	h1, .txt_anim { font-size: 2.2em !important; }
 
   .jumbotron_btn {
@@ -560,7 +621,7 @@ h1 {
 /*
   480x360 568x320
 */
-@media screen and (max-width: 575px) and (orientation:landscape) {
+@media screen and (min-width: 360px)  and (max-width: 575px) and (orientation:landscape) {
   .h1_wrapper {
     display: none;
   }
@@ -580,7 +641,9 @@ h1 {
 /* 
   360x480
 */
-@media screen and (max-width: 575px) and (orientation:portrait) {
+@media screen and (min-width: 360px)  and (max-width: 575px) and (orientation:portrait) {
+
+  h1, .txt_anim { font-size: 1.8em !important; }
 
   .full_height_img {
     min-height: 50.5vh;
@@ -588,7 +651,7 @@ h1 {
 
   .h1_wrapper {
     position: absolute;
-    top: 50.5vh;
+    top: 33vh;
     width: 100%;
     text-align: center;
   }
@@ -692,19 +755,12 @@ h1 {
 
   .h1_wrapper {
     position: absolute;
-    top: 25vh;
+    top: 30vh;
     width: 100%;
     text-align: center;
   }
 
   .txt_anim_wrapper { display: none; }
-
-  .jumbotron_btn_wrapper {
-    position: absolute;
-    top: 42vh;
-    width: 100%;
-    text-align: center; 
-  }
   
   header { display: none; }  
 }
@@ -836,27 +892,5 @@ h1 {
 }
 
 
-/* Dispositivos cuadrados o casi */
-
-@media screen and (min-aspect-ratio:750/1000) and (max-aspect-ratio:1333/1000) {
-  .full_height_img {
-    height: 105vh;
-  }
-
-  .h1_wrapper {
-    position: absolute;
-    top: 55vh;
-    width: 100%;
-    text-align: center;
-  }
-
-  .txt_anim_wrapper {
-    display:none; 
-  }
-  
-  .jumbotron_btn_wrapper {
-    display:none;
-  }
-}
 
 </style>
