@@ -40,7 +40,7 @@
                   :autoplay="true" 
                   :loop="true" 
                   pagination-position="bottom-overlay"
-                  paginationActiveColor="#2D5EAD"
+                  paginationActiveColor="#D0A28C"
           >
             <slide>
               <div class="item">
