@@ -534,7 +534,7 @@ h1 {
 
   .h1_wrapper {
     position: absolute;
-    top: 45vh;
+    top: 35vh;
     width: 100%;
     text-align: center;
   }
@@ -674,13 +674,15 @@ h1 {
 */
 @media screen and (min-width: 576px) and (max-width: 767px) and (orientation:landscape) {
 
+  h1, .txt_anim { font-size: 3em !important; }
+
   .full_height_img {
-    min-height: 105vh;
+    height: 105vh;
   }
 
   .h1_wrapper {
     position: absolute;
-    top: 58vh;
+    top: 50vh;
     width: 100%;
     text-align: center;
   }
@@ -694,13 +696,15 @@ h1 {
 }
 
 @media screen and (min-width: 576px) and (max-width: 767px) and (orientation:portrait) {
+  h1, .txt_anim { font-size: 1.85em !important; }  
+  
   .full_height_img {
-    min-height: 50.5vh;
+    height: 50.5vh;
   }
 
   .h1_wrapper {
     position: absolute;
-    top: 27.5vh;
+    top: 35vh;
     width: 100%;
     text-align: center;
   }
@@ -729,12 +733,12 @@ h1 {
 
 @media screen and (min-width: 768px) and (max-width: 991px) and (orientation:landscape) {
   .full_height_img {
-    min-height: 105vh;
+    height: 105vh;
   }
 
   .h1_wrapper {
     position: absolute;
-    top: 55vh;
+    top: 45vh;
     width: 100%;
     text-align: center;
   }
@@ -750,7 +754,7 @@ h1 {
 
 @media screen and (min-width: 768px) and (max-width: 991px) and (orientation:portrait) {
   .full_height_img {
-    min-height: 50.5vh;
+    height: 50.5vh;
   }
 
   .h1_wrapper {
@@ -808,7 +812,7 @@ h1 {
 
 @media screen and (min-width: 992px) and (max-width: 1199px) and (orientation:portrait) {
   .full_height_img {
-    min-height: 50.5vh;
+    height: 50.5vh;
   }
 
   .h1_wrapper {
@@ -864,7 +868,7 @@ h1 {
 
 @media screen and (min-width: 1200px) and (orientation:portrait) {
   .full_height_img {
-    min-height: 50.5vh;
+    height: 50.5vh;
   }
 
   .h1_wrapper {
