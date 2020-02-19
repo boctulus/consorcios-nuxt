@@ -33,10 +33,6 @@
         </transition>
         
         <nav class="nav">
-            <img src="https://i.imgur.com/mL8PTQ4.png" class="logo"/>
-
-            <v-divider></v-divider>
-
             <Hamburger @click.native="drawer = !drawer" v-bind:class="[drawer ? 'active' : '']" style="z-index: 9999; position: fixed; right: 5%; top:3vh"></Hamburger>            
         </nav>
     </span>
@@ -140,14 +136,6 @@ export default {
 
     overflow: scroll;
 }
-
-.logo {
-    z-index:4000; 
-    width: 14em;
-    position: absolute;
-    top: 5vh;
-    left: 3%; 
-}    
 
 .nav {
     display:flex; 

@@ -57,7 +57,9 @@ module.exports = {
   /*
   ** Nuxt.js modules
   */
-  modules: [],
+  modules: [
+    'nuxt-fullpage.js'
+  ],
 
   /*
   ** Build configuration

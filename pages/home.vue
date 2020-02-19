@@ -1,7 +1,10 @@
 <template>
-  <div style="margin-top:-30px;">
-    
-        <v-img :src="require('../assets/b_color5.jpg')" lazy-src class="img img1 full_height_img"> 
+  <div>
+    <full-page ref="fullpage" :options="options" id="fullpage">
+
+        <v-img :src="require('../assets/b_color5.jpg')" lazy-src class="section img img1 full_height_img" > 
+
+          <img src="https://i.imgur.com/mL8PTQ4.png" class="logo"/>
 
           <div class="h1_wrapper">
             <h1 style="text-align: center;">ADMINISTRACIÓN DE CONSORCIOS</h1>
@@ -34,7 +37,7 @@
         <!-- 
           https://github.com/SSENSE/vue-carousel 
         -->
-        <header>
+        <header class="section">
           <carousel 
                   :per-page="1" 
                   :autoplay="true" 
@@ -92,16 +95,16 @@
           </carousel>        
         </header>
 
-        <v-img :src="require('../assets/b_color2.jpg')" lazy-src class="img img3 full_height_img">
+        <v-img :src="require('../assets/b_color2.jpg')" lazy-src class="section img img3 full_height_img">
           <!--  -->
         </v-img>
 
-        <v-img :src="require('../assets/b_bn1.jpg')"    lazy-src class="img img2 full_height_img">
+        <v-img :src="require('../assets/b_bn1.jpg')"    lazy-src class="section img img2 full_height_img">
           <!--  -->
         </v-img>
 
         
-        <v-img :src="require('../assets/b_bn3.jpg')"    lazy-src class="img img4 full_height_img">
+        <v-img :src="require('../assets/b_bn3.jpg')"    lazy-src class="section img img4 full_height_img">
               <b-container style="color: #ffffff;">        
                 <b-row class="mb-5 mt-5 mx-auto"><h3 class="contact_form_h">CONTACTO</h3></b-row>  
 
@@ -176,6 +179,7 @@
               </b-container>  
         </v-img>
 
+    </full-page>
   </div>
 </template>
 
@@ -190,14 +194,13 @@ import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
-import { Carousel, Slide } from 'vue-carousel';
-
-
 // Install BootstrapVue
 Vue.use(BootstrapVue)
 
 // Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin)
+
+import { Carousel, Slide } from 'vue-carousel';
 
 
 setInteractionMode('eager')
@@ -220,6 +223,11 @@ extend('email', {
 export default {  
   layout: 'home',
   data: () => ({
+    options: {
+      licenseKey: 'YOUR KEY HERE',
+      /* sectionsColor: ['yellow', 'orange', '#C0C0C0', '#ADD8E6'], */
+    },
+
     name: '',
     email: '',
     select: null,
@@ -255,6 +263,15 @@ export default {
 
 
 <style scoped>
+
+.logo {
+    z-index:4000; 
+    width: 14em;
+    position: absolute;
+    top: 5vh;
+    left: 3%; 
+}    
+
 header .item {
   height: 100vh;
   position: relative;
