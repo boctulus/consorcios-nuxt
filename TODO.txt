@@ -18,7 +18,7 @@ https://web.whatsapp.com/send?phone=(+56)9%2051356820&text=fffffffffffffffffffff
 
 -- ChatBox básico
 -- FAQ con respuestas colapsables
--- Blog
+-- Blog usando Strapi
 -- Zona de usuarios (incluye formulario de login, un panel de control y un sistema de control de acceso con distintos roles entre ellos el del admin)
 -- Sección de descarga de documentos pdf protegidos con contraseña
 -- Sistema de calificaciones con estrellas 

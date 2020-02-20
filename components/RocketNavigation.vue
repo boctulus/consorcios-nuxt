@@ -122,7 +122,7 @@ export default {
 }
 
 .drawer {
-    opacity: 0.85; 
+    opacity: 0.55; 
     z-index: 5000;
     
     position: fixed;
