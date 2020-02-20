@@ -107,43 +107,48 @@
           ../assets/b_bn1.jpg
         -->  
         
-        <v-img :src="require('../assets/b_bn3.jpg')"    lazy-src class="img img4">
-              <b-container style="color: #ffffff;">        
-                <b-row class="mb-5 mt-5 mx-auto"><h3 class="contact_form_h">CONTACTO</h3></b-row>  
+        <section>
+          <div class="item">
+              <img src="https://i.imgur.com/wPVyDfo.jpg" alt="images not found">
+              <div class="cover">				  
+                <div class="section-content">
+                
+                  <b-container style="color: #ffffff;">        
+                  <b-row class="mb-5 mt-5 mx-auto"><h3 class="contact_form_h">CONTACTO</h3></b-row>  
 
-                <b-row>
-                  <b-col md="6">
+                  <b-row>
+                    <b-col md="6">
                       <b-row class="mb-3 ml-auto contact_info">Teléfono: 15 545-2109</b-row>
                       <b-row class="mb-3 ml-auto contact_info">Correo: adm.elgrove@outlook.com</b-row>
                       <b-row class="mb-3 ml-auto contact_info">Dirección: calle 28 nro 167, La Plata, Arg.</b-row>
-                  </b-col>
+                    </b-col>
 
-                  <b-col md="6"  class="mt-3">  
+                    <b-col md="6"  class="mt-3">  
                     
                       <b-row>
-                        <b-col md="6" sm="12">
+                      <b-col md="6" sm="12">
 
-                          <b-form-group
-                            label="NOMBRE"
-                            label-for="input-1"
-                            class="label"
-                          >
-                            <b-form-input id="input-1" trim class="footer-input"></b-form-input>
-                          </b-form-group>   
+                        <b-form-group
+                        label="NOMBRE"
+                        label-for="input-1"
+                        class="label"
+                        >
+                        <b-form-input id="input-1" trim class="footer-input"></b-form-input>
+                        </b-form-group>   
 
-                        </b-col>
-                        
-                        <b-col md="6" sm="12">
+                      </b-col>
+                      
+                      <b-col md="6" sm="12">
 
-                          <b-form-group
-                            label="TELEFONO"
-                            label-for="input-2"
-                            class="label"
-                          >
-                            <b-form-input id="input-2" trim class="footer-input"></b-form-input>
-                          </b-form-group>   
+                        <b-form-group
+                        label="TELEFONO"
+                        label-for="input-2"
+                        class="label"
+                        >
+                        <b-form-input id="input-2" trim class="footer-input"></b-form-input>
+                        </b-form-group>   
 
-                        </b-col>
+                      </b-col>
                       </b-row>    
                     
                     
@@ -169,18 +174,24 @@
                       class="label"
                     >
                       <b-form-textarea
-                        id="input-5"
-                        placeholder="Su consulta"
-                        rows="3"
-                        max-rows="6"
-                        class="footer-input"
+                      id="input-5"
+                      placeholder="Su consulta"
+                      rows="3"
+                      max-rows="6"
+                      class="footer-input"
                       ></b-form-textarea>
-                   </b-form-group>
-                  </b-col>
+                    </b-form-group>
+                    </b-col>
 
-                </b-row>
-              </b-container>  
-        </v-img>
+                  </b-row>
+                  </b-container>  				  
+                
+                </div>
+              </div>
+          </div>
+      </section>	
+
+
       <!--/full-page--> 
   </div>
 </template>
