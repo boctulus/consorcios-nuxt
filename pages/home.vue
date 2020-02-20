@@ -14,7 +14,7 @@
                         <h1>ADMINISTRACIÓN DE CONSORCIOS</h1>
                       </div>							
                       
-                      <div class="txt_anim_wrapper" style="filter: brightness(1.5); font-weight: 500; text-transform: uppercase;">
+                      <div class="txt_anim_wrapper" style="filter: brightness(1.0); font-weight: 500; text-transform: uppercase;">
                         <TextAnimation 
                           forward-delay="80" 
                           backward-delay="15" 
@@ -317,11 +317,11 @@ section .item .cover .section-content .txt_anim_wrapper span {
 	word-spacing: 3px;
 	color: #fff;	
 	
-	filter: brightness(1.5); 
+	filter: brightness(1.0); 
 	text-transform: uppercase;
 }
 
-.jumbotron_btn_wrapper {
+section .item .cover .section-content .jumbotron_btn_wrapper {
   position: absolute;
   top: 75vh;
   left: 0;
@@ -329,13 +329,13 @@ section .item .cover .section-content .txt_anim_wrapper span {
   text-align: center;
 }
 
-.jumbotron_line_wrapper {
+section .item .cover .section-content .jumbotron_btn_wrapper .jumbotron_line_wrapper {
   width: 14em;
   position: relative;
   margin: 0 auto;
 }
 
-.jumbotron_line_wrapper .line {
+section .item .cover .section-content .jumbotron_btn_wrapper .jumbotron_line_wrapper .line {
   content: "";
   display: inline-block;
   width: 100%;
@@ -348,14 +348,14 @@ section .item .cover .section-content .txt_anim_wrapper span {
   clip-path: polygon(0 0, 36% 0, 60% 100%, 0 100%);
 }
 
-.jumbotron_btn {
+section .item .cover .section-content .jumbotron_btn_wrapper .jumbotron_btn {
   color: #ffffff;
   font-size: 1.3em;
   padding: 0.25em 0.5em 0.25em 0.5em;
   text-decoration: none;
 }
 
-.jumbotron_btn:hover {
+section .item .cover .section-content .jumbotron_btn_wrapper .jumbotron_btn:hover {
   text-decoration: none;
 }
 
@@ -486,11 +486,11 @@ header .item .cover .header-content h4 {
     width: 100%;
   }
 
-  .txt_anim_wrapper {
+  section .item .cover .section-content .txt_anim_wrapper {
     display:none; 
   }
   
-  .jumbotron_btn_wrapper {
+  section .item .cover .section-content .jumbotron_btn_wrapper {
     display:none;
   }
 }
@@ -528,9 +528,9 @@ header .item .cover .header-content h4 {
     position: relative;
   }
 
-	.txt_anim_wrapper { display: none; }
+	section .item .cover .section-content .txt_anim_wrapper { display: none; }
 
-  .jumbotron_btn_wrapper {
+  section .item .cover .section-content .jumbotron_btn_wrapper {
     display: none;
   }
 }
@@ -549,9 +549,9 @@ header .item .cover .header-content h4 {
     width: 100%;
   }
 
-	.txt_anim_wrapper { display: none; }
+	section .item .cover .section-content .txt_anim_wrapper { display: none; }
 
-  .jumbotron_btn_wrapper {
+  section .item .cover .section-content .jumbotron_btn_wrapper {
     display: none; 
   }
    
@@ -581,9 +581,9 @@ header .item .cover .header-content h4 {
     position: relative;
   }
 
-	.txt_anim_wrapper { display: none; }
+	section .item .cover .section-content .txt_anim_wrapper { display: none; }
 
-  .jumbotron_btn_wrapper {
+  section .item .cover .section-content .jumbotron_btn_wrapper {
     display: none;
   }
 
@@ -607,9 +607,9 @@ header .item .cover .header-content h4 {
     width: 100%;
   }
 
-	.txt_anim_wrapper { display: none; }
+	section .item .cover .section-content .txt_anim_wrapper { display: none; }
 
-  .jumbotron_btn_wrapper {
+  section .item .cover .section-content .jumbotron_btn_wrapper {
     display: none; 
   }
    
@@ -632,9 +632,9 @@ header .item .cover .header-content h4 {
     display: none;
   }
 
-  .txt_anim_wrapper { display: none; }
+  section .item .cover .section-content .txt_anim_wrapper { display: none; }
 
-  .jumbotron_btn_wrapper {
+  section .item .cover .section-content .jumbotron_btn_wrapper {
     display:none;
   }
   
@@ -654,9 +654,9 @@ header .item .cover .header-content h4 {
     width: 100%;
   }
   
-  .txt_anim_wrapper { display: none; }
+  section .item .cover .section-content .txt_anim_wrapper { display: none; }
 
-  .jumbotron_btn_wrapper {
+  section .item .cover .section-content .jumbotron_btn_wrapper {
     display: none;
   }
 
@@ -670,7 +670,7 @@ header .item .cover .header-content h4 {
 
 	h1, .txt_anim { font-size: 3.5em !important; }
 
-  .jumbotron_btn {
+  section .item .cover .section-content .jumbotron_line_wrapper .jumbotron_btn {
     font-size: 1.15em;
     padding: 0.3em 0.6em 0.3em 0.6em;
   }
@@ -683,15 +683,14 @@ header .item .cover .header-content h4 {
   }
 
   section .item .cover .section-content .h1_wrapper {
-    display: none;
+    position: absolute;
+    top: 55vh;
+    width: 100%;
   }
 
-  .txt_anim_wrapper { display: none; } 
-
-  .jumbotron_btn_wrapper {
-      display:none;
-   }
+  section .item .cover .section-content .txt_anim_wrapper { display: none; } 
   
+  section .item .cover .section-content .jumbotron_btn_wrapper { display: none }
 }
 
 
@@ -707,7 +706,7 @@ header .item .cover .header-content h4 {
     width: 100%;
   }
 
-  .txt_anim_wrapper { display: none; }
+  section .item .cover .section-content .txt_anim_wrapper { display: none; }
   
   header { display: none; }  
 }
@@ -737,14 +736,14 @@ header .item .cover .header-content h4 {
     width: 100%;
   }
 
-  .txt_anim_wrapper {
+  section .item .cover .section-content .txt_anim_wrapper {
     position: absolute;
     top: 55vh;
     width: 100%;
     text-align: center; 
   }
   
-  .jumbotron_btn_wrapper {
+  section .item .cover .section-content .jumbotron_btn_wrapper {
     position: absolute;
     top: 75vh;
     width: 100%;
@@ -765,11 +764,11 @@ header .item .cover .header-content h4 {
     width: 100%;
   }
 
-  .txt_anim_wrapper {
+  section .item .cover .section-content .txt_anim_wrapper {
     display: none;
   }
 
-  .jumbotron_btn_wrapper {
+  section .item .cover .section-content .jumbotron_btn_wrapper {
     position: absolute;
     top: 35vh;
     width: 100%;
@@ -801,7 +800,7 @@ header .item .cover .header-content h4 {
     width: 100%;
   }
 
-  .txt_anim_wrapper {
+  section .item .cover .section-content .txt_anim_wrapper {
     position: absolute;
     top: 55vh;
     width: 100%;
@@ -821,14 +820,14 @@ header .item .cover .header-content h4 {
     width: 100%;
   }
 
-  .txt_anim_wrapper {
+  section .item .cover .section-content .txt_anim_wrapper {
     position: absolute;
     top: 25vh;
     width: 100%;
     text-align: center; 
   }
 
-  .jumbotron_btn_wrapper {
+  section .item .cover .section-content .jumbotron_btn_wrapper {
     position: absolute;
     top: 35vh;
     width: 100%;
