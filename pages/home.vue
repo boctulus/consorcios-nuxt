@@ -96,7 +96,7 @@
         </header>
 
 
-        <v-img src="https://i.imgur.com/viLJLFC.jpg" lazy-src >
+        <v-img :src="require('../assets/administracion-integral-condominios-df-cdmx_recortado1.jpg')" lazy-src >
           <b-container style="color: #ffffff; margin-top: 50px;">     
 
             <b-row>
@@ -110,7 +110,7 @@
                 <p><span class="engravers text-mobile" style="color: rgb(128, 139, 151); font-size: 5em; --darkreader-inline-color:#b8b3a8;" >SOMOS?</span></p>
               </div>
 
-              <div class="pontano" style="font-size: 23px; padding-top: 15px; text-align: justify; color: rgb(184, 179, 168) !important;">
+              <div class="pontano" style="font-size: 23px; padding-top: 15px; padding-bottom: 30px; text-align: justify; color: rgb(184, 179, 168) !important;">
                   EL GROVE es una empresa de administración de consorcios de la ciudad de La Plata con trayectoria y experiencia en el sector.<p/>
 
                   Somos una empresa especializada en la administración de consorcios profesional, que cuenta con un equipo de profesionales expertos en el ramo.<p/>
@@ -125,7 +125,7 @@
         </v-img>      
            
               
-      		<v-img :src="require('../assets/b_bn3.jpg')"    lazy-src class="img img4">
+      		<v-img :src="require('../assets/profesionales-certificados-prosoc.png')"    lazy-src class="img img4">
               <b-container style="color: #ffffff;">        
                     <b-row class="mb-5 mt-5 mx-auto"><h3 class="contact_form_h">CONTACTO</h3></b-row>  
 
