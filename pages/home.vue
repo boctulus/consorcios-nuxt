@@ -2,11 +2,11 @@
   <div>
       <!--full-page ref="fullpage" :options="options" id="fullpage"-->
         
-        <img src="https://i.imgur.com/mL8PTQ4.png" class="logo" />
+        <v-img src="https://i.imgur.com/mL8PTQ4.png" lazy-src class="logo" />
 
         <section>
             <div class="item">
-                <img src="https://i.imgur.com/QJXwf90.jpg" alt="images not found">
+                <img src="https://i.imgur.com/urEubtE.jpg" alt="images not found">
                 <div class="cover">
                   
                     <div class="section-content">		
@@ -102,45 +102,39 @@
           </carousel>        
         </header>
 
-        <section>
-          <div class="item">
-              <img src="https://i.imgur.com/sXkDJQA.jpg" alt="images not found">
-              <div class="cover">				  
-                <div class="section-content">
-                
 
-                  <b-container style="color: #ffffff;">      
+        <v-img src="https://i.imgur.com/viLJLFC.jpg" lazy-src>
+          <b-container style="color: #ffffff; margin-top: 50px;">     
 
-                  <b-row>
-                    <b-col md="6">
-                      <v-img src="https://i.imgur.com/Ff6KAAT.png" style="margin-top:24px;" />
-                    </b-col>
+            <b-row>
+            <b-col sm="12" md="6">
+              <v-img src="https://i.imgur.com/Ff6KAAT.png" lazy-src style="margin-top:24px; margin-bottom: 50px;" />
+            </b-col>
 
-                    <b-col md="6"  class="mt-3">  
-                      <h3 class="engravers" style="font-size: 4.5em; font-weight: 400 ;color: #ccc;">QUIENES SOMOS?</h3>
-
-                      <div class="pontano" style="font-size: 23px; padding-top: 15px;">
-                          EL GROVE es una empresa de administración de consorcios de la ciudad de La Plata, una empresa con trayectoria y experiencia en el sector.<p/>
-
-                          Somos una empresa especializada en la administración de consorcios profesional, que cuenta con un equipo de profesionales expertos en el ramo.<p/>
-
-                          EL GROVE sabe sacar el aprovecho máximo a los recursos monetarios y activos físicos con el fin de mejorar la calidad de vida. Obteniendo los mejores niveles de sana convivencia, seguridad, limpieza, mantenimiento y la mayor plusvalía para el consorcio.
-                      </div>
-
-                    </b-col>
-
-                  </b-row>
-                </b-container>  
-
-                
-                </div>
+            <b-col sm="12" md="6"  class="mt-3">  
+              <div style="line-height: 2em;">
+                <p><span class="engravers text-mobile" style="color: rgb(128, 139, 151); font-size: 5em; --darkreader-inline-color:#b8b3a8;" >¿QUIÉNES</span></p>
+                <p><span class="engravers text-mobile" style="color: rgb(128, 139, 151); font-size: 5em; --darkreader-inline-color:#b8b3a8;" >SOMOS?</span></p>
               </div>
-          </div>
-      </section>		
+
+              <div class="pontano" style="font-size: 23px; padding-top: 15px; text-align: justify; color: rgb(184, 179, 168) !important;">
+                  EL GROVE es una empresa de administración de consorcios de la ciudad de La Plata, una empresa con trayectoria y experiencia en el sector.<p/>
+
+                  Somos una empresa especializada en la administración de consorcios profesional, que cuenta con un equipo de profesionales expertos en el ramo.<p/>
+
+                  EL GROVE sabe sacar el aprovecho máximo a los recursos monetarios y activos físicos con el fin de mejorar la calidad de vida. Obteniendo los mejores niveles de sana convivencia, seguridad, limpieza, mantenimiento y la mayor plusvalía para el consorcio.
+              </div>
+
+            </b-col>
+
+          </b-row>
+        </b-container>  
+        </v-img>      
+           
               
       <section>
           <div class="item">
-              <img src="https://i.imgur.com/wPVyDfo.jpg" alt="images not found">
+              <img src="https://i.imgur.com/j2qWtA9.png" alt="images not found">
               <div class="cover">				  
                 <div class="section-content">
                 
@@ -149,7 +143,7 @@
 
                   <b-row>
                     <b-col md="6" class="engravers">
-                      <b-row class="mb-3 ml-auto contact_info">Teléfono: 15 545-2109</b-row>
+                      <b-row class="mb-3 ml-auto contact_info">Teléfono: (15) 545-2109</b-row>
                       <b-row class="mb-3 ml-auto contact_info">Correo: adm.elgrove@outlook.com</b-row>
                       <b-row class="mb-3 ml-auto contact_info">Dirección: calle 28 nro 167, La Plata, Arg.</b-row>
                     </b-col>
@@ -212,9 +206,14 @@
                       class="footer-input"
                       ></b-form-textarea>
                     </b-form-group>
-                    </b-col>
 
+                    <b-button type="submit" block class="footer-input">Enviar</b-button> 
+
+                    </b-col>
                   </b-row>
+
+                  
+
                   </b-container>  				  
                 
                 </div>
@@ -308,6 +307,12 @@ export default {
 
 <style scoped>
 
+#coti{
+    background-image:url(https://administraciondecondominios.com.mx/habita/habitia-content/uploads/2019/07/administracion-profesional-de-condominios-1.jpg); 
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
 @font-face {
 	font-family: Pontano;  
 	src: url(https://administraciondecondominios.com.mx/habita/fonts/pontano.ttf);  
@@ -353,7 +358,7 @@ section .item .cover {
 	height: 100%;
 	top: 0;
 	left: 0;
-	background: rgba(0, 0, 0, 0.6); 
+	/* background: rgba(0, 0, 0, 0.6); */
 }
 
 section .item .cover .section-content .h1_wrapper {
@@ -527,7 +532,7 @@ header .item .cover .header-content h4 {
 }
 
 .footer-input {
-  background-color:rgba(0,0,0,0) !important;
+  background-color:rgba(0,0,0,0.2) !important;
   border: 1px solid rgb(111, 66, 45) !important;
 }
 
