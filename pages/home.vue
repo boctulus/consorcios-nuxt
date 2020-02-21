@@ -4,42 +4,35 @@
         
         <v-img src="https://i.imgur.com/mL8PTQ4.png" lazy-src class="logo" />
 
-        <section>
-            <div class="item">
-                <img src="https://i.imgur.com/urEubtE.jpg" alt="images not found">
-                <div class="cover">
-                  
-                    <div class="section-content">		
-                      <div class="h1_wrapper">
-                        <h1 style="font-weight:700;">ADMINISTRACIÓN DE CONSORCIOS</h1>
-                      </div>							
-                      
-                      <div class="txt_anim_wrapper" style="filter: brightness(1.0); font-weight: 500; text-transform: uppercase;">
-                        <TextAnimation 
-                          forward-delay="80" 
-                          backward-delay="15" 
-                          clearing-delay="1000"
-                          v-bind:messages = "['Seriedad',
-                                              'Eficacia',
-                                              'Número 1 en La Plata',
-                                              'El Grove'
-                          ]"
-                          class="engravers txt_anim"
-                          >
-                        </TextAnimation>                
-                    </div>
-                      
-                      <div class="jumbotron_btn_wrapper">
-                        <div class="jumbotron_line_wrapper" style="padding: 20px 10px 20px 10px;">
-                          <div class="line"></div>
-                          <a href="#" class="jumbotron_btn">SABER MÁS</a>
-                        </div>
-                      </div>
+        <v-img :src="require('../assets/administracion-profesional-de-condominios-1.jpg')" lazy-src class="section img img1 full_height_img" > 
 
-                    </div>
-                </div>
-            </div>   
-        </section>
+          <div class="h1_wrapper">
+            <h1 style="text-align: center; font-weight:700;">ADMINISTRACIÓN DE CONSORCIOS</h1>
+          </div>
+
+          <div class="txt_anim_wrapper" style="filter: brightness(1.5); font-weight: 500; text-transform: uppercase;">
+            <TextAnimation 
+              forward-delay="80" 
+              backward-delay="15" 
+              clearing-delay="1000"
+              v-bind:messages = "['Seriedad',
+                                  'Eficacia',
+                                  'Número 1 en La Plata',
+                                  'El Grove'
+              ]"
+              class="engravers txt_anim"
+              >
+            </TextAnimation>                
+          </div>
+
+          <v-layout justify-center class="jumbotron_btn_wrapper">
+            <div class="jumbotron_line_wrapper" style="padding: 20px 10px 25px 10px;">
+              <div class="line"></div>
+              <a href="#" class="jumbotron_btn">SABER MÁS</a>
+            </div>
+          </v-layout>              
+      
+        </v-img>
 
         <!-- 
           https://github.com/SSENSE/vue-carousel 
@@ -132,94 +125,83 @@
         </v-img>      
            
               
-      <section>
-          <div class="item">
-              <img src="https://i.imgur.com/j2qWtA9.png" alt="images not found">
-              <div class="cover">				  
-                <div class="section-content">
-                
-                  <b-container style="color: #ffffff;">        
-                  <b-row class="mb-5 mt-5 mx-auto"><h3 class="contact_form_h">CONTACTO</h3></b-row>  
+      		<v-img :src="require('../assets/b_bn3.jpg')"    lazy-src class="img img4">
+              <b-container style="color: #ffffff;">        
+                    <b-row class="mb-5 mt-5 mx-auto"><h3 class="contact_form_h">CONTACTO</h3></b-row>  
 
-                  <b-row>
-                    <b-col md="6" class="engravers">
-                      <b-row class="mb-3 ml-auto contact_info">Teléfono: (15) 545-2109</b-row>
-                      <b-row class="mb-3 ml-auto contact_info">Correo: adm.elgrove@outlook.com</b-row>
-                      <b-row class="mb-3 ml-auto contact_info">Dirección: calle 28 nro 167, La Plata, Arg.</b-row>
-                    </b-col>
-
-                    <b-col md="6"  class="mt-3">  
-                    
-                      <b-row>
-                      <b-col md="6" sm="12">
-
-                        <b-form-group
-                        label="NOMBRE"
-                        label-for="input-1"
-                        class="engravers label"
-                        >
-                        <b-form-input id="input-1" trim class="footer-input"></b-form-input>
-                        </b-form-group>   
-
+                    <b-row>
+                      <b-col md="6" class="engravers">
+                        <b-row class="mb-3 ml-auto contact_info">Teléfono: (15) 545-2109</b-row>
+                        <b-row class="mb-3 ml-auto contact_info">Correo: adm.elgrove@outlook.com</b-row>
+                        <b-row class="mb-3 ml-auto contact_info">Dirección: calle 28 nro 167, La Plata, Arg.</b-row>
                       </b-col>
+
+                      <b-col md="6"  class="mt-3">  
                       
-                      <b-col md="6" sm="12">
+                        <b-row>
+                        <b-col md="6" sm="12">
 
-                        <b-form-group
-                        label="TELEFONO"
-                        label-for="input-2"
+                          <b-form-group
+                          label="NOMBRE"
+                          label-for="input-1"
+                          class="engravers label"
+                          >
+                          <b-form-input id="input-1" trim class="footer-input"></b-form-input>
+                          </b-form-group>   
+
+                        </b-col>
+                        
+                        <b-col md="6" sm="12">
+
+                          <b-form-group
+                          label="TELEFONO"
+                          label-for="input-2"
+                          class="engravers label"
+                          >
+                          <b-form-input id="input-2" trim class="footer-input"></b-form-input>
+                          </b-form-group>   
+
+                        </b-col>
+                        </b-row>    
+                      
+                      
+                      <b-form-group
+                        label="EMAIL"
+                        label-for="input-3"
                         class="engravers label"
-                        >
-                        <b-form-input id="input-2" trim class="footer-input"></b-form-input>
-                        </b-form-group>   
+                      >
+                        <b-form-input id="input-3" trim class="footer-input"></b-form-input>
+                      </b-form-group>   
+
+                      <b-form-group
+                        label="SERVICIO"
+                        label-for="input-4"
+                        class="engravers label"
+                      >
+                        <b-form-input id="input-4" trim class="footer-input"></b-form-input>
+                      </b-form-group>  
+
+                      <b-form-group
+                        label="CONSULTA"
+                        label-for="input-4"
+                        class="engravers label"
+                      >
+                        <b-form-textarea
+                        id="input-5"
+                        placeholder="Su consulta"
+                        rows="3"
+                        max-rows="6"
+                        class="footer-input"
+                        ></b-form-textarea>
+                      </b-form-group>
+
+                      <b-button type="submit" block class="footer-input">Enviar</b-button> 
 
                       </b-col>
-                      </b-row>    
-                    
-                    
-                    <b-form-group
-                      label="EMAIL"
-                      label-for="input-3"
-                      class="engravers label"
-                    >
-                      <b-form-input id="input-3" trim class="footer-input"></b-form-input>
-                    </b-form-group>   
+                    </b-row>                  
 
-                    <b-form-group
-                      label="SERVICIO"
-                      label-for="input-4"
-                      class="engravers label"
-                    >
-                      <b-form-input id="input-4" trim class="footer-input"></b-form-input>
-                    </b-form-group>  
-
-                    <b-form-group
-                      label="CONSULTA"
-                      label-for="input-4"
-                      class="engravers label"
-                    >
-                      <b-form-textarea
-                      id="input-5"
-                      placeholder="Su consulta"
-                      rows="3"
-                      max-rows="6"
-                      class="footer-input"
-                      ></b-form-textarea>
-                    </b-form-group>
-
-                    <b-button type="submit" block class="footer-input">Enviar</b-button> 
-
-                    </b-col>
-                  </b-row>
-
-                  
-
-                  </b-container>  				  
-                
-                </div>
-              </div>
-          </div>
-      </section>	
+                  </b-container>
+        </v-img>	
 
 
       <!--/full-page--> 
@@ -361,56 +343,52 @@ section .item .cover {
 	/* background: rgba(0, 0, 0, 0.6); */
 }
 
-section .item .cover .section-content .h1_wrapper {
-	position: absolute;
-	top: 30vh;
-	left: 0;
-	width: 100%;
+.full_height_img {
+    min-height: 50.5vh;
 }
 
-section .item .cover .section-content .h1_wrapper h1 {
-	font-size: 3.5em;
-	font-weight: 400;
-	padding-left:  1em;
-	padding-right: 1em;
-	/* word-spacing: 3px; */
-	color: #fff;	
-	text-align: center;
-}
-
-section .item .cover .section-content .txt_anim_wrapper {
-	position: absolute;
-	top: 50.5vh;
-	left: 0;
-	width: 100%;	
-	text-align: center;
-}
-
-section .item .cover .section-content .txt_anim_wrapper span {
-	font-size: 3em;
-	font-weight: 300;
-	word-spacing: 3px;
-	color: #fff;	
-	
-	filter: brightness(1.0); 
-	text-transform: uppercase;
-}
-
-section .item .cover .section-content .jumbotron_btn_wrapper {
+.h1_wrapper {
   position: absolute;
-  top: 75vh;
-  left: 0;
+  top: 30vh;
   width: 100%;
   text-align: center;
 }
 
-section .item .cover .section-content .jumbotron_btn_wrapper .jumbotron_line_wrapper {
-  width: 14em;
-  position: relative;
-  margin: 0 auto;
+h1 {
+  font-size: 3.5em;
+  color: #FFFFFF;
+  filter: brightness(1.3);
+  font-weight: 400;
+  padding-left:  1em;
+  padding-right: 1em;
 }
 
-section .item .cover .section-content .jumbotron_btn_wrapper .jumbotron_line_wrapper .line {
+.txt_anim_wrapper {
+  position: absolute;
+  top: 50.5vh;
+  width: 100%;
+  text-align: center; 
+}
+
+.txt_anim { 
+  font-size: 3.5em;
+  color: white;
+  font-weight: lighter;
+}
+
+.jumbotron_btn_wrapper {
+  position: absolute;
+  top: 75vh;
+  width: 100%;
+  text-align: center;
+}
+
+.jumbotron_line_wrapper {
+  width: 14em;
+  position: relative;
+}
+
+.jumbotron_line_wrapper .line {
   content: "";
   display: inline-block;
   width: 100%;
@@ -423,15 +401,22 @@ section .item .cover .section-content .jumbotron_btn_wrapper .jumbotron_line_wra
   clip-path: polygon(0 0, 36% 0, 60% 100%, 0 100%);
 }
 
-section .item .cover .section-content .jumbotron_btn_wrapper .jumbotron_btn {
+.jumbotron_btn {
   color: #ffffff;
   font-size: 1.3em;
-  padding: 0.25em 0.5em 0.25em 0.5em;
+  padding: 0.25em 0.5em 0.25em 0.5em
+}
+
+.jumbotron_btn:hover {
   text-decoration: none;
 }
 
-section .item .cover .section-content .jumbotron_btn_wrapper .jumbotron_btn:hover {
-  text-decoration: none;
+.img1 {
+  background-color: #2D5EAD;
+}
+
+.img4 {
+  background-color: #50575E;
 }
 
 /*  */ 
@@ -547,25 +532,31 @@ header .item .cover .header-content h4 {
 
 */
 
+/* 
+
+  Media Queries 
+
+*/
+
 /* Dispositivos cuadrados o casi */
 
 @media screen and (min-aspect-ratio:760/1000) and (max-aspect-ratio:1300/1000) {
-  section .item {
+  .full_height_img {
     height: 105vh;
-    position: relative;
   }
 
-  section .item .cover .section-content .h1_wrapper {
+  .h1_wrapper {
     position: absolute;
     top: 35vh;
     width: 100%;
+    text-align: center;
   }
 
-  section .item .cover .section-content .txt_anim_wrapper {
+  .txt_anim_wrapper {
     display:none; 
   }
   
-  section .item .cover .section-content .jumbotron_btn_wrapper {
+  .jumbotron_btn_wrapper {
     display:none;
   }
 }
@@ -576,9 +567,7 @@ header .item .cover .header-content h4 {
   }
 }
 
-/*
-  XS
-*/
+
 @media screen and (max-width: 360px) {
   .contact_form_h {
     font-size: 4em;
@@ -594,39 +583,35 @@ header .item .cover .header-content h4 {
 }
 
 @media screen and (max-width: 360px) and (orientation:landscape)  {
-  section .item .cover .section-content .h1_wrapper {
+ .h1_wrapper {
     display: none;
   }
 
-  section .item {
-    height: 105vh;
-    position: relative;
+  .full_height_img {
+    min-height: 105vh;
   }
 
-	section .item .cover .section-content .txt_anim_wrapper { display: none; }
+	.txt_anim_wrapper { display: none; }
 
-  section .item .cover .section-content .jumbotron_btn_wrapper {
+  .jumbotron_btn_wrapper {
     display: none;
   }
 }
 
 @media screen and (max-width: 360px) and (orientation:portrait)  {
-  h1, .txt_anim { font-size: 1.5em !important; }
+  h1, .txt_anim { font-size: 2em !important; }
 
-  section .item {
-    height: 50.5vh;
-    position: relative;
+  .full_height_img {
+    min-height: 50.5vh;
   }
 
-  section .item .cover .section-content .h1_wrapper {
-    position: absolute;
-    top: 37vh;
-    width: 100%;
+  .h1_wrapper {
+    display:none;
   }
 
-	section .item .cover .section-content .txt_anim_wrapper { display: none; }
+	.txt_anim_wrapper { display: none; }
 
-  section .item .cover .section-content .jumbotron_btn_wrapper {
+  .jumbotron_btn_wrapper {
     display: none; 
   }
    
@@ -634,6 +619,9 @@ header .item .cover .header-content h4 {
 }
 
 
+/* 
+  iPhone 5/SE
+*/
 @media screen and (min-width: 360px) and (max-width: 575px) {
 	h1, .txt_anim { font-size: 2.2em !important; }
 
@@ -647,18 +635,17 @@ header .item .cover .header-content h4 {
   480x360 568x320
 */
 @media screen and (min-width: 360px)  and (max-width: 575px) and (orientation:landscape) {
-  section .item .cover .section-content .h1_wrapper {
+  .h1_wrapper {
     display: none;
   }
 
-  section .item {
-    height: 105vh;
-    position: relative;
+  .full_height_img {
+    min-height: 105vh;
   }
 
-	section .item .cover .section-content .txt_anim_wrapper { display: none; }
+	.txt_anim_wrapper { display: none; }
 
-  section .item .cover .section-content .jumbotron_btn_wrapper {
+  .jumbotron_btn_wrapper {
     display: none;
   }
 
@@ -668,23 +655,23 @@ header .item .cover .header-content h4 {
   360x480
 */
 @media screen and (min-width: 360px)  and (max-width: 575px) and (orientation:portrait) {
+
   h1, .txt_anim { font-size: 1.8em !important; }
 
-  section .item {
-    height: 50.5vh;
-    position: relative;
+  .full_height_img {
+    min-height: 50.5vh;
   }
 
-  section .item .cover .section-content .h1_wrapper {
+  .h1_wrapper {
     position: absolute;
     top: 33vh;
-    left: 0;
     width: 100%;
+    text-align: center;
   }
 
-	section .item .cover .section-content .txt_anim_wrapper { display: none; }
+	.txt_anim_wrapper { display: none; }
 
-  section .item .cover .section-content .jumbotron_btn_wrapper {
+  .jumbotron_btn_wrapper {
     display: none; 
   }
    
@@ -695,43 +682,49 @@ header .item .cover .header-content h4 {
   h1, .txt_anim { font-size: 3em !important; }
 }
 
+/*
+  Galaxy S5, Pixel 2, iPhone 5/SE, iPhone 6/7/8
+*/
 @media screen and (min-width: 576px) and (max-width: 767px) and (orientation:landscape) {
+
   h1, .txt_anim { font-size: 3em !important; }
 
-  section .item {
+  .full_height_img {
     height: 105vh;
-    position: relative;
   }
 
-  section .item .cover .section-content .h1_wrapper {
-    display: none;
+  .h1_wrapper {
+    position: absolute;
+    top: 50vh;
+    width: 100%;
+    text-align: center;
   }
 
-  section .item .cover .section-content .txt_anim_wrapper { display: none; }
+  .txt_anim_wrapper { display: none; }
 
-  section .item .cover .section-content .jumbotron_btn_wrapper {
+  .jumbotron_btn_wrapper {
     display:none;
   }
   
 }
 
 @media screen and (min-width: 576px) and (max-width: 767px) and (orientation:portrait) {
-  h1, .txt_anim { font-size: 1.9em !important; }  
+  h1, .txt_anim { font-size: 1.85em !important; }  
   
-  section .item {
+  .full_height_img {
     height: 50.5vh;
-    position: relative;
   }
 
-  section .item .cover .section-content .h1_wrapper {
+  .h1_wrapper {
     position: absolute;
-    top: 32vh;
+    top: 35vh;
     width: 100%;
+    text-align: center;
   }
   
-  section .item .cover .section-content .txt_anim_wrapper { display: none; }
+  .txt_anim_wrapper { display: none; }
 
-  section .item .cover .section-content .jumbotron_btn_wrapper {
+  .jumbotron_btn_wrapper {
     display: none;
   }
 
@@ -745,43 +738,46 @@ header .item .cover .header-content h4 {
 
 	h1, .txt_anim { font-size: 3.5em !important; }
 
-  section .item .cover .section-content .jumbotron_line_wrapper .jumbotron_btn {
+  .jumbotron_btn {
     font-size: 1.15em;
     padding: 0.3em 0.6em 0.3em 0.6em;
   }
 }
 
 @media screen and (min-width: 768px) and (max-width: 991px) and (orientation:landscape) {
-  section .item {
+  .full_height_img {
     height: 105vh;
-    position: relative;
   }
 
-  section .item .cover .section-content .h1_wrapper {
+  .h1_wrapper {
     position: absolute;
-    top: 55vh;
+    top: 45vh;
     width: 100%;
+    text-align: center;
   }
 
-  section .item .cover .section-content .txt_anim_wrapper { display: none; } 
+  .txt_anim_wrapper { display: none; } 
+
+  .jumbotron_btn_wrapper {
+      display:none;
+   }
   
-  section .item .cover .section-content .jumbotron_btn_wrapper { display: none }
 }
 
 
 @media screen and (min-width: 768px) and (max-width: 991px) and (orientation:portrait) {
-  section .item {
+  .full_height_img {
     height: 50.5vh;
-    position: relative;
   }
 
-  section .item .cover .section-content .h1_wrapper {
+  .h1_wrapper {
     position: absolute;
     top: 30vh;
     width: 100%;
+    text-align: center;
   }
 
-  section .item .cover .section-content .txt_anim_wrapper { display: none; }
+  .txt_anim_wrapper { display: none; }
   
   header { display: none; }  
 }
@@ -800,25 +796,25 @@ header .item .cover .header-content h4 {
 }
 
 @media screen and (min-width: 992px) and (max-width: 1199px) and (orientation:landscape) {
-  section .item {
+  .full_height_img {
     height: 105vh;
-    position: relative;
   }
 
-  section .item .cover .section-content .h1_wrapper {
+  .h1_wrapper {
     position: absolute;
     top: 40vh;
     width: 100%;
+    text-align: center;
   }
 
-  section .item .cover .section-content .txt_anim_wrapper {
+  .txt_anim_wrapper {
     position: absolute;
     top: 55vh;
     width: 100%;
     text-align: center; 
   }
   
-  section .item .cover .section-content .jumbotron_btn_wrapper {
+  .jumbotron_btn_wrapper {
     position: absolute;
     top: 75vh;
     width: 100%;
@@ -828,22 +824,22 @@ header .item .cover .header-content h4 {
 }
 
 @media screen and (min-width: 992px) and (max-width: 1199px) and (orientation:portrait) {
-  section .item {
+  .full_height_img {
     height: 50.5vh;
-    position: relative;
   }
 
-  section .item .cover .section-content .h1_wrapper {
+  .h1_wrapper {
     position: absolute;
-    top: 22.5vh;
+    top: 20vh;
     width: 100%;
+    text-align: center;
   }
 
-  section .item .cover .section-content .txt_anim_wrapper {
+  .txt_anim_wrapper {
     display: none;
   }
 
-  section .item .cover .section-content .jumbotron_btn_wrapper {
+  .jumbotron_btn_wrapper {
     position: absolute;
     top: 35vh;
     width: 100%;
@@ -864,18 +860,18 @@ header .item .cover .header-content h4 {
 }
 
 @media screen and (min-width: 1200px) and (orientation:landscape) {
-  section .item {
+  .full_height_img {
     height: 105vh;
-    position: relative;
   }
 
-  section .item .cover .section-content .h1_wrapper {
+  .h1_wrapper {
     position: absolute;
     top: 35vh;
     width: 100%;
+    text-align: center;
   }
 
-  section .item .cover .section-content .txt_anim_wrapper {
+  .txt_anim_wrapper {
     position: absolute;
     top: 55vh;
     width: 100%;
@@ -884,25 +880,25 @@ header .item .cover .header-content h4 {
 }
 
 @media screen and (min-width: 1200px) and (orientation:portrait) {
-  section .item {
+  .full_height_img {
     height: 50.5vh;
-    position: relative;
   }
 
-  section .item .cover .section-content .h1_wrapper {
+  .h1_wrapper {
     position: absolute;
     top: 17.25vh;
     width: 100%;
+    text-align: center;
   }
 
-  section .item .cover .section-content .txt_anim_wrapper {
+  .txt_anim_wrapper {
     position: absolute;
     top: 25vh;
     width: 100%;
     text-align: center; 
   }
 
-  section .item .cover .section-content .jumbotron_btn_wrapper {
+  .jumbotron_btn_wrapper {
     position: absolute;
     top: 35vh;
     width: 100%;
@@ -911,6 +907,7 @@ header .item .cover .header-content h4 {
 
   header { display: none; }  
 }
+
 
 
 
