@@ -96,12 +96,12 @@
         </header>
 
 
-        <v-img src="https://i.imgur.com/viLJLFC.jpg" lazy-src>
+        <v-img src="https://i.imgur.com/viLJLFC.jpg" lazy-src >
           <b-container style="color: #ffffff; margin-top: 50px;">     
 
             <b-row>
             <b-col sm="12" md="6">
-              <v-img src="https://i.imgur.com/Ff6KAAT.png" lazy-src style="margin-top:24px; margin-bottom: 50px;" />
+              <v-img src="https://i.imgur.com/Ff6KAAT.png" lazy-src class="quienes_img" style="margin-bottom: 50px;"   />
             </b-col>
 
             <b-col sm="12" md="6"  class="mt-3">  
@@ -111,7 +111,7 @@
               </div>
 
               <div class="pontano" style="font-size: 23px; padding-top: 15px; text-align: justify; color: rgb(184, 179, 168) !important;">
-                  EL GROVE es una empresa de administración de consorcios de la ciudad de La Plata, una empresa con trayectoria y experiencia en el sector.<p/>
+                  EL GROVE es una empresa de administración de consorcios de la ciudad de La Plata con trayectoria y experiencia en el sector.<p/>
 
                   Somos una empresa especializada en la administración de consorcios profesional, que cuenta con un equipo de profesionales expertos en el ramo.<p/>
 
@@ -506,6 +506,13 @@ header .item .cover .header-content h4 {
   background-color: #50575E;
 }
 
+/* Quienes somos */
+
+.quienes_img {
+  margin-top:24px;
+}
+
+
 /* Footer */
 
 .contact_form_h {
@@ -741,6 +748,10 @@ header .item .cover .header-content h4 {
   .jumbotron_btn {
     font-size: 1.15em;
     padding: 0.3em 0.6em 0.3em 0.6em;
+  }
+
+  .quienes_img {
+    margin-top: 50%;
   }
 }
 
