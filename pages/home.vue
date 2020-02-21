@@ -11,7 +11,7 @@
                   
                     <div class="section-content">		
                       <div class="h1_wrapper">
-                        <h1>ADMINISTRACIÓN DE CONSORCIOS</h1>
+                        <h1 style="font-weight:700;">ADMINISTRACIÓN DE CONSORCIOS</h1>
                       </div>							
                       
                       <div class="txt_anim_wrapper" style="filter: brightness(1.0); font-weight: 500; text-transform: uppercase;">
@@ -24,7 +24,7 @@
                                               'Número 1 en La Plata',
                                               'El Grove'
                           ]"
-                          class="txt_anim"
+                          class="engravers txt_anim"
                           >
                         </TextAnimation>                
                     </div>
@@ -102,12 +102,43 @@
           </carousel>        
         </header>
 
-        <!-- 
-          ../assets/b_color2.jpg
-          ../assets/b_bn1.jpg
-        -->  
-        
         <section>
+          <div class="item">
+              <img src="https://i.imgur.com/sXkDJQA.jpg" alt="images not found">
+              <div class="cover">				  
+                <div class="section-content">
+                
+
+                  <b-container style="color: #ffffff;">      
+
+                  <b-row>
+                    <b-col md="6">
+                      <v-img src="https://i.imgur.com/Ff6KAAT.png" style="margin-top:24px;" />
+                    </b-col>
+
+                    <b-col md="6"  class="mt-3">  
+                      <h3 class="engravers" style="font-size: 4.5em; font-weight: 400 ;color: #ccc;">QUIENES SOMOS?</h3>
+
+                      <div class="pontano" style="font-size: 23px; padding-top: 15px;">
+                          EL GROVE es una empresa de administración de consorcios de la ciudad de La Plata, una empresa con trayectoria y experiencia en el sector.<p/>
+
+                          Somos una empresa especializada en la administración de consorcios profesional, que cuenta con un equipo de profesionales expertos en el ramo.<p/>
+
+                          EL GROVE sabe sacar el aprovecho máximo a los recursos monetarios y activos físicos con el fin de mejorar la calidad de vida. Obteniendo los mejores niveles de sana convivencia, seguridad, limpieza, mantenimiento y la mayor plusvalía para el consorcio.
+                      </div>
+
+                    </b-col>
+
+                  </b-row>
+                </b-container>  
+
+                
+                </div>
+              </div>
+          </div>
+      </section>		
+              
+      <section>
           <div class="item">
               <img src="https://i.imgur.com/wPVyDfo.jpg" alt="images not found">
               <div class="cover">				  
@@ -117,7 +148,7 @@
                   <b-row class="mb-5 mt-5 mx-auto"><h3 class="contact_form_h">CONTACTO</h3></b-row>  
 
                   <b-row>
-                    <b-col md="6">
+                    <b-col md="6" class="engravers">
                       <b-row class="mb-3 ml-auto contact_info">Teléfono: 15 545-2109</b-row>
                       <b-row class="mb-3 ml-auto contact_info">Correo: adm.elgrove@outlook.com</b-row>
                       <b-row class="mb-3 ml-auto contact_info">Dirección: calle 28 nro 167, La Plata, Arg.</b-row>
@@ -131,7 +162,7 @@
                         <b-form-group
                         label="NOMBRE"
                         label-for="input-1"
-                        class="label"
+                        class="engravers label"
                         >
                         <b-form-input id="input-1" trim class="footer-input"></b-form-input>
                         </b-form-group>   
@@ -143,7 +174,7 @@
                         <b-form-group
                         label="TELEFONO"
                         label-for="input-2"
-                        class="label"
+                        class="engravers label"
                         >
                         <b-form-input id="input-2" trim class="footer-input"></b-form-input>
                         </b-form-group>   
@@ -155,7 +186,7 @@
                     <b-form-group
                       label="EMAIL"
                       label-for="input-3"
-                      class="label"
+                      class="engravers label"
                     >
                       <b-form-input id="input-3" trim class="footer-input"></b-form-input>
                     </b-form-group>   
@@ -163,7 +194,7 @@
                     <b-form-group
                       label="SERVICIO"
                       label-for="input-4"
-                      class="label"
+                      class="engravers label"
                     >
                       <b-form-input id="input-4" trim class="footer-input"></b-form-input>
                     </b-form-group>  
@@ -171,7 +202,7 @@
                     <b-form-group
                       label="CONSULTA"
                       label-for="input-4"
-                      class="label"
+                      class="engravers label"
                     >
                       <b-form-textarea
                       id="input-5"
@@ -276,6 +307,34 @@ export default {
 
 
 <style scoped>
+
+@font-face {
+	font-family: Pontano;  
+	src: url(https://administraciondecondominios.com.mx/habita/fonts/pontano.ttf);  
+	font-weight: normal;  
+}
+
+@font-face {
+	font-family: Engravers;  
+	src: url(https://administraciondecondominios.com.mx/habita/fonts/engravers.otf);  
+	font-weight: normal;  
+}
+
+.engravers {
+    font-family: 'Engravers', Sans-serif !important;
+}
+
+.pontano {
+    font-family: 'Pontano', Sans-serif !important;
+}
+
+h1 {
+    font-family: 'Engravers', Sans-serif;
+}
+
+body {
+    font-family: 'Pontano', Sans-serif;
+}
 
 section .item {
 	height: 100vh;
@@ -473,7 +532,7 @@ header .item .cover .header-content h4 {
 }
 
 .label {
-  font-size:1.35em;
+  font-size:1.5em;
   font-weight: 600;
 }
 
