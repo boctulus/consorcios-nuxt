@@ -58,7 +58,8 @@ module.exports = {
   ** Nuxt.js modules
   */
   modules: [
-    'nuxt-fullpage.js'
+    'nuxt-fullpage.js',
+    'vue-scrollto/nuxt'
   ],
 
   /*

@@ -24,7 +24,8 @@
                                 v-bind:data-index="index"
                                 class="item"
                             >
-                                <v-icon color="#CFA18B" style="margin-right:0.5em;">crop_din</v-icon>{{item.msg}}
+                                <v-icon color="#CFA18B" style="margin-right:0.5em;">crop_din</v-icon>
+                                <n-link :to="item.link" class="link" no-prefetch>{{item.msg}}</n-link>
                             </li>
                         </transition-group>
                     </v-list>      
@@ -48,12 +49,12 @@ export default {
         return {
             drawer: false,
             list: [
-                { msg: 'Pricing' },
-                { msg: 'Customers' },
-                { msg: 'Docs' },
-                { msg: 'Blog' },
-                { msg: 'Login' },
-                { msg: 'Sign Up' }
+                { msg: 'Inicio',  link: '/'},
+                { msg: 'Servicios',  link: '/servicios' },
+                { msg: 'Blog',  link: '/blog' },
+                { msg: 'Acceso clientes',  link: '/dashboard' },
+                { msg: 'Marco legal',  link: '/legal' },
+                { msg: 'Contacto',  link: '#contacto' }
             ]
         };
     },
@@ -96,6 +97,10 @@ export default {
 
 
 <style scoped>  
+
+.link {
+    color: #ffffff;
+}
 
 .slide-fade-enter-active {
   transition: all .3s ease;

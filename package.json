@@ -33,6 +33,7 @@
     "vue-jquery": "^1.0.6",
     "vue-perfect-scrollbar": "^0.1.0",
     "vue-quill-editor": "^3.0.6",
+    "vue-scrollto": "^2.17.1",
     "vue-template-compiler": "^2.6.11",
     "vue2-google-maps": "^0.10.7",
     "vuetify": "^1.4.4",

@@ -100,7 +100,9 @@
 
 
         <v-img :src="require('../assets/administracion-integral-condominios-df-cdmx_recortado1.jpg')" lazy-src >
-          <b-container style="color: #ffffff; margin-top: 50px;">     
+          <b-container style="color: #ffffff; margin-top: 50px;" id="somos">     
+
+            <a href="#" v-scroll-to="'#contacto'">Contacto</a> 
 
             <b-row>
             <b-col sm="12" md="6">
@@ -128,7 +130,7 @@
         </v-img>      
            
               
-        <v-img :src="require('../assets/profesionales-certificados-prosoc.png')"    lazy-src class="img img4">
+        <v-img :src="require('../assets/profesionales-certificados-prosoc.png')"    lazy-src class="img img4" id="contacto">
           <b-container style="color: #ffffff;">        
                 <b-row class="mb-5 mt-5 mx-auto"><h3 class="contact_form_h">CONTACTO</h3></b-row>  
 
@@ -232,7 +234,8 @@ Vue.use(IconsPlugin)
 
 import { Carousel, Slide } from 'vue-carousel';
 
-
+import VueScrollTo from 'vue-scrollto'
+Vue.use(VueScrollTo)
 
 setInteractionMode('eager')
 
