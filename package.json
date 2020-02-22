@@ -34,6 +34,7 @@
     "vue-perfect-scrollbar": "^0.1.0",
     "vue-quill-editor": "^3.0.6",
     "vue-template-compiler": "^2.6.11",
+    "vue2-google-maps": "^0.10.7",
     "vuetify": "^1.4.4",
     "vuetify-loader": "^1.2.0"
   },

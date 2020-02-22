@@ -2,7 +2,7 @@ const pkg = require('./package')
 
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
 
-import webpack from 'webpack'
+//import webpack from 'webpack'
 
 module.exports = {
   mode: 'spa',
@@ -67,15 +67,16 @@ module.exports = {
   build: {
     transpile: [
       'vuetify/lib',
-      'vee-validate/dist/rules'
+      'vee-validate/dist/rules',
     ],
     plugins: [
       new VuetifyLoaderPlugin(),
+      /*
       new webpack.ProvidePlugin({
-        // global modules
         '$': 'jquery',
         '_': 'lodash'
       })
+      */
     ],
     loaders: {
       stylus: {
@@ -87,7 +88,7 @@ module.exports = {
     ** You can extend webpack config here
     */
     extend(config, ctx) {
-
+      transpile: [/^vue2-google-maps($|\/)/]
     }
   }
 }

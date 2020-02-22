@@ -134,10 +134,26 @@
                         <b-row class="mb-3 ml-auto contact_info">Teléfono: (15) 545-2109</b-row>
                         <b-row class="mb-3 ml-auto contact_info">Correo: adm.elgrove@outlook.com</b-row>
                         <b-row class="mb-3 ml-auto contact_info">Dirección: calle 28 nro 167, La Plata, Arg.</b-row>
+                        <b-row>
+                          <GmapMap
+                            :center="{lat:10, lng:10}"
+                            :zoom="7"
+                            map-type-id="terrain"
+                            style="width: 500px; height: 300px"
+                          >
+                            <!--GmapMarker
+                              :key="index"
+                              v-for="(m, index) in markers"
+                              :position="m.position"
+                              :clickable="true"
+                              :draggable="true"
+                              @click="center=m.position"
+                            /-->
+                          </GmapMap>
+                        </b-row>
                       </b-col>
 
-                      <b-col md="6"  class="mt-3">  
-                      
+                      <b-col md="6"  class="mt-3">
                         <b-row>
                         <b-col md="6" sm="12">
 
@@ -196,7 +212,6 @@
                       </b-form-group>
 
                       <b-button type="submit" block class="footer-input">Enviar</b-button> 
-
                       </b-col>
                     </b-row>                  
 
@@ -218,14 +233,39 @@ import Vue from 'vue'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-
-// Install BootstrapVue
 Vue.use(BootstrapVue)
-
-// Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin)
 
 import { Carousel, Slide } from 'vue-carousel';
+
+import * as VueGoogleMaps from 'vue2-google-maps'
+import {GmapMarker} from 'vue2-google-maps/src/components/marker'
+Vue.component('GmapMarker', GmapMarker)
+
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: 'AIzaSyB05f5q-SoqYutrveVi_ngQRnTNZPl6jYY',
+    libraries: 'places', // This is required if you use the Autocomplete plugin
+    // OR: libraries: 'places,drawing'
+    // OR: libraries: 'places,drawing,visualization'
+    // (as you require)
+ 
+    //// If you want to set the version, you can do so:
+    // v: '3.26',
+  },
+ 
+  //// If you intend to programmatically custom event listener code
+  //// (e.g. `this.$refs.gmap.$on('zoom_changed', someFunc)`)
+  //// instead of going through Vue templates (e.g. `<GmapMap @zoom_changed="someFunc">`)
+  //// you might need to turn this on.
+  // autobindAllEvents: false,
+ 
+  //// If you want to manually install components, e.g.
+  ///  import {GmapMarker} from 'vue2-google-maps/src/components/marker'
+  //// Vue.component('GmapMarker', GmapMarker)
+  //// then disable the following:
+  // installComponents: true,
+})
 
 
 setInteractionMode('eager')
