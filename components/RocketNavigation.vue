@@ -26,7 +26,7 @@
                             >
                                 <v-icon color="#CFA18B" style="margin-right:0.5em;">crop_din</v-icon>
                                 <n-link :to="item.link" class="link" v-if="!item.bookmark">{{item.msg}}</n-link>
-                                <a @click="closeDrawer" class="link" v-if="item.bookmark" :id="item.link">{{item.msg}}</a>
+                                <a @click="scrollToBookmark" class="link" v-if="item.bookmark" :id="item.link">{{item.msg}}</a>
                             </li>
                         </transition-group>
                     </v-list>      
@@ -103,9 +103,8 @@ export default {
                 )
             }, delay)
         },
-        closeDrawer: function(element) {
+        scrollToBookmark: function(element) {
             this.drawer = false;     
-            //setTimeout(,500);  
             VueScrollTo.scrollTo(element.target.id, 3000)
         }
     },
