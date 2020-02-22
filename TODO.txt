@@ -1,6 +1,21 @@
 TODO
 -----------
 
+
+- Hamburguesa -> color 
+- Hamgurguesa -> esconder, tocar afuera
+- Menú --> mismos items (no test de evaluación, certificaciones no, cotizacion si?, ticket de servicio no, marco legal)
+- Menú --> ampliar logo 15%
+- Saber más -> que se ilimine con el hover
+- Quienes somos? imagen del edificio de mama de Juan
+- Contact form --> demasiado transp letras
+- Contact form --> asteriscos campos obligatorios
+- Contact form --> captcha
+- Contact form --> boton de enviar ... ilimine
+- Abajo de la direccion -> blog con cuadradito
+
+
+
 Admin 
 https://github.com/moeddami/nuxt-material-admin
 
