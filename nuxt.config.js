@@ -88,7 +88,7 @@ module.exports = {
     ** You can extend webpack config here
     */
     extend(config, ctx) {
-      transpile: [/^vue2-google-maps($|\/)/]
+
     }
   }
 }
