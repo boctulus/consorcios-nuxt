@@ -11,9 +11,20 @@ TODO
 - Contact form --> demasiado transp letras
 - Contact form --> asteriscos campos obligatorios
 - Contact form --> captcha
+- Contact form --> select con las mismas opciones
 - Contact form --> boton de enviar ... ilimine
 - Abajo de la direccion -> blog con cuadradito
+- Probar Misión / Visión / Valores en el slider
 
+
+- Partes administrables :
+
+* Entradas del blog
+* Archivos PDF para descarga en sección privada
+* Contraseñas para cada edificio
+* Aprovación de reviews
+* Leer mensajes creados desde form de contacto 
+* Leer pedidos de cotizacion 
 
 
 Admin 

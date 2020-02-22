@@ -37,7 +37,7 @@
         <!-- 
           https://github.com/SSENSE/vue-carousel 
         -->
-        <header class="">
+        <header class="carousel">
           <carousel 
                   :per-page="1" 
                   :autoplay="true" 
@@ -45,48 +45,51 @@
                   pagination-position="bottom-overlay"
                   paginationActiveColor="#D0A28C"
           >
+
+            <slide>
+              <div class="item">
+                      <img src="https://i.imgur.com/okn0Zy1.jpg" alt="images not found">
+                      <div class="cover">
+                          <div class="container">
+                              <div class="header-content">
+                                  <div class="line animated bounceInLeft"></div>
+                                  <h2>Ofrecer soluciones efectivas en la administración de inmuebles</h2>
+                                  <h1>Misión</h1>
+                                  <h4>Brindando un alto estándar de eficiencia, confort, tranquilidad y seguridad a un precio razonable y justo.</h4>
+                              </div>
+                          </div>
+                      </div>
+                </div>
+            </slide>    
+
             <slide>
                 <div class="item">
-                      <img src="https://cdn.pixabay.com/photo/2017/10/24/10/30/business-2884023_960_720.jpg" alt="images not found">
+                      <img src="https://i.imgur.com/MT4sAY6.jpg" alt="images not found">
                       <div class="cover">
                           <div class="container">
                               <div class="header-content">
                                   <div class="line"></div>
-                                  <h2>Teimagine Digital Experience with</h2>
-                                  <h1>Start-ups and solutions</h1>
-                                  <h4>We help entrepreneurs, start-ups and enterprises shape their ideas into products</h4>
+                                  <h2>Honestidad, claridad y excelente trato</h2>
+                                  <h1>Visión</h1>
+                                  <h4>Brindar un trato directo hacia nuestros clientes así como por el manejo eficiente de información por medio de tecnología de punta.</h4>
                               </div>
                           </div>
                       </div>
                </div>   
             </slide>
 
-            <slide>
-              <div class="item">
-                      <img src="https://cdn.pixabay.com/photo/2017/05/04/16/37/meeting-2284501_960_720.jpg" alt="images not found">
-                      <div class="cover">
-                          <div class="container">
-                              <div class="header-content">
-                                  <div class="line animated bounceInLeft"></div>
-                                  <h2>Peimagine Digital Experience with</h2>
-                                  <h1>Intelligent Solutions</h1>
-                                  <h4>We help entrepreneurs, start-ups and enterprises shape their ideas into products</h4>
-                              </div>
-                          </div>
-                      </div>
-                </div>
-            </slide>        
+         
 
             <slide>
               <div class="item">
-                    <img src="https://cdn.pixabay.com/photo/2016/03/09/09/22/workplace-1245776_960_720.jpg" alt="images not found">
+                    <img src="https://i.imgur.com/jeORORh.jpg" alt="images not found">
                     <div class="cover">
                         <div class="container">
                             <div class="header-content">
                                 <div class="line animated bounceInLeft"></div>
-                                <h2>Reimagine Digital Experience with</h2>
-                                <h1>Intelligent solutions</h1>
-                                <h4>We help entrepreneurs, start-ups and enterprises shape their ideas into products</h4>
+                                <h2>Lo más importante son nuestros</h2>
+                                <h1>Valores</h1>
+                                <h4>Confianza, responsabilidad, transparencia, ética y respeto nos definen.</h4>
                             </div>
                         </div>
                      </div>
@@ -101,7 +104,7 @@
 
             <b-row>
             <b-col sm="12" md="6">
-              <v-img src="https://i.imgur.com/Ff6KAAT.png" lazy-src class="quienes_img" style="margin-bottom: 50px;"   />
+              <v-img   :src="require('../assets/torre_juan.jpg')" lazy-src class="quienes_img" style="margin-bottom: 50px;"   />
             </b-col>
 
             <b-col sm="12" md="6"  class="mt-3">  
@@ -131,7 +134,7 @@
 
                     <b-row>
                       <b-col md="6" class="engravers">
-                        <b-row class="mb-3 ml-auto contact_info">Teléfono: (15) 545-2109</b-row>
+                        <b-row class="mb-3 ml-auto contact_info">Teléfono: (221) 15 545-2109</b-row>
                         <b-row class="mb-3 ml-auto contact_info">Correo: adm.elgrove@outlook.com</b-row>
                         <b-row class="mb-3 ml-auto contact_info" style="padding-bottom: 10px;">Dirección: calle 28 nro 167, La Plata, Buenos Aires, Arg.</b-row>
                         <b-row class="mx-auto">
@@ -346,6 +349,7 @@ section .item .cover {
     min-height: 50.5vh;
 }
 
+
 .h1_wrapper {
   position: absolute;
   top: 30vh;
@@ -532,6 +536,10 @@ header .item .cover .header-content h4 {
   font-weight: 600;
 }
 
+.carousel {
+    display:none;
+}
+
 /* 
 
   Media Queries 
@@ -567,9 +575,9 @@ header .item .cover .header-content h4 {
   }
 }
 
-@media screen and (max-width: 767px) {
-	header {
-    display:none;
+@media screen and (min-width: 1024px) {
+	.carousel {
+    display:block;
   }
 }
 
@@ -594,6 +602,10 @@ header .item .cover .header-content h4 {
   }
 
   .full_height_img {
+    min-height: 105vh;
+  }
+
+  .img4 {
     min-height: 105vh;
   }
 
@@ -646,6 +658,10 @@ header .item .cover .header-content h4 {
   }
 
   .full_height_img {
+    height: 105vh;
+  }
+
+  .img4 {
     min-height: 105vh;
   }
 
@@ -665,7 +681,7 @@ header .item .cover .header-content h4 {
   h1, .txt_anim { font-size: 1.8em !important; }
 
   .full_height_img {
-    min-height: 50.5vh;
+    height: 50.5vh;
   }
 
   .h1_wrapper {
@@ -697,6 +713,10 @@ header .item .cover .header-content h4 {
 
   .full_height_img {
     height: 105vh;
+  }
+
+  .img4 {
+    min-height: 105vh;
   }
 
   .h1_wrapper {
@@ -759,6 +779,10 @@ header .item .cover .header-content h4 {
     height: 105vh;
   }
 
+  .img4 {
+    min-height: 105vh;
+  }
+
   .h1_wrapper {
     position: absolute;
     top: 45vh;
@@ -808,6 +832,10 @@ header .item .cover .header-content h4 {
 @media screen and (min-width: 992px) and (max-width: 1199px) and (orientation:landscape) {
   .full_height_img {
     height: 105vh;
+  }
+
+  .img4 {
+    min-height: 105vh;
   }
 
   .h1_wrapper {
@@ -872,6 +900,10 @@ header .item .cover .header-content h4 {
 @media screen and (min-width: 1200px) and (orientation:landscape) {
   .full_height_img {
     height: 105vh;
+  }
+
+  .img4 {
+    min-height: 105vh;
   }
 
   .h1_wrapper {

@@ -29,7 +29,7 @@ export default {
 }
  #hamburger-icon .line {
 	 display: block;
-	 background: #B38C25;
+	 background: #D0A28C;
 	 width: 28px;
 	 height: 2px;
 	 position: absolute;
