@@ -25,7 +25,8 @@
                                 class="item"
                             >
                                 <v-icon color="#CFA18B" style="margin-right:0.5em;">crop_din</v-icon>
-                                <n-link :to="item.link" class="link" no-prefetch>{{item.msg}}</n-link>
+                                <n-link :to="item.link" class="link" v-if="!item.bookmark">{{item.msg}}</n-link>
+                                <a :href="item.link" v-scroll-to="'#contacto'" class="link" v-if="item.bookmark">{{item.msg}}</a>
                             </li>
                         </transition-group>
                     </v-list>      
@@ -42,6 +43,10 @@
 <script>
 import Hamburger from '@/components/Hamburger';
 import Velocity from 'velocity-animate';
+
+import VueScrollTo from 'vue-scrollto'
+import Vue from 'vue'
+Vue.use(VueScrollTo)
 
 export default {
     name: 'RocketNavigation',
@@ -61,6 +66,14 @@ export default {
     computed: {
         computedList: function () {
             return this.drawer ? this.list : []
+        }
+    },
+    created() {
+        for (let i=0; i<this.list; i++){
+            if (this.list.link[0] == '#')
+                this.list.bookmark = true;
+            else     
+                this.list.bookmark = false;
         }
     },
     methods: {

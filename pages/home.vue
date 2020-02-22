@@ -102,8 +102,6 @@
         <v-img :src="require('../assets/administracion-integral-condominios-df-cdmx_recortado1.jpg')" lazy-src >
           <b-container style="color: #ffffff; margin-top: 50px;" id="somos">     
 
-            <a href="#" v-scroll-to="'#contacto'">Contacto</a> 
-
             <b-row>
             <b-col sm="12" md="6">
               <v-img   :src="require('../assets/torre_juan2.png')" lazy-src class="quienes_img" style="margin-bottom: 50px;"   />
@@ -233,9 +231,6 @@ Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 
 import { Carousel, Slide } from 'vue-carousel';
-
-import VueScrollTo from 'vue-scrollto'
-Vue.use(VueScrollTo)
 
 setInteractionMode('eager')
 
