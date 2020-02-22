@@ -26,7 +26,7 @@
                             >
                                 <v-icon color="#CFA18B" style="margin-right:0.5em;">crop_din</v-icon>
                                 <n-link :to="item.link" class="link" v-if="!item.bookmark">{{item.msg}}</n-link>
-                                <a :href="item.link" v-scroll-to="'#contacto'" class="link" v-if="item.bookmark">{{item.msg}}</a>
+                                <a @click="closeDrawer" class="link" v-if="item.bookmark" :id="item.link">{{item.msg}}</a>
                             </li>
                         </transition-group>
                     </v-list>      
@@ -46,8 +46,9 @@ import Velocity from 'velocity-animate';
 
 import VueScrollTo from 'vue-scrollto'
 import Vue from 'vue'
-Vue.use(VueScrollTo)
 
+Vue.use(VueScrollTo)
+ 
 export default {
     name: 'RocketNavigation',
     data() {
@@ -69,12 +70,13 @@ export default {
         }
     },
     created() {
-        for (let i=0; i<this.list; i++){
-            if (this.list.link[0] == '#')
-                this.list.bookmark = true;
+        for (let i=0; i<this.list.length; i++){
+            if (this.list[i].link[0] == '#')
+                this.list[i].bookmark = true;
             else     
-                this.list.bookmark = false;
+                this.list[i].bookmark = false;
         }
+        //console.log(this.list);
     },
     methods: {
         beforeEnter: function (elem) {
@@ -100,6 +102,11 @@ export default {
                     { complete: done }
                 )
             }, delay)
+        },
+        closeDrawer: function(element) {
+            this.drawer = false;     
+            //setTimeout(,500);  
+            VueScrollTo.scrollTo(element.target.id, 3000)
         }
     },
     components: {
