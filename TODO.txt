@@ -10,7 +10,16 @@ TODO
 - Quienes somos? imagen del edificio de mama de Juan
 - Contact form --> demasiado transp letras
 - Contact form --> asteriscos campos obligatorios
+
 - Contact form --> captcha
+
+V3
+
+Site key: 6LewRtsUAAAAAMtIYeyeaYVQESRyMkejdC-iwyoz
+Secret key: 6LewRtsUAAAAAKj9ALweWgfCNEz0YuI1cwvBphnY
+
+* no usar captcha si el usuario proviene de La Plata y sino hay un ataque detectado en curso.
+
 - Contact form --> select con las mismas opciones
 - Contact form --> boton de enviar ... ilimine
 - Abajo de la direccion -> blog con cuadradito
