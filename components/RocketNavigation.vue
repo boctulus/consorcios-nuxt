@@ -105,7 +105,7 @@ export default {
         },
         scrollToBookmark: function(element) {
             this.drawer = false;     
-            VueScrollTo.scrollTo(element.target.id, 3000)
+            VueScrollTo.scrollTo(element.target.id, 1000)
         }
     },
     components: {
@@ -119,6 +119,11 @@ export default {
 
 .link {
     color: #ffffff;
+}
+
+.link:hover {
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .slide-fade-enter-active {
