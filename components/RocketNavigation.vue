@@ -1,43 +1,46 @@
 <template>
-    <span v-click-outside="closeDrawer">
-        <transition name="slide-fade">
-            <div v-show="drawer" class="drawer">
-                <div style="margin-top:5em;">
-                    <div style="text-align: center;">
-                        <img src="https://i.imgur.com/QyAAKtC.png" style="width: 8em;" /><!-- OK -->
-                    </div>
-                    
-                    <v-list style="margin-top: 3em; background-color: #000000; color: #ffffff;" v-show="drawer">
-                        <transition-group
-                            name="staggered-fade"
-                            tag="ul"
-                            v-bind:css="false"
-                            v-on:before-enter="beforeEnter"
-                            v-on:enter="enter"
-                            v-on:leave="leave"
-                            class="list"
-                        >
-
-                            <li 
-                                v-for="(item, index) in computedList"
-                                v-bind:key="item.msg"
-                                v-bind:data-index="index"
-                                class="item"
+    <div>
+        <div v-click-outside="closeDrawer">
+            <transition name="slide-fade">
+                <div v-show="drawer" class="drawer">
+                    <div style="margin-top:5em;">
+                        <div style="text-align: center;">
+                            <img src="https://i.imgur.com/QyAAKtC.png" style="width: 8em;" /><!-- OK -->
+                        </div>
+                        
+                        <v-list style="margin-top: 3em; background-color: #000000; color: #ffffff;" v-show="drawer">
+                            <transition-group
+                                name="staggered-fade"
+                                tag="ul"
+                                v-bind:css="false"
+                                v-on:before-enter="beforeEnter"
+                                v-on:enter="enter"
+                                v-on:leave="leave"
+                                class="list"
                             >
-                                <v-icon color="#CFA18B" style="margin-right:0.5em;">crop_din</v-icon>
-                                <n-link :to="item.link" class="link" v-if="!item.bookmark">{{item.msg}}</n-link>
-                                <a @click="scrollToBookmark" class="link" v-if="item.bookmark" :id="item.link">{{item.msg}}</a>
-                            </li>
-                        </transition-group>
-                    </v-list>      
+
+                                <li 
+                                    v-for="(item, index) in computedList"
+                                    v-bind:key="item.msg"
+                                    v-bind:data-index="index"
+                                    class="item"
+                                >
+                                    <v-icon color="#CFA18B" style="margin-right:0.5em;">crop_din</v-icon>
+                                    <n-link :to="item.link" class="link" v-if="!item.bookmark">{{item.msg}}</n-link>
+                                    <a @click="scrollToBookmark" class="link" v-if="item.bookmark" :id="item.link">{{item.msg}}</a>
+                                </li>
+                            </transition-group>
+                        </v-list>      
+                    </div>
                 </div>
-            </div>
-        </transition>
-        
-        <nav class="nav">
-            <Hamburger @click.native="drawer = !drawer" v-bind:class="[drawer ? 'active' : '']" style="z-index: 9999; position: fixed; right: 5%; top:3vh"></Hamburger>            
-        </nav>
-    </span>
+            </transition>
+            
+            <nav class="nav">
+                <Hamburger @click.native="drawer = !drawer" v-bind:class="[drawer ? 'active' : '']" style="z-index: 9999; position: fixed; right: 5%; top:3vh"></Hamburger>            
+            </nav>
+        </div>
+       
+    </div>
 </template>
 
 <script>
