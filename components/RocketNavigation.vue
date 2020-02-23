@@ -1,5 +1,5 @@
 <template>
-    <span>
+    <span v-click-outside="closeDrawer">
         <transition name="slide-fade">
             <div v-show="drawer" class="drawer">
                 <div style="margin-top:5em;">
@@ -48,7 +48,9 @@ import VueScrollTo from 'vue-scrollto'
 import Vue from 'vue'
 
 Vue.use(VueScrollTo)
- 
+
+import vClickOutside from 'v-click-outside';
+
 export default {
     name: 'RocketNavigation',
     data() {
@@ -76,7 +78,9 @@ export default {
             else     
                 this.list[i].bookmark = false;
         }
-        //console.log(this.list);
+    },
+    directives: {
+      clickOutside: vClickOutside.directive
     },
     methods: {
         beforeEnter: function (elem) {
@@ -102,6 +106,9 @@ export default {
                     { complete: done }
                 )
             }, delay)
+        },
+        closeDrawer: function() {
+            this.drawer = false;
         },
         scrollToBookmark: function(element) {
             this.drawer = false;   

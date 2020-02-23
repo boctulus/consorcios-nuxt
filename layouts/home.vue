@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="home_layout">
       <RocketNavigation></RocketNavigation>      
       <nuxt/>
     </div>
