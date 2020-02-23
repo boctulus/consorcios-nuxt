@@ -104,8 +104,10 @@ export default {
             }, delay)
         },
         scrollToBookmark: function(element) {
-            this.drawer = false;     
-            VueScrollTo.scrollTo(element.target.id, 1000)
+            this.drawer = false;   
+            setTimeout(() => {
+                VueScrollTo.scrollTo(element.target.id, 1000)
+            },500);  
         }
     },
     components: {

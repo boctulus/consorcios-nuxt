@@ -94,6 +94,9 @@
         maxScrollbarLength: 160
       }
     }),
+    mounted() {
+      setTimeout(()=> {document.querySelector('#inspire > div').remove('v-overlay--active');}, 50)
+    },
     computed: {
       drawer: {
         get() {
