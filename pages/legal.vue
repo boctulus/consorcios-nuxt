@@ -7,49 +7,18 @@
     <b-container style="color: #ffffff;"> 
        
        <!-- color: #808b97 -->
-        <h1 class="engravers text-mobile mb-3" style="color: #ccc; font-size: 6em;">MARCO LEGAL</h1>
+        <h1 class="engravers text-mobile mt-3 mb-3" style="color: #ccc; font-size: 6em;">MARCO LEGAL</h1>
 
         <b-row>
-          <b-col class="mb-5" md="6">
-            <h2 style="font-size: 20px;"><strong><span class="pontano" style="color: #d0a28c;">LEY DE PROPIEDAD EN CONDOMINIO DE INMUEBLES PARA EL DISTRITO FEDERAL</span></strong></h2>
+          <b-col class="mb-5" md="6" v-for="item in documents" v-bind:key="item.name">
+            <h2 style="font-size: 20px;"><strong><span class="pontano" style="color: #d0a28c;">{{item.name}}L</span></strong></h2>
             <p>&nbsp;</p>   
 
-            <div class="btn" style="text-align: center;"><span style="font-size: 1.2em;"><strong><a href="http://www.paot.org.mx/centro/leyes/df/pdf/2015/LEY_PROPIEDAD_CONDOMINIO_INMUEBLES_13_01_2015.pdf" target="_blank" rel="noopener noreferrer"><span class="aft">DESCARGAR</span></a></strong></span></div>
+            <div class="btn" style="text-align: center;"><span style="font-size: 1.2em;"><strong><a :href="item.file" target="_blank" rel="noopener noreferrer"><span class="aft">DESCARGAR</span></a></strong></span></div>
           </b-col>
 
-          <b-col class="mb-5" md="6">
-            <h2 style="font-size: 20px;"><strong><span class="pontano" style="color: #d0a28c;">LEY DE PROPIEDAD EN CONDOMINIO DE INMUEBLES PARA EL DISTRITO FEDERAL</span></strong></h2>
-            <p>&nbsp;</p>   
-
-            <div class="btn" style="text-align: center;"><span style="font-size: 1.2em;"><strong><a href="http://www.paot.org.mx/centro/leyes/df/pdf/2015/LEY_PROPIEDAD_CONDOMINIO_INMUEBLES_13_01_2015.pdf" target="_blank" rel="noopener noreferrer"><span class="aft">DESCARGAR</span></a></strong></span></div>
-          </b-col>
-
-          <b-col class="mb-5" md="6">
-            <h2 style="font-size: 20px;"><strong><span class="pontano" style="color: #d0a28c;">LEY DE PROPIEDAD EN CONDOMINIO DE INMUEBLES PARA EL DISTRITO FEDERAL</span></strong></h2>
-            <p>&nbsp;</p>   
-
-            <div class="btn" style="text-align: center;"><span style="font-size: 1.2em;"><strong><a href="http://www.paot.org.mx/centro/leyes/df/pdf/2015/LEY_PROPIEDAD_CONDOMINIO_INMUEBLES_13_01_2015.pdf" target="_blank" rel="noopener noreferrer"><span class="aft">DESCARGAR</span></a></strong></span></div>
-          </b-col>
-
-
-          <b-col class="mb-5" md="6">
-            <h2 style="font-size: 20px;"><strong><span class="pontano" style="color: #d0a28c;">LEY DE PROPIEDAD EN CONDOMINIO DE INMUEBLES PARA EL DISTRITO FEDERAL</span></strong></h2>
-            <p>&nbsp;</p>   
-
-            <div class="btn" style="text-align: center;"><span style="font-size: 1.2em;"><strong><a href="http://www.paot.org.mx/centro/leyes/df/pdf/2015/LEY_PROPIEDAD_CONDOMINIO_INMUEBLES_13_01_2015.pdf" target="_blank" rel="noopener noreferrer"><span class="aft">DESCARGAR</span></a></strong></span></div>
-          </b-col>
-
-          <b-col class="mb-5" md="6">
-            <h2 style="font-size: 20px;"><strong><span class="pontano" style="color: #d0a28c;">LEY DE PROPIEDAD EN CONDOMINIO DE INMUEBLES PARA EL DISTRITO FEDERAL</span></strong></h2>
-            <p>&nbsp;</p>   
-
-            <div class="btn" style="text-align: center;"><span style="font-size: 1.2em;"><strong><a href="http://www.paot.org.mx/centro/leyes/df/pdf/2015/LEY_PROPIEDAD_CONDOMINIO_INMUEBLES_13_01_2015.pdf" target="_blank" rel="noopener noreferrer"><span class="aft">DESCARGAR</span></a></strong></span></div>
-          </b-col>    
-          
         </b-row>
-
-        
-        
+       
     </b-container>
 
     
@@ -68,6 +37,28 @@ Vue.use(IconsPlugin)
 export default {  
   layout: 'home',
   data: () => ({
+    documents: [
+      {
+        'name': 'LEY DE PROPIEDAD EN CONDOMINIO DE INMUEBLES PARA EL DISTRITO FEDERAL',
+        'file': 'http://www.paot.org.mx/centro/leyes/df/pdf/2015/LEY_PROPIEDAD_CONDOMINIO_INMUEBLES_13_01_2015.pdf'
+      },
+      {
+        'name': 'REGLAMENTO DE LA LEY DE PROPIEDAD EN CONDOMINIO DE INMUEBLES PARA EL DISTRITO FEDERAL',
+        'file': 'http://www.aldf.gob.mx/archivo-0f05874fac7a0a4b94b9935dd0998eae.pdf'
+      },
+      {
+        'name': 'LEY DE CULTURA CÍVICA D.F.',
+        'file': 'http://www.aldf.gob.mx/archivo-0f05874fac7a0a4b94b9935dd0998eae.pdf'
+      },
+      {
+        'name': 'LEY DE PROPIEDAD EN CONDOMINIO EDO. DE MEX.',
+        'file': 'http://www.aldf.gob.mx/archivo-0f05874fac7a0a4b94b9935dd0998eae.pdf'
+      },
+      {
+        'name': 'LEY DE PROCURADURÍA SOCIAL DEL D.F.',
+        'file': 'http://www.aldf.gob.mx/archivo-0f05874fac7a0a4b94b9935dd0998eae.pdf'
+      }
+    ]
   })  
 }
 </script>
@@ -165,7 +156,7 @@ a:hover {
 @media only screen and (max-width: 800px){
     .text-mobile{
         font-size: 3em !important;
-        text-align: left;
+        /* text-align: left; */
     }    
 }
 </style>
