@@ -138,11 +138,18 @@ export default {
 
 .link {
     color: #ffffff;
+    -webkit-transition: all 0.5s ease; /* Safari and Chrome */
+    -moz-transition: all 0.5s ease; /* Firefox */
+    -ms-transition: all 0.5s ease; /* IE 9 */
+    -o-transition: all 0.5s ease; /* Opera */
+    transition: all 0.5s ease;
 }
 
 .link:hover {
     text-decoration: none;
     cursor: pointer;
+    font-size: 1.1em;
+    filter: brightness(2);
 }
 
 .slide-fade-enter-active {
@@ -167,6 +174,7 @@ export default {
 .item {
     font-size: 1.2em;
     text-transform: uppercase;
+    line-height: 10px;
 }
 
 .drawer {

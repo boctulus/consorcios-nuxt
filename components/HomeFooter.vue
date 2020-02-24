@@ -14,7 +14,7 @@
                     </b-row>
                     <b-row class="mx-auto">
                       <!-- https://www.maps.ie/create-google-map/ -->
-                      <div style="width: 100%"><iframe width="100%" height="316" src="https://maps.google.com/maps?width=100%&amp;height=276&amp;hl=en&amp;q=CALLE%2028%20NRO%20167%2C%20LA%20PLATA%2C%20ARGENTINA+(El%20Grove)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"><a href="https://www.maps.ie/coordinates.html">gps coordinates</a></iframe></div>
+                      <div style="width: 100%"><iframe width="100%" height="262" src="https://maps.google.com/maps?width=100%&amp;height=276&amp;hl=en&amp;q=CALLE%2028%20NRO%20167%2C%20LA%20PLATA%2C%20ARGENTINA+(El%20Grove)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"><a href="https://www.maps.ie/coordinates.html">gps coordinates</a></iframe></div>
                     </b-row>
                   </b-col>
 
@@ -39,17 +39,21 @@
                       </b-col>
                     </b-row>    
                   
-                    <div class="form-group engravers label">
-                      <label for="email">EMAIL</label><label class="gfield_required">*</label>
-                      <input type="email" class="form-control footer-input" id="email">
-                    </div>
-
-                    <div class="form-group engravers label">
+                    <b-row>
+                      <b-col md="6" sm="12">
+                        <div class="form-group engravers label">
+                          <label for="email">EMAIL</label><label class="gfield_required">*</label>
+                          <input type="email" class="form-control footer-input" id="email">
+                        </div>  
+                      </b-col>
+                      
+                      <b-col md="6" sm="12">
                         <label for="servicio">SERVICIO</label><label class="gfield_required">*</label>
                         <select v-model="servicio_sel" class="form-control footer-input" id="servicio">
                           <option v-for="(servicio, index) in servicios" v-bind:key="index">{{ servicio }}</option>
-                        </select>  
-                    </div>
+                        </select>
+                      </b-col>
+                    </b-row>    
 
                   <b-form-group
                     label="CONSULTA"
@@ -155,7 +159,7 @@ export default {
 }
 
 #consulta {
-  height: 50px !important;
+  height: 100px !important;
 }
 
 #consulta::-webkit-scrollbar {
@@ -184,11 +188,11 @@ export default {
 }
 
 #gform_submit_button_2{
--webkit-transition: all 1s ease; /* Safari and Chrome */
-    -moz-transition: all 1s ease; /* Firefox */
-    -ms-transition: all 1s ease; /* IE 9 */
-    -o-transition: all 1s ease; /* Opera */
-    transition: all 1s ease;
+  -webkit-transition: all 1s ease; /* Safari and Chrome */
+  -moz-transition: all 1s ease; /* Firefox */
+  -ms-transition: all 1s ease; /* IE 9 */
+  -o-transition: all 1s ease; /* Opera */
+  transition: all 1s ease;
 }
 
 #form_title {
