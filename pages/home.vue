@@ -137,7 +137,7 @@
                     <b-row class="mb-3 ml-auto contact_info" style="padding-bottom: 10px;">Dirección: calle 28 nro 167, La Plata, Bs As</b-row>
                     <b-row class="mb-3 ml-auto contact_info">                      
                       <img src="https://i.imgur.com/npweaNh.png" alt="" width="20" height="20"/>
-                      <span class="engravers" style="color: #ffffff; padding-left:8px;"><a style="color: white; text-decoration: none; font-size: 20px;" href="/blog" target="_blank" rel="noopener noreferrer">BLOG </a></span>
+                      <span class="engravers" style="color: #ffffff; padding-left:8px;"><n-link to="/blog" style="color: white; text-decoration: none; font-size: 20px;">BLOG </n-link></span>
                     </b-row>
                     <b-row class="mx-auto">
                       <!-- https://www.maps.ie/create-google-map/ -->
