@@ -212,34 +212,6 @@ export default {
     background-attachment: fixed;
 }
 
-@font-face {
-	font-family: Pontano;  
-	src: url('../static/fonts/pontano.ttf');  
-	font-weight: normal;  
-}
-
-@font-face {
-	font-family: Engravers;  
-	src: url('../static/fonts/engravers.otf');  
-	font-weight: normal;  
-}
-
-.engravers {
-    font-family: 'Engravers', Sans-serif !important;
-}
-
-.pontano {
-    font-family: 'Pontano', Sans-serif !important;
-}
-
-body {
-    font-family: 'Pontano', Sans-serif;
-}
-
-h1 {
-    font-family: 'Engravers', Sans-serif;
-}
-
 .aft {
   color: #ccc;
   padding: 1em 0 1em 2em;
@@ -856,13 +828,5 @@ header .item .cover .header-content h4 {
   }
 
   header { display: none; }  
-}
-
-/* texto pequeño en movil*/
-@media only screen and (max-width: 800px){
-    .text-mobile{
-        font-size: 3em !important;
-        /* text-align: left; */
-    }    
 }
 </style>

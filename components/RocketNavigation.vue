@@ -24,8 +24,8 @@
                                 v-bind:data-index="index"
                                 class="item"
                             >
-                                <v-icon color="#CFA18B" style="margin-right:0.5em;">crop_din</v-icon>
-                                <n-link :to="item.link" class="link" v-if="!item.bookmark">{{item.msg}}</n-link>
+                                <v-icon color="#CFA18B" style="margin-right:0.5em;">crop_din</v-icon>                                
+                                <a @click="navigate" class="link" v-if="!item.bookmark" :id="item.link">{{item.msg}}</a>
                                 <a @click="scrollToBookmark" class="link" v-if="item.bookmark" :id="item.link">{{item.msg}}</a>
                             </li>
                         </transition-group>
@@ -114,6 +114,14 @@ export default {
             this.drawer = false;   
             setTimeout(() => {
                 VueScrollTo.scrollTo(element.target.id, 1000)
+            },500);  
+        },
+        navigate: function(element) {
+            this.drawer = false;   
+            setTimeout(() => {
+                this.$router.push({
+                    path: element.target.id
+               })
             },500);  
         }
     },

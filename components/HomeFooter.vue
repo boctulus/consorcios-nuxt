@@ -1,14 +1,14 @@
 <template>
 		<v-img :src="require('../assets/profesionales-certificados-prosoc.png')"    lazy-src class="img img4" id="contacto">
           <b-container style="color: #ffffff;">        
-                <b-row class="mb-5 mt-5 mx-auto"><h3 class="contact_form_h text-mobile">CONTACTO</h3></b-row>  
+                <b-row class="mb-5 mt-5 mx-auto"><h3 class="form_h text-mobile">CONTACTO</h3></b-row>  
 
                 <b-row>
                   <b-col md="6" class="engravers">
-                    <b-row class="mb-3 ml-auto contact_info">Teléfono: (221) 15 545-2109</b-row>
-                    <b-row class="mb-3 ml-auto contact_info">Correo: adm.elgrove@outlook.com</b-row>
-                    <b-row class="mb-3 ml-auto contact_info" style="padding-bottom: 10px;">Dirección: calle 28 nro 167, La Plata, Bs As</b-row>
-                    <b-row class="mb-3 ml-auto contact_info">                      
+                    <b-row class="mb-3 ml-auto info">Teléfono: (221) 15 545-2109</b-row>
+                    <b-row class="mb-3 ml-auto info">Correo: adm.elgrove@outlook.com</b-row>
+                    <b-row class="mb-3 ml-auto info" style="padding-bottom: 10px;">Dirección: calle 28 nro 167, La Plata, Bs As</b-row>
+                    <b-row class="mb-3 ml-auto info">                      
                       <img src="https://i.imgur.com/npweaNh.png" alt="" width="20" height="20"/>
                       <span class="engravers" style="color: #ffffff; padding-left:8px;"><n-link to="/blog" style="color: white; text-decoration: none; font-size: 20px;">BLOG </n-link></span>
                     </b-row>
@@ -18,7 +18,9 @@
                     </b-row>
                   </b-col>
 
-                  <h3 class="mt-3 ml-3 engravers" id="form_title">CONSULTA</h3>
+                  <div id="form_title">
+                    <h3 class="mt-3 ml-3 engravers" style="font-weight: 500;">SU CONSULTA</h3>
+                  </div>
 
                   <b-col md="6"  class="mt-3">
                     <b-row>
@@ -94,42 +96,22 @@ export default {
 </script>
 
 <style scoped>
-@font-face {
-	font-family: Pontano;  
-	src: url('../static/fonts/pontano.ttf');  
-	font-weight: normal;  
-}
-
-@font-face {
-	font-family: Engravers;  
-	src: url('../static/fonts/engravers.otf');  
-	font-weight: normal;  
-}
-
-.engravers {
-    font-family: 'Engravers', Sans-serif !important;
-}
-
-.pontano {
-    font-family: 'Pontano', Sans-serif !important;
-}
-
 .img4 {
   background-color: #50575E;
 }
 
-.contact_form_h {
+.form_h {
   font-size: 4.5em;
 }
 
-.contact_info {
+.info {
   text-transform: uppercase;
 }
 
 .footer-input {
   background-color:rgba(0,0,0,0.2) !important;
   border: 1px solid rgb(111, 66, 45) !important;
-  color: #ffffff;
+  color: #ffffff !important;
   height: 50px; 
 }
 
@@ -171,11 +153,13 @@ export default {
 }
 
 #form_title {
+  width: 100%;
+  text-align: center;
   display: none;
 } 
 
 @media screen and (max-width: 360px) {
-  .contact_form_h {
+  .form_h {
     font-size: 4em;
   }
 
