@@ -172,7 +172,7 @@ export default {
     width: 21em;
     height: 100%;
 
-    overflow: scroll;
+    overflow-y: auto;
 }
 
 .nav {

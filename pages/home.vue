@@ -26,7 +26,7 @@
           </div>
 
           <v-layout justify-center class="btn_wrapper">              
-            <div class="btn" style="text-align: center;"><span style="font-size:1.5em" class="aft">SABER MÁS</span></div>
+            <div class="btn" style="text-align: center;"><span style="font-size:1.5em;" class="aft"><n-link to="#contacto" class="link">SABER MÁS</n-link></span></div>
           </v-layout>      
             
       
@@ -291,14 +291,8 @@ export default {
 
 <style scoped>
 
-.aft {
-  color: #ccc;
-  padding: 1em 0 1em 2em;
-  font-size: 1.5em;
-}
-
 #coti{
-    background-image:url(https://administraciondecondominios.com.mx/habita/habitia-content/uploads/2019/07/administracion-profesional-de-condominios-1.jpg); 
+    background-image:url(https://i.imgur.com/urEubtE.jpg); 
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
@@ -329,6 +323,20 @@ h1 {
 
 body {
     font-family: 'Pontano', Sans-serif;
+}
+
+.aft {
+  color: #ccc;
+  padding: 1em 0 1em 2em;
+  font-size: 1.5em;
+}
+
+.link:visited {
+  color: #ccc;
+}
+
+.link:hover {
+  text-decoration: none;
 }
 
 section .item {
@@ -601,6 +609,12 @@ header .item .cover .header-content h4 {
   }
 }
 
+@media screen and (orientation: portrait) {
+	.carousel {
+    display:none;
+  }
+}
+
 
 @media screen and (max-width: 360px) {
   .contact_form_h {
@@ -661,8 +675,6 @@ header .item .cover .header-content h4 {
   iPhone 5/SE
 */
 @media screen and (min-width: 360px) and (max-width: 575px) {
-	h1, .txt_anim { font-size: 2.2em !important; }
-
   .aft {
     font-size: 0.8em;
     padding: 0.15em 0.3em 0.15em 0.3em;
@@ -673,6 +685,8 @@ header .item .cover .header-content h4 {
   480x360 568x320
 */
 @media screen and (min-width: 360px)  and (max-width: 575px) and (orientation:landscape) {
+	h1, .txt_anim { font-size: 2.2em !important; }
+
   .h1_wrapper {
     display: none;
   }
@@ -698,7 +712,7 @@ header .item .cover .header-content h4 {
 */
 @media screen and (min-width: 360px)  and (max-width: 575px) and (orientation:portrait) {
 
-  h1, .txt_anim { font-size: 1.8em !important; }
+  h1, .txt_anim { font-size: 2em !important; }
 
   .full_height_img {
     height: 50.5vh;
@@ -740,10 +754,7 @@ header .item .cover .header-content h4 {
   }
 
   .h1_wrapper {
-    position: absolute;
-    top: 50vh;
-    width: 100%;
-    text-align: center;
+    display: none;
   }
 
   .txt_anim_wrapper { display: none; }
@@ -805,7 +816,7 @@ header .item .cover .header-content h4 {
 
   .h1_wrapper {
     position: absolute;
-    top: 45vh;
+    top: 50vh;
     width: 100%;
     text-align: center;
   }
