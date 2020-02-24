@@ -2,18 +2,19 @@
     <div id="home_layout">
       <RocketNavigation></RocketNavigation>      
       <nuxt/>
+      <HomeFooter></HomeFooter>
     </div>
 </template>
 
 
 <script>
 import RocketNavigation from '@/components/RocketNavigation';
-import RocketFooter from '@/components/home/Footer';
+import HomeFooter from '@/components/HomeFooter';
 
 export default {
   components: {
     RocketNavigation,
-    RocketFooter
+    HomeFooter,
   }  
 }
 </script>
