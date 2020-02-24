@@ -26,7 +26,19 @@
           </div>
 
           <v-layout justify-center class="btn_wrapper">              
-            <div class="btn_enmarcado" style="text-align: center;"><span style="font-size:1.5em;" class="aft"><n-link to="#contacto" class="link">SABER MÁS</n-link></span></div>
+            <div class="btn_enmarcado" style="text-align: center;"><span style="font-size:1.5em;" class="aft">
+
+              <!--n-link to="#contacto" class="link">SABER MÁS</n-link-->
+              <a href="#" class="link" v-scroll-to="{
+                el: '#theend',
+                duration: 1000,
+                easing: 'ease-in-out',
+                offset: -200
+                }">
+                SABER MÁS
+              </a>
+              
+              </span></div>
           </v-layout>      
             
       

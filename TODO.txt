@@ -1,16 +1,6 @@
 TODO
 -----------
 
-
-- Hamburguesa -> color 
-- Hamgurguesa -> esconder, tocar afuera
-- Menú --> mismos items (no test de evaluación, certificaciones no, cotizacion si?, ticket de servicio no, marco legal)
-- Menú --> ampliar logo 15%
-- Saber más -> que se ilimine con el hover
-- Quienes somos? imagen del edificio de mama de Juan
-- Contact form --> demasiado transp letras
-- Contact form --> asteriscos campos obligatorios
-
 - Contact form --> captcha
 
 V3
@@ -39,14 +29,14 @@ Secret key: 6LewRtsUAAAAAKj9ALweWgfCNEz0YuI1cwvBphnY
 Admin 
 https://github.com/moeddami/nuxt-material-admin
 
--- Jumbotrón 
+-- Jumbotrón  -- OK
 
--- Carousel (galería con textos)
+-- Carousel (galería con textos) -- OK
 https://codepen.io/niloydeysarkar/pen/MxZdeE
 
--- Pié de página de 3 columnas
--- Sección "acerca de..." con formulario de contacto
--- Inclusión de un mapa de Google Maps marcando la ubicación del negocio
+-- Pié de página de 2 / 3 columnas -- OK
+-- Sección "acerca de..." con formulario de contacto -- OK 
+-- Inclusión de un mapa de Google Maps marcando la ubicación del negocio  -- OK
 
     API key :  AIzaSyB05f5q-SoqYutrveVi_ngQRnTNZPl6jYY
 

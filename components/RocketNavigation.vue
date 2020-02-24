@@ -113,7 +113,9 @@ export default {
         scrollToBookmark: function(element) {
             this.drawer = false;   
             setTimeout(() => {
-                VueScrollTo.scrollTo(element.target.id, 1000)
+                VueScrollTo.scrollTo(element.target.id, 1000, {
+                    easing: 'ease-in-out'
+                })
             },500);  
         },
         navigate: function(element) {
