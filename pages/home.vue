@@ -26,7 +26,7 @@
           </div>
 
           <v-layout justify-center class="btn_wrapper">              
-            <div class="btn" style="text-align: center;"><span style="font-size:1.5em;" class="aft"><n-link to="#contacto" class="link">SABER MÁS</n-link></span></div>
+            <div class="btn_enmarcado" style="text-align: center;"><span style="font-size:1.5em;" class="aft"><n-link to="#contacto" class="link">SABER MÁS</n-link></span></div>
           </v-layout>      
             
       
@@ -331,6 +331,10 @@ body {
   font-size: 1.5em;
 }
 
+.link {
+  color: #ccc;
+}
+
 .link:visited {
   color: #ccc;
 }
@@ -409,7 +413,7 @@ h1 {
 
 /* animaciòn del botón */
 
-.btn {
+.btn_enmarcado {
   padding: 10px;
   text-align: center;
   background-image: linear-gradient(to right, #d0a28c 20%, transparent 20%), linear-gradient(to bottom, transparent, transparent), linear-gradient(to left, transparent 70%, #d0a28c 30%), linear-gradient(to top, #d0a28c 100%, #d0a28c);
@@ -424,11 +428,11 @@ h1 {
   backface-visibility: hidden;
 }
 
-.btn:hover{
+.btn_enmarcado:hover{
   background-image:none;
 }
 
-.btn:before {
+.btn_enmarcado:before {
   content: "";
   position: absolute;
   z-index: -1;
@@ -445,7 +449,7 @@ h1 {
   transition-timing-function: ease-out;
 }
 
-.btn:hover:before, .btn:focus:before, .btn:active:before {
+.btn_enmarcado:hover:before, .btn_enmarcado:focus:before, .btn_enmarcado:active:before {
   right: 0;
 }
 
