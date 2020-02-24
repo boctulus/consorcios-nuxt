@@ -24,47 +24,32 @@
 
                   <b-col md="6"  class="mt-3">
                     <b-row>
-                    <b-col md="6" sm="12">
-
-                      <b-form-group
-                      label="NOMBRE"
-                      label-for="input-1"
-                      class="engravers label"
-                      >
-                      <b-form-input id="input-1" trim class="footer-input"></b-form-input>
-                      </b-form-group>   
-
-                    </b-col>
-                    
-                    <b-col md="6" sm="12">
-
-                      <b-form-group
-                      label="TELEFONO"
-                      label-for="input-2"
-                      class="engravers label"
-                      >
-                      <b-form-input id="input-2" trim class="footer-input"></b-form-input>
-                      </b-form-group>   
-
-                    </b-col>
+                      <b-col md="6" sm="12">
+                        <div class="form-group engravers label">
+                          <label for="nombre">NOMBRE</label><label class="gfield_required">*</label>
+                          <input type="text" class="form-control footer-input" id="nombre">
+                        </div>  
+                      </b-col>
+                      
+                      <b-col md="6" sm="12">
+                        <div class="form-group engravers label">
+                          <label for="telefono">TELÉFONO</label><label class="gfield_required">*</label>
+                          <input type="text" class="form-control footer-input" id="telefono">
+                        </div>
+                      </b-col>
                     </b-row>    
                   
-                  
-                  <b-form-group
-                    label="EMAIL"
-                    label-for="input-3"
-                    class="engravers label"
-                  >
-                    <b-form-input id="input-3" trim class="footer-input"></b-form-input>
-                  </b-form-group>   
+                    <div class="form-group engravers label">
+                      <label for="email">EMAIL</label><label class="gfield_required">*</label>
+                      <input type="email" class="form-control footer-input" id="email">
+                    </div>
 
-                  <b-form-group
-                    label="SERVICIO"
-                    label-for="input-4"
-                    class="engravers label"
-                  >
-                    <b-form-input id="input-4" trim class="footer-input"></b-form-input>
-                  </b-form-group>  
+                    <div class="form-group engravers label">
+                        <label for="servicio">SERVICIO</label><label class="gfield_required">*</label>
+                        <select v-model="servicio_sel" class="form-control footer-input" id="servicio">
+                          <option v-for="(servicio, index) in servicios" v-bind:key="index">{{ servicio }}</option>
+                        </select>  
+                    </div>
 
                   <b-form-group
                     label="CONSULTA"
@@ -72,7 +57,7 @@
                     class="engravers label"
                   >
                     <b-form-textarea
-                    id="input-5"
+                    id="consulta"
                     placeholder="Su consulta"
                     rows="3"
                     max-rows="6"
@@ -92,10 +77,58 @@
 <script>
 export default {
      name: 'HomeFooter',
+     data() {
+      return {
+        servicio_sel: null, 
+          servicios: [
+            'Administración general',
+            'Cobro a deudores',
+            'Manejo de recursos',
+            'Seguridad',
+            'Mantenimiento general',
+            'Limpieza',
+            'Trabajos en altura',
+            'Lavado de tanques',
+            'Ascensores',
+            'Arrendamiento y venta de propiedades',
+            'Conserge',
+            'Suministro y administración de Gas LP',
+            'Impermeabilización',
+            'Fumigación',
+            'Aire acondicionado',
+            'Bombas de agua',
+            'Jardinería',
+            'Mantenimiento en oficinas',
+            'Centros comerciales'
+          ]
+       }
+     }
 }
 </script>
 
 <style scoped>
+
+#servicio {
+    background-color: transparent !important;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-top-color: initial !important;
+    border-right-color: initial !important;
+    border-left-color: initial !important;
+    border-bottom-color: rgb(107, 79, 58) !important;
+    color: rgb(226, 210, 180);
+    width: 100% !important;
+    border: none !important;
+    border-bottom: 1px solid #D0A28C !important;
+    height: 50px; 
+}
+
+#servicio:focus {
+    outline: none !important;
+    box-shadow: none;
+}
+
 .img4 {
   background-color: #50575E;
 }
@@ -110,16 +143,21 @@ export default {
 
 .footer-input {
   background-color:rgba(0,0,0,0.2) !important;
-  border: 1px solid rgb(111, 66, 45) !important;
-  color: #ffffff !important;
+  border: 1px solid  #D0A28C !important;
+  color: #ccc !important;
   height: 50px; 
 }
 
-#input-5 {
+.gfield_required {
+  padding-left: 5px;
+  color: rgb(240, 166, 144);
+}
+
+#consulta {
   height: 50px !important;
 }
 
-#input-5::-webkit-scrollbar {
+#consulta::-webkit-scrollbar {
    display: none;
  }
 
@@ -164,8 +202,6 @@ export default {
   }
 
   .footer-input {
-    background-color:rgba(0,0,0,0) !important;
-    border: 1px solid rgb(111, 66, 45) !important;  
     width: calc(100vw - 30px); 
   }
 
