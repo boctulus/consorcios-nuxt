@@ -140,6 +140,7 @@ a:hover {
   -webkit-transition-timing-function: ease-out;
   transition-timing-function: ease-out;
 }
+
 .btn:hover:before, .btn:focus:before, .btn:active:before {
   right: 0;
 }

@@ -25,12 +25,10 @@
             </TextAnimation>                
           </div>
 
-          <v-layout justify-center class="jumbotron_btn_wrapper">
-            <div class="jumbotron_line_wrapper" style="padding: 20px 10px 25px 10px;">
-              <div class="line"></div>
-              <a href="#" class="jumbotron_btn">SABER MÁS</a>
-            </div>
-          </v-layout>              
+          <v-layout justify-center class="btn_wrapper">              
+            <div class="btn" style="text-align: center;"><span style="font-size:1.5em" class="aft">SABER MÁS</span></div>
+          </v-layout>      
+            
       
         </v-img>
 
@@ -293,6 +291,12 @@ export default {
 
 <style scoped>
 
+.aft {
+  color: #ccc;
+  padding: 1em 0 1em 2em;
+  font-size: 1.5em;
+}
+
 #coti{
     background-image:url(https://administraciondecondominios.com.mx/habita/habitia-content/uploads/2019/07/administracion-profesional-de-condominios-1.jpg); 
     background-repeat: no-repeat;
@@ -347,10 +351,17 @@ section .item .cover {
 	/* background: rgba(0, 0, 0, 0.6); */
 }
 
+.img1 {
+  background-color: #2D5EAD;
+}
+
+.img4 {
+  background-color: #50575E;
+}
+
 .full_height_img {
     min-height: 50.5vh;
 }
-
 
 .h1_wrapper {
   position: absolute;
@@ -381,50 +392,56 @@ h1 {
   font-weight: lighter;
 }
 
-.jumbotron_btn_wrapper {
+.btn_wrapper {
   position: absolute;
   top: 75vh;
   width: 100%;
   text-align: center;
 }
 
-.jumbotron_line_wrapper {
-  width: 14em;
-  position: relative;
+/* animaciòn del botón */
+
+.btn {
+  padding: 10px;
+  text-align: center;
+  background-image: linear-gradient(to right, #d0a28c 20%, transparent 20%), linear-gradient(to bottom, transparent, transparent), linear-gradient(to left, transparent 70%, #d0a28c 30%), linear-gradient(to top, #d0a28c 100%, #d0a28c);
+  background-origin: border-box;
+  background-size: 100% 3px, 3px 100%, 100% 3px, 3px 100%;
+  background-position: top left, top right, bottom right, bottom left;
+  background-repeat: no-repeat;
+  font-family: Engravers;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+   -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
-.jumbotron_line_wrapper .line {
+.btn:hover{
+  background-image:none;
+}
+
+.btn:before {
   content: "";
-  display: inline-block;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
   position: absolute;
-  border: 6px solid #D0A28C;  
-  -webkit-clip-path: polygon(0 0, 36% 0, 60% 100%, 0 100%);
-  clip-path: polygon(0 0, 36% 0, 60% 100%, 0 100%);
+  z-index: -1;
+  left: 0;
+  right:100%;
+  bottom: 0;
+  background: #d0a28c;
+  height: 3px;
+  -webkit-transition-property: right;
+  transition-property: right;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
 }
 
-.jumbotron_btn {
-  color: #ffffff;
-  font-size: 1.3em;
-  padding: 0.25em 0.5em 0.25em 0.5em
+.btn:hover:before, .btn:focus:before, .btn:active:before {
+  right: 0;
 }
 
-.jumbotron_btn:hover {
-  text-decoration: none;
-}
-
-.img1 {
-  background-color: #2D5EAD;
-}
-
-.img4 {
-  background-color: #50575E;
-}
-
-/*  */ 
+/*  */
 
 .logo {
     z-index:4000; 
@@ -573,7 +590,7 @@ header .item .cover .header-content h4 {
     display:none; 
   }
   
-  .jumbotron_btn_wrapper {
+  .btn_wrapper {
     display:none;
   }
 }
@@ -614,7 +631,7 @@ header .item .cover .header-content h4 {
 
 	.txt_anim_wrapper { display: none; }
 
-  .jumbotron_btn_wrapper {
+  .btn_wrapper {
     display: none;
   }
 }
@@ -632,7 +649,7 @@ header .item .cover .header-content h4 {
 
 	.txt_anim_wrapper { display: none; }
 
-  .jumbotron_btn_wrapper {
+  .btn_wrapper {
     display: none; 
   }
    
@@ -646,7 +663,7 @@ header .item .cover .header-content h4 {
 @media screen and (min-width: 360px) and (max-width: 575px) {
 	h1, .txt_anim { font-size: 2.2em !important; }
 
-  .jumbotron_btn {
+  .aft {
     font-size: 0.8em;
     padding: 0.15em 0.3em 0.15em 0.3em;
   }
@@ -670,7 +687,7 @@ header .item .cover .header-content h4 {
 
 	.txt_anim_wrapper { display: none; }
 
-  .jumbotron_btn_wrapper {
+  .btn_wrapper {
     display: none;
   }
 
@@ -696,7 +713,7 @@ header .item .cover .header-content h4 {
 
 	.txt_anim_wrapper { display: none; }
 
-  .jumbotron_btn_wrapper {
+  .btn_wrapper {
     display: none; 
   }
    
@@ -731,7 +748,7 @@ header .item .cover .header-content h4 {
 
   .txt_anim_wrapper { display: none; }
 
-  .jumbotron_btn_wrapper {
+  .btn_wrapper {
     display:none;
   }
   
@@ -753,7 +770,7 @@ header .item .cover .header-content h4 {
   
   .txt_anim_wrapper { display: none; }
 
-  .jumbotron_btn_wrapper {
+  .btn_wrapper {
     display: none;
   }
 
@@ -767,7 +784,7 @@ header .item .cover .header-content h4 {
 
 	h1, .txt_anim { font-size: 3.5em !important; }
 
-  .jumbotron_btn {
+  .aft {
     font-size: 1.15em;
     padding: 0.3em 0.6em 0.3em 0.6em;
   }
@@ -795,7 +812,7 @@ header .item .cover .header-content h4 {
 
   .txt_anim_wrapper { display: none; } 
 
-  .jumbotron_btn_wrapper {
+  .btn_wrapper {
       display:none;
    }
   
@@ -826,7 +843,7 @@ header .item .cover .header-content h4 {
 @media screen and (min-width: 992px) and (max-width: 1199px){
 	h1, .txt_anim { font-size: 3.5em !important; }
 
-  .jumbotron_btn {
+  .aft {
     font-size: 1.15em;
     padding: 0.3em 0.6em 0.3em 0.6em;
   }
@@ -855,7 +872,7 @@ header .item .cover .header-content h4 {
     text-align: center; 
   }
   
-  .jumbotron_btn_wrapper {
+  .btn_wrapper {
     position: absolute;
     top: 75vh;
     width: 100%;
@@ -880,7 +897,7 @@ header .item .cover .header-content h4 {
     display: none;
   }
 
-  .jumbotron_btn_wrapper {
+  .btn_wrapper {
     position: absolute;
     top: 35vh;
     width: 100%;
@@ -894,7 +911,7 @@ header .item .cover .header-content h4 {
 @media screen and (min-width: 1200px){
 	h1, .txt_anim { font-size: 3.5em !important; }
 
-  .jumbotron_btn {
+  .aft {
     font-size: 1.25em;
     padding: 0.3em 0.7em 0.3em 0.7em;
   }
@@ -943,7 +960,7 @@ header .item .cover .header-content h4 {
     text-align: center; 
   }
 
-  .jumbotron_btn_wrapper {
+  .btn_wrapper {
     position: absolute;
     top: 35vh;
     width: 100%;
