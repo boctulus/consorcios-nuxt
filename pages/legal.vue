@@ -67,13 +67,13 @@ export default {
 <style scoped>
 @font-face {
 	font-family: Pontano;  
-	src: url(https://administraciondecondominios.com.mx/habita/fonts/pontano.ttf);  
+	src: url('../static/fonts/pontano.ttf');  
 	font-weight: normal;  
 }
 
 @font-face {
 	font-family: Engravers;  
-	src: url(https://administraciondecondominios.com.mx/habita/fonts/engravers.otf);  
+	src: url('../static/fonts/engravers.otf');  
 	font-weight: normal;  
 }
 
