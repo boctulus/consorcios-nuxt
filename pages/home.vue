@@ -456,8 +456,9 @@ header .item .cover .header-content h4 {
 .quienes_img {
   margin-top:24px;
 }
+</style>
 
-
+<style>
 /* 
 
   Media Queries 
@@ -505,18 +506,7 @@ header .item .cover .header-content h4 {
   }
 }
 
-
 @media screen and (max-width: 360px) {
-  .contact_form_h {
-    font-size: 4em;
-  }
-
-  .footer-input {
-    background-color:rgba(0,0,0,0) !important;
-    border: 1px solid rgb(111, 66, 45) !important;  
-    width: calc(100vw - 30px); 
-  }
-
   h1, .txt_anim { font-size: 2em !important; }
 }
 
@@ -530,7 +520,7 @@ header .item .cover .header-content h4 {
   }
 
   .img4 {
-    min-height: 105vh;
+    min-height: 100vh;
   }
 
 	.txt_anim_wrapper { display: none; }
@@ -586,7 +576,7 @@ header .item .cover .header-content h4 {
   }
 
   .img4 {
-    min-height: 105vh;
+    min-height: 100vh;
   }
 
 	.txt_anim_wrapper { display: none; }
@@ -609,10 +599,7 @@ header .item .cover .header-content h4 {
   }
 
   .h1_wrapper {
-    position: absolute;
-    top: 33vh;
-    width: 100%;
-    text-align: center;
+    display: none;
   }
 
 	.txt_anim_wrapper { display: none; }
@@ -640,7 +627,7 @@ header .item .cover .header-content h4 {
   }
 
   .img4 {
-    min-height: 105vh;
+    min-height: 100vh;
   }
 
   .h1_wrapper {
@@ -701,7 +688,7 @@ header .item .cover .header-content h4 {
   }
 
   .img4 {
-    min-height: 105vh;
+    min-height: 100vh;
   }
 
   .h1_wrapper {
@@ -824,7 +811,7 @@ header .item .cover .header-content h4 {
   }
 
   .img4 {
-    min-height: 105vh;
+    min-height: 100vh;
   }
 
   .h1_wrapper {
@@ -871,7 +858,11 @@ header .item .cover .header-content h4 {
   header { display: none; }  
 }
 
-
-
-
+/* texto pequeño en movil*/
+@media only screen and (max-width: 800px){
+    .text-mobile{
+        font-size: 3em !important;
+        /* text-align: left; */
+    }    
+}
 </style>
