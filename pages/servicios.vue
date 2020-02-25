@@ -9,13 +9,15 @@
 
     <!-- Modal -->
     <div id="serviceModal" v-if="selectedIx != null">
-      <b-container style="color: #ffffff; ">
+      <b-container style="color: #ffffff;" class="d-flex h-100">
 
-        <div style="position: absolute; right: 20px; top: 10px; cursor: pointer;  overflow: hidden; z-index:9999;">
+        <div style="position: absolute; right: 20px; top: 10px; cursor: pointer;  overflow: hidden; z-index:9999; filter: brightness(0.75);">
               <a href="#" @click="closeModal" class="closeModal">X</a>
         </div>
-        <b-row> 
-          <b-col sm="12" offset-sm="0"  md="6" offset-md="3" style="margin-top:10vh">       
+
+        <b-row class="align-self-center"> 
+
+          <b-col sm="12" offset-sm="0"  md="6" offset-md="3" style="margin-top:10vh;">       
               <div class="pontano mb-5" style="color: rgb(208, 162, 140); text-transform: uppercase; font-size: 4em; line-height: 0.9;">
                 {{servicios[selectedIx].name}}
               </div>
@@ -30,7 +32,9 @@
                 <img :src="require(`../assets/servicios/${servicios[selectedIx].img}.png`)" />
               </div>  
           </b-col>          
+        
         </b-row> 
+
       </b-container>
     </div>
 
@@ -287,6 +291,10 @@ h1 {
     top: 1.5vh;
     left: 3%; 
 } 
+
+h1 {
+  padding-bottom: 10px;
+}
 
 @media screen and (min-width: 360px) and (max-width: 575px) {
   h1 { font-size: 4.5em !important; padding-top: 0.5em; } 
