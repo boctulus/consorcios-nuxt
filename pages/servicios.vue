@@ -11,30 +11,32 @@
     <div id="serviceModal" v-if="selectedIx != null">
       <b-container style="color: #ffffff;" class="d-flex h-100">
 
-        <div style="position: absolute; right: 20px; top: 10px; cursor: pointer;  overflow: hidden; z-index:9999; filter: brightness(0.75);">
+        <div style="position: absolute; right: 20px; top: 10px; cursor: pointer; overflow-x: hidden; z-index:9999; filter: brightness(0.75);">
               <a href="#" @click="closeModal" class="closeModal">X</a>
         </div>
 
-        <b-row class="align-self-center"> 
+        <b-row class="align-self-center" style=""> 
 
           <b-col  sm="12"  
                   md="10" offset-md="1"   
                   xl="6"  offset-xl="3"  
-                  style="margin-top:10vh;"
+                  
           >       
-              <div class="pontano mb-5" style="color: rgb(208, 162, 140); text-transform: uppercase; font-size: 4em; line-height: 0.9;">
+              <div class="pontano mb-5 name">
                 {{servicios[selectedIx].name}}
               </div>
 
-              <div style="text-align:justify; font-size: 1.5em; ">
+              <div class="text"> 
                 {{servicios[selectedIx].text}}
               </div>
               <div style="text-align:center;" class="mt-5 mb-4">
                 <b-button type="button" id="ask_info" @click="goContactForm">Pedir información</b-button> 
               </div> 
               <div style="text-align:center;">
-                <img :src="require(`../assets/servicios/${servicios[selectedIx].img}.png`)" />
+                <img :src="require(`../assets/servicios/${servicios[selectedIx].img}.png`)" id="selected_img"/>
               </div>  
+
+              
           </b-col>          
         
         </b-row> 
@@ -205,10 +207,6 @@ export default {
 
 
 <style scoped>
-.fake-link {
-    text-transform: lowercase;
-}
-
 h1, h2, h3, h4, h5, h6 {
     color: rgb(185, 203, 217);
 }
@@ -237,14 +235,9 @@ h1 {
   height: 100%; 
   position: fixed; 
   top: 0;
-  z-index: 6000; 
+  z-index: 9999; 
   color: #fff; 
   background-color: rgba(0, 0, 0, 0.65);
-  padding-bottom: 60px;
-}
-
-.close {
-    background-image: url(https://administraciondecondominios.com.mx/habita/habitia-content/plugins/Ultimate_VC_Addons/assets/img/cross.png);
 }
 
 .closeModal {
@@ -253,6 +246,18 @@ h1 {
 
 .closeModal:hover {
   text-decoration: none;
+}
+
+.name {
+		color: rgb(208, 162, 140); 
+    text-transform: uppercase; 
+    font-size: 4em; 
+    text-align: center;
+    line-height: 1.25;
+}
+
+.text {
+  text-align:justify; font-size: 1.5em;
 }
 
 #ask_info {
@@ -292,23 +297,53 @@ h1 {
   padding-bottom: 10px;
 }
 
+@media screen and (max-width: 359px) {
+  h1 { font-size: 4.5em !important; padding-top: 0.5em; } 
+  .closeModal { font-size: 3em; }	
+  .name { font-size: 2em;}	
+	.text { font-size: 1.25em; }	
+	#ask_info { width: 90%;	}	
+	#selected_img { max-width: 30%;	}
+}
+
 @media screen and (min-width: 360px) and (max-width: 575px) {
   h1 { font-size: 4.5em !important; padding-top: 0.5em; } 
+  .closeModal { font-size: 3.5em; }	
+  .name { font-size: 2.5em;}	
+	.text { font-size: 1.5em; }	
+	#ask_info { 	}	
+	#selected_img { max-width: 30%;	}
 }
+
 @media screen and (min-width: 576px) and (max-width: 767px) {
-  h1 { font-size: 5em !important;  padding-top: 0.5em; } 
+  h1 { font-size: 5em !important;  padding-top: 0.5em; }
+  .closeModal { font-size: 4em; }	
+  .name { font-size: 3em;}	
+	.text { font-size: 1.6em; }	
+	#ask_info { 	}	
+	#selected_img { max-width: 30%;	} 
 }
 
 @media screen and (min-width: 768px) and (max-width: 991px){
   h1 { font-size: 8em !important;  padding-top: 0.5em;} 
+  .closeModal { font-size: 5em; }	
+  .name { font-size: 3.5em;}	
+	.text { font-size: 1.7em; }	
+	#ask_info { 	}	
 }
 
 @media screen and (min-width: 992px) and (max-width: 1199px){
   h1 { font-size: 10em !important;  padding-top: 0.5em;} 
+  .closeModal { font-size: 5.5em; }	
+  .name { font-size: 4em;}	
+	.text { font-size: 1.8em; }	
 }
 
 @media screen and (min-width: 1200px){
   h1 { font-size: 12em !important; } 
+  .closeModal { font-size: 6em; }	
+  .name { font-size: 4.5em;}	
+	.text { font-size: 2em; }	
 }
 
 </style>
