@@ -5,12 +5,12 @@
     <div id="serviceModal" v-if="selectedIx">
       <b-container style="color: #ffffff; ">
 
-        <div style="position: absolute; right: 20px; top: 20px; color: #fff; font-size: 6em; font-weight: lighter; cursor: pointer;  overflow: hidden;">
-              <a href="#" @click="closeModal">X</a>
+        <div style="position: absolute; right: 20px; top: 20px; cursor: pointer;  overflow: hidden; z-index:9999;">
+              <a href="#" @click="closeModal" class="closeModal">X</a>
         </div>
 
         <b-row> 
-          <b-col sm="12" offset-sm="0"  md="6" offset-md="3" class="mt-5">       
+          <b-col sm="12" offset-sm="0"  md="6" offset-md="3" style="margin-top:10vh">       
               <div class="pontano mb-5" style="color: rgb(208, 162, 140); text-transform: uppercase; font-size: 4em; line-height: 0.9;">
                 {{servicios[selectedIx].name}}
               </div>
@@ -43,8 +43,8 @@
         <b-row>
          <b-col class="mb-5" md="3" sm="6" style="text-align:center;" v-for="(item, index) in servicios" v-bind:key="item.name">
            <div class="minicontainer" @click="select(index)">
-              <p><img :title="item.alt" class="expand" style="border: 30px solid rgb(237, 237, 237); padding: 5px;" :src="require(`../assets/servicios/${item.img}.png`)" :alt="item.alt" width="150" height="150" ></p>            
-              <h2 class="engravers expand" style="color: rgb(208, 162, 140); font-size: 2.5em; text-align: center;">{{item.name}}</h2>
+              <p><img :title="item.alt"  style="border: 30px solid rgb(237, 237, 237); padding: 5px;" :src="require(`../assets/servicios/${item.img}.png`)" :alt="item.alt" width="150" height="150" ></p>            
+              <h2 class="engravers" style="color: rgb(208, 162, 140); font-size: 2.5em; text-align: center;">{{item.name}}</h2>
               <p>&nbsp;</p>   
            </div>
               
@@ -233,6 +233,14 @@ h1 {
 
 .close {
     background-image: url(https://administraciondecondominios.com.mx/habita/habitia-content/plugins/Ultimate_VC_Addons/assets/img/cross.png);
+}
+
+.closeModal {
+  color:#fff; font-size: 6em; font-weight: 300; 
+}
+
+.closeModal:hover {
+  text-decoration: none;
 }
 
 .vertical-center {
