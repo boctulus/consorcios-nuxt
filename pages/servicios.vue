@@ -1,9 +1,23 @@
 <template>
   <div :style="{backgroundColor: '#3C4043'}" >
 
+    <!-- Modal -->
+    <div id="serviceModal" v-if="selectedIx">
+      <div style="position: absolute; right: 20px; top: 20px; color: red; font-size: 6em;">
+        X
+      </div>
+      <div style="text-transform: uppercase;">
+         {{servicios[selectedIx].name}}
+      </div>
+      <div>
+        {{servicios[selectedIx].text}}
+      </div>      
+    </div>
+
     <v-img src="https://i.imgur.com/mL8PTQ4.png" lazy-src class="logo" />
 
-    <b-container style="color: #ffffff;"> 
+    <b-container style="color: #ffffff; "> 
+      
         <h1 class="engravers">SERVICIOS</h1>
 
         <div class="pontano mt-5 mb-5" style="font-size:1.5em; text-align: justify;">
@@ -11,10 +25,13 @@
         </div>
 
         <b-row>
-         <b-col class="mb-5" md="3" sm="6" style="text-align:center;" v-for="item in servicios" v-bind:key="item.name">
+         <b-col class="mb-5" md="3" sm="6" style="text-align:center;" v-for="(item, index) in servicios" v-bind:key="item.name">
+           <div class="minicontainer" @click="select(index)">
               <p><img :title="item.alt" class="expand" style="border: 30px solid rgb(237, 237, 237); padding: 5px;" :src="require(`../assets/servicios/${item.img}.png`)" :alt="item.alt" width="150" height="150" ></p>            
               <h2 class="engravers expand" style="color: rgb(208, 162, 140); font-size: 2.5em; text-align: center;">{{item.name}}</h2>
-              <p>&nbsp;</p>
+              <p>&nbsp;</p>   
+           </div>
+              
          </b-col>
         </b-row>
        
@@ -36,6 +53,7 @@ Vue.use(IconsPlugin)
 export default {  
   layout: 'home',
   data: () => ({
+      selectedIx: null,
       servicios: [
       {
         'name': 'administración general',
@@ -138,6 +156,11 @@ export default {
       for (let i=0; i<this.servicios.length;i++){
         this.servicios[i].alt = this.servicios[i].img.split('-').join(' ');
       }
+  },
+  methods: {
+    select(id) {
+       this.selectedIx = id; 
+    }
   }
 }
 </script>
@@ -161,6 +184,23 @@ h1 {
   line-height: 0.5em;
   color: #ccc; 
   padding-top:10px; 
+}
+
+.minicontainer {
+  transition: all .5s ease-in-out;
+}
+
+.minicontainer:hover {
+  transform: scale(1.1); 
+}
+
+#serviceModal {
+  width: 100%; 
+  height: 100%; 
+  position: absolute; 
+  z-index: 6000; 
+  color: #fff; 
+  background-color: rgba(0, 0, 0, 0.65);
 }
 
 .logo {
