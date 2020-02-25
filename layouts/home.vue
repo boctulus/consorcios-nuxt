@@ -56,6 +56,10 @@ h1 {
     z-index:4000; 
 }    
 
+.img {
+    min-height: 100vh;
+}
+
 @media only screen and (max-width: 800px){
     .text-mobile{
         font-size: 3em !important;

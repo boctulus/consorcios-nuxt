@@ -59,10 +59,10 @@ export default {
             list: [
                 { msg: 'Inicio',  link: '/'},
                 { msg: 'Servicios',  link: '/servicios' },
-                { msg: 'Blog',  link: '/blog' },
-                { msg: 'Acceso clientes',  link: '/dashboard' },
+                { msg: 'Blog',  link: '/blog' },                
                 { msg: 'Marco legal',  link: '/legal' },
-                { msg: 'Contacto',  link: '#contacto' }
+                { msg: 'Contacto',  link: '#contacto' },
+                { msg: 'Acceso clientes',  link: '/dashboard' }
             ]
         };
     },
