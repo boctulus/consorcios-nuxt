@@ -2,8 +2,10 @@
   <div>
       <!--full-page ref="fullpage" :options="options" id="fullpage"-->
         
-        <v-img :src="require('../assets/logov2b_justo.png')" lazy-src class="logo" />
-
+        <n-link to="/home">
+          <v-img :src="require('../assets/logov2b_justo.png')" lazy-src class="logo" />
+        </n-link>
+        
         <v-img :src="require('../assets/administracion-profesional-de-condominios-1.jpg')" lazy-src class="section img img1 full_height_img" > 
 
           <div class="h1_wrapper">

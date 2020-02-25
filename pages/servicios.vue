@@ -30,7 +30,9 @@
       </b-container>
     </div>
 
-    <v-img src="https://i.imgur.com/mL8PTQ4.png" lazy-src class="logo" />
+    <n-link to="/home">
+       <v-img :src="require('../assets/logov2b_justo.png')" lazy-src class="logo" />
+    </n-link>
 
     <b-container style="color: #ffffff; "> 
       
