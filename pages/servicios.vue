@@ -1,6 +1,12 @@
 <template>
   <div :style="{backgroundColor: '#3C4043'}" >
 
+    <div class="logo_container">
+        <n-link to="/home">
+          <v-img :src="require('../assets/logov2b_justo.png')" lazy-src class="logo" />
+        </n-link>
+    </div>      
+
     <!-- Modal -->
     <div id="serviceModal" v-if="selectedIx">
       <b-container style="color: #ffffff; ">
@@ -29,10 +35,6 @@
        
       </b-container>
     </div>
-
-    <n-link to="/home">
-       <v-img :src="require('../assets/logov2b_justo.png')" lazy-src class="logo" />
-    </n-link>
 
     <b-container style="color: #ffffff; "> 
       
@@ -182,6 +184,7 @@ export default {
     },
     closeModal(){
       this.selectedIx = null;
+      document.querySelector('#hamburger-icon').style.display = "block";
     },
     goContactForm(){
       this.closeModal();
@@ -228,6 +231,7 @@ h1 {
   width: 100%; 
   height: 100%; 
   position: fixed; 
+  top: 0;
   z-index: 6000; 
   color: #fff; 
   background-color: rgba(0, 0, 0, 0.65);

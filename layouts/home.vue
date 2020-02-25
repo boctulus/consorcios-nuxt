@@ -48,9 +48,12 @@ h1 {
     font-family: 'Engravers', Sans-serif;
 }
 
+.logo_container {
+    width: 14em;  
+}
+
 .logo {
     z-index:4000; 
-    width: 14em;
 }    
 
 @media only screen and (max-width: 800px){
@@ -59,7 +62,7 @@ h1 {
         /* text-align: left; */
     }    
 
-    .logo {
+    .logo_container {
       width: 7em;  
     }
 }

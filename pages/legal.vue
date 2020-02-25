@@ -1,9 +1,11 @@
 <template>
   <div :style="{backgroundImage:'url(https://i.imgur.com/urEubtE.jpg)', minHeight: '100vh'}" >
   
-    <n-link to="/home">
+    <div class="logo_container">
+        <n-link to="/home">
           <v-img :src="require('../assets/logov2b_justo.png')" lazy-src class="logo" />
-    </n-link>
+        </n-link>
+    </div>   
 
     <b-container style="color: #ffffff;"> 
        
