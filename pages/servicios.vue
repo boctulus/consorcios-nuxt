@@ -17,12 +17,12 @@
 
         <b-row class="align-self-center"> 
 
-          <b-col sm="12" offset-sm="0"  md="6" offset-md="3" style="margin-top:10vh;">       
+          <b-col sm="12" offset-sm="0"  md="6" offset-md="3" style="margin-top:10vh; ">       
               <div class="pontano mb-5" style="color: rgb(208, 162, 140); text-transform: uppercase; font-size: 4em; line-height: 0.9;">
                 {{servicios[selectedIx].name}}
               </div>
 
-              <div style="text-align:justify; font-size: 1.5em;">
+              <div style="text-align:justify; font-size: 1.5em; ">
                 {{servicios[selectedIx].text}}
               </div>
               <div style="text-align:center;" class="mt-5 mb-4">
@@ -52,8 +52,7 @@
               <p><img :title="item.alt"  style="border: 30px solid rgb(237, 237, 237); padding: 5px;" :src="require(`../assets/servicios/${item.img}.png`)" :alt="item.alt" width="150" height="150" ></p> 
 
               <h2 class="engravers" style="color: rgb(208, 162, 140); font-size: 2.5em; text-align: center;">{{item.name}}</h2>  
-           </div>
-              
+           </div>              
          </b-col>
         </b-row>
        
@@ -192,7 +191,7 @@ export default {
       this.closeModal();
       setTimeout(() => {
           this.$router.push({
-              path: '#contacto'
+              path: '/contacto'
           })
       },500);  
     }
@@ -237,6 +236,7 @@ h1 {
   z-index: 6000; 
   color: #fff; 
   background-color: rgba(0, 0, 0, 0.65);
+  padding-bottom: 60px;
 }
 
 .close {
@@ -249,14 +249,6 @@ h1 {
 
 .closeModal:hover {
   text-decoration: none;
-}
-
-.vertical-center {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
 }
 
 #ask_info {
