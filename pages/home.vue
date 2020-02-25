@@ -2,7 +2,7 @@
   <div>
       <!--full-page ref="fullpage" :options="options" id="fullpage"-->
         
-        <v-img src="https://i.imgur.com/mL8PTQ4.png" lazy-src class="logo" />
+        <v-img :src="require('../assets/logov2b_justo.png')" lazy-src class="logo" />
 
         <v-img :src="require('../assets/administracion-profesional-de-condominios-1.jpg')" lazy-src class="section img img1 full_height_img" > 
 
@@ -352,7 +352,7 @@ h1 {
 
 .logo {
     position: absolute;
-    top: 5vh;
+    top: 1.5vh;
     left: 3%; 
 }    
 
@@ -719,7 +719,7 @@ header .item .cover .header-content h4 {
   }
 
   .h1_wrapper {
-    top: 40vh !important;
+    top: 40vh !important; 
   }
 
   .txt_anim_wrapper {
