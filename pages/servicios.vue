@@ -3,15 +3,31 @@
 
     <!-- Modal -->
     <div id="serviceModal" v-if="selectedIx">
-      <div style="position: absolute; right: 20px; top: 20px; color: red; font-size: 6em;">
-        X
-      </div>
-      <div style="text-transform: uppercase;">
-         {{servicios[selectedIx].name}}
-      </div>
-      <div>
-        {{servicios[selectedIx].text}}
-      </div>      
+      <b-container style="color: #ffffff; ">
+
+        <div style="position: absolute; right: 20px; top: 20px; color: #fff; font-size: 6em; font-weight: lighter; cursor: pointer;  overflow: hidden;">
+              <a href="#" @click="closeModal">X</a>
+        </div>
+
+        <b-row> 
+          <b-col sm="12" offset-sm="0"  md="6" offset-md="3" class="mt-5">       
+              <div class="pontano mb-5" style="color: rgb(208, 162, 140); text-transform: uppercase; font-size: 4em; line-height: 0.9;">
+                {{servicios[selectedIx].name}}
+              </div>
+
+              <div style="text-align:justify; font-size: 1.5em;">
+                {{servicios[selectedIx].text}}
+              </div>
+              <div style="text-align:center;" class="mt-5 mb-4">
+                <b-button type="button" id="ask_info" @click="goContactForm">Pedir información</b-button> 
+              </div> 
+              <div style="text-align:center;">
+                <img :src="require(`../assets/servicios/${servicios[selectedIx].img}.png`)" />
+              </div>  
+          </b-col>          
+        </b-row>          
+       
+      </b-container>
     </div>
 
     <v-img src="https://i.imgur.com/mL8PTQ4.png" lazy-src class="logo" />
@@ -67,7 +83,7 @@ export default {
       },
       {
         'name': 'manejo de recursos',
-        'text': 'El mecanismo por el cual garantizamos el buen manejo de los recursos financieros del condominio, es que nadie por sí sólo tenga acceso directo a las cuentas bancarias. <p/>Recomendamos la apertura de una cuenta de cheques e inversión con firmas mancomunadas por parte del comité de vigilancia. La administración únicamente tendrá la función de mediador de los recursos.',
+        'text': 'El mecanismo por el cual garantizamos el buen manejo de los recursos financieros del condominio, es que nadie por sí sólo tenga acceso directo a las cuentas bancarias. Recomendamos la apertura de una cuenta de cheques e inversión con firmas mancomunadas por parte del comité de vigilancia. La administración únicamente tendrá la función de mediador de los recursos.',
         'img': 'manejo-de-recursos'
       },
       {
@@ -160,6 +176,18 @@ export default {
   methods: {
     select(id) {
        this.selectedIx = id; 
+       document.querySelector('#hamburger-icon').style.display = "none";
+    },
+    closeModal(){
+      this.selectedIx = null;
+    },
+    goContactForm(){
+      this.closeModal();
+      setTimeout(() => {
+          this.$router.push({
+              path: '#contacto'
+          })
+      },500);  
     }
   }
 }
@@ -197,10 +225,49 @@ h1 {
 #serviceModal {
   width: 100%; 
   height: 100%; 
-  position: absolute; 
+  position: fixed; 
   z-index: 6000; 
   color: #fff; 
   background-color: rgba(0, 0, 0, 0.65);
+}
+
+.close {
+    background-image: url(https://administraciondecondominios.com.mx/habita/habitia-content/plugins/Ultimate_VC_Addons/assets/img/cross.png);
+}
+
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+#ask_info {
+    background-color:rgba(0,0,0,0.2) !important;
+    border: 1px solid  #D0A28C !important;
+    color: #ccc !important;
+    border: 1px solid #d0a28c;
+    font-family: 'Engravers';
+    font-size: 20px;
+    height: 50px; 
+    width: 300px;
+}
+
+#ask_info:hover {
+    background-color: #d0a28c !important;
+    border: 1px solid #d0a28c;
+    border-radius: 10px;
+    font-family: 'Engravers';
+    font-size: 25px;
+}
+
+#ask_info {
+  -webkit-transition: all 1s ease; /* Safari and Chrome */
+  -moz-transition: all 1s ease; /* Firefox */
+  -ms-transition: all 1s ease; /* IE 9 */
+  -o-transition: all 1s ease; /* Opera */
+  transition: all 1s ease;
 }
 
 .logo {
