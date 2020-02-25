@@ -148,7 +148,7 @@ export default {
 .link:hover {
     text-decoration: none;
     cursor: pointer;
-    font-size: 1.1em;
+    font-size: 1.15em;
     filter: brightness(2);
 }
 

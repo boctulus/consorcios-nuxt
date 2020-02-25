@@ -49,7 +49,10 @@ https://web.whatsapp.com/send?phone=(+56)9%2051356820&text=fffffffffffffffffffff
 
 -- ChatBox básico
 -- FAQ con respuestas colapsables
--- Blog usando Strapi
+-- Blog usando Strapi o... un editor WYSIWYG como CKEditor, QuillJs o vue2-editor
+
+https://www.npmjs.com/package/vue2-editor
+
 -- Zona de usuarios (incluye formulario de login, un panel de control y un sistema de control de acceso con distintos roles entre ellos el del admin)
 -- Sección de descarga de documentos pdf protegidos con contraseña
 -- Sistema de calificaciones con estrellas 
