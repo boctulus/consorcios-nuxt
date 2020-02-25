@@ -8,10 +8,10 @@
     </div>      
 
     <!-- Modal -->
-    <div id="serviceModal" v-if="selectedIx">
+    <div id="serviceModal" v-if="selectedIx != null">
       <b-container style="color: #ffffff; ">
 
-        <div style="position: absolute; right: 20px; top: 20px; cursor: pointer;  overflow: hidden; z-index:9999;">
+        <div style="position: absolute; right: 20px; top: 10px; cursor: pointer;  overflow: hidden; z-index:9999;">
               <a href="#" @click="closeModal" class="closeModal">X</a>
         </div>
 
@@ -284,7 +284,7 @@ h1 {
   transition: all 1s ease;
 }
 
-.logo {
+.logo_container {
     position: relative;
     top: 1.5vh;
     left: 3%; 

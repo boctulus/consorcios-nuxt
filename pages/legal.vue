@@ -148,7 +148,7 @@ a:hover {
   right: 0;
 }
 
-.logo {
+.logo_container {
     position: relative;
     top: 1.5vh;
     left: 3%; 

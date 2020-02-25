@@ -355,7 +355,7 @@ h1 {
 
 /*  */
 
-.logo {
+.logo_container {
     position: absolute;
     top: 1.5vh;
     left: 3%; 
