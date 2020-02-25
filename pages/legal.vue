@@ -146,8 +146,6 @@ a:hover {
 }
 
 .logo {
-    z-index:4000; 
-    width: 14em;
     position: relative;
     top: 5vh;
     left: 3%; 

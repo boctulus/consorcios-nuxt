@@ -4,12 +4,12 @@
     <v-img src="https://i.imgur.com/mL8PTQ4.png" lazy-src class="logo" />
 
     <b-container style="color: #ffffff;"> 
-             <h1 class="engravers text-mobile mb-3" style="color: #ccc; font-size: 12em;">SERVICIOS</h1>
+        <h1 class="engravers text-mobile mb-3" style="color: #ccc; font-size: 12em;">SERVICIOS</h1>
 
         <b-row>
          
          <b-col class="mb-5" md="3" sm="6" style="text-align:center;" v-for="item in servicios" v-bind:key="item.name">
-            <p><img title="manejo-de-recursos servicios" class="s-3 aligncenter custom-ult-modal overlay-show" style="border: 30px solid rgb(237, 237, 237); padding: 5px;" :src="item.img" alt="manejo-de-recursos-ciudad-de-mexico servicios" width="150" height="150" ></p>
+            <p><img title="manejo-de-recursos servicios" class="s-3 aligncenter custom-ult-modal overlay-show" style="border: 30px solid rgb(237, 237, 237); padding: 5px;" :src="require(`../assets/servicios/${item.img}`)" alt="manejo-de-recursos-ciudad-de-mexico servicios" width="150" height="150" ></p>
             
             <h2 class="engravers s-3 fake-link custom-ult-modal overlay-show" style="color: rgb(208, 162, 140); font-size: 30px; text-align: center;">{{item.name}}</h2>
             <p>&nbsp;</p>
@@ -132,7 +132,20 @@ export default {
         'img': 'administracion-de-centros-comerciales-la-plata.png'
       }
     ]
-  })  
+  }),
+  /*
+  computed: {
+    serviceImage () {
+      if (!this.selectedService) {
+        return
+      }
+
+      const fileName = this.selectedService
+
+      return require(`../assets/servicios/${fileName}`) // the module request
+    }
+  }  
+  */
 }
 </script>
 
@@ -156,8 +169,6 @@ h1 {
 
 
 .logo {
-    z-index:4000; 
-    width: 14em;
     position: relative;
     top: 5vh;
     left: 3%; 

@@ -48,11 +48,19 @@ h1 {
     font-family: 'Engravers', Sans-serif;
 }
 
-/* texto pequeño en movil*/
+.logo {
+    z-index:4000; 
+    width: 14em;
+}    
+
 @media only screen and (max-width: 800px){
     .text-mobile{
         font-size: 3em !important;
         /* text-align: left; */
     }    
+
+    .logo {
+      width: 7em;  
+    }
 }
 </style>

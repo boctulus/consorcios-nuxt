@@ -351,8 +351,6 @@ h1 {
 /*  */
 
 .logo {
-    z-index:4000; 
-    width: 14em;
     position: absolute;
     top: 5vh;
     left: 3%; 
@@ -463,10 +461,7 @@ header .item .cover .header-content h4 {
   }
 
   .h1_wrapper {
-    position: absolute;
     top: 35vh;
-    width: 100%;
-    text-align: center;
   }
 
   .txt_anim_wrapper {
@@ -518,7 +513,7 @@ header .item .cover .header-content h4 {
   h1, .txt_anim { font-size: 2em !important; }
 
   .full_height_img {
-    min-height: 50.5vh;
+    height: 50.5vh;
   }
 
   .h1_wrapper {
@@ -634,10 +629,7 @@ header .item .cover .header-content h4 {
   }
 
   .h1_wrapper {
-    position: absolute;
-    top: 35vh;
-    width: 100%;
-    text-align: center;
+    top: 35vh !important;
   }
   
   .txt_anim_wrapper { display: none; }
@@ -676,10 +668,7 @@ header .item .cover .header-content h4 {
   }
 
   .h1_wrapper {
-    position: absolute;
-    top: 50vh;
-    width: 100%;
-    text-align: center;
+    display: none;
   }
 
   .txt_anim_wrapper { display: none; } 
@@ -697,8 +686,7 @@ header .item .cover .header-content h4 {
   }
 
   .h1_wrapper {
-    position: absolute;
-    top: 30vh;
+    top: 20vh !important;
     width: 100%;
     text-align: center;
   }
@@ -731,24 +719,15 @@ header .item .cover .header-content h4 {
   }
 
   .h1_wrapper {
-    position: absolute;
-    top: 40vh;
-    width: 100%;
-    text-align: center;
+    top: 40vh !important;
   }
 
   .txt_anim_wrapper {
-    position: absolute;
     top: 55vh;
-    width: 100%;
-    text-align: center; 
   }
   
   .btn_wrapper {
-    position: absolute;
     top: 75vh;
-    width: 100%;
-    text-align: center; 
   }
 
 }
@@ -759,10 +738,7 @@ header .item .cover .header-content h4 {
   }
 
   .h1_wrapper {
-    position: absolute;
-    top: 20vh;
-    width: 100%;
-    text-align: center;
+    top: 20vh !important;
   }
 
   .txt_anim_wrapper {
@@ -770,10 +746,7 @@ header .item .cover .header-content h4 {
   }
 
   .btn_wrapper {
-    position: absolute;
     top: 35vh;
-    width: 100%;
-    text-align: center; 
   }
 
   header { display: none; }  
@@ -799,17 +772,11 @@ header .item .cover .header-content h4 {
   }
 
   .h1_wrapper {
-    position: absolute;
-    top: 35vh;
-    width: 100%;
-    text-align: center;
+    top: 35vh !important;
   }
 
   .txt_anim_wrapper {
-    position: absolute;
     top: 55vh;
-    width: 100%;
-    text-align: center; 
   }
 }
 
@@ -819,24 +786,15 @@ header .item .cover .header-content h4 {
   }
 
   .h1_wrapper {
-    position: absolute;
-    top: 17.25vh;
-    width: 100%;
-    text-align: center;
+    top: 17.25vh !important;
   }
 
   .txt_anim_wrapper {
-    position: absolute;
     top: 25vh;
-    width: 100%;
-    text-align: center; 
   }
 
   .btn_wrapper {
-    position: absolute;
     top: 35vh;
-    width: 100%;
-    text-align: center; 
   }
 
   header { display: none; }  
