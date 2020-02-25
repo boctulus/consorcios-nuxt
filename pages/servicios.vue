@@ -14,7 +14,6 @@
         <div style="position: absolute; right: 20px; top: 10px; cursor: pointer;  overflow: hidden; z-index:9999;">
               <a href="#" @click="closeModal" class="closeModal">X</a>
         </div>
-
         <b-row> 
           <b-col sm="12" offset-sm="0"  md="6" offset-md="3" style="margin-top:10vh">       
               <div class="pontano mb-5" style="color: rgb(208, 162, 140); text-transform: uppercase; font-size: 4em; line-height: 0.9;">
@@ -31,8 +30,7 @@
                 <img :src="require(`../assets/servicios/${servicios[selectedIx].img}.png`)" />
               </div>  
           </b-col>          
-        </b-row>          
-       
+        </b-row> 
       </b-container>
     </div>
 
@@ -45,11 +43,11 @@
         </div>
 
         <b-row>
-         <b-col class="mb-5" md="3" sm="6" style="text-align:center;" v-for="(item, index) in servicios" v-bind:key="item.name">
+         <b-col class="mb-5" sm="12" md="6" xl="3"  style="text-align:center;" v-for="(item, index) in servicios" v-bind:key="item.name">
            <div class="minicontainer" @click="select(index)">
-              <p><img :title="item.alt"  style="border: 30px solid rgb(237, 237, 237); padding: 5px;" :src="require(`../assets/servicios/${item.img}.png`)" :alt="item.alt" width="150" height="150" ></p>            
-              <h2 class="engravers" style="color: rgb(208, 162, 140); font-size: 2.5em; text-align: center;">{{item.name}}</h2>
-              <p>&nbsp;</p>   
+              <p><img :title="item.alt"  style="border: 30px solid rgb(237, 237, 237); padding: 5px;" :src="require(`../assets/servicios/${item.img}.png`)" :alt="item.alt" width="150" height="150" ></p> 
+
+              <h2 class="engravers" style="color: rgb(208, 162, 140); font-size: 2.5em; text-align: center;">{{item.name}}</h2>  
            </div>
               
          </b-col>
@@ -291,18 +289,18 @@ h1 {
 } 
 
 @media screen and (min-width: 360px) and (max-width: 575px) {
-  h1 { font-size: 4.5em !important; } 
+  h1 { font-size: 4.5em !important; padding-top: 0.5em; } 
 }
 @media screen and (min-width: 576px) and (max-width: 767px) {
-  h1 { font-size: 5em !important; } 
+  h1 { font-size: 5em !important;  padding-top: 0.5em; } 
 }
 
 @media screen and (min-width: 768px) and (max-width: 991px){
-  h1 { font-size: 8em !important; } 
+  h1 { font-size: 8em !important;  padding-top: 0.5em;} 
 }
 
 @media screen and (min-width: 992px) and (max-width: 1199px){
-  h1 { font-size: 10em !important; } 
+  h1 { font-size: 10em !important;  padding-top: 0.5em;} 
 }
 
 @media screen and (min-width: 1200px){
