@@ -8,43 +8,45 @@
     </div>      
 
     <!-- Modal -->
-    <div id="serviceModal" v-if="selectedIx != null">
-      <b-container style="color: #ffffff;" class="d-flex h-100">
+    <div id="serviceModal" v-if="selectedIx != null" style="font-size: 0.8em;">
+      <b-container style="color: #ffffff;">
 
         <div style="position: absolute; right: 20px; top: 10px; cursor: pointer; overflow-x: hidden; z-index:9999; filter: brightness(0.75);">
               <a href="#" @click="closeModal" class="closeModal">X</a>
         </div>
 
-        <b-row class="align-self-center" style=""> 
-
+        <b-row> 
           <b-col  sm="12"  
                   md="10" offset-md="1"   
-                  xl="6"  offset-xl="3"  
-                  
+                  xl="6"  offset-xl="3"
           >       
-              <div class="pontano mb-5 name">
-                {{servicios[selectedIx].name}}
-              </div>
+            <div class="scrollable d-flex h-10">
+              <div class="align-self-center">
 
-              <div class="text"> 
-                {{servicios[selectedIx].text}}
-              </div>
-              <div style="text-align:center;" class="mt-5 mb-4">
-                <b-button type="button" id="ask_info" @click="goContactForm">Pedir información</b-button> 
-              </div> 
-              <div style="text-align:center;">
-                <img :src="require(`../assets/servicios/${servicios[selectedIx].img}.png`)" id="selected_img"/>
-              </div>  
+                <div class="pontano mb-5 name">
+                  {{servicios[selectedIx].name}}
+                </div>
 
-              
-          </b-col>          
-        
+                <div class="text"> 
+                  {{servicios[selectedIx].text}}
+                </div>
+                <div style="text-align:center;" class="mt-5 mb-4">
+                  <b-button type="button" id="ask_info" @click="goContactForm">Pedir información</b-button> 
+                </div> 
+                <div style="text-align:center;">
+                  <img :src="require(`../assets/servicios/${servicios[selectedIx].img}.png`)" id="selected_img"/>
+                </div>  
+
+              </div>
+            </div>
+                
+          </b-col> 
         </b-row> 
 
       </b-container>
     </div>
 
-    <b-container style="color: #ffffff; "> 
+    <b-container style="color: #ffffff;"> 
       
         <h1 class="engravers">SERVICIOS</h1>
 
@@ -295,6 +297,12 @@ h1 {
 
 h1 {
   padding-bottom: 10px;
+}
+
+.scrollable {
+  /* background-color: yellow; */
+  overflow-y: auto; 
+  height:100vh;
 }
 
 @media screen and (max-width: 359px) {
