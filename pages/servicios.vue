@@ -20,9 +20,10 @@
           <b-col  sm="12"  
                   md="10" offset-md="1"   
                   xl="8"  offset-xl="2"
+                  class="scrollable"
+                  style="padding-top: 2%; padding-bottom: 2%;"
           >       
-            <div style="overflow-y: auto; max-height: 100vh;">
-
+           
               <div class="pontano mb-5 name">
                 {{servicios[selectedIx].name}}
               </div>
@@ -37,12 +38,8 @@
                 <img :src="require(`../assets/servicios/${servicios[selectedIx].img}.png`)" id="selected_img"/>
               </div>  
 
-
-            </div>
-              
-                
-          </b-col>          
         
+          </b-col>    
         </b-row> 
 
       </b-container>
@@ -299,6 +296,11 @@ h1 {
 
 h1 {
   padding-bottom: 10px;
+}
+
+.scrollable {
+  overflow-y: auto; 
+  max-height: 100vh;
 }
 
 @media screen and (max-width: 359px) {
