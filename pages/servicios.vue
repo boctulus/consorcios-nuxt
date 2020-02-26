@@ -21,7 +21,7 @@
                   md="10" offset-md="1"   
                   xl="8"  offset-xl="2"
                   class="scrollable"
-                  style="padding-top: 2%; padding-bottom: 2%;"
+                  style="padding-top: 5%; padding-bottom: 5%;"
           >       
            
               <div class="pontano mb-5 name">
@@ -31,7 +31,7 @@
               <div class="text"> 
                 {{servicios[selectedIx].text}}
               </div>
-              <div style="text-align:center;" class="mt-5 mb-4">
+              <div style="text-align:center;" class="mt-5 mb-4 ask_info_wrapper">
                 <b-button type="button" id="ask_info" @click="goContactForm">Pedir información</b-button> 
               </div> 
               <div style="text-align:center;">
@@ -306,9 +306,10 @@ h1 {
 @media screen and (max-width: 359px) {
   h1 { font-size: 4.5em !important; padding-top: 0.5em; } 
   .closeModal { font-size: 3em; }	
-  .name { font-size: 2em;}	
-	.text { font-size: 1.25em; }	
-	#ask_info { width: 90%;	}	
+  .name { font-size: 2.5em;}	
+	.text { font-size: 1.25em; }
+  .ask_info_wrapper { }	
+	#ask_info {  font-size: 1.25em;	  }	
 	#selected_img { max-width: 30%;	}
 }
 
@@ -317,7 +318,8 @@ h1 {
   .closeModal { font-size: 3.5em; }	
   .name { font-size: 2.5em;}	
 	.text { font-size: 1.5em; }	
-	#ask_info { 	}	
+  .ask_info_wrapper { }	
+	#ask_info {  font-size: 1.25em;	}		
 	#selected_img { max-width: 30%;	}
 }
 
