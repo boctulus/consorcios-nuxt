@@ -4,7 +4,9 @@
             <div v-show="drawer" class="drawer">
                 <div style="margin-top:5em;">
                     <div style="text-align: center;">
-                        <img src="https://i.imgur.com/QyAAKtC.png" style="width: 8em;" /><!-- OK -->
+                        <n-link to="/home">
+                            <img src="https://i.imgur.com/QyAAKtC.png" style="width: 8em;" /><!-- OK -->
+                        </n-link>    
                     </div>
                     
                     <v-list style="margin-top: 3em; background-color: #000000; color: #ffffff;" v-show="drawer">

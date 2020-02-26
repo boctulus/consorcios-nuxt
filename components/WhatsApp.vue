@@ -4,7 +4,7 @@
 		<!-- pop-up -->
 		<div class="popup-whatsapp" v-if="fab">
 			<div class="content-whatsapp -top">
-				<button type="button" class="closePopup">
+				<button type="button" class="closePopup" @click="toogle">
 					<i class="material-icons icon-font-color">close</i>
 				</button>
 				<p>Hola 😊 te colaboro?</p>
@@ -31,7 +31,7 @@
               fab
 			  class="nodeco"	
             >
-              <v-icon size="50" style="-webkit-margin-before: -25px;">fa-whatsapp</v-icon> <!-- comment -->
+              <v-icon size="50">fa-whatsapp</v-icon> <!-- comment -->
               <v-icon>close</v-icon>
             </v-btn>
           </v-fab-transition>
@@ -67,7 +67,6 @@ export default {
 	methods: {
 	toogle() {
 		this.fab = !this.fab; 
-		console.log('abrir / cajita');
 	},	
     isMobile() {
       var check = false;
