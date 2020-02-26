@@ -150,7 +150,7 @@ a:hover {
 
 .logo_container {
     position: relative;
-    top: 1.5vh;
+    top: 3.5vh;
     left: 3%; 
 } 
 

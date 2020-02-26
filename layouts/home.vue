@@ -49,7 +49,7 @@ h1 {
 }
 
 .logo_container {
-    width: 14em;  
+    width: 10em;  
 }
 
 .logo {
@@ -63,9 +63,16 @@ h1 {
 @media only screen and (max-width: 800px){
     .text-mobile{
         font-size: 3em !important;
-        /* text-align: left; */
     }    
+}
 
+@media only screen and (max-width: 799px){
+    .logo_container {
+      width: 5.5em;  
+    }
+}
+
+@media only screen and (min-width: 800px) and (max-width: 1024px){
     .logo_container {
       width: 7em;  
     }

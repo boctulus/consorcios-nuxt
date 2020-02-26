@@ -357,7 +357,7 @@ h1 {
 
 .logo_container {
     position: absolute;
-    top: 1.5vh;
+    top: 3.5vh;
     left: 3%; 
 }    
 
@@ -491,10 +491,32 @@ header .item .cover .header-content h4 {
 }
 
 @media screen and (max-width: 360px) {
+ 
+}
+
+@media screen and (max-width: 360px) and (orientation:portrait)  {
   h1, .txt_anim { font-size: 2em !important; }
+
+  .full_height_img {
+    height: 50.5vh;
+  }
+
+  .h1_wrapper {
+    top: 22vh !important;
+  }
+
+	.txt_anim_wrapper { display: none; }
+
+  .btn_wrapper {
+    display: none; 
+  }
+   
+  header { display: none; }  
 }
 
 @media screen and (max-width: 360px) and (orientation:landscape)  {
+  h1, .txt_anim { font-size: 2em !important; }
+
  .h1_wrapper {
     display: none;
   }
@@ -514,26 +536,6 @@ header .item .cover .header-content h4 {
   }
 }
 
-@media screen and (max-width: 360px) and (orientation:portrait)  {
-  h1, .txt_anim { font-size: 2em !important; }
-
-  .full_height_img {
-    height: 50.5vh;
-  }
-
-  .h1_wrapper {
-    display:none;
-  }
-
-	.txt_anim_wrapper { display: none; }
-
-  .btn_wrapper {
-    display: none; 
-  }
-   
-  header { display: none; }  
-}
-
 
 /* 
   iPhone 5/SE
@@ -543,32 +545,6 @@ header .item .cover .header-content h4 {
     font-size: 0.8em;
     padding: 0.15em 0.3em 0.15em 0.3em;
   }
-}
-
-/*
-  480x360 568x320
-*/
-@media screen and (min-width: 360px)  and (max-width: 575px) and (orientation:landscape) {
-	h1, .txt_anim { font-size: 2.2em !important; }
-
-  .h1_wrapper {
-    display: none;
-  }
-
-  .full_height_img {
-    height: 105vh;
-  }
-
-  .img4 {
-    min-height: 100vh;
-  }
-
-	.txt_anim_wrapper { display: none; }
-
-  .btn_wrapper {
-    display: none;
-  }
-
 }
 
 /* 
@@ -583,7 +559,7 @@ header .item .cover .header-content h4 {
   }
 
   .h1_wrapper {
-    display: none;
+    top: 22vh !important;
   }
 
 	.txt_anim_wrapper { display: none; }
@@ -595,16 +571,15 @@ header .item .cover .header-content h4 {
   header { display: none; }  
 }
 
-@media screen and (min-width: 576px) and (max-width: 767px) {
-  h1, .txt_anim { font-size: 3em !important; }
-}
-
 /*
-  Galaxy S5, Pixel 2, iPhone 5/SE, iPhone 6/7/8
+  480x360 568x320
 */
-@media screen and (min-width: 576px) and (max-width: 767px) and (orientation:landscape) {
+@media screen and (min-width: 360px)  and (max-width: 575px) and (orientation:landscape) {
+	h1, .txt_anim { font-size: 2.2em !important; }
 
-  h1, .txt_anim { font-size: 3em !important; }
+  .h1_wrapper {
+    top: 35vh !important;
+  }
 
   .full_height_img {
     height: 105vh;
@@ -614,16 +589,18 @@ header .item .cover .header-content h4 {
     min-height: 100vh;
   }
 
-  .h1_wrapper {
-    display: none;
-  }
-
-  .txt_anim_wrapper { display: none; }
+	.txt_anim_wrapper { display: none; }
 
   .btn_wrapper {
-    display:none;
+    top: 65vh !important;
   }
-  
+
+}
+
+
+
+@media screen and (min-width: 576px) and (max-width: 767px) {
+  h1, .txt_anim { font-size: 3em !important; }
 }
 
 @media screen and (min-width: 576px) and (max-width: 767px) and (orientation:portrait) {
@@ -646,13 +623,39 @@ header .item .cover .header-content h4 {
   header { display: none; }  
 }
 
+
+/*
+  Galaxy S5, Pixel 2, iPhone 5/SE, iPhone 6/7/8
+*/
+@media screen and (min-width: 576px) and (max-width: 767px) and (orientation:landscape) {
+
+  h1, .txt_anim { font-size: 3em !important; }
+
+  .full_height_img {
+    height: 105vh;
+  }
+
+  .img4 {
+    min-height: 100vh;
+  }
+
+  .h1_wrapper {
+    top: 30vh !important;
+  }
+
+  .txt_anim_wrapper { display: none; }
+
+  .btn_wrapper {
+    top: 70vh !important;
+  }
+  
+}
+
+
 /*  
   iPhone X
 */
 @media screen and (min-width: 768px) and (max-width: 991px){
-
-	h1, .txt_anim { font-size: 3.5em !important; }
-
   .aft {
     font-size: 1.15em;
     padding: 0.3em 0.6em 0.3em 0.6em;
@@ -663,29 +666,9 @@ header .item .cover .header-content h4 {
   }
 }
 
-@media screen and (min-width: 768px) and (max-width: 991px) and (orientation:landscape) {
-  .full_height_img {
-    height: 105vh;
-  }
-
-  .img4 {
-    min-height: 100vh;
-  }
-
-  .h1_wrapper {
-    display: none;
-  }
-
-  .txt_anim_wrapper { display: none; } 
-
-  .btn_wrapper {
-      display:none;
-   }
-  
-}
-
-
 @media screen and (min-width: 768px) and (max-width: 991px) and (orientation:portrait) {
+  h1, .txt_anim { font-size: 3.5em !important; }
+
   .full_height_img {
     height: 50.5vh;
   }
@@ -702,6 +685,31 @@ header .item .cover .header-content h4 {
 }
 
 
+@media screen and (min-width: 768px) and (max-width: 991px) and (orientation:landscape) {
+  h1, .txt_anim { font-size: 3.5em !important; }
+
+  .full_height_img {
+    height: 105vh;
+  }
+
+  .img4 {
+    min-height: 100vh;
+  }
+
+  .h1_wrapper {
+    top: 30vh !important;
+  }
+
+  .txt_anim_wrapper { display: none; }
+
+  .btn_wrapper {
+    top: 70vh !important;
+  }
+  
+}
+
+
+
 /*
   iPad (1024x768)
 */
@@ -713,6 +721,28 @@ header .item .cover .header-content h4 {
     padding: 0.3em 0.6em 0.3em 0.6em;
   }
 }
+
+@media screen and (min-width: 992px) and (max-width: 1199px) and (orientation:portrait) {
+  .full_height_img {
+    height: 50.5vh;
+  }
+
+  .h1_wrapper {
+    top: 20vh !important;
+  }
+
+  .txt_anim_wrapper {
+    display: none;
+  }
+
+  .btn_wrapper {
+    top: 35vh !important;
+    font-size: 1.2em;
+  }
+
+  header { display: none; }  
+}
+
 
 @media screen and (min-width: 992px) and (max-width: 1199px) and (orientation:landscape) {
   .full_height_img {
@@ -737,25 +767,6 @@ header .item .cover .header-content h4 {
 
 }
 
-@media screen and (min-width: 992px) and (max-width: 1199px) and (orientation:portrait) {
-  .full_height_img {
-    height: 50.5vh;
-  }
-
-  .h1_wrapper {
-    top: 20vh !important;
-  }
-
-  .txt_anim_wrapper {
-    display: none;
-  }
-
-  .btn_wrapper {
-    top: 35vh;
-  }
-
-  header { display: none; }  
-}
 
 
 @media screen and (min-width: 1200px){
@@ -767,23 +778,6 @@ header .item .cover .header-content h4 {
   }
 }
 
-@media screen and (min-width: 1200px) and (orientation:landscape) {
-  .full_height_img {
-    height: 105vh;
-  }
-
-  .img4 {
-    min-height: 100vh;
-  }
-
-  .h1_wrapper {
-    top: 35vh !important;
-  }
-
-  .txt_anim_wrapper {
-    top: 55vh;
-  }
-}
 
 @media screen and (min-width: 1200px) and (orientation:portrait) {
   .full_height_img {
@@ -804,4 +798,28 @@ header .item .cover .header-content h4 {
 
   header { display: none; }  
 }
+
+@media screen and (min-width: 1200px) and (orientation:landscape) {
+  .full_height_img {
+    height: 105vh;
+  }
+
+  .img4 {
+    min-height: 100vh;
+  }
+
+  .h1_wrapper {
+    top: 35vh !important;
+  }
+
+  .txt_anim_wrapper {
+    top: 55vh;
+  }
+
+  .btn_wrapper {
+    top: 70vh !important;
+    font-size: 1.1em;
+  }
+}
+
 </style>
