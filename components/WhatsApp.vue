@@ -70,9 +70,16 @@ export default {
 	methods: {
 		sendMsg() {
 			window.open(this.apilink, '_blank');
+			setTimeout(()=>{
+				this.text = '';
+				this.close();
+			}, 500);
 		},
 		toogle() {
 			this.fab = !this.fab; 
+		},
+		close() {
+			this.tab = false;
 		},	
 		isMobile() {
 		var check = false;
