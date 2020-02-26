@@ -19,7 +19,7 @@
 
           <b-col  sm="12"  
                   md="10" offset-md="1"   
-                  xl="6"  offset-xl="3"
+                  xl="8"  offset-xl="2"
           >       
             <div style="overflow-y: auto; max-height: 100vh;">
 
