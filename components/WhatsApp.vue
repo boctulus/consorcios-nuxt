@@ -49,7 +49,7 @@ export default {
 		menu: false,
 		message: false,
 		hints: true,
-		phone: '5521997642382',
+		phone: '54221545-2109',  
 		text: "",
 		apilink: ""
 	}),
