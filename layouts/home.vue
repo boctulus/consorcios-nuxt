@@ -2,7 +2,8 @@
     <div id="home_layout">
       <RocketNavigation></RocketNavigation>      
       <nuxt/>
-      <HomeFooter></HomeFooter>
+      <WhatsApp></WhatsApp> 
+      <HomeFooter></HomeFooter>    
     </div>
 </template>
 
@@ -10,11 +11,13 @@
 <script>
 import RocketNavigation from '@/components/RocketNavigation';
 import HomeFooter from '@/components/HomeFooter';
+import WhatsApp from '@/components/WhatsApp';
 
 export default {
   components: {
     RocketNavigation,
     HomeFooter,
+    WhatsApp
   }  
 }
 </script>
