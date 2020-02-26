@@ -14,9 +14,10 @@ Secret key: 6LewRtsUAAAAAKj9ALweWgfCNEz0YuI1cwvBphnY
 - Partes administrables :
 
 * Entradas del blog
+* Texto de servicios
 * Archivos PDF para descarga en sección privada
 * Contraseñas para cada edificio
-* Aprovación de reviews
+* Aprobación de reviews
 * Leer mensajes creados desde form de contacto 
 * Leer pedidos de cotizacion 
 

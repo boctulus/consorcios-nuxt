@@ -79,7 +79,7 @@ export default {
 			this.fab = !this.fab; 
 		},
 		close() {
-			this.tab = false;
+			this.fab = false;
 		},	
 		isMobile() {
 		var check = false;
