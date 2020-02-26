@@ -10,10 +10,7 @@ Secret key: 6LewRtsUAAAAAKj9ALweWgfCNEz0YuI1cwvBphnY
 
 * no usar captcha si el usuario proviene de La Plata y sino hay un ataque detectado en curso.
 
-- Contact form --> select con las mismas opciones
-- Contact form --> boton de enviar ... ilimine
-- Abajo de la direccion -> blog con cuadradito
-- Probar Misión / Visión / Valores en el slider
+- Bug: en móviles en posición apaisada ... el overflow-y:auto debería funcionar !!!!
 
 
 - Partes administrables :
