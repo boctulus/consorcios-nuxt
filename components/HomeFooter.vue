@@ -95,16 +95,16 @@ export default {
             'Trabajos en altura',
             'Lavado de tanques',
             'Ascensores',
-            'Arrendamiento y venta de propiedades',
-            'Conserge',
-            'Suministro y administración de Gas LP',
+            //'Arrendamiento y venta de propiedades',
+            //'Conserge',
+            //'Suministro y administración de Gas LP',
             'Impermeabilización',
             'Fumigación',
             'Aire acondicionado',
             'Bombas de agua',
             'Jardinería',
-            'Mantenimiento en oficinas',
-            'Centros comerciales'
+            //'Mantenimiento en oficinas',
+            //'Centros comerciales'
           ]
        }
      }

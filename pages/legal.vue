@@ -10,7 +10,7 @@
     <b-container style="color: #ffffff;"> 
        
        <!-- color: #808b97 -->
-        <h1 class="engravers text-mobile mt-3 mb-3" style="color: #ccc; font-size: 6em;">MARCO LEGAL</h1>
+        <h1 class="engravers text-mobile mt-3 mb-3">MARCO LEGAL</h1>
 
         <b-row>
           <b-col class="mb-5" md="6" v-for="item in documents" v-bind:key="item.name">
@@ -68,33 +68,10 @@ export default {
 
 
 <style scoped>
-@font-face {
-	font-family: Pontano;  
-	src: url('../static/fonts/pontano.ttf');  
-	font-weight: normal;  
-}
-
-@font-face {
-	font-family: Engravers;  
-	src: url('../static/fonts/engravers.otf');  
-	font-weight: normal;  
-}
-
-.pontano{
-    font-family: Pontano;
-}
-
-.engravers{
-    font-family: Engravers;
-}
-
-h1{
-    font-family: 'Engravers', Sans-serif;
-    text-align: center;
-}
-
-body{
-    font-family: 'Pontano', Sans-serif;
+h1 {
+  color: #ccc; 
+  text-align: center;
+  padding-top: 0.5em !important;
 }
 
 a:hover {
@@ -161,4 +138,36 @@ a:hover {
         /* text-align: left; */
     }    
 }
+
+@media screen and (max-width: 575px) {
+  h1 {
+    font-size: 1.8em !important;
+  }
+}
+
+@media screen and (min-width: 576px) and (max-width: 767px) {
+  h1 {
+    font-size: 2em !important;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px){
+  h1 {
+    font-size: 3em !important;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px){
+  h1 {
+    font-size: 4em !important;
+  }
+}
+
+@media screen and (min-width: 1200px){
+  h1 {
+    font-size: 5em !important;
+  }
+
+}
+
 </style>

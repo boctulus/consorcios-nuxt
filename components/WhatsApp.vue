@@ -44,21 +44,22 @@
 <script>
 export default {
 	name: 'WhatsApp',
+	props: ['phone'],
 	data: () => ({
 		fab: false,
 		menu: false,
 		message: false,
 		hints: true,
-		phone: '54221545-2109',  
 		text: "",
 		apilink: "",
-		icon: process.env.NODE_ENV == 'development' ? 'comment' : 'fa-whatsapp'
+		onlyapi: false,
+		icon: process.env.NODE_ENV == 'development' ? 'comment' : 'fa-whatsapp' // parche
 	}),
 	watch: {	  
 		/* https://web.whatsapp.com/send?phone=5215533352894&text=Hola,%20estoy%20interesado%20en%20sus%20servicios! */ 
 		text(val) {
 			this.apilink = 'http://';
-			this.apilink += this.isMobile() ? 'api' : 'web';
+			this.apilink += this.onlyapi ? 'api' :  (this.isMobile() ? 'api' : 'web');
 			this.apilink += '.whatsapp.com/send?phone=' + this.phone + '&text=' + encodeURI(this.text);
 			//console.log(this.apilink);
 		}

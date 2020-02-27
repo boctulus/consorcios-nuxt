@@ -2,7 +2,7 @@
     <div id="home_layout">
       <RocketNavigation></RocketNavigation>      
       <nuxt/>
-      <WhatsApp></WhatsApp> 
+      <WhatsApp :phone="54221545-2109"></WhatsApp> 
       <HomeFooter></HomeFooter>    
     </div>
 </template>
