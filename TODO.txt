@@ -1,6 +1,15 @@
 TODO
 -----------
 
+- ChatBot en Vue 
+
+    * Donde están?
+    * Teléfono? cómo los contacto?
+    * Dirección?
+    * Horarios (aclarando se atienden emergencias)
+
+- Cotizador 
+
 - Contact form --> captcha
 
 V3

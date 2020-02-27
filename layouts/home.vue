@@ -2,7 +2,8 @@
     <div id="home_layout">
       <RocketNavigation></RocketNavigation>      
       <nuxt/>
-      <WhatsApp :phone="54221545-2109"></WhatsApp> 
+      <ChatBot></ChatBot>  
+      <!-- WhatsApp :phone="54221545-2109"></WhatsApp --> 
       <HomeFooter></HomeFooter>    
     </div>
 </template>
@@ -12,12 +13,14 @@
 import RocketNavigation from '@/components/RocketNavigation';
 import HomeFooter from '@/components/HomeFooter';
 import WhatsApp from '@/components/WhatsApp';
+import ChatBot from '@/components/ChatBot';
 
 export default {
   components: {
     RocketNavigation,
     HomeFooter,
-    WhatsApp
+    WhatsApp,
+    ChatBot
   }  
 }
 </script>
