@@ -59,19 +59,23 @@ export default {
       participants: [
         {
           id: 'user1',
-          name: 'Matteo',
+          name: 'Soporte',
           imageUrl: 'https://avatars3.githubusercontent.com/u/1915989?s=230&v=4'
         },
+        /*
         {
           id: 'user2',
-          name: 'Support',
+          name: 'Usuario',
           imageUrl: 'https://avatars3.githubusercontent.com/u/37018832?s=200&v=4'
         }
+        */
       ], // the list of all the participant of the conversation. `name` is the user name, `id` is used to establish the author of a message, `imageUrl` is supposed to be the user avatar.
       titleImageUrl: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png',
       messageList: [
-          { type: 'text', author: `me`, data: { text: `Say yes!` } },
-          { type: 'text', author: `user1`, data: { text: `No.` } }
+          { type: 'text', author: `user1`, data: { text: `Hola! soy AlexBox, en qué te colaboro?` } },
+         /* 
+          { type: 'text', author: `me`, data: { text: `Qué teléfono tienen?` } } 
+         */
       ], // the list of the messages to show, can be paginated and adjusted dynamically
       newMessagesCount: 0,
       isChatOpen: false, // to determine whether the chat window should be open or closed

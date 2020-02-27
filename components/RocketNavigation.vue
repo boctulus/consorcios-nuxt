@@ -1,5 +1,5 @@
 <template>
-    <span v-click-outside="closeDrawer">
+    <span v-click-outside="closeDrawer" @keydown="handleKey">
         <transition name="slide-fade">
             <div v-show="drawer" class="drawer">
                 <div style="margin-top:5em;">
@@ -127,6 +127,13 @@ export default {
                     path: element.target.id
                })
             },500);  
+        },
+        handleKey (event) {
+            console.log(event);
+            if (event.keyCode === 27) {
+                this.closeDrawer();
+                event.preventDefault();
+            }
         }
     },
     components: {
