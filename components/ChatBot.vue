@@ -11,8 +11,8 @@
       :close="closeChat"
       :icons="icons"
       :open="openChat"
-      :showEmoji="true"
-      :showFile="true"
+      :showEmoji="false"
+      :showFile="false"
       :showTypingIndicator="showTypingIndicator"
 	  :showLauncher="true"
 	  :showCloseButton="true"
@@ -60,7 +60,7 @@ export default {
         {
           id: 'user1',
           name: 'Soporte',
-          imageUrl: 'https://avatars3.githubusercontent.com/u/1915989?s=230&v=4'
+          imageUrl: 'https://i.imgur.com/q06sc3b.png'
         },
         /*
         {

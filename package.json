@@ -31,7 +31,7 @@
     "vee-validate": "^3.2.5",
     "velocity-animate": "^1.5.2",
     "vue": "^2.6.11",
-    "vue-beautiful-chat": "^2.3.1",
+    "vue-beautiful-chat": "github:boctulus/vue-beautiful-chat#master",
     "vue-carousel": "^0.18.0",
     "vue-fullcalendar": "^1.0.9",
     "vue-fullpage.js": "^0.1.5",

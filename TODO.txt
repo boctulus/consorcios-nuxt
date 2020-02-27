@@ -82,3 +82,6 @@ novedades recientes (blog) { Servicio de mantenimiento, Urgencias 24Hs, .. (+)}
 
 https://api.whatsapp.com/send?phone=542215712131
 
+-----x----------
+
+https://medium.com/@jonchurch/use-github-branch-as-dependency-in-package-json-5eb609c81f1a

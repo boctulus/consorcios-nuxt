@@ -3,7 +3,7 @@
       <RocketNavigation></RocketNavigation>      
       <nuxt/>
       <ChatBot></ChatBot>  
-      <!-- WhatsApp :phone="54221545-2109"></WhatsApp --> 
+      <WhatsApp :phone="54221545-2109"></WhatsApp> 
       <HomeFooter></HomeFooter>    
     </div>
 </template>
