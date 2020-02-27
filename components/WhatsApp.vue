@@ -32,7 +32,7 @@
               fab
 			  class="nodeco"	
             >
-              <v-icon size="50">fa-whatsapp</v-icon> <!-- comment -->
+              <v-icon size="50">{{icon}}</v-icon> <!-- comment -->
               <v-icon size="50">close</v-icon>
             </v-btn>
           </v-fab-transition>
@@ -51,7 +51,8 @@ export default {
 		hints: true,
 		phone: '54221545-2109',  
 		text: "",
-		apilink: ""
+		apilink: "",
+		icon: process.env.NODE_ENV == 'development' ? 'comment' : 'fa-whatsapp'
 	}),
 	watch: {	  
 		/* https://web.whatsapp.com/send?phone=5215533352894&text=Hola,%20estoy%20interesado%20en%20sus%20servicios! */ 
