@@ -139,7 +139,11 @@ export default {
       }
 
       let result_arr = classify(text);
-      
+
+      if (result_arr.urgencia > 0 && result_arr.telefono == 0){
+        result_arr.telefono = 1;
+      }
+
       for (let e in result_arr){
         if (result_arr[e] > 0 ){
          this.sendMessage(respuestas[e]);
