@@ -11,7 +11,7 @@
 				<p>Hola 😊 te colaboro?</p>
 			</div>
 			<div class="content-whatsapp -bottom">
-				<input class="whats-input" v-model="text" id="whats-in" type="text" Placeholder="Enviar mensaje ..." />
+				<input class="whats-input" v-model="text" id="whats-in" type="text" Placeholder="Escriba el mensaje..." />
 				<button class="send-msPopup" id="send-btn" type="button" @click="sendMsg">
 					<i class="material-icons icon-font-color--black">send</i>
 				</button>

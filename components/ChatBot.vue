@@ -58,7 +58,7 @@ export default {
       },
       participants: [
         {
-          id: 'user1',
+          id: 'bot',
           name: 'Soporte',
           imageUrl: 'https://i.imgur.com/q06sc3b.png'
         },
@@ -72,7 +72,7 @@ export default {
       ], // the list of all the participant of the conversation. `name` is the user name, `id` is used to establish the author of a message, `imageUrl` is supposed to be the user avatar.
       titleImageUrl: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png',
       messageList: [
-          { type: 'text', author: `user1`, data: { text: `Hola! soy AlexBox, en qué te colaboro?` } },
+          { type: 'text', author: `bot`, data: { text: `Hola! soy AlexBox, en qué te colaboro?` } },
          /* 
           { type: 'text', author: `me`, data: { text: `Qué teléfono tienen?` } } 
          */
@@ -117,7 +117,18 @@ export default {
     },
     onMessageWasSent (message) {
       // called when the user sends a message
-      this.messageList = [ ...this.messageList, message ]
+      this.messageList = [ ...this.messageList, message ];
+
+      if (message.author == 'me' && message.type == 'text'){
+        this.answer(message.data.text);
+      }
+    },
+    answer (text) {
+      if (text == 'hola'){
+        this.sendMessage('Hola! en qué puedo ayudarte?');
+      }
+
+      console.log(text);
     },
     openChat () {
       // called when the user clicks on the fab button to open the chat
