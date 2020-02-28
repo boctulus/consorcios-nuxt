@@ -472,10 +472,6 @@ header .item .cover .header-content h4 {
   .txt_anim_wrapper {
     display:none; 
   }
-  
-  .btn_wrapper {
-    display:none;
-  }
 }
 
 @media screen and (min-width: 1024px) {
@@ -611,13 +607,13 @@ header .item .cover .header-content h4 {
   }
 
   .h1_wrapper {
-    top: 35vh !important;
+    top: 20vh !important;
   }
   
   .txt_anim_wrapper { display: none; }
 
   .btn_wrapper {
-    display: none;
+    top: 30vh !important;
   }
 
   header { display: none; }  

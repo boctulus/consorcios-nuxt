@@ -3,10 +3,19 @@ TODO
 
 - ChatBot en Vue 
 
-    * Donde están?
+    * Dirección? Donde están?
     * Teléfono? cómo los contacto?
-    * Dirección?
     * Horarios (aclarando se atienden emergencias)
+	* Urgencias
+	* Servicios
+
+Posibles IA(s)
+
+Watson Assistant (IBM)
+Dialogflow (Google)
+FBLearner Flow  (Facebook)
+Autopilot (Twilio)
+BrainJS
 
 - Cotizador 
 

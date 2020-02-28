@@ -1,0 +1,32 @@
+[
+    {"keyword": "donde", "result": {"direccion": 1}},
+    {"keyword": "ubicación", "result": {"direccion": 1}},
+    {"keyword": "dirección", "result": {"direccion": 1}},
+    {"keyword": "calle", "result": {"direccion": 1}},
+  
+    {"keyword": "teléfono", "result": {"telefono": 1}},
+    {"keyword": "celular", "result": {"telefono": 1}},
+    {"keyword": "comunicación", "result": {"telefono": 1}},
+    {"keyword": "comunico", "result": {"telefono": 1}},
+    {"keyword": "comunicar", "result": {"telefono": 1}},
+    {"keyword": "comunicarme", "result": {"telefono": 1}},
+    {"keyword": "problema", "result": {"telefono": 1}},
+  
+    {"keyword": "cuando", "result": {"horarios": 1}},
+    {"keyword": "hora", "result": {"horarios": 1}},
+    {"keyword": "horario", "result": {"horarios": 1}},
+    {"keyword": "horarios", "result": {"horarios": 1}},
+    {"keyword": "ahora", "result": {"horarios": 1}},
+    {"keyword": "mañana", "result": {"horarios": 1}},
+    {"keyword": "tarde", "result": {"horarios": 1}},
+    {"keyword": "noche", "result": {"horarios": 1}},
+  
+    {"keyword": "emergencia", "result": {"urgencia": 1}},
+    {"keyword": "urgente", "result": {"urgencia": 1}},
+    {"keyword": "urgencia", "result": {"urgencia": 1}},
+    {"keyword": "preocupado", "result": {"urgencia": 1}},
+    {"keyword": "preocupación", "result": {"urgencia": 1}},
+    {"keyword": "desesperado", "result": {"urgencia": 1}},
+    {"keyword": "desesperación", "result": {"urgencia": 1}},
+    {"keyword": "serio", "result": {"urgencia": 1}}
+  ]

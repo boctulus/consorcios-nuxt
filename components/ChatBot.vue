@@ -34,6 +34,9 @@ import OpenIcon from 'vue-beautiful-chat/src/assets/logo-no-bg.svg'
 import FileIcon from 'vue-beautiful-chat/src/assets/file.svg'
 import CloseIconSvg from 'vue-beautiful-chat/src/assets/close.svg'
 
+//const inteligencia = require('@/util/inteligencia')
+import classify from '@/util/inteligencia';
+
 export default {
   name: 'ChatBot',
   data() {
@@ -60,7 +63,7 @@ export default {
         {
           id: 'bot',
           name: 'Soporte',
-          imageUrl: 'https://i.imgur.com/q06sc3b.png'
+          imageUrl: 'https://i.imgur.com/Sk3mDW7.png'
         },
         /*
         {
@@ -112,7 +115,7 @@ export default {
     sendMessage (text) {
       if (text.length > 0) {
         this.newMessagesCount = this.isChatOpen ? this.newMessagesCount : this.newMessagesCount + 1
-        this.onMessageWasSent({ author: 'support', type: 'text', data: { text } })
+        this.onMessageWasSent({ author: 'bot', type: 'text', data: { text } })
       }
     },
     onMessageWasSent (message) {
@@ -124,11 +127,24 @@ export default {
       }
     },
     answer (text) {
-      if (text == 'hola'){
-        this.sendMessage('Hola! en qué puedo ayudarte?');
+      if (text.toLowerCase() == 'hola'){
+        this.sendMessage('¡Hola!, ¿Tienes alguna duda?');
+      }
+      
+      let respuestas = {
+        'direccion': 'Nos encontramos en  ' + 'calle 28 # 167, La Plata, Bs As', 
+        'telefono': 'Para comunicarse con Administración El Grove puede hacerlo al ' + '(221) 15 545-2109',
+        'horarios': 'El horario de atención es de ' + 'lunes a viernes de 9 a 17' + ' Hs', 
+        'urgencia': 'Atendemos casos de urgencia las 24 Hs ***'
       }
 
-      console.log(text);
+      let result_arr = classify(text);
+      
+      for (let e in result_arr){
+        if (result_arr[e] > 0 ){
+         this.sendMessage(respuestas[e]);
+        }
+      }
     },
     openChat () {
       // called when the user clicks on the fab button to open the chat
@@ -151,6 +167,9 @@ export default {
       m.isEdited = true;
       m.data.text = message.data.text;
     }
+  },
+  created() {
+    
   }
 }
 </script>
