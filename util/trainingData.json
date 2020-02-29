@@ -1,6 +1,9 @@
 [
     {"keyword": "donde", "result": {"direccion": 1}},
     {"keyword": "ubicación", "result": {"direccion": 1}},
+    {"keyword": "ubico", "result": {"direccion": 1}},
+    {"keyword": "encuentro", "result": {"direccion": 1}},
+    {"keyword": "encontrar", "result": {"direccion": 1}},
     {"keyword": "dirección", "result": {"direccion": 1}},
     {"keyword": "calle", "result": {"direccion": 1}},
   
@@ -40,5 +43,9 @@
     {"keyword": "serio", "result": {"urgencia": 1}},
     {"keyword": "importante", "result": {"urgencia": 1}},
 
-    {"keyword": "servicios", "result": {"servicios": 1}}
+    {"keyword": "servicios", "result": {"servicios": 1}},
+
+    {"keyword": "puto", "result": {"insulto": 1}},
+    {"keyword": "gil", "result": {"insulto": 1}},
+    {"keyword": "idiota", "result": {"insulto": 1}}
   ]

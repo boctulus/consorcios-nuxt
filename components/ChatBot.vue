@@ -129,6 +129,7 @@ export default {
     answer (text) {
       if (text.toLowerCase() == 'hola'){
         this.sendMessage('¡Hola!, ¿Tienes alguna duda?');
+        return;
       }
       
       let respuestas = {
@@ -137,8 +138,10 @@ export default {
         'telefono': 'Para comunicarse con Administración El Grove puede hacerlo al ' + '(221) 15 545-2109',
         'horarios': 'El horario de atención es de ' + 'lunes a viernes de 9 a 17' + ' Hs', 
         'urgencia': 'Atendemos casos de urgencia las 24 Hs ***',
-        'servicios': 'Te envio la sección de servicios para que vea cuales brindamos',
-        'contacto': 'Te envio la sección de contacto para que vea cuales brindamos',
+        'servicios': 'Te envio a la sección de servicios para que veas cuales brindamos',
+        'contacto': 'Te envio a la sección de contacto para que veas cuales brindamos',
+        'saludo': 'Buenas :)',
+        'insulto':  'What?!'
       }
 
       let result_arr = classify(text);
@@ -159,11 +162,18 @@ export default {
         }, 1500)
       }
 
+      let respuesta = false;
       for (let e in result_arr){
         if (result_arr[e] > 0 ){
          this.sendMessage(respuestas[e]);
+         respuesta = true;
         }
       }
+
+      if (!respuesta){
+        this.sendMessage('Lo siento, no te comprendo. Podrías re-formular?');
+      }
+
     },
     openChat () {
       // called when the user clicks on the fab button to open the chat

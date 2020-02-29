@@ -34,16 +34,13 @@ function buildDict(trainingData)
     Object.keys(trainingData[i].result).forEach((e) => {
       types.add(e);
     })
-
   }
-
   return dict;
 }
 
 const dict = buildDict(TrainingSet);
 //console.log(dict);
 //console.log(types);
-
 
 const classify = (str) => {
  str = sanitize(str); 
