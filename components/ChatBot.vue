@@ -75,7 +75,7 @@ export default {
       ], // the list of all the participant of the conversation. `name` is the user name, `id` is used to establish the author of a message, `imageUrl` is supposed to be the user avatar.
       titleImageUrl: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png',
       messageList: [
-          { type: 'text', author: `bot`, data: { text: `Hola! soy AlexBox, en qué te colaboro?` } },
+          { type: 'text', author: `bot`, data: { text: `Hola! soy AlexBot, en qué te puedo ayudar?` } },
          /* 
           { type: 'text', author: `me`, data: { text: `Qué teléfono tienen?` } } 
          */
@@ -132,16 +132,31 @@ export default {
       }
       
       let respuestas = {
+        'email': 'El correo es ' + 'adm.elgrove@outlook.com',
         'direccion': 'Nos encontramos en  ' + 'calle 28 # 167, La Plata, Bs As', 
         'telefono': 'Para comunicarse con Administración El Grove puede hacerlo al ' + '(221) 15 545-2109',
         'horarios': 'El horario de atención es de ' + 'lunes a viernes de 9 a 17' + ' Hs', 
-        'urgencia': 'Atendemos casos de urgencia las 24 Hs ***'
+        'urgencia': 'Atendemos casos de urgencia las 24 Hs ***',
+        'servicios': 'Te envio la sección de servicios para que vea cuales brindamos',
+        'contacto': 'Te envio la sección de contacto para que vea cuales brindamos',
       }
 
       let result_arr = classify(text);
 
       if (result_arr.urgencia > 0 && result_arr.telefono == 0){
         result_arr.telefono = 1;
+      }
+
+      if (result_arr.servicios > 0){
+        setTimeout(()=>{
+          this.$router.push('/servicios')
+        }, 1500)
+      }
+
+      if (result_arr.contacto > 0){
+        setTimeout(()=>{
+          this.$router.push('#contacto')
+        }, 1500)
       }
 
       for (let e in result_arr){

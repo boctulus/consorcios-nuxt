@@ -11,6 +11,13 @@
     {"keyword": "comunicar", "result": {"telefono": 1}},
     {"keyword": "comunicarme", "result": {"telefono": 1}},
     {"keyword": "problema", "result": {"telefono": 1}},
+
+    {"keyword": "contacto", "result": {"contacto": 1}},
+    {"keyword": "formulario", "result": {"contacto": 1}},
+
+    {"keyword": "correo", "result": {"email": 1}},
+    {"keyword": "e-mail", "result": {"email": 1}},
+    {"keyword": "email", "result": {"email": 1}},
   
     {"keyword": "cuando", "result": {"horarios": 1}},
     {"keyword": "hora", "result": {"horarios": 1}},
@@ -25,8 +32,13 @@
     {"keyword": "urgente", "result": {"urgencia": 1}},
     {"keyword": "urgencia", "result": {"urgencia": 1}},
     {"keyword": "preocupado", "result": {"urgencia": 1}},
+    {"keyword": "preocupada", "result": {"urgencia": 1}},
     {"keyword": "preocupación", "result": {"urgencia": 1}},
     {"keyword": "desesperado", "result": {"urgencia": 1}},
+    {"keyword": "desesperada", "result": {"urgencia": 1}},
     {"keyword": "desesperación", "result": {"urgencia": 1}},
-    {"keyword": "serio", "result": {"urgencia": 1}}
+    {"keyword": "serio", "result": {"urgencia": 1}},
+    {"keyword": "importante", "result": {"urgencia": 1}},
+
+    {"keyword": "servicios", "result": {"servicios": 1}}
   ]
