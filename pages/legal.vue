@@ -1,5 +1,5 @@
 <template>
-  <div :style="{backgroundImage:'url(https://i.imgur.com/urEubtE.jpg)', minHeight: '100vh'}" >
+  <div :style="{'background-image': 'url(' + require('@/assets/administracion-profesional-de-condominios-1.jpg') + ')',minHeight:'100vh'}">
   
     <div class="logo_container">
         <n-link to="/home">

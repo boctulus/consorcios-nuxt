@@ -46,11 +46,6 @@
 import Hamburger from '@/components/Hamburger';
 import Velocity from 'velocity-animate';
 
-import VueScrollTo from 'vue-scrollto'
-import Vue from 'vue'
-
-Vue.use(VueScrollTo)
-
 import vClickOutside from 'v-click-outside';
 
 export default {
