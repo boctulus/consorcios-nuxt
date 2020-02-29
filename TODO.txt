@@ -94,3 +94,5 @@ https://api.whatsapp.com/send?phone=542215712131
 -----x----------
 
 https://medium.com/@jonchurch/use-github-branch-as-dependency-in-package-json-5eb609c81f1a
+
+npm uninstall github:boctulus/vue-beautiful-chat#master && npm install github:boctulus/vue-beautiful-chat#master
