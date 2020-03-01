@@ -1,10 +1,9 @@
 <template>
     <span >
         <transition name="slide-fade">
-            <div v-show="drawer" class="drawer">
+            <div v-if="drawer" class="drawer">
                 <div style="margin-top:5em;">
-                    <v-list style="margin-top: 3em; background-color: #000000; color: #ffffff;" v-show="drawer">
-                        
+                    <v-list style="margin-top: 3em; background-color: #000000; color: #ffffff;">
                             <li 
                                 v-for="(item, index) in computedList"
                                 v-bind:key="item.msg"
@@ -22,7 +21,9 @@
         </transition>
         
         <nav class="nav">
-            <span class="logo">El Grove</span>
+            <n-link to="/dashboard" class="logo_wrapper">
+                <span class="logo">El Grove</span>
+            </n-link> 
 
             <v-icon color="#CFA18B" @click.native="drawer = !drawer" v-bind:class="[drawer ? 'active' : '']" class="ham">menu</v-icon>                   
         </nav>
@@ -111,7 +112,7 @@ export default {
     cursor: pointer;
 }
 
-.logo {
+.logo_wrapper {
     padding-left: 40px;
     padding-right: 40px;
     font-size:18px;
@@ -119,6 +120,10 @@ export default {
     text-transform: uppercase;
     font-weight: 600;
     color: #fff;
+}
+
+.logo:hover {
+  text-decoration: none !important;
 }
 
 .link {
@@ -139,36 +144,37 @@ export default {
 .item {
     font-size: 1.2em;
     text-transform: uppercase;
-    line-height: 10px;
+    line-height: 2em;
 }
 
 .drawer {
-    /* opacity: 0.75; */
+    opacity: 0.75; 
     z-index: 5000;
     
     position: fixed;
     top:0;
-    left: -16em;
-
+    left: 0;
+  
     background-color:black;
-    width: 16em;
+    width: 15em;
     height: 100%;
 
     overflow-y: auto;
 }
 
+
+.slide-fade-enter-active {
+  transition: all .7s ease;
+}
+
 .slide-fade-leave-active {
-  transition: all 2s linear;
+  transition: all 1.5s cubic-bezier(1.0, 0.5,    0.8, 1.0);
 }
 
 .slide-fade-enter, .slide-fade-leave-to
 {
-  transform: translateX(16em);
-  /* opacity: 0; */
-}
-
-.slide-fade-enter-active {
-  transition: all .3s ease;
+  transform: translateX(-15em);
+  opacity: 0;
 }
 
 
