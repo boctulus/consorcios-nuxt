@@ -39,7 +39,6 @@
             </nav>
 
 
-
             <div class="content">
                 <nuxt-child/>
             </div>
@@ -129,6 +128,7 @@ export default {
     margin-top: 12px;
     cursor: pointer;
     padding-left: 0.5em;
+    /* background-color:red; */
 }
 
 .logo_wrapper {
@@ -144,6 +144,7 @@ export default {
     font-weight: 600;
     color: #fff;
     width: 4.9em;
+    /* background-color: yellow; */
 }
 
 .logo:hover {
@@ -211,6 +212,10 @@ export default {
   }
   .smallScreen {
     display:block;
+  }
+
+  .logo_wrapper {
+    padding-left: 0;
   }
 }
 
