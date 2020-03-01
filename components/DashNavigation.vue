@@ -40,12 +40,11 @@ export default {
         return {
             drawer: false,
             list: [
-                { msg: 'Inicio',  link: '/'},
-                { msg: 'Servicios',  link: '/servicios' },
-                { msg: 'Blog',  link: '/blog' },                
-                { msg: 'Marco legal',  link: '/legal' },
-                { msg: 'Contacto',  link: '#contacto' },
-                { msg: 'Acceso clientes',  link: '/dashboard' }
+                { msg: 'Posts',  link: '/dashboard/posts'},
+                { msg: 'Servicios',  link: '/dashboard/servicios' },
+                { msg: 'Archivos',  link: '/dashboard/archivos' },
+                { msg: 'Mensajes',  link: '/dashboard/mensajes' },
+                { msg: 'Contraseñas',  link: '/dashboard/passwords' }
             ]
         };
     },
