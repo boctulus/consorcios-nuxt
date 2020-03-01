@@ -1,5 +1,5 @@
 <template>
-    <span >
+    <div>
         <transition name="slide-fade">
             <div v-if="drawer" class="drawer">
                 <div style="margin-top:5em;">
@@ -10,7 +10,7 @@
                                 v-bind:data-index="index"
                                 class="item"
                             >
-                                <v-icon color="#CFA18B" style="margin-right:0.5em;">crop_din</v-icon>                                
+                                <v-icon color="#CFA18B" style="padding-left:0.5em;">{{item.icon}}</v-icon>                                
                                 <a @click="navigate" class="link" v-if="!item.bookmark" :id="item.link">{{item.msg}}</a>
                                 <a @click="scrollToBookmark" class="link" v-if="item.bookmark" :id="item.link">{{item.msg}}</a>
                             </li>
@@ -27,7 +27,12 @@
 
             <v-icon color="#CFA18B" @click.native="drawer = !drawer" v-bind:class="[drawer ? 'active' : '']" class="ham">menu</v-icon>                   
         </nav>
-    </span>
+
+        <div class="content">
+            <nuxt-child/>
+        </div>
+        
+    </div>
 </template>
 
 <script>
@@ -40,11 +45,11 @@ export default {
         return {
             drawer: false,
             list: [
-                { msg: 'Posts',  link: '/dashboard/posts'},
-                { msg: 'Servicios',  link: '/dashboard/servicios' },
-                { msg: 'Archivos',  link: '/dashboard/archivos' },
-                { msg: 'Mensajes',  link: '/dashboard/mensajes' },
-                { msg: 'Contraseñas',  link: '/dashboard/passwords' }
+                { msg: 'Posts',  link: '/dashboard/posts', icon: 'fa-clone'},
+                { msg: 'Servicios',  link: '/dashboard/servicios', icon: 'fa-bell' },
+                { msg: 'Archivos',  link: '/dashboard/archivos', icon: 'fa-folder' },
+                { msg: 'Mensajes',  link: '/dashboard/mensajes', icon: 'fa-envelope' },
+                { msg: 'Contraseñas',  link: '/dashboard/passwords', icon: 'fa-key' }
             ]
         };
     },
@@ -98,7 +103,8 @@ export default {
     z-index: 5001;
     display:flex; 
     align-items: flex-start; 
-    position: relative;
+    position: fixed;
+    width: 100%;
     left: 0;
     top: 0;
     height: 50px;
@@ -112,8 +118,8 @@ export default {
 }
 
 .logo_wrapper {
-    padding-left: 40px;
-    padding-right: 40px;
+    padding-left: 1em;
+    padding-right: 3.6em;
     font-size:18px;
     margin-top: 10px;
     text-transform: uppercase;
@@ -127,6 +133,7 @@ export default {
 
 .link {
     color: #ffffff;
+    padding-left: 1em;
 }
 
 .link:hover {
@@ -142,8 +149,7 @@ export default {
 
 .item {
     font-size: 1.2em;
-    text-transform: uppercase;
-    line-height: 2em;
+    line-height: 2.5em;
 }
 
 .drawer {
@@ -155,12 +161,11 @@ export default {
     left: 0;
   
     background-color:black;
-    width: 15em;
+    width: 12em;
     height: 100%;
 
     overflow-y: auto;
 }
-
 
 .slide-fade-enter-active {
   transition: all .7s ease;
@@ -172,10 +177,12 @@ export default {
 
 .slide-fade-enter, .slide-fade-leave-to
 {
-  transform: translateX(-15em);
+  transform: translateX(-12em);
   opacity: 0;
 }
 
-
+.content {
+    padding: 1em;
+}
 
 </style>
