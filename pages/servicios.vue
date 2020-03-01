@@ -230,8 +230,7 @@ export default {
   },
   methods: {
     select(id) {
-      let sub = this.servicios.filter((e) => { return e.id == id} ); 
-      this.selected = (sub.length > 0) ? sub[0] : null; 
+      this.selected = this.servicios.find((e) => { return e.id == id} ); 
       document.querySelector('#hamburger-icon').style.display = "none";
     },
     closeModal(){
