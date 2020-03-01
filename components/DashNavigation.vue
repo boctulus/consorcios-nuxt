@@ -22,12 +22,23 @@
         
         <b-container>
             <nav class="nav">
-                <n-link to="/dashboard" class="logo_wrapper">
-                    <span class="logo">El Grove</span>
-                </n-link> 
-
-                <v-icon color="#CFA18B" @click.native="drawer = !drawer" v-bind:class="[drawer ? 'active' : '']" class="ham">menu</v-icon>                   
+                <!-- media queries : hacer un "pull" de content para "md" o menores -->
+                <b-row>
+                    <b-col>
+                        <n-link to="/dashboard" class="logo_wrapper">
+                            <span class="logo egravers">El Grove</span>
+                        </n-link> 
+                    </b-col>
+                    <b-col class="smallScreen order-first">
+                        <v-icon color="#CFA18B" @click.native="drawer = !drawer" v-bind:class="[drawer ? 'active' : '']" class="ham">menu</v-icon>         
+                    </b-col>
+                    <b-col class="bigScreen">
+                        <v-icon color="#CFA18B" @click.native="drawer = !drawer" v-bind:class="[drawer ? 'active' : '']" class="ham">menu</v-icon>         
+                    </b-col>
+                </b-row>                 
             </nav>
+
+
 
             <div class="content">
                 <nuxt-child/>
@@ -117,16 +128,22 @@ export default {
     font-size: 26px;
     margin-top: 12px;
     cursor: pointer;
+    padding-left: 0.5em;
 }
 
 .logo_wrapper {
     padding-left: 1em;
     padding-right: 3.6em;
-    font-size:18px;
-    margin-top: 10px;
+}
+
+.logo {
+    margin-top: 11px;
+    display: inline-block;
+    font-size:1.25em;
     text-transform: uppercase;
     font-weight: 600;
     color: #fff;
+    width: 4.9em;
 }
 
 .logo:hover {
@@ -163,7 +180,7 @@ export default {
     left: 0;
   
     background-color:black;
-    width: 12em;
+    width: 14em;
     height: 100%;
 
     overflow-y: auto;
@@ -179,7 +196,7 @@ export default {
 
 .slide-fade-enter, .slide-fade-leave-to
 {
-  transform: translateX(-12em);
+  transform: translateX(-14em);
   opacity: 0;
 }
 
@@ -188,4 +205,21 @@ export default {
     padding: 1em;
 }
 
+@media (max-width: 1023px) {
+  .bigScreen {
+    display:none;
+  }
+  .smallScreen {
+    display:block;
+  }
+}
+
+@media (min-width: 1024px) {
+  .bigScreen {
+    display:block;
+  }
+  .smallScreen {
+    display:none;
+  }
+}
 </style>

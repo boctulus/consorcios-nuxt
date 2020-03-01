@@ -79,28 +79,28 @@ export default {
       {
         'id': 1,
         'name': 'administración general',
-        'text': 'La representación de la administración en un condominio, es muy importante ya que sus funciones son las de preservar la equidad y armonía entre los condóminos, además de llevar los estados financieros, limpieza y mantenimiento que necesite el condominio, cuotas de cada condómino y la seguridad de sus habitantes entre otras necesidades.',
+        'text': 'La representación de la administración en un consorcio, es muy importante ya que sus funciones son las de preservar la equidad y armonía entre los condóminos, además de llevar los estados financieros, limpieza y mantenimiento que necesite el consorcio, cuotas de cada condómino y la seguridad de sus habitantes entre otras necesidades.',
         'img': 'administracion-general-la-plata',
         'enabled': true
       },
       {
         'id': 2,
         'name': 'cobro a deudores',
-        'text': 'Contamos con la experiencia necesaria para la recuperación de la cuenta vencida. La ley de consorcios de la ciudad de La Plata, manifiesta que es una obligación el pago de cuotas de mantenimiento para quienes viven en condominio en la ciudad de La Plata. Contamos con la experiencia necesaria para la recuperación de la cuenta vencida. La ley de consorcios de la ciudad de La Plata, manifiesta que es una obligación el pago de cuotas de mantenimiento para quienes viven en condominio en la ciudad de La Plata.',
+        'text': 'Contamos con la experiencia necesaria para la recuperación de la cuenta vencida. La ley de consorcios de la ciudad de La Plata, manifiesta que es una obligación el pago de cuotas de mantenimiento para quienes viven en consorcio en la ciudad de La Plata. Contamos con la experiencia necesaria para la recuperación de la cuenta vencida. La ley de consorcios de la ciudad de La Plata, manifiesta que es una obligación el pago de cuotas de mantenimiento para quienes viven en consorcio en la ciudad de La Plata.',
         'img': 'cobro-a-deudores-inquilinos',
         'enabled': true
       },
       {
         'id': 3,
         'name': 'manejo de recursos',
-        'text': 'El mecanismo por el cual garantizamos el buen manejo de los recursos financieros del condominio, es que nadie por sí sólo tenga acceso directo a las cuentas bancarias. Recomendamos la apertura de una cuenta de cheques e inversión con firmas mancomunadas por parte del comité de vigilancia. La administración únicamente tendrá la función de mediador de los recursos.',
+        'text': 'El mecanismo por el cual garantizamos el buen manejo de los recursos financieros del consorcio, es que nadie por sí sólo tenga acceso directo a las cuentas bancarias. Recomendamos la apertura de una cuenta de cheques e inversión con firmas mancomunadas por parte del comité de vigilancia. La administración únicamente tendrá la función de mediador de los recursos.',
         'img': 'manejo-de-recursos',
         'enabled': true
       },
       {
         'id': 4,
         'name': 'seguridad',
-        'text': 'Contamos con la experiencia necesaria para conocer las necesidades de seguridad en su condominio. Con base a un análisis de seguridad patrimonial y necesidades del servicio de los condóminos, ofrecemos proveedores del servicio que están calificados, certificados y debidamente registrados ante el Consejo Nacional de Seguridad Privada (CNSP) además de contar con todos sus elementos registrados ante la Secretaría de Seguridad Pública (SSP).',
+        'text': 'Contamos con la experiencia necesaria para conocer las necesidades de seguridad en su consorcio. Con base a un análisis de seguridad patrimonial y necesidades del servicio de los condóminos, ofrecemos proveedores del servicio que están calificados, certificados y debidamente registrados ante el Consejo Nacional de Seguridad Privada (CNSP) además de contar con todos sus elementos registrados ante la Secretaría de Seguridad Pública (SSP).',
         'img': 'seguridad-inmuebles-la-plata',
         'enabled': true
       },
@@ -121,7 +121,7 @@ export default {
       {
         'id': 7,
         'name': 'trabajos en altura',
-        'text': 'Hoy en día los condominios por su estructura requieren de un servicio de mantenimiento profesional y especializado en diversas áreas, desde el año de 2005 ofrecemos diversos servicios de mantenimiento y limpieza vertical en altura.',
+        'text': 'Hoy en día los consorcios por su estructura requieren de un servicio de mantenimiento profesional y especializado en diversas áreas, desde el año de 2005 ofrecemos diversos servicios de mantenimiento y limpieza vertical en altura.',
         'img': 'trabajos-en-altura-limpieza',
         'enabled': true
       },
@@ -184,7 +184,7 @@ export default {
       {
         'id': 16,
         'name': 'bombas de agua',
-        'text': 'Contamos con el servicio de mantenimiento a las bombas de agua (periféricas, centrifugas, de presión constante, sumergibles y tanques hidroneumáticos), así como también a los tableros eléctricos de condominios, con la finalidad de garantizar un abastecimiento constante e ininterrumpido de agua potable para consumo humano.',
+        'text': 'Contamos con el servicio de mantenimiento a las bombas de agua (periféricas, centrifugas, de presión constante, sumergibles y tanques hidroneumáticos), así como también a los tableros eléctricos de consorcios, con la finalidad de garantizar un abastecimiento constante e ininterrumpido de agua potable para consumo humano.',
         'img': 'bombas-de-agua-consorcio',
         'enabled': true
       },
@@ -205,7 +205,7 @@ export default {
       {
         'id': 19,
         'name': 'centros comerciales',
-        'text': 'Nuestro objetivo es incrementar el valor del condominio del centro comercial y de su función al servicio de comunidad con base del reglamento del régimen de propiedad en condominio, siendo parte fundamental y activa de los cambios necesarios para satisfacer las necesidades del mercado, entorno de los inversionistas y locatarios.',
+        'text': 'Nuestro objetivo es incrementar el valor del consorcio del centro comercial y de su función al servicio de comunidad con base del reglamento del régimen de propiedad en consorcio, siendo parte fundamental y activa de los cambios necesarios para satisfacer las necesidades del mercado, entorno de los inversionistas y locatarios.',
         'img': 'administracion-de-centros-comerciales-la-plata',
         'enabled': false
       }
