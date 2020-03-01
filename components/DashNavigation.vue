@@ -128,7 +128,10 @@ export default {
     margin-top: 12px;
     cursor: pointer;
     padding-left: 0.5em;
-    /* background-color:red; */
+    /* 
+    background-color:red; 
+    border: 1px solid red;
+    */
 }
 
 .logo_wrapper {
@@ -143,8 +146,11 @@ export default {
     text-transform: uppercase;
     font-weight: 600;
     color: #fff;
-    width: 4.9em;
-    /* background-color: yellow; */
+    min-width: 4.9em;
+    /*
+    background-color: yellow; 
+    border: 1px solid red;
+    */
 }
 
 .logo:hover {
@@ -210,8 +216,10 @@ export default {
   .bigScreen {
     display:none;
   }
+
   .smallScreen {
     display:block;
+    padding-right: 0.5em;
   }
 
   .logo_wrapper {
@@ -223,6 +231,7 @@ export default {
   .bigScreen {
     display:block;
   }
+
   .smallScreen {
     display:none;
   }
