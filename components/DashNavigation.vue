@@ -140,6 +140,7 @@ export default {
 .logo_wrapper {
     margin-top: 11px;
     padding-left: 1em;
+    width: 9.5em;
     display:flex; 
     align-items: flex-start; 
 }
@@ -159,7 +160,7 @@ export default {
     font-weight: 600;
     color: #fff;
     min-width: 5em;
-    padding-left: 0.25em;
+    padding-left: 1em;
     /*
     background-color: yellow; 
     border: 1px solid red;
@@ -245,12 +246,12 @@ export default {
 @media (min-width: 1024px) {
   .bigScreen {
     display:block;
+    padding-left: 0;
   }
-
+  
   .smallScreen {
     display:none;
   }
-
 
 }
 </style>
