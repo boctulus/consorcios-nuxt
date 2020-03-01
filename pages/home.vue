@@ -150,13 +150,6 @@ import TextAnimation from '@/components/TextAnimation'
 import { required, email, max } from 'vee-validate/dist/rules'
 import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate'
 
-import Vue from 'vue'
-import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
-Vue.use(BootstrapVue)
-Vue.use(IconsPlugin)
-
 import { Carousel, Slide } from 'vue-carousel';
 
 setInteractionMode('eager')
