@@ -20,17 +20,19 @@
             </div>
         </transition>
         
-        <nav class="nav">
-            <n-link to="/dashboard" class="logo_wrapper">
-                <span class="logo">El Grove</span>
-            </n-link> 
+        <b-container>
+            <nav class="nav">
+                <n-link to="/dashboard" class="logo_wrapper">
+                    <span class="logo">El Grove</span>
+                </n-link> 
 
-            <v-icon color="#CFA18B" @click.native="drawer = !drawer" v-bind:class="[drawer ? 'active' : '']" class="ham">menu</v-icon>                   
-        </nav>
+                <v-icon color="#CFA18B" @click.native="drawer = !drawer" v-bind:class="[drawer ? 'active' : '']" class="ham">menu</v-icon>                   
+            </nav>
 
-        <div class="content">
-            <nuxt-child/>
-        </div>
+            <div class="content">
+                <nuxt-child/>
+            </div>
+        </b-container>
         
     </div>
 </template>
@@ -134,13 +136,7 @@ export default {
 .link {
     color: #ffffff;
     padding-left: 1em;
-}
-
-.link:hover {
-    text-decoration: none;
-    cursor: pointer;
-    font-size: 1.15em;
-    filter: brightness(2);
+    font-size: 0.8em;
 }
 
 .list {
@@ -150,6 +146,12 @@ export default {
 .item {
     font-size: 1.2em;
     line-height: 2.5em;
+}
+
+.item:hover {
+    text-decoration: none;
+    cursor: pointer; 
+    background-color: #321FDB;
 }
 
 .drawer {
@@ -168,11 +170,11 @@ export default {
 }
 
 .slide-fade-enter-active {
-  transition: all .7s ease;
+  transition: all .3s ease;
 }
 
 .slide-fade-leave-active {
-  transition: all 1.5s cubic-bezier(1.0, 0.5,    0.8, 1.0);
+  transition: all 0.6s cubic-bezier(1.0, 0.5,    0.8, 1.0);
 }
 
 .slide-fade-enter, .slide-fade-leave-to
@@ -182,6 +184,7 @@ export default {
 }
 
 .content {
+    margin-top: 50px;
     padding: 1em;
 }
 
