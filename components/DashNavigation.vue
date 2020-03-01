@@ -134,14 +134,18 @@ export default {
     background-color:red; 
     border: 1px solid red;
     */
+    margin-left: 1.2em;
 }
 
 .logo_wrapper {
     margin-top: 11px;
     padding-left: 1em;
-    padding-right: 3.6em;
     display:flex; 
     align-items: flex-start; 
+}
+
+.logo_wrapper:hover {
+  text-decoration: none !important;
 }
 
 .logo_img {
@@ -160,10 +164,6 @@ export default {
     background-color: yellow; 
     border: 1px solid red;
     */
-}
-
-.logo_wrapper:hover {
-  text-decoration: none !important;
 }
 
 .link {
@@ -197,7 +197,7 @@ export default {
     left: 0;
   
     background-color:black;
-    width: 15.5em;
+    width: 14em;
     height: 100%;
 
     overflow-y: auto;
@@ -213,7 +213,7 @@ export default {
 
 .slide-fade-enter, .slide-fade-leave-to
 {
-  transform: translateX(-15.5em);
+  transform: translateX(-14em);
   opacity: 0;
 }
 
@@ -234,6 +234,10 @@ export default {
 
   .logo_wrapper {
     padding-left: 0;
+  }
+
+  .ham {
+    margin-left: 0 !important;
   }
 
 }
