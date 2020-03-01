@@ -26,14 +26,15 @@
                 <b-row>
                     <b-col>
                         <n-link to="/dashboard" class="logo_wrapper">
+                            <img :src="require('@/assets/logo_sm.png')" class="logo_img"/>
                             <span class="logo egravers">El Grove</span>
                         </n-link> 
                     </b-col>
                     <b-col class="smallScreen order-first">
-                        <v-icon color="#CFA18B" @click.native="drawer = !drawer" v-bind:class="[drawer ? 'active' : '']" class="ham">menu</v-icon>         
+                        <v-icon @click.native="drawer = !drawer" v-bind:class="[drawer ? 'active' : '']" class="ham">menu</v-icon>         
                     </b-col>
                     <b-col class="bigScreen">
-                        <v-icon color="#CFA18B" @click.native="drawer = !drawer" v-bind:class="[drawer ? 'active' : '']" class="ham">menu</v-icon>         
+                        <v-icon @click.native="drawer = !drawer" v-bind:class="[drawer ? 'active' : '']" class="ham">menu</v-icon>         
                     </b-col>
                 </b-row>                 
             </nav>
@@ -128,6 +129,7 @@ export default {
     margin-top: 12px;
     cursor: pointer;
     padding-left: 0.5em;
+    color: #ccc !important;
     /* 
     background-color:red; 
     border: 1px solid red;
@@ -135,25 +137,32 @@ export default {
 }
 
 .logo_wrapper {
+    margin-top: 11px;
     padding-left: 1em;
     padding-right: 3.6em;
+    display:flex; 
+    align-items: flex-start; 
 }
 
-.logo {
-    margin-top: 11px;
-    display: inline-block;
+.logo_img {
+    width: 1.4em;
+    margin-top: 3px;    
+}
+
+.logo {    
     font-size:1.25em;
     text-transform: uppercase;
     font-weight: 600;
     color: #fff;
-    min-width: 4.9em;
+    min-width: 5em;
+    padding-left: 0.25em;
     /*
     background-color: yellow; 
     border: 1px solid red;
     */
 }
 
-.logo:hover {
+.logo_wrapper:hover {
   text-decoration: none !important;
 }
 
@@ -170,6 +179,7 @@ export default {
 .item {
     font-size: 1.2em;
     line-height: 2.5em;
+    text-transform: uppercase;
 }
 
 .item:hover {
@@ -187,7 +197,7 @@ export default {
     left: 0;
   
     background-color:black;
-    width: 14em;
+    width: 15.5em;
     height: 100%;
 
     overflow-y: auto;
@@ -203,7 +213,7 @@ export default {
 
 .slide-fade-enter, .slide-fade-leave-to
 {
-  transform: translateX(-14em);
+  transform: translateX(-15.5em);
   opacity: 0;
 }
 
@@ -225,6 +235,7 @@ export default {
   .logo_wrapper {
     padding-left: 0;
   }
+
 }
 
 @media (min-width: 1024px) {
@@ -235,5 +246,7 @@ export default {
   .smallScreen {
     display:none;
   }
+
+
 }
 </style>
