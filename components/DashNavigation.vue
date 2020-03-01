@@ -132,10 +132,6 @@ export default {
     filter: brightness(2);
 }
 
-.slide-fade-enter-active {
-  transition: all .3s ease;
-}
-
 .list {
     list-style: none;
 }
@@ -171,6 +167,9 @@ export default {
   /* opacity: 0; */
 }
 
+.slide-fade-enter-active {
+  transition: all .3s ease;
+}
 
 
 
