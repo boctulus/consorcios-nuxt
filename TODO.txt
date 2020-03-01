@@ -39,6 +39,13 @@ Secret key: 6LewRtsUAAAAAKj9ALweWgfCNEz0YuI1cwvBphnY
 * Leer mensajes creados desde form de contacto 
 * Leer pedidos de cotizacion 
 
+- Intentar reemplazar scrollTo por otros en javascript vanilla para lograr que Nuxt funcione en modo 'universal'
+
+https://codepen.io/yagoestevez/pen/VGBqJW
+https://codepen.io/anisur3036/pen/gzXPGO
+https://codepen.io/boctul_us/pen/XWbggrp
+https://perishablepress.com/vanilla-javascript-scroll-anchor/
+
 
 Admin 
 https://github.com/moeddami/nuxt-material-admin
