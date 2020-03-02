@@ -36,9 +36,14 @@
                     <b-col class="bigScreen">
                         <v-icon @click.native="drawer = !drawer" v-bind:class="[drawer ? 'active' : '']" class="ham">menu</v-icon>         
                     </b-col>
+
+                    <b-col>
+                        <b-dropdown id="dropdown-right" right text="" class="m-2">
+                            <b-dropdown-item href="#" @click="logout">Salir</b-dropdown-item>
+                        </b-dropdown>         
+                    </b-col>
                 </b-row>                 
             </nav>
-
 
             <div class="content">
                 <nuxt-child/>
@@ -101,6 +106,9 @@ export default {
                     path: element.target.id
                })
             },500);  
+        },
+        logout: function() {
+            console.log('LOG OUT');
         }
     },
     components: {
@@ -111,6 +119,11 @@ export default {
 
 
 <style scoped>  
+
+#dropdown-right {
+    position:fixed; 
+    right: 0.5em; 
+}
 
 .nav {
     z-index: 5001;
