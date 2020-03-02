@@ -13,7 +13,7 @@
                   <b-col md="6" offset-md="3">
                     <div class="form-group engravers label">
                       <label for="edificio">Edificación</label><label class="gfield_required">*</label>
-                        <select v-model="edificio_sel" class="form-control footer-input" id="edificio">
+                        <select v-model="edificio_sel" class="form-control input" id="edificio">
                           <option v-for="(edificio, index) in edificios" v-bind:key="index">{{ edificio }}</option>
                         </select>
                     </div>  
@@ -24,7 +24,7 @@
                   <b-col md="6" offset-md="3">
                     <div class="form-group engravers label">
                       <label for="password">Contraseña</label><label class="gfield_required">*</label>
-                      <input type="password" class="form-control footer-input" id="password">
+                      <input type="password" class="form-control input" id="password">
                     </div>  
                   </b-col>
                 </b-row>    
@@ -32,7 +32,7 @@
                 <b-row>
                   <b-col md="6" offset-md="3">
                     <div class="form-group engravers label">
-                      <b-button type="submit" block class="footer-input" id="gform_submit_button_2">Enviar</b-button>
+                      <b-button type="submit" block class="input" id="gform_submit_button_2">Enviar</b-button>
                     </div>  
                   </b-col>
                 </b-row>    
@@ -96,7 +96,7 @@ export default {
   text-transform: uppercase;
 }
 
-.footer-input {
+.input {
   background-color:rgba(0,0,0,0.2) !important;
   border: 1px solid  #D0A28C !important;
   color: #ccc !important;
@@ -148,7 +148,7 @@ export default {
     font-size: 4em;
   }
 
-  .footer-input {
+  .input {
     width: calc(100vw - 30px); 
   }
 
