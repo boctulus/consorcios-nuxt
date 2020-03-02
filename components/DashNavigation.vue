@@ -14,7 +14,7 @@
                                 <a @click="navigate" class="link" v-if="!item.bookmark" :id="item.link">{{item.msg}}</a>
                                 <a @click="scrollToBookmark" class="link" v-if="item.bookmark" :id="item.link">{{item.msg}}</a>
 
-                                 <b-dropdown-divider v-if="index == 0"></b-dropdown-divider>
+                                 <b-dropdown-divider v-if="typeof item.divider != 'undefined' && item.divider"></b-dropdown-divider>
                             </li>
 
                            
@@ -146,7 +146,7 @@ export default {
     font-size: 26px;
     margin-top: 12px;
     cursor: pointer;
-    padding-left: 0.5em;
+    padding-left: 1em;
     color: #ccc !important;
     /* 
     background-color:red; 
@@ -216,7 +216,7 @@ export default {
     left: 0;
   
     background-color:black;
-    width: 14em;
+    width: 14.5em;
     height: 100%;
 
     overflow-y: auto;
@@ -232,7 +232,7 @@ export default {
 
 .slide-fade-enter, .slide-fade-leave-to
 {
-  transform: translateX(-14em);
+  transform: translateX(-14.5em);
   opacity: 0;
 }
 
