@@ -4,13 +4,13 @@
             <div class="justify-content-center align-self-center">
             
               	<b-row style="margin-top: -40px;">    
-                  <b-col md="6" offset-md="3" class="mt-5 mb-3">
+                  <b-col xl="6" offset-xl="3" class="mt-5 mb-3">
                     <h3 class="form_h text-mobile">Mi Edificio</h3>
                   </b-col>
                 </b-row>    
 
                 <b-row>
-                  <b-col md="6" offset-md="3">
+                  <b-col xl="6" offset-xl="3">
                     <div class="form-group engravers label">
                       <label for="edificio">Edificación</label><label class="gfield_required">*</label>
                         <select v-model="edificio_sel" class="form-control input" id="edificio">
@@ -21,7 +21,7 @@
                 </b-row>
 
                 <b-row>
-                  <b-col md="6" offset-md="3">
+                  <b-col xl="6" offset-xl="3">
                     <div class="form-group engravers label">
                       <label for="password">Contraseña</label><label class="gfield_required">*</label>
                       <input type="password" class="form-control input" id="password">
