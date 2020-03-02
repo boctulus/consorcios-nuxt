@@ -25,7 +25,7 @@
                 <!-- media queries : hacer un "pull" de content para "md" o menores -->
                 <b-row>
                     <b-col>
-                        <n-link to="/dashboard" class="logo_wrapper">
+                        <n-link to="/home" class="logo_wrapper">
                             <img :src="require('@/assets/logo_sm.png')" class="logo_img"/>
                             <span class="logo egravers">El Grove</span>
                         </n-link> 
@@ -58,11 +58,11 @@ export default {
         return {
             drawer: false,
             list: [
-                { msg: 'Posts',  link: '/dashboard/posts', icon: 'fa-clone'},
                 { msg: 'Servicios',  link: '/dashboard/servicios', icon: 'fa-bell' },
+                { msg: 'Posts',  link: '/dashboard/posts', icon: 'fa-clone'},               
+                { msg: 'Passwords',  link: '/dashboard/passwords', icon: 'fa-key' },
                 { msg: 'Archivos',  link: '/dashboard/archivos', icon: 'fa-folder' },
-                { msg: 'Mensajes',  link: '/dashboard/mensajes', icon: 'fa-envelope' },
-                { msg: 'Contraseñas',  link: '/dashboard/passwords', icon: 'fa-key' }
+                { msg: 'Mensajes',  link: '/dashboard/mensajes', icon: 'fa-envelope' }                
             ]
         };
     },
