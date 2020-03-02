@@ -58,7 +58,7 @@
 
 <script>
 export default {  
-  layout: 'default',
+  layout: 'home',
   data() {
       return {
         edificio_sel: null, 
