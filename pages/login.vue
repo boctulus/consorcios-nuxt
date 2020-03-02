@@ -30,7 +30,7 @@
                 </b-row>    
                       
                 <b-row>
-                  <b-col md="6" offset-md="3">
+                  <b-col xl="6" offset-xl="3">
                     <div class="form-group engravers label">
                       <b-button type="submit" block class="input" id="gform_submit_button_2">Enviar</b-button>
                     </div>  
