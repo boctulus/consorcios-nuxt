@@ -13,7 +13,11 @@
                                 <v-icon color="#CFA18B" style="padding-left:0.5em;">{{item.icon}}</v-icon>                                
                                 <a @click="navigate" class="link" v-if="!item.bookmark" :id="item.link">{{item.msg}}</a>
                                 <a @click="scrollToBookmark" class="link" v-if="item.bookmark" :id="item.link">{{item.msg}}</a>
+
+                                 <b-dropdown-divider v-if="index == 0"></b-dropdown-divider>
                             </li>
+
+                           
 
                     </v-list>      
                 </div>
@@ -63,11 +67,12 @@ export default {
         return {
             drawer: false,
             list: [
+                { msg: 'Panel de control',  link: '/dashboard', icon: 'fa-gears', divider: true }, 
+                { msg: 'Mensajes',  link: '/dashboard/mensajes', icon: 'fa-envelope' },  
                 { msg: 'Servicios',  link: '/dashboard/servicios', icon: 'fa-bell' },
                 { msg: 'Posts',  link: '/dashboard/posts', icon: 'fa-clone'},               
-                { msg: 'Passwords',  link: '/dashboard/passwords', icon: 'fa-key' },
-                { msg: 'Archivos',  link: '/dashboard/archivos', icon: 'fa-folder' },
-                { msg: 'Mensajes',  link: '/dashboard/mensajes', icon: 'fa-envelope' }                
+                { msg: 'Edificios',  link: '/dashboard/edificios', icon: 'fa-building' },
+                { msg: 'Archivos',  link: '/dashboard/archivos', icon: 'fa-folder' }
             ]
         };
     },

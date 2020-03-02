@@ -1,7 +1,8 @@
 <template>
     <div id="dash_layout">
-      <DashNavigation></DashNavigation>      
-      <nuxt/> 
+      <DashNavigation>
+          <nuxt/>
+      </DashNavigation>
     </div>
 </template>
 
