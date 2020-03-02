@@ -1,7 +1,7 @@
 <template>
 		<v-img :src="require('../assets/administracion-profesional-de-condominios-1.jpg')" lazy-src style="height:100vh;">
         <b-container style="color: #ffffff;" class="d-flex h-100">
-            <div class="justify-content-center align-self-center">
+            <div class="justify-content-center align-self-center w-100">
             
               	<b-row style="margin-top: -40px;">    
                   <b-col xl="6" offset-xl="3" class="mt-5 mb-3">

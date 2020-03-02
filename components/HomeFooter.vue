@@ -27,14 +27,14 @@
                       <b-col md="6" sm="12">
                         <div class="form-group engravers label">
                           <label for="nombre">NOMBRE</label><label class="gfield_required">*</label>
-                          <input type="text" class="form-control footer-input" id="nombre">
+                          <input type="text" class="form-control input" id="nombre">
                         </div>  
                       </b-col>
                       
                       <b-col md="6" sm="12">
                         <div class="form-group engravers label">
                           <label for="telefono">TELÉFONO</label><label class="gfield_required">*</label>
-                          <input type="text" class="form-control footer-input" id="telefono">
+                          <input type="text" class="form-control input" id="telefono">
                         </div>
                       </b-col>
                     </b-row>    
@@ -43,13 +43,13 @@
                       <b-col md="6" sm="12">
                         <div class="form-group engravers label">
                           <label for="email">EMAIL</label><label class="gfield_required">*</label>
-                          <input type="email" class="form-control footer-input" id="email">
+                          <input type="email" class="form-control input" id="email">
                         </div>  
                       </b-col>
                       
                       <b-col md="6" sm="12">
                         <label for="servicio">SERVICIO</label><label class="gfield_required">*</label>
-                        <select v-model="servicio_sel" class="form-control footer-input" id="servicio">
+                        <select v-model="servicio_sel" class="form-control input" id="servicio">
                           <option v-for="(servicio, index) in servicios" v-bind:key="index">{{ servicio }}</option>
                         </select>
                       </b-col>
@@ -65,11 +65,11 @@
                     placeholder="Su consulta"
                     rows="3"
                     max-rows="6"
-                    class="footer-input"
+                    class="input"
                     ></b-form-textarea>
                   </b-form-group>
 
-                  <b-button type="submit" block class="footer-input" id="gform_submit_button_2">Enviar</b-button> 
+                  <b-button type="submit" block class="input" id="gform_submit_button_2">Enviar</b-button> 
                   </b-col>
                 </b-row>                  
                 
@@ -146,7 +146,7 @@ export default {
   text-transform: uppercase;
 }
 
-.footer-input {
+.input {
   background-color:rgba(0,0,0,0.2) !important;
   border: 1px solid  #D0A28C !important;
   color: #ccc !important;
@@ -206,7 +206,7 @@ export default {
     font-size: 4em;
   }
 
-  .footer-input {
+  .input {
     width: calc(100vw - 30px); 
   }
 
