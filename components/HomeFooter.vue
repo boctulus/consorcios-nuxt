@@ -3,7 +3,7 @@
           <b-container style="color: #ffffff;">        
                 <b-row class="mb-5 mt-5 mx-auto"><h3 class="form_h text-mobile">CONTACTO</h3></b-row>  
 
-                <b-row>
+                <b-row class="w-100">
                   <b-col md="6" class="engravers">
                     <b-row class="mb-3 ml-auto info">Teléfono: (221) 15 545-2109</b-row>
                     <b-row class="mb-3 ml-auto info">Correo: adm.elgrove@outlook.com</b-row>
@@ -21,56 +21,79 @@
                   <div id="form_title">
                     <h3 class="mt-3 ml-3 engravers" style="font-weight: 500;">SU CONSULTA</h3>
                   </div>
-
+                     
                   <b-col md="6"  class="mt-3">
-                    <b-row>
-                      <b-col md="6" sm="12">
-                        <div class="form-group engravers label">
-                          <label for="nombre">NOMBRE</label><label class="gfield_required">*</label>
-                          <input type="text" class="form-control input" id="nombre">
-                        </div>  
-                      </b-col>
-                      
-                      <b-col md="6" sm="12">
-                        <div class="form-group engravers label">
-                          <label for="telefono">TELÉFONO</label><label class="gfield_required">*</label>
-                          <input type="text" class="form-control input" id="telefono">
-                        </div>
-                      </b-col>
-                    </b-row>    
-                  
-                    <b-row>
-                      <b-col md="6" sm="12">
-                        <div class="form-group engravers label">
-                          <label for="email">EMAIL</label><label class="gfield_required">*</label>
-                          <input type="email" class="form-control input" id="email">
-                        </div>  
-                      </b-col>
-                      
-                      <b-col md="6" sm="12">
-                        <label for="servicio">SERVICIO</label><label class="gfield_required">*</label>
-                        <select v-model="servicio_sel" class="form-control input" id="servicio">
-                          <option v-for="(servicio, index) in servicios" v-bind:key="index">{{ servicio }}</option>
-                        </select>
-                      </b-col>
-                    </b-row>    
+                      <ValidationObserver v-slot="{ handleSubmit }" ref="form">
+                        <form @submit.prevent="handleSubmit(onSubmit)"> 
+                          <b-row>
+                            <b-col md="6" sm="12">
+                              <div class="form-group engravers label">
+                                <label for="nombre">NOMBRE</label><label class="gfield_required">*</label>
+                                <validation-provider rules="required|alpha_spaces" v-slot="{ errors }">  
+                                  <input type="text" v-model="nombre" v-bind:class="{ required: errors[0] }"  class="form-control input" id="nombre">
+                                  <div class="error_msg">{{ errors[0] }}</div>
+                                </validation-provider>
+                              </div>  
+                            </b-col>
+                            
+                            <b-col md="6" sm="12">
+                              <div class="form-group engravers label">
+                                <label for="telefono">TELÉFONO</label><label class="gfield_required">*</label>
+                                <validation-provider rules="required" v-slot="{ errors }">
+                                   <input type="text" v-model="telefono" v-bind:class="{ required: errors[0] }" class="form-control input" id="telefono">
+                                  <div class="error_msg">{{ errors[0] }}</div>
+                                </validation-provider>
+                              </div>
+                            </b-col>
+                          </b-row>    
+                        
+                          <b-row>
+                            <b-col md="6" sm="12">
+                              <div class="form-group engravers label">
+                                <label for="email">EMAIL</label><label class="gfield_required">*</label>
+                                <validation-provider rules="required|email" v-slot="{ errors }">
+                                  <input type="email" v-model="email" v-bind:class="{ required: errors[0] }" class="form-control input" name="email" id="email">
+                                  <div class="error_msg">{{ errors[0] }}</div>
+                                 </validation-provider>
+                              </div>  
+                            </b-col>
+                            
+                            <b-col md="6" sm="12">
+                              <div class="form-group engravers label">
+                                <label for="servicio">SERVICIO</label><label class="gfield_required">*</label>
+                                <validation-provider rules="required" v-slot="{ errors }">
+                                  <select v-model="servicio" v-bind:class="{ required: errors[0] }" class="form-control input" id="servicio">
+                                    <option v-for="(el_servicio, index) in servicios" v-bind:key="index">{{ el_servicio }}</option>
+                                  </select>
+                                  <div class="error_msg">{{ errors[0] }}</div>
+                                </validation-provider>
+                              </div>  
+                            </b-col>
+                          </b-row>    
+                          
+                          <div class="form-group engravers label">
+                            <label for="consulta">CONSULTA</label><label class="gfield_required">*</label>
+                            <validation-provider rules="required" v-slot="{ errors }">
+                              <b-form-textarea
+                                id="consulta"
+                                placeholder="Su consulta"
+                                rows="3"
+                                max-rows="6"
+                                class="input"
+                                v-model="consulta"
+                                v-bind:class="{ required: errors[0] }"
+                              >
+                              </b-form-textarea>
+                              <div class="error_msg">{{ errors[0] }}</div>
+                            </validation-provider>
+                          </div>  
+                          
+                          <b-button type="submit" block class="input" id="gform_submit_button_2">Enviar</b-button> 
+                        </form>
+                      </ValidationObserver>    
+                    </b-col>
 
-                  <b-form-group
-                    label="CONSULTA"
-                    label-for="input-4"
-                    class="engravers label"
-                  >
-                    <b-form-textarea
-                    id="consulta"
-                    placeholder="Su consulta"
-                    rows="3"
-                    max-rows="6"
-                    class="input"
-                    ></b-form-textarea>
-                  </b-form-group>
 
-                  <b-button type="submit" block class="input" id="gform_submit_button_2">Enviar</b-button> 
-                  </b-col>
                 </b-row>                  
                 
                 <span id="theend"></span>
@@ -80,34 +103,86 @@
 
 
 <script>
+import { ValidationObserver, ValidationProvider, extend, localize } from 'vee-validate';
+import { required, email, alpha_spaces } from 'vee-validate/dist/rules';
+//import { messages } from 'vee-validate/dist/locale/es.json';
+
+//localize('es', es);
+
+extend('required', {
+    ...required,
+    message: 'Campo requerido'
+});
+
+extend('email', {
+    ...email,
+    message: 'No es un e-mail válido'
+});
+
+extend('alpha_spaces',{
+    ...alpha_spaces,
+    message: 'Solo letras y espacios por favor'
+})
+
 export default {
      name: 'HomeFooter',
      data() {
       return {
-        servicio_sel: null, 
-          servicios: [
-            'Administración general',
-            'Cobro a deudores',
-            'Manejo de recursos',
-            'Seguridad',
-            'Mantenimiento general',
-            'Limpieza',
-            'Trabajos en altura',
-            'Lavado de tanques',
-            'Ascensores',
-            //'Arrendamiento y venta de propiedades',
-            //'Conserge',
-            //'Suministro y administración de Gas LP',
-            'Impermeabilización',
-            'Fumigación',
-            'Aire acondicionado',
-            'Bombas de agua',
-            'Jardinería',
-            //'Mantenimiento en oficinas',
-            //'Centros comerciales'
-          ]
+        nombre: null,
+        telefono: null, 
+        email: null, 
+        servicio: null, 
+        consulta: null,
+        servicios: [
+          'Administración general',
+          'Cobro a deudores',
+          'Manejo de recursos',
+          'Seguridad',
+          'Mantenimiento general',
+          'Limpieza',
+          'Trabajos en altura',
+          'Lavado de tanques',
+          'Ascensores',
+          //'Arrendamiento y venta de propiedades',
+          //'Conserge',
+          //'Suministro y administración de Gas LP',
+          'Impermeabilización',
+          'Fumigación',
+          'Aire acondicionado',
+          'Bombas de agua',
+          'Jardinería',
+          //'Mantenimiento en oficinas',
+          //'Centros comerciales'
+        ]
        }
-     }
+    },
+    methods: {
+      onSubmit() {
+        console.log('SUBMITTING ...');
+        console.log([this.nombre, this.email, this.telefono, this.servicio, this.consulta]);
+
+        this.$refs.form.validate().then(success => {
+          if (!success) {
+            return;
+          }
+
+          console.log('Submited !!!');
+
+          // Resetting Values
+          this.nombre = this.mail = this.telefono = this.servicio = this.consulta = '';
+
+          // Wait until the models are updated in the UI
+          this.$nextTick(() => {
+            this.$refs.form.reset();
+          });
+        });
+        
+      }
+    },
+    components: {
+      ValidationProvider,
+      ValidationObserver
+    }
 }
 </script>
 
@@ -127,6 +202,8 @@ export default {
     border: none !important;
     border-bottom: 1px solid #D0A28C !important;
     height: 50px; 
+
+    margin-bottom: 2em;
 }
 
 #servicio:focus {

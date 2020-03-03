@@ -22,7 +22,7 @@
                       <div class="form-group engravers label">
                         <label for="edificio">Edificación</label><label class="gfield_required">*</label>
                           <validation-provider rules="required" v-slot="{ errors }">
-                            <select v-model="edificacion" class="form-control input" name="edificacion" id="edificacion">
+                            <select v-model="edificacion" v-bind:class="{ required: errors[0] }" class="form-control input" name="edificacion" id="edificacion">
                               <option v-for="(edificio, index) in edificios" v-bind:key="index">{{ edificio }}</option>
                             </select>
                             <div class="error_msg">{{ errors[0] }}</div>
@@ -38,12 +38,10 @@
                     >
                       <div class="form-group engravers label">
                         <label for="password">Contraseña</label><label class="gfield_required">*</label>
-
                         <validation-provider rules="required" v-slot="{ errors }">
                           <input type="password" v-model="password" class="form-control input" name="password" id="password" v-bind:class="{ required: errors[0] }" />
                           <div class="error_msg">{{ errors[0] }}</div>
                         </validation-provider>
-                        
                       </div>  
                     </b-col>
                   </b-row>    
@@ -71,12 +69,10 @@
 import { ValidationProvider, extend, ValidationObserver } from 'vee-validate';
 import { required } from 'vee-validate/dist/rules';
 
-/*
 extend('required', {
   ...required,
   message: 'Campo requerido'
 });
-*/
 
 export default {  
   layout: 'home',
