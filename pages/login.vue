@@ -2,54 +2,65 @@
 		<v-img :src="require('../assets/administracion-profesional-de-condominios-1.jpg')" lazy-src style="height:100vh;">
         <b-container style="color: #ffffff;" class="d-flex h-100">
             <div class="justify-content-center align-self-center w-100">
-            
-              	<b-row style="margin-top: -40px;">    
-                  <b-col  xl="6" offset-xl="3"
-                          lg="6" offset-lg="3" 
-                          md="6" offset-md="3"
-                          sm="6" offset-sm="3"
-                          class="mt-5 mb-3">
-                    <h3 class="form_h text-mobile">Mi Edificio</h3>
-                  </b-col>
-                </b-row>    
+              <ValidationObserver v-slot="{ handleSubmit }">
+                <form @submit.prevent="handleSubmit(onSubmit)">                  
+                  <b-row style="margin-top: -40px;">    
+                    <b-col  xl="6" offset-xl="3"
+                            lg="6" offset-lg="3" 
+                            md="6" offset-md="3"
+                            sm="6" offset-sm="3"
+                            class="mt-5 mb-3">
+                      <h3 class="form_h text-mobile">Mi Edificio</h3>
+                    </b-col>
+                  </b-row>    
 
-                <b-row>
-                  <b-col  xl="6" offset-xl="3"
-                          lg="6" offset-lg="3" 
-                          md="6" offset-md="3"
-                  >
-                    <div class="form-group engravers label">
-                      <label for="edificio">Edificación</label><label class="gfield_required">*</label>
-                        <select v-model="edificio_sel" class="form-control input" id="edificio">
-                          <option v-for="(edificio, index) in edificios" v-bind:key="index">{{ edificio }}</option>
-                        </select>
-                    </div>  
-                  </b-col>
-                </b-row>
+                  <b-row>
+                    <b-col  xl="6" offset-xl="3"
+                            lg="6" offset-lg="3" 
+                            md="6" offset-md="3"
+                    >
+                      <div class="form-group engravers label">
+                        <label for="edificio">Edificación</label><label class="gfield_required">*</label>
+                          <validation-provider rules="required" v-slot="{ errors }">
+                            <select v-model="edificacion" class="form-control input" name="edificacion" id="edificacion">
+                              <option v-for="(edificio, index) in edificios" v-bind:key="index">{{ edificio }}</option>
+                            </select>
+                            <div class="error_msg">{{ errors[0] }}</div>
+                          </validation-provider>  
+                      </div>  
+                    </b-col>
+                  </b-row>
 
-                <b-row>
-                  <b-col  xl="6" offset-xl="3"
-                          lg="6" offset-lg="3" 
-                          md="6" offset-md="3"
-                  >
-                    <div class="form-group engravers label">
-                      <label for="password">Contraseña</label><label class="gfield_required">*</label>
-                      <input type="password" class="form-control input" id="password">
-                    </div>  
-                  </b-col>
-                </b-row>    
-                      
-                <b-row>
-                  <b-col  xl="6" offset-xl="3"
-                          lg="6" offset-lg="3" 
-                          md="6" offset-md="3"
-                  >
-                    <div class="form-group engravers label">
-                      <b-button type="submit" block class="input" id="gform_submit_button_2">Enviar</b-button>
-                    </div>  
-                  </b-col>
-                </b-row>    
+                  <b-row>
+                    <b-col  xl="6" offset-xl="3"
+                            lg="6" offset-lg="3" 
+                            md="6" offset-md="3"
+                    >
+                      <div class="form-group engravers label">
+                        <label for="password">Contraseña</label><label class="gfield_required">*</label>
 
+                        <validation-provider rules="required" v-slot="{ errors }">
+                          <input type="password" v-model="password" class="form-control input" name="password" id="password" v-bind:class="{ required: errors[0] }" />
+                          <div class="error_msg">{{ errors[0] }}</div>
+                        </validation-provider>
+                        
+                      </div>  
+                    </b-col>
+                  </b-row>    
+                        
+                  <b-row>
+                    <b-col  xl="6" offset-xl="3"
+                            lg="6" offset-lg="3" 
+                            md="6" offset-md="3"
+                    >
+                      <div class="form-group engravers label">
+                        <b-button type="submit" block class="input" id="gform_submit_button_2">Enviar</b-button>
+                      </div>  
+                    </b-col>
+                  </b-row>    
+
+                </form>
+              </ValidationObserver>
             </div>
         </b-container>
     </v-img>	
@@ -57,24 +68,71 @@
 
 
 <script>
+import { ValidationProvider, extend, ValidationObserver } from 'vee-validate';
+import { required } from 'vee-validate/dist/rules';
+
+extend('required', {
+  ...required,
+  message: 'Campo requerido'
+});
+
 export default {  
   layout: 'home',
   data() {
       return {
-        edificio_sel: null, 
-          edificios: [
-            'El Águila',
-            'El fuerte',
-            'Los pitufos',
-            'Administración'
-          ]
+        edificacion: null, 
+        edificios: [
+          'El Águila',
+          'El fuerte',
+          'Los pitufos',
+          'Administración'
+        ],
+        password: null
        }
-     }    
+  },
+  methods: {
+    onSubmit() {
+      console.log('SUBMITTING ...');
+      console.log([this.edificacion, this.password]);
+
+      /*
+      this.$refs.form.validate().then(success => {
+        if (!success) {
+          return;
+        }
+
+        alert('Form has been submitted!');
+
+        // Resetting Values
+        this.edificacion = this.password = '';
+
+        // Wait until the models are updated in the UI
+        this.$nextTick(() => {
+          this.$refs.form.reset();
+        });
+      });
+      */
+    }
+  },
+  components: {
+    ValidationProvider,
+    ValidationObserver
+  }
 }
 </script>
 
 
 <style scoped>
+
+.required {
+  outline: 1px solid red;
+}
+
+.error_msg {
+  padding-top: 0.5em;
+  color: red;
+}
+
 #edificio {
     background-color: transparent !important;
     border-top: 0;

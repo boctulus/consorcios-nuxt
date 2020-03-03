@@ -146,7 +146,7 @@ export default {
     font-size: 26px;
     margin-top: 12px;
     cursor: pointer;
-    padding-left: 1em;
+    padding-left: 0.8em;
     color: #ccc !important;
     /* 
     background-color:red; 
