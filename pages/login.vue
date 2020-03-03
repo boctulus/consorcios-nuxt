@@ -2,7 +2,7 @@
 		<v-img :src="require('../assets/administracion-profesional-de-condominios-1.jpg')" lazy-src style="height:100vh;">
         <b-container style="color: #ffffff;" class="d-flex h-100">
             <div class="justify-content-center align-self-center w-100">
-              <ValidationObserver v-slot="{ handleSubmit }">
+              <ValidationObserver v-slot="{ handleSubmit }" ref="form">
                 <form @submit.prevent="handleSubmit(onSubmit)">                  
                   <b-row style="margin-top: -40px;">    
                     <b-col  xl="6" offset-xl="3"
@@ -71,10 +71,12 @@
 import { ValidationProvider, extend, ValidationObserver } from 'vee-validate';
 import { required } from 'vee-validate/dist/rules';
 
+/*
 extend('required', {
   ...required,
   message: 'Campo requerido'
 });
+*/
 
 export default {  
   layout: 'home',
@@ -95,13 +97,12 @@ export default {
       console.log('SUBMITTING ...');
       console.log([this.edificacion, this.password]);
 
-      /*
       this.$refs.form.validate().then(success => {
         if (!success) {
           return;
         }
 
-        alert('Form has been submitted!');
+        console.log('Submited !!!');
 
         // Resetting Values
         this.edificacion = this.password = '';
@@ -111,7 +112,7 @@ export default {
           this.$refs.form.reset();
         });
       });
-      */
+      
     }
   },
   components: {
