@@ -29,7 +29,7 @@
                             <b-col md="6" sm="12">
                               <div class="form-group engravers label">
                                 <label for="nombre">NOMBRE</label><label class="gfield_required">*</label>
-                                <validation-provider rules="required|alpha_spaces" v-slot="{ errors }">  
+                                <validation-provider rules="required|alpha_spaces|min:5" v-slot="{ errors }">  
                                   <input type="text" v-model="nombre" v-bind:class="{ required: errors[0] }"  class="form-control input" id="nombre">
                                   <div class="error_msg">{{ errors[0] }}</div>
                                 </validation-provider>
@@ -40,8 +40,8 @@
                               <div class="form-group engravers label">
                                 <label for="telefono">TELÉFONO</label><label class="gfield_required">*</label>
                                 <validation-provider rules="required" v-slot="{ errors }">
-                                   <input type="text" v-model="telefono" v-bind:class="{ required: errors[0] }" class="form-control input" id="telefono">
-                                  <div class="error_msg">{{ errors[0] }}</div>
+                                   <input type="text" v-model="telefono" v-bind:class="{ required: errors[0] || customErrors['telefono']}" class="form-control input" id="telefono">
+                                  <div class="error_msg">{{ errors[0] || customErrors['telefono'] }}</div>
                                 </validation-provider>
                               </div>
                             </b-col>
@@ -104,7 +104,7 @@
 
 <script>
 import { ValidationObserver, ValidationProvider, extend, localize } from 'vee-validate';
-import { required, email, alpha_spaces } from 'vee-validate/dist/rules';
+import { required, email, alpha_spaces, regex, min } from 'vee-validate/dist/rules';
 //import { messages } from 'vee-validate/dist/locale/es.json';
 
 //localize('es', es);
@@ -124,6 +124,11 @@ extend('alpha_spaces',{
     message: 'Solo letras y espacios por favor'
 })
 
+extend('min', {
+    ...min,
+    message: 'Longitud mínima no alcanzada'
+});
+
 export default {
      name: 'HomeFooter',
      data() {
@@ -133,6 +138,7 @@ export default {
         email: null, 
         servicio: null, 
         consulta: null,
+        customErrors: [],
         servicios: [
           'Administración general',
           'Cobro a deudores',
@@ -177,6 +183,11 @@ export default {
           });
         });
         
+      }
+    },
+    watch: {
+      telefono: function(val){   
+        this.customErrors['telefono'] = (val.length !=0 && val.match(/^[0-9\-\('\) +]+$/) == null) ? 'Formato de teléfono inválido' : null;
       }
     },
     components: {
