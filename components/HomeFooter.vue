@@ -213,8 +213,7 @@ export default {
     border: none !important;
     border-bottom: 1px solid #D0A28C !important;
     height: 50px; 
-
-    margin-bottom: 2em;
+    margin-bottom: 1em;
 }
 
 #servicio:focus {

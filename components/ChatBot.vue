@@ -34,8 +34,8 @@ import OpenIcon from 'vue-beautiful-chat/src/assets/logo-no-bg.svg'
 import FileIcon from 'vue-beautiful-chat/src/assets/file.svg'
 import CloseIconSvg from 'vue-beautiful-chat/src/assets/close.svg'
 
-//const inteligencia = require('@/util/inteligencia')
-import classify from '@/util/inteligencia';
+//const IA = require('@/util/IA')
+import classify from '@/util/IA';
 
 export default {
   name: 'ChatBot',

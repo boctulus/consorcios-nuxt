@@ -130,7 +130,7 @@ export default {
   color: red;
 }
 
-#edificio {
+#edificacion {
     background-color: transparent !important;
     border-top: 0;
     border-left: 0;

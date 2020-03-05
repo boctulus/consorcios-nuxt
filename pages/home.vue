@@ -18,9 +18,9 @@
               backward-delay="15" 
               clearing-delay="1000"
               v-bind:messages = "['Seriedad',
+                                  'Honestidad',
                                   'Eficacia',
-                                  'Número 1 en La Plata',
-                                  'El Grove'
+                                  'Administración El Grove'
               ]"
               class="engravers txt_anim"
               >

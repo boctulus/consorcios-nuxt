@@ -1,4 +1,4 @@
-const TrainingSet = require('./trainingData.json')
+const TrainingSet = require('@/api/trainingData.json')
 //const natural = require('natural')
 //const var_dump = require('var_dump')
 

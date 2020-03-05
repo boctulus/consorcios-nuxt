@@ -49,7 +49,7 @@
                 </b-row>                 
             </nav>
 
-            <div class="content">
+            <div class="content" @click="closeDrawer">
                 <nuxt-child/>
             </div>
         </b-container>
@@ -58,22 +58,14 @@
 </template>
 
 <script>
-import Hamburger from '@/components/Hamburger';
-//import Velocity from 'velocity-animate';
+import getLinks from '@/api/links.js';
 
 export default {
     name: 'DashNavigation',
     data() {
         return {
             drawer: false,
-            list: [
-                { msg: 'Panel de control',  link: '/dashboard', icon: 'fa-gears', divider: true }, 
-                { msg: 'Mensajes',  link: '/dashboard/mensajes', icon: 'fa-envelope' },  
-                { msg: 'Servicios',  link: '/dashboard/servicios', icon: 'fa-bell' },
-                { msg: 'Posts',  link: '/dashboard/posts', icon: 'fa-clone'},               
-                { msg: 'Edificios',  link: '/dashboard/edificios', icon: 'fa-building' },
-                { msg: 'Archivos',  link: '/dashboard/archivos', icon: 'fa-folder' }
-            ]
+            list: []
         };
     },
     computed: {
@@ -82,6 +74,11 @@ export default {
         }
     },
     created() {
+        this.list = [
+            { msg: 'Panel de control',  link: '/dashboard', icon: 'fa-gears', divider: true },
+            ...getLinks('habitante')  /* debo usar Vuex para saber el o los roles y así pedir los links */
+        ];
+
         for (let i=0; i<this.list.length; i++){
             if (this.list[i].link[0] == '#')
                 this.list[i].bookmark = true;
@@ -89,12 +86,10 @@ export default {
                 this.list[i].bookmark = false;
         }
     },
-    directives: {
-
-    },
     methods: {
         closeDrawer: function() {
             this.drawer = false;
+            console.log('CERRANDO..');
         },
         scrollToBookmark: function(element) {
             this.drawer = false;   
@@ -117,7 +112,7 @@ export default {
         }
     },
     components: {
-        Hamburger
+        
     }
 };
 </script>
@@ -208,7 +203,7 @@ export default {
 }
 
 .drawer {
-    opacity: 0.75; 
+    opacity: 1; 
     z-index: 5000;
     
     position: fixed;
