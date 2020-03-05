@@ -68,6 +68,7 @@
 <script>
 import { ValidationProvider, extend, ValidationObserver } from 'vee-validate';
 import { required } from 'vee-validate/dist/rules';
+import { store } from '@/store/login.js'
 
 extend('required', {
   ...required,
@@ -75,6 +76,7 @@ extend('required', {
 });
 
 export default {  
+  store: store,
   layout: 'home',
   data() {
       return {
@@ -88,6 +90,9 @@ export default {
         password: null
        }
   },
+  mounted() {
+        
+  },
   methods: {
     onSubmit() {
       console.log('SUBMITTING ...');
@@ -100,6 +105,15 @@ export default {
 
         console.log('Submited !!!');
 
+        if (this.edificacion == "Administración" && this.password == 'gogogo'){
+          this.$store.commit('saveUser', {username: 'boctulus', id: 1}); // hardcodeado
+          console.log('******* [ Login ] Username: ' + this.$store.getters.username);
+          
+          setTimeout(() => {
+            this.$router.push('/dashboard');
+          }, 2000);  
+        }
+        
         // Resetting Values
         this.edificacion = this.password = '';
 

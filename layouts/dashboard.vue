@@ -9,11 +9,26 @@
 
 <script>
 import DashNavigation from '@/components/DashNavigation';
+import { store } from '@/store/login.js'
 
 export default {
-  components: {
-    DashNavigation
-  }  
+    store: store,
+    created() {
+        console.log('------- Username: ' + this.$store.getters.username);
+        
+        if (this.$store.getters.username == null){
+            setTimeout(() => {
+               this.$router.push('/login')     
+            }, 2000);
+        }
+        
+    },
+    mounted() {
+        
+    },
+    components: {
+        DashNavigation
+    }  
 }
 </script>
 

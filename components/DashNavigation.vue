@@ -50,8 +50,7 @@
             </nav>
 
             <div class="content" @click="closeDrawer">
-                 Contador: {{ count }}
-                <span v-if="user.username">{{ user.username }}</span>
+                <span v-if="username">Username: {{ username }}</span>
 
                 <nuxt-child/>
             </div>
@@ -77,11 +76,11 @@ export default {
         computedList: function () {
             return this.drawer ? this.list : []
         },
-        count: function () {
-            return this.$store.state.count;
-        },
         user: function () {
             return this.$store.state.authenticatedUser;
+        },
+        username: function () {
+            return this.$store.getters.username;
         }
     },
     created() {
@@ -98,9 +97,9 @@ export default {
         }
     },
     mounted() {
-        //console.log(this.count);
-        this.$store.commit('saveUser', {username: 'boctulus', id: 1});
-        console.log(this.user);
+        //this.$store.commit('saveUser', {username: 'boctulus', id: 1});
+        //console.log(this.user);
+        //console.log('------- Username: ' + this.username);
     },
     methods: {
         closeDrawer: function() {
@@ -125,12 +124,6 @@ export default {
         },
         logout: function() {
             console.log('LOG OUT');
-        },
-        increment() {
-            this.$store.commit('increment');
-        },
-        decrement() {
-            this.$store.commit('decrement');
         }
     },
     components: {

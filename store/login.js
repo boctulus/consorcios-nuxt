@@ -5,16 +5,15 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
     state: {
-        count: 5,
-        authenticatedUser: {}
+        authenticatedUser: {
+            id: null,
+            username: null,
+            roles: [],
+            accessToken: null,
+            refreshToken: null
+        }
     },
     mutations: {
-        increment(state) {
-            state.count++;
-        },
-        decrement(state) {
-            state.count--;
-        },
         logout(state) {
             state.authenticatedUser.null
         },
@@ -27,6 +26,23 @@ export const store = new Vuex.Store({
         },
         saveRefreshToken(state, val) {
             state.authenticatedUser.refreshToken = val;
+        }
+    },
+    getters: {
+        id: state => {
+            return state.authenticatedUser.id;
+        },
+        username: state => {
+            return state.authenticatedUser.username;
+        },
+        roles: state => {
+            return state.authenticatedUser.roles;
+        },
+        accessToken: state => {
+            return state.authenticatedUser.accessToken;
+        },
+        refreshToken: stare => {
+            return stare.authenticatedUser.refreshToken;
         }
     }
   });
