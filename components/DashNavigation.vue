@@ -50,6 +50,9 @@
             </nav>
 
             <div class="content" @click="closeDrawer">
+                 Contador: {{ count }}
+                <span v-if="user.username">{{ user.username }}</span>
+
                 <nuxt-child/>
             </div>
         </b-container>
@@ -59,9 +62,11 @@
 
 <script>
 import getLinks from '@/api/links.js';
+import { store } from '@/store/login.js'
 
 export default {
     name: 'DashNavigation',
+    store: store,
     data() {
         return {
             drawer: false,
@@ -71,6 +76,12 @@ export default {
     computed: {
         computedList: function () {
             return this.drawer ? this.list : []
+        },
+        count: function () {
+            return this.$store.state.count;
+        },
+        user: function () {
+            return this.$store.state.authenticatedUser;
         }
     },
     created() {
@@ -85,6 +96,11 @@ export default {
             else     
                 this.list[i].bookmark = false;
         }
+    },
+    mounted() {
+        //console.log(this.count);
+        this.$store.commit('saveUser', {username: 'boctulus', id: 1});
+        console.log(this.user);
     },
     methods: {
         closeDrawer: function() {
@@ -109,6 +125,12 @@ export default {
         },
         logout: function() {
             console.log('LOG OUT');
+        },
+        increment() {
+            this.$store.commit('increment');
+        },
+        decrement() {
+            this.$store.commit('decrement');
         }
     },
     components: {
