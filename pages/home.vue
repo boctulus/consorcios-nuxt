@@ -146,28 +146,7 @@
 
 <script>
 import TextAnimation from '@/components/TextAnimation'
-
-import { required, email, max } from 'vee-validate/dist/rules'
-import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate'
-
 import { Carousel, Slide } from 'vue-carousel';
-
-setInteractionMode('eager')
-
-extend('required', {
-  ...required,
-  message: 'Field can not be empty',
-})
-
-extend('max', {
-  ...max,
-  message: 'The name field may not be greater than {length} characters',
-})
-
-extend('email', {
-  ...email,
-  message: 'This field must be a valid email',
-})
 
 export default {  
   layout: 'home',
@@ -204,9 +183,7 @@ export default {
     },
   },
   components: {
-    TextAnimation,
-    ValidationProvider,
-    ValidationObserver,    
+    TextAnimation,  
     Carousel,
     Slide
   }

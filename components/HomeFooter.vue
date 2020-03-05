@@ -74,16 +74,16 @@
                           <div class="form-group engravers label">
                             <label for="consulta">CONSULTA</label><label class="gfield_required">*</label>
                             <validation-provider rules="required" v-slot="{ errors }">
-                              <b-form-textarea
+                              <textarea
                                 id="consulta"
                                 placeholder="Su consulta"
                                 rows="3"
                                 max-rows="6"
                                 class="input"
+                                name="consulta"
                                 v-model="consulta"
                                 v-bind:class="{ required: errors[0] }"
-                              >
-                              </b-form-textarea>
+                              />
                               <div class="error_msg">{{ errors[0] }}</div>
                             </validation-provider>
                           </div>  
@@ -108,8 +108,8 @@ import * as rules from 'vee-validate/dist/rules'
 import es from 'vee-validate/dist/locale/es'
 import Vue from 'vue'
 
-Vue.component('ValidationProvider', ValidationProvider)
-Vue.component('ValidationObserver', ValidationObserver)
+//Vue.component('ValidationProvider', ValidationProvider)
+//Vue.component('ValidationObserver', ValidationObserver)
 
 for (let rule in rules){
   extend(rule, {
@@ -180,8 +180,8 @@ export default {
       }
     },
     components: {
-      //ValidationProvider,
-      //ValidationObserver
+      ValidationProvider,
+      ValidationObserver
     }
 }
 </script>
@@ -236,6 +236,7 @@ export default {
 
 #consulta {
   height: 100px !important;
+  width: 100%;
 }
 
 #consulta::-webkit-scrollbar {
