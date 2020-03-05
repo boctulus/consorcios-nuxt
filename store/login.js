@@ -32,7 +32,10 @@ export const store = new Vuex.Store({
         saveUser(state, u) {
             state.authenticatedUser.id = u.id;
             state.authenticatedUser.username = u.username;
-        },    
+        }, 
+        saveRoles(state, val) {
+            state.authenticatedUser.roles = val;
+        },   
         saveAccessToken(state, val) {
             state.authenticatedUser.accessToken = val;
         },

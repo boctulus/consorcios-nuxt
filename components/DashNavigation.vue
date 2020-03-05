@@ -86,11 +86,18 @@ export default {
         }
     },
     created() {
+        console.log(this.$store.getters.roles);
+
         this.list = [
             { msg: 'Panel de control',  link: '/dashboard', icon: 'fa-gears', divider: true },
-            ...getLinks('habitante')  /* debo usar Vuex para saber el o los roles y así pedir los links */
         ];
 
+        this.$store.getters.roles.forEach(role => {
+            getLinks(role).forEach(e => {
+                this.list.push(e)
+            });
+        });
+        
         for (let i=0; i<this.list.length; i++){
             if (this.list[i].link[0] == '#')
                 this.list[i].bookmark = true;

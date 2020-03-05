@@ -3,7 +3,7 @@ const links = {
     { msg: 'Boletas',  link: '/dashboard/boletas', icon: 'fa-folder' },
     { msg: 'Documentos',  link: '/dashboard/Documentos', icon: 'fa-clone' }
   ],
-  administrador:  [
+  admin:  [
     { msg: 'Mensajes',  link: '/dashboard/mensajes', icon: 'fa-envelope' },  
     { msg: 'Servicios',  link: '/dashboard/servicios', icon: 'fa-bell' },
     { msg: 'Posts',  link: '/dashboard/posts', icon: 'fa-clone'},               

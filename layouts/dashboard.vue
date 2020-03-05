@@ -14,8 +14,6 @@ import { store } from '@/store/login.js'
 export default {
     store: store,
     created() {
-        //console.log('------- Username: ' + this.$store.getters.username);
-        
         if (this.$store.getters.username == null){
            this.$router.push('/login') 
         }        

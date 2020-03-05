@@ -73,6 +73,7 @@ h1 {
 .error_msg {
   padding-top: 0.5em;
   color: red;
+  display: block;
 }
 
 @media only screen and (max-width: 800px){

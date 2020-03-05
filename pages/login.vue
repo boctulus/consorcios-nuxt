@@ -25,7 +25,7 @@
                             <select v-model="edificacion" v-bind:class="{ required: errors[0] }" class="form-control input" name="edificacion" id="edificacion">
                               <option v-for="(edificio, index) in edificios" v-bind:key="index">{{ edificio }}</option>
                             </select>
-                            <div class="error_msg">{{ errors[0] }}</div>
+                            <span class="error_msg">{{ errors[0] }}</span>
                           </validation-provider>  
                       </div>  
                     </b-col>
@@ -40,12 +40,12 @@
                         <label for="password">Contraseña</label><label class="gfield_required">*</label>
                         <validation-provider rules="required" v-slot="{ errors }">
                           <input type="password" v-model="password" class="form-control input" name="password" id="password" v-bind:class="{ required: errors[0] }" />
-                          <div class="error_msg">{{ errors[0] }}</div>
+                          <span class="error_msg">{{ errors[0] }}</span>
+                          <span class="error_msg" v-if="other_error">{{ other_error }}</span>
                         </validation-provider>
                       </div>  
                     </b-col>
                   </b-row>    
-                        
                   <b-row>
                     <b-col  xl="6" offset-xl="3"
                             lg="6" offset-lg="3" 
@@ -80,15 +80,24 @@ export default {
   layout: 'home',
   data() {
       return {
+        other_error: null,
         edificacion: null, 
         edificios: [
           'El Águila',
           'El fuerte',
-          'Los pitufos',
+          'Los Pitufos',
           'Administración'
         ],
         password: null
        }
+  },
+  watch: {
+    edificacion: function(val) {
+      this.other_error = null;
+    },
+    password: function(val) {
+      this.other_error = null;
+    }
   },
   mounted() {
         
@@ -106,17 +115,24 @@ export default {
         console.log('Submited !!!');
 
         if (this.edificacion == "Administración" && this.password == 'gogogo'){
-          this.$store.commit('saveUser', {username: 'boctulus', id: 1}); // hardcodeado
-          this.$router.push('/dashboard');
-        }
-        
-        // Resetting Values
-        this.edificacion = this.password = '';
+          // Resetting Values
+          this.edificacion = this.password = '';
 
-        // Wait until the models are updated in the UI
-        this.$nextTick(() => {
-          this.$refs.form.reset();
-        });
+          // Wait until the models are updated in the UI
+          this.$nextTick(() => {
+            this.$refs.form.reset();
+          });
+          
+          this.$store.commit('saveUser', {username: 'admin', id: 1}); // hardcodeado
+          this.$store.commit('saveRoles', ['admin']);
+          this.$router.push('/dashboard');
+        } else if (this.edificacion == "Los Pitufos"  && this.password == '123') {
+          this.$store.commit('saveUser', {username: this.edificacion}); // hardcodeado
+          this.$store.commit('saveRoles', ['habitante']);
+          this.$router.push('/dashboard');        
+        } else {
+          this.other_error = 'Usuario o contraseña incorrectos';
+        }
       });
       
     }
