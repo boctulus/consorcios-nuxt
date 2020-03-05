@@ -107,11 +107,7 @@ export default {
 
         if (this.edificacion == "Administración" && this.password == 'gogogo'){
           this.$store.commit('saveUser', {username: 'boctulus', id: 1}); // hardcodeado
-          console.log('******* [ Login ] Username: ' + this.$store.getters.username);
-          
-          setTimeout(() => {
-            this.$router.push('/dashboard');
-          }, 2000);  
+          this.$router.push('/dashboard');
         }
         
         // Resetting Values

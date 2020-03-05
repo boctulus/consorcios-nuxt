@@ -42,16 +42,18 @@
                     </b-col>
 
                     <b-col>
+                        <span v-if="username" style="position: fixed;  top: 12px; right: 60px">{{ username }}</span>
+                    </b-col>
+
+                    <b-col>
                         <b-dropdown id="dropdown-right" right text="" class="m-2">
-                            <b-dropdown-item href="#" @click="logout">Salir</b-dropdown-item>
+                            <b-dropdown-item href="#" @click="logout"><v-icon style="font-size:1.2em; padding-bottom: 2px;">logout</v-icon> Salir</b-dropdown-item>
                         </b-dropdown>         
                     </b-col>
                 </b-row>                 
             </nav>
 
             <div class="content" @click="closeDrawer">
-                <span v-if="username">Username: {{ username }}</span>
-
                 <nuxt-child/>
             </div>
         </b-container>
@@ -97,9 +99,7 @@ export default {
         }
     },
     mounted() {
-        //this.$store.commit('saveUser', {username: 'boctulus', id: 1});
-        //console.log(this.user);
-        //console.log('------- Username: ' + this.username);
+
     },
     methods: {
         closeDrawer: function() {
@@ -123,7 +123,8 @@ export default {
             },500);  
         },
         logout: function() {
-            console.log('LOG OUT');
+            this.$store.commit('logout');
+            this.$router.push('/login');
         }
     },
     components: {

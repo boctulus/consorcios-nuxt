@@ -14,14 +14,11 @@ import { store } from '@/store/login.js'
 export default {
     store: store,
     created() {
-        console.log('------- Username: ' + this.$store.getters.username);
+        //console.log('------- Username: ' + this.$store.getters.username);
         
         if (this.$store.getters.username == null){
-            setTimeout(() => {
-               this.$router.push('/login')     
-            }, 2000);
-        }
-        
+           this.$router.push('/login') 
+        }        
     },
     mounted() {
         
