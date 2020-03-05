@@ -79,7 +79,7 @@ export default {
             return this.drawer ? this.list : []
         },
         user: function () {
-            return this.$store.state.authenticatedUser;
+            return this.$store.state.authUser;
         },
         username: function () {
             return this.$store.getters.username;

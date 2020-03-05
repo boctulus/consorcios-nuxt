@@ -103,31 +103,20 @@
 
 
 <script>
-import { ValidationObserver, ValidationProvider, extend, localize } from 'vee-validate';
-import { required, email, alpha_spaces, regex, min } from 'vee-validate/dist/rules';
-//import { messages } from 'vee-validate/dist/locale/es.json';
+import { extend, ValidationProvider, ValidationObserver } from 'vee-validate'
+import * as rules from 'vee-validate/dist/rules'
+import es from 'vee-validate/dist/locale/es'
+import Vue from 'vue'
 
-//localize('es', es);
+Vue.component('ValidationProvider', ValidationProvider)
+Vue.component('ValidationObserver', ValidationObserver)
 
-extend('required', {
-    ...required,
-    message: 'Campo requerido'
-});
-
-extend('email', {
-    ...email,
-    message: 'No es un e-mail válido'
-});
-
-extend('alpha_spaces',{
-    ...alpha_spaces,
-    message: 'Solo letras y espacios por favor'
-})
-
-extend('min', {
-    ...min,
-    message: 'Longitud mínima no alcanzada'
-});
+for (let rule in rules){
+  extend(rule, {
+    ...rules[rule], // add the rule
+    message: es.messages[rule] // add its message
+  })
+} 
 
 export default {
      name: 'HomeFooter',
@@ -191,8 +180,8 @@ export default {
       }
     },
     components: {
-      ValidationProvider,
-      ValidationObserver
+      //ValidationProvider,
+      //ValidationObserver
     }
 }
 </script>

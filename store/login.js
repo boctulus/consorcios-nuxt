@@ -23,41 +23,41 @@ const empty =  {
 
 export const store = new Vuex.Store({
     state: {
-        authenticatedUser: empty
+        authUser: empty
     },
     mutations: {
         logout(state) {
-            state.authenticatedUser = empty;
+            state.authUser = empty;
         },
         saveUser(state, u) {
-            state.authenticatedUser.id = u.id;
-            state.authenticatedUser.username = u.username;
+            state.authUser.id = u.id;
+            state.authUser.username = u.username;
         }, 
         saveRoles(state, val) {
-            state.authenticatedUser.roles = val;
+            state.authUser.roles = val;
         },   
         saveAccessToken(state, val) {
-            state.authenticatedUser.accessToken = val;
+            state.authUser.accessToken = val;
         },
         saveRefreshToken(state, val) {
-            state.authenticatedUser.refreshToken = val;
+            state.authUser.refreshToken = val;
         }
     },
     getters: {
         id: state => {
-            return state.authenticatedUser.id;
+            return state.authUser.id;
         },
         username: state => {
-            return state.authenticatedUser.username;
+            return state.authUser.username;
         },
         roles: state => {
-            return state.authenticatedUser.roles;
+            return state.authUser.roles;
         },
         accessToken: state => {
-            return state.authenticatedUser.accessToken;
+            return state.authUser.accessToken;
         },
         refreshToken: stare => {
-            return stare.authenticatedUser.refreshToken;
+            return stare.authUser.refreshToken;
         }
     },
     plugins: [vuexLocalStorage.plugin]
