@@ -54,6 +54,7 @@ body {
 
 h1 {
     font-family: 'Engravers', Sans-serif;
+    margin-top: -20px !important;
 }
 
 .logo {

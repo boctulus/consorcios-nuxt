@@ -151,11 +151,6 @@ import { Carousel, Slide } from 'vue-carousel';
 export default {  
   layout: 'home',
   data: () => ({
-    /*
-    options: {
-      licenseKey: 'YOUR KEY HERE',
-    },
-    */
     name: '',
     email: '',
     select: null,
