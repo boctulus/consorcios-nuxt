@@ -44,6 +44,9 @@ export const store = new Vuex.Store({
         }
     },
     getters: {
+        user: state => {
+            return state.authUser;
+        },
         id: state => {
             return state.authUser.id;
         },
@@ -58,6 +61,9 @@ export const store = new Vuex.Store({
         },
         refreshToken: stare => {
             return stare.authUser.refreshToken;
+        },
+        logged: state => {
+            return state.authUser.username != null;
         }
     },
     plugins: [vuexLocalStorage.plugin]

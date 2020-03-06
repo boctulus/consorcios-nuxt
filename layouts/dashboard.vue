@@ -14,7 +14,7 @@ import { store } from '@/store/login.js'
 export default {
     store: store,
     created() {
-        if (this.$store.getters.username == null){
+        if (!this.$store.getters.logged){
            this.$router.push('/login') 
         }        
     },

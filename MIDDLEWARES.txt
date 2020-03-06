@@ -1,0 +1,15 @@
+
+Si usas Nuxt con el auth configuras las rutas de login y hay un parámetro que te indica si lo quieres mandar al login 'siempre'
+
+Configura Auth Middleware (@nuxtjs/auth) globalmente (nuxt.config.js) y así tienes todas tus rutas protegidas. En la configuración de auth: { watchLoggedIn: true, ...} la ruta que no quieras proteger (será el caso de /login) usa auth: false.
+
+Si estás usando nuxt, los métodos que se usan antes de entrar a una ruta es el asyncdata, los middwaleares y fetch. Estos métodos acceden directamente al contexto de la aplicación y como también a las cookies del cliente. Ya que funcionan del lado del servidor. El router de nuxt no tiene tal cosa como el before y after. También puede buscar plugins de auth en nuxt. Te van a dar un archivo para poner rutas protegidas y demás. Todos esos plugins funcionan con middelwares
+
+No hay necesidad de guardarlo en un Store, Nuxt ya tiene un paquete nativo para gestionar usuarios sin necesidad de checar Store. No te compliques tanto, aquí te lo dejo.
+https://auth.nuxtjs.org/
+
+
+Más
+https://router.vuejs.org/guide/advanced/navigation-guards.html#global-before-guards
+https://nuxtjs.org/examples/auth-routes/
+https://codesandbox.io/s/github/nuxt/nuxt.js/tree/dev/examples/auth-routes?from-embed

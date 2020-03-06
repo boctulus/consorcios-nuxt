@@ -127,7 +127,7 @@ export default {
           this.$store.commit('saveRoles', ['admin']);
           this.$router.push('/dashboard');
         } else if (this.edificacion == "Los Pitufos"  && this.password == '123') {
-          this.$store.commit('saveUser', {username: this.edificacion}); // hardcodeado
+          this.$store.commit('saveUser', {username: this.edificacion, id: 5}); // hardcodeado
           this.$store.commit('saveRoles', ['habitante']);
           this.$router.push('/dashboard');        
         } else {
