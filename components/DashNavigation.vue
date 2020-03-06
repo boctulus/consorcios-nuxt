@@ -31,7 +31,7 @@
                     <b-col>
                         <n-link to="/home" class="logo_wrapper">
                             <img :src="require('@/assets/logo_sm.png')" class="logo_img"/>
-                            <span class="logo egravers">El Grove</span>
+                            <span class="logo engravers">El Grove</span>
                         </n-link> 
                     </b-col>
                     <b-col class="smallScreen order-first">

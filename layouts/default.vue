@@ -10,18 +10,6 @@
 
 
 <style>
-@font-face {
-	font-family: Pontano;  
-	src: url('../static/fonts/pontano.ttf');  
-	font-weight: normal;  
-}
-
-@font-face {
-	font-family: Engravers;  
-	src: url('../static/fonts/engravers.otf');  
-	font-weight: normal;  
-}
-
 .engravers {
     font-family: 'Engravers', Sans-serif !important;
 }

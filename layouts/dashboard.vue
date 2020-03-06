@@ -28,22 +28,6 @@ export default {
 </script>
 
 <style>
-@font-face {
-	font-family: Pontano;  
-	src: url('pontano-webfont.woff2') format('woff2'),
-    url('pontano-webfont.woff') format('woff');  
-	font-weight: normal;  
-    font-display: fallback;
-}
-
-@font-face {
-	font-family: Engravers;  
-	src: url('engravers-webfont.woff2') format('woff2'),
-    url('engravers-webfont.woff') format('woff');   
-	font-weight: normal;  
-    font-display: fallback;
-}
-
 .engravers {
     font-family: 'Engravers', Sans-serif !important;
 }

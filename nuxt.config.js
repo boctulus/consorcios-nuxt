@@ -6,6 +6,10 @@ const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
 
 module.exports = {
   mode: 'spa',
+  server: {
+    port: 8000, // default: 3000
+    host: '0.0.0.0' // default: localhost
+  },
 
   /*
   ** Headers of the page
@@ -45,7 +49,8 @@ module.exports = {
     '~/assets/style/app.styl',
     'font-awesome/css/font-awesome.css',
     'roboto-fontface/css/roboto/roboto-fontface.css',
-    '~/static/fonts/webfontkit/stylesheet.css'
+    '~/static/fonts/Engravers/engravers.css',
+    '~/static/fonts/Pontano/pontano.css'
   ],
 
   /*
