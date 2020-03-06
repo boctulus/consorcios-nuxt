@@ -44,7 +44,8 @@ module.exports = {
     '~/assets/style/theme.styl',
     '~/assets/style/app.styl',
     'font-awesome/css/font-awesome.css',
-    'roboto-fontface/css/roboto/roboto-fontface.css'
+    'roboto-fontface/css/roboto/roboto-fontface.css',
+    '~/static/fonts/webfontkit/stylesheet.css'
   ],
 
   /*
@@ -68,6 +69,12 @@ module.exports = {
     'nuxt-fullpage.js',
     'vue-scrollto/nuxt'
   ],
+
+  router: {
+    middleware: [
+      'protegeRutas'
+    ]
+  },
 
   /*
   ** Build configuration

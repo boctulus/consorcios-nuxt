@@ -142,7 +142,6 @@ export default {
 
 
 <style scoped>  
-
 #dropdown-right {
     position:fixed; 
     right: 0.5em; 
