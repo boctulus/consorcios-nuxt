@@ -1,3 +1,4 @@
+<!-- https://alligator.io/vuejs/grid-component/ -->
 <template>
   <div class="wrapper">
     <form id="search" class="mb-3">
