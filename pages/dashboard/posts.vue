@@ -1,17 +1,13 @@
 <template>
-  <div>
-
-    <div style="text-align: right">
-      <button class="btn">New Item</button>
-    </div>
-    
-
+  <div>               
     <v-app id="inspire">
+
         <v-data-table
           :headers="headers"
           :items="desserts"
           class="elevation-1"
         >
+        
           <template v-slot:items="props">
             
               <td>{{ props.item.name }}</td>
@@ -37,21 +33,48 @@
               </td>   
 
               <template>
-                <v-row justify="center">
-                  <v-dialog v-model="dialog" persistent max-width="290">
+                <v-layout row justify="center">
+                  <v-dialog v-model="dialog" persistent max-width="500px">
+
+                    <template v-slot:activator="{ on }" style="height: 50px !important; margin: 0; padding: 0; ">
+                      <v-btn color="primary" dark v-on="on">Nuevo</v-btn>
+                    </template>
+
                     <v-card>
-                      <v-card-title class="headline">Use Google's location service?</v-card-title>
-                      <v-card-text>Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.</v-card-text>
+                      <v-card-title>
+                        <span class="headline">{{ formTitle }}</span>
+                      </v-card-title>
+                      <v-card-text>
+                        <v-container>
+                          <v-layout row>
+                            <v-flex cols="12" sm="6" md="4">
+                              <v-text-field v-model="editedItem.name" label="Dessert name"></v-text-field>
+                            </v-flex>
+                            <v-flex cols="12" sm="6" md="4">
+                              <v-text-field v-model="editedItem.calories" label="Calories"></v-text-field>
+                            </v-flex>
+                            <v-flex cols="12" sm="6" md="4">
+                              <v-text-field v-model="editedItem.fat" label="Fat (g)"></v-text-field>
+                            </v-flex>
+                            <v-flex cols="12" sm="6" md="4">
+                              <v-text-field v-model="editedItem.carbs" label="Carbs (g)"></v-text-field>
+                            </v-flex>
+                            <v-flex cols="12" sm="6" md="4">
+                              <v-text-field v-model="editedItem.protein" label="Protein (g)"></v-text-field>
+                            </v-flex>
+                          </v-layout>
+                        </v-container>
+                      </v-card-text>
                       <v-card-actions>
                         <v-spacer></v-spacer>
-                        <v-btn color="green darken-1" text @click="dialog = false">Disagree</v-btn>
-                        <v-btn color="green darken-1" text @click="dialog = false">Agree</v-btn>
+                        <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
+                        <v-btn color="blue darken-1" text @click="save">Save</v-btn>
                       </v-card-actions>
                     </v-card>
                   </v-dialog>
-                </v-row>
+                </v-layout>
               </template>
-
+     
           </template>
 
         </v-data-table>
@@ -220,5 +243,5 @@
 
 
 <style scoped>
-
+  
 </style>
