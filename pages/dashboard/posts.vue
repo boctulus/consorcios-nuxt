@@ -1,5 +1,5 @@
 <template>
-
+  <v-app id="inspire">
       <v-data-table
         :headers="headers"
         :items="desserts"
@@ -12,7 +12,7 @@
           <td><v-btn>Created Button</v-btn></td>
         </template>
       </v-data-table>
-      
+  </v-app>  
 </template>
 
 <script>
