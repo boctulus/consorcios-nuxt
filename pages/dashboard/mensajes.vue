@@ -16,14 +16,16 @@
       </v-dialog>
     </v-layout>
 
+ 
     <v-layout row justify="center">
       <v-dialog v-model="dialog" persistent max-width="500px" :style="{ position: 'absolute', elevation: 100, zIndex:6000 }">
-        
-        <!--template v-slot:activator="{ on }">
+
+        <!-- New button -->
+        <template v-slot:activator="{ on }">
           <div style="text-align:right; width: 100%; margin-right: 6px; margin-bottom: 6px;">
-            <v-btn color="primary" dark v-on="on">Nuevo</v-btn>
+            <v-btn color="primary" dark v-on="on" @click="formMode=null">Nuevo</v-btn>
           </div>  
-        </template-->
+        </template>
 
         <v-card>
           <v-card-title>
@@ -33,27 +35,27 @@
             <v-container>
               <v-layout row>
                 <v-flex cols="12" sm="6" md="4">
-                  <v-text-field v-model="editedItem.name" label="Dessert name"></v-text-field>
+                  <v-text-field v-model="editedItem.tema" label="Tema"></v-text-field>
                 </v-flex>
                 <v-flex cols="12" sm="6" md="4">
-                  <v-text-field v-model="editedItem.calories" label="Calories"></v-text-field>
+                  <v-text-field v-model="editedItem.consulta" label="Consulta"></v-text-field>
                 </v-flex>
                 <v-flex cols="12" sm="6" md="4">
-                  <v-text-field v-model="editedItem.fat" label="Fat (g)"></v-text-field>
+                  <v-text-field v-model="editedItem.nombre" label="Nombre"></v-text-field>
                 </v-flex>
                 <v-flex cols="12" sm="6" md="4">
-                  <v-text-field v-model="editedItem.carbs" label="Carbs (g)"></v-text-field>
+                  <v-text-field v-model="editedItem.telefono" label="Tel."></v-text-field>
                 </v-flex>
                 <v-flex cols="12" sm="6" md="4">
-                  <v-text-field v-model="editedItem.protein" label="Protein (g)"></v-text-field>
+                  <v-text-field v-model="editedItem.email" label="E-mail"></v-text-field>
                 </v-flex>
               </v-layout>
             </v-container>
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
-            <v-btn color="blue darken-1" text @click="save">Save</v-btn>
+            <v-btn color="blue darken-1" text @click="close">Cerrar</v-btn>
+            <v-btn color="blue darken-1" text @click="save" v-if="formMode == 'edit' || formMode == null">Guardar</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -68,13 +70,21 @@
           :items="regs"
           class="elevation-1"
         >
-            <template  v-slot:items="props">            
-                <td>{{ props.item.nombre}}</td>
+            <template  v-slot:items="props">
                 <td >{{ props.item.tema }}</td>
-                <td>{{ props.item.email }}</td>
-                <td>{{ props.item.telefono }}</td>
                 <td>{{ props.item.consulta }}</td>
+                <td>{{ props.item.nombre}}</td>
+                <td>{{ props.item.telefono }}</td>
+                <td>{{ props.item.email }}</td>
                 <td>      
+                    <v-icon
+                      small
+                      style="margin-right:0.9em;"
+                      @click="seeItem(props.item)"
+                    >
+                      fa-eye
+                    </v-icon>
+
                     <v-icon
                       small
                       class="mr-2"
@@ -105,13 +115,14 @@
     data: () => ({
       dialog: false,
       delete_confirmation_dialog: false,
+      formMode: null,
       index: null,
       headers: [
-        { text: 'Nombre', value: 'nombre' },
-        { text: 'E-mail', value: 'email' },
-        { text: 'Teléfono', value: 'telefono' },
         { text: 'Tema', value: 'tema', align: 'start' },
         { text: 'Consulta', value: 'consulta' },
+        { text: 'Nombre', value: 'nombre' },
+        { text: 'Teléfono', value: 'telefono' },
+        { text: 'E-mail', value: 'email' },
       ],
       regs: [],
       editedIndex: -1,
@@ -132,9 +143,21 @@
     }),
 
     computed: {
-      formTitle () {
-        return this.editedIndex === -1 ? 'New Item' : 'Editar item'
-      },
+      formTitle: function() {
+        switch(this.formMode){
+          case 'see': 
+            return'Mensaje';
+            break;
+          case 'edit': 
+            return 'Editar Mensaje';
+            break;  
+          case 'create': 
+            return 'Nuevo Mensaje';
+            break;   
+          default: 
+             return '';   
+        }
+      }
     },
 
     watch: {
@@ -152,14 +175,27 @@
         this.regs = getMsg();
       },
 
+      seeItem (item) {
+        this.editedIndex = this.regs.indexOf(item);
+        this.editedItem = Object.assign({}, item);
+        this.formMode = 'see';
+        this.dialog = true;
+      },
+
       editItem (item) {
-        this.editedIndex = this.regs.indexOf(item)
-        this.editedItem = Object.assign({}, item)
-        this.dialog = true
+        this.editedIndex = this.regs.indexOf(item);
+        this.editedItem = Object.assign({}, item);
+        this.formMode = 'edit';
+        this.dialog = true;
+      },
+
+      showDialog(){
+        this.formMode = 'create';
+        this.dialog = true;
       },
 
       showDeleteDialog (item) {
-        this.index = this.regs.indexOf(item)
+        this.index = this.regs.indexOf(item);
         this.delete_confirmation_dialog = true;
       },
 
