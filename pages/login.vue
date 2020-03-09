@@ -22,8 +22,8 @@
                       <div class="form-group engravers label">
                         <label for="edificio">Edificación</label><label class="gfield_required">*</label>
                           <validation-provider rules="required" v-slot="{ errors }">
-                            <select v-model="edificacion" v-bind:class="{ required: errors[0] }" class="form-control input" name="edificacion" id="edificacion">
-                              <option v-for="(edificio, index) in edificios" v-bind:key="index">{{ edificio }}</option>
+                            <select v-model="selected" v-bind:class="{ required: errors[0] }" class="form-control input" name="selected" id="selected">
+                              <option v-for="(usuario, index) in usuarios" v-bind:key="index">{{ usuario.nombre }}</option>
                             </select>
                             <span class="error_msg">{{ errors[0] }}</span>
                           </validation-provider>  
@@ -69,6 +69,7 @@
 import { ValidationProvider, extend, ValidationObserver } from 'vee-validate';
 import { required } from 'vee-validate/dist/rules';
 import { store } from '@/store/login.js'
+import getData from '@/api/usuarios.js';
 
 extend('required', {
   ...required,
@@ -81,31 +82,26 @@ export default {
   data() {
       return {
         other_error: null,
-        edificacion: null, 
-        edificios: [
-          'El Águila',
-          'El fuerte',
-          'Los Pitufos',
-          'Administración'
-        ],
+        usuarios: [],
+        selected: null, 
         password: null
        }
   },
   watch: {
-    edificacion: function(val) {
+    selected: function(val) {
       this.other_error = null;
     },
     password: function(val) {
       this.other_error = null;
     }
   },
-  mounted() {
-        
+  created() {
+    this.usuarios = getData();  
   },
   methods: {
     onSubmit() {
       console.log('SUBMITTING ...');
-      console.log([this.edificacion, this.password]);
+      console.log([this.selected, this.password]);
 
       this.$refs.form.validate().then(success => {
         if (!success) {
@@ -114,20 +110,20 @@ export default {
 
         console.log('Submited !!!');
 
-        if (this.edificacion == "Administración" && this.password == 'gogogo'){
+        if (this.selected == "Administración" && this.password == 'gogogo'){
           // Resetting Values
-          this.edificacion = this.password = '';
+          this.selected = this.password = '';
 
           // Wait until the models are updated in the UI
           this.$nextTick(() => {
             this.$refs.form.reset();
           });
           
-          this.$store.commit('saveUser', {username: 'admin', id: 1}); // hardcodeado
+          this.$store.commit('saveUser', {username: 'juanma', id: 1}); // hardcodeado
           this.$store.commit('saveRoles', ['admin']);
           this.$router.push('/dashboard');
-        } else if (this.edificacion == "Los Pitufos"  && this.password == '123') {
-          this.$store.commit('saveUser', {username: this.edificacion, id: 5}); // hardcodeado
+        } else if (this.selected == "Los Pitufos"  && this.password == '123') {
+          this.$store.commit('saveUser', {username: this.selected, id: 5}); // hardcodeado
           this.$store.commit('saveRoles', ['habitante']);
           this.$router.push('/dashboard');        
         } else {
@@ -156,7 +152,7 @@ export default {
   color: red;
 }
 
-#edificacion {
+#selected {
     background-color: transparent !important;
     border-top: 0;
     border-left: 0;

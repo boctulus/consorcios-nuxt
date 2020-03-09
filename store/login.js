@@ -28,6 +28,7 @@ export const store = new Vuex.Store({
     mutations: {
         logout(state) {
             state.authUser = empty;
+            console.log('LOGOUT');
         },
         saveUser(state, u) {
             state.authUser.id = u.id;

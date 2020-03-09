@@ -1,12 +1,12 @@
 <template>
   <div>            
-    <h1 class="mb-3">Mensajes</h1>
+    <h1 class="mb-3">Usuarios</h1>
   
     <v-layout row justify-center>
       <v-dialog v-model="delete_confirmation_dialog" persistent max-width="320">
         <v-card>
           <v-card-title class="headline">Confirmación de borrado</v-card-title>
-          <v-card-text>Deseas borrar el mensaje?</v-card-text>
+          <v-card-text>Deseas borrar el usuario?</v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn color="green darken-1" flat @click="delete_confirmation_dialog = false">Cancelar</v-btn>
@@ -21,11 +21,11 @@
       <v-dialog v-model="dialog" persistent max-width="500px" :style="{ position: 'absolute', elevation: 100, zIndex:6000 }">
 
         <!-- New button -->
-        <!--template v-slot:activator="{ on }">
+        <template v-slot:activator="{ on }">
           <div style="text-align:right; width: 100%; margin-right: 6px; margin-bottom: 6px;">
             <v-btn color="primary" dark v-on="on" @click="formMode=null">Nuevo</v-btn>
           </div>  
-        </template-->
+        </template>
 
         <v-card>
           <v-card-title>
@@ -35,19 +35,13 @@
             <v-container>
               <v-layout row>
                 <v-flex cols="12" sm="6" md="4">
-                  <v-text-field v-model="editedItem.tema" label="Tema"></v-text-field>
-                </v-flex>
-                <v-flex cols="12" sm="6" md="4">
-                  <v-text-field v-model="editedItem.consulta" label="Consulta"></v-text-field>
-                </v-flex>
-                <v-flex cols="12" sm="6" md="4">
                   <v-text-field v-model="editedItem.nombre" label="Nombre"></v-text-field>
                 </v-flex>
                 <v-flex cols="12" sm="6" md="4">
-                  <v-text-field v-model="editedItem.telefono" label="Tel."></v-text-field>
+                  <v-text-field v-model="editedItem.username" label="Nombre de usuario"></v-text-field>
                 </v-flex>
                 <v-flex cols="12" sm="6" md="4">
-                  <v-text-field v-model="editedItem.email" label="E-mail"></v-text-field>
+                  <v-text-field v-model="editedItem.password" label="Contraseña"></v-text-field>
                 </v-flex>
               </v-layout>
             </v-container>
@@ -71,11 +65,8 @@
           class="elevation-1"
         >
             <template  v-slot:items="props">
-                <td >{{ props.item.tema }}</td>
-                <td>{{ props.item.consulta }}</td>
-                <td>{{ props.item.nombre}}</td>
-                <td>{{ props.item.telefono }}</td>
-                <td>{{ props.item.email }}</td>
+                <td >{{ props.item.nombre }}</td>
+                <td>{{ props.item.username }}</td>
                 <td>      
                     <v-icon
                       small
@@ -108,7 +99,7 @@
 </template>
 
 <script>
-  import getMsg from '@/api/mensajes.js';
+  import getData from '@/api/usuarios.js';
 
   export default {
     layout: 'dashboard',
@@ -118,11 +109,8 @@
       formMode: null,
       index: null,
       headers: [
-        { text: 'Tema', value: 'tema', align: 'start' },
-        { text: 'Consulta', value: 'consulta' },
         { text: 'Nombre', value: 'nombre' },
-        { text: 'Teléfono', value: 'telefono' },
-        { text: 'E-mail', value: 'email' },
+        { text: 'Usuario', value: 'username' },
       ],
       regs: [],
       editedIndex: -1,
@@ -146,16 +134,16 @@
       formTitle: function() {
         switch(this.formMode){
           case 'see': 
-            return'Mensaje';
+            return 'Usuario';
             break;
           case 'edit': 
-            return 'Editar Mensaje';
+            return 'Editar Usuario';
             break;  
           case 'create': 
-            return 'Nuevo Mensaje';
+            return 'Nuevo Usuario';
             break;   
           default: 
-             return 'Nuevo Mensaje';   
+             return 'Nuevo Usuario';   
         }
       }
     },
@@ -172,7 +160,7 @@
 
     methods: {
       initialize () {
-        this.regs = getMsg();
+        this.regs = getData();
       },
 
       seeItem (item) {
@@ -201,11 +189,13 @@
 
       erase () {
         this.delete_confirmation_dialog = false; 
+        this.formMode = null;
         this.regs.splice(this.index, 1);
       },
 
       close () {
-        this.dialog = false
+        this.dialog = false;
+        this.formMode = null;
         setTimeout(() => {
           this.editedItem = Object.assign({}, this.defaultItem)
           this.editedIndex = -1
@@ -213,6 +203,8 @@
       },
 
       save () {
+        this.formMode = null;
+
         if (this.editedIndex > -1) {
           Object.assign(this.regs[this.editedIndex], this.editedItem)
         } else {

@@ -10,14 +10,13 @@
                                 v-bind:data-index="index"
                                 class="item"
                             >
+
                                 <v-icon color="#CFA18B" style="padding-left:0.5em;">{{item.icon}}</v-icon>                                
                                 <a @click="navigate" class="link" v-if="!item.bookmark" :id="item.link">{{item.msg}}</a>
                                 <a @click="scrollToBookmark" class="link" v-if="item.bookmark" :id="item.link">{{item.msg}}</a>
 
                                  <b-dropdown-divider v-if="typeof item.divider != 'undefined' && item.divider"></b-dropdown-divider>
-                            </li>
-
-                           
+                            </li>                           
 
                     </v-list>      
                 </div>
@@ -29,7 +28,7 @@
                 <!-- media queries : hacer un "pull" de content para "md" o menores -->
                 <b-row>
                     <b-col>
-                        <n-link to="/home" class="logo_wrapper">
+                        <n-link to="/dashboard" class="logo_wrapper">
                             <img :src="require('@/assets/logo_sm.png')" class="logo_img"/>
                             <span class="logo engravers">El Grove</span>
                         </n-link> 
@@ -89,7 +88,8 @@ export default {
         console.log(this.$store.getters.roles);
 
         this.list = [
-            { msg: 'Panel de control',  link: '/dashboard', icon: 'fa-gears', divider: true },
+            //{ msg: 'Panel de control',  link: '/dashboard', icon: 'fa-gears', divider: true },
+            { msg: 'Página de inicio',  link: '/home', icon: 'fa-home', divider: true }
         ];
 
         this.$store.getters.roles.forEach(role => {
