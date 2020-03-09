@@ -42,7 +42,7 @@
                     </b-col>
 
                     <b-col>
-                        <span v-if="username" style="position: fixed;  top: 12px; right: 60px">{{ username }}</span>
+                        <span v-if="username" id="username">{{ username }}</span>
                     </b-col>
 
                     <b-col>
@@ -170,6 +170,13 @@ export default {
     border: 1px solid red;
     */
     margin-left: 1.2em;
+}
+
+#username {
+    position: fixed;  
+    top: 12px; 
+    right: 60px;
+    color: #ccc;
 }
 
 .logo_wrapper {

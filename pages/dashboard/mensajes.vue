@@ -1,15 +1,29 @@
 <template>
   <div>            
     <h1 class="mb-3">Mensajes</h1>
-    
+  
+    <v-layout row justify-center>
+      <v-dialog v-model="delete_confirmation_dialog" persistent max-width="320">
+        <v-card>
+          <v-card-title class="headline">Confirmación de borrado</v-card-title>
+          <v-card-text>Deseas borrar el mensaje?</v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="green darken-1" flat @click="delete_confirmation_dialog = false">Cancelar</v-btn>
+            <v-btn color="green darken-1" flat @click="erase">OK</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </v-layout>
+
     <v-layout row justify="center">
       <v-dialog v-model="dialog" persistent max-width="500px" :style="{ position: 'absolute', elevation: 100, zIndex:6000 }">
         
-        <template v-slot:activator="{ on }">
+        <!--template v-slot:activator="{ on }">
           <div style="text-align:right; width: 100%; margin-right: 6px; margin-bottom: 6px;">
             <v-btn color="primary" dark v-on="on">Nuevo</v-btn>
           </div>  
-        </template>
+        </template-->
 
         <v-card>
           <v-card-title>
@@ -51,15 +65,15 @@
 
         <v-data-table
           :headers="headers"
-          :items="desserts"
+          :items="regs"
           class="elevation-1"
         >
             <template  v-slot:items="props">            
-                <td>{{ props.item.name }}</td>
-                <td >{{ props.item.calories }}</td>
-                <td>{{ props.item.fat }}</td>
-                <td>{{ props.item.carbs }}</td>
-                <td>{{ props.item.protein }}</td>
+                <td>{{ props.item.nombre}}</td>
+                <td >{{ props.item.tema }}</td>
+                <td>{{ props.item.email }}</td>
+                <td>{{ props.item.telefono }}</td>
+                <td>{{ props.item.consulta }}</td>
                 <td>      
                     <v-icon
                       small
@@ -71,7 +85,7 @@
 
                     <v-icon
                       small
-                      @click="deleteItem(props.item)"
+                      @click="showDeleteDialog(props.item)"
                     >
                       delete
                     </v-icon>
@@ -84,44 +98,42 @@
 </template>
 
 <script>
+  import getMsg from '@/api/mensajes.js';
+
   export default {
     layout: 'dashboard',
     data: () => ({
       dialog: false,
+      delete_confirmation_dialog: false,
+      index: null,
       headers: [
-        {
-          text: 'Dessert (100g serving)',
-          align: 'start',
-          sortable: false,
-          value: 'name',
-        },
-        { text: 'Calories', value: 'calories' },
-        { text: 'Fat (g)', value: 'fat' },
-        { text: 'Carbs (g)', value: 'carbs' },
-        { text: 'Protein (g)', value: 'protein' },
-        { text: 'Actions', value: 'action', sortable: false },
+        { text: 'Nombre', value: 'nombre' },
+        { text: 'E-mail', value: 'email' },
+        { text: 'Teléfono', value: 'telefono' },
+        { text: 'Tema', value: 'tema', align: 'start' },
+        { text: 'Consulta', value: 'consulta' },
       ],
-      desserts: [],
+      regs: [],
       editedIndex: -1,
       editedItem: {
-        name: '',
-        calories: 0,
-        fat: 0,
-        carbs: 0,
-        protein: 0,
+        nombre: '',
+        email: '',
+        telefono: '',
+        tema: '',
+        consulta: ''
       },
       defaultItem: {
-        name: '',
-        calories: 0,
-        fat: 0,
-        carbs: 0,
-        protein: 0,
+        nombre: '',
+        email: '',
+        telefono: '',
+        tema: '',
+        consulta: ''
       },
     }),
 
     computed: {
       formTitle () {
-        return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
+        return this.editedIndex === -1 ? 'New Item' : 'Editar item'
       },
     },
 
@@ -137,89 +149,23 @@
 
     methods: {
       initialize () {
-        this.desserts = [
-          {
-            name: 'Frozen Yogurt',
-            calories: 159,
-            fat: 6.0,
-            carbs: 24,
-            protein: 4.0,
-          },
-          {
-            name: 'Ice cream sandwich',
-            calories: 237,
-            fat: 9.0,
-            carbs: 37,
-            protein: 4.3,
-          },
-          {
-            name: 'Eclair',
-            calories: 262,
-            fat: 16.0,
-            carbs: 23,
-            protein: 6.0,
-          },
-          {
-            name: 'Cupcake',
-            calories: 305,
-            fat: 3.7,
-            carbs: 67,
-            protein: 4.3,
-          },
-          {
-            name: 'Gingerbread',
-            calories: 356,
-            fat: 16.0,
-            carbs: 49,
-            protein: 3.9,
-          },
-          {
-            name: 'Jelly bean',
-            calories: 375,
-            fat: 0.0,
-            carbs: 94,
-            protein: 0.0,
-          },
-          {
-            name: 'Lollipop',
-            calories: 392,
-            fat: 0.2,
-            carbs: 98,
-            protein: 0,
-          },
-          {
-            name: 'Honeycomb',
-            calories: 408,
-            fat: 3.2,
-            carbs: 87,
-            protein: 6.5,
-          },
-          {
-            name: 'Donut',
-            calories: 452,
-            fat: 25.0,
-            carbs: 51,
-            protein: 4.9,
-          },
-          {
-            name: 'KitKat',
-            calories: 518,
-            fat: 26.0,
-            carbs: 65,
-            protein: 7,
-          },
-        ]
+        this.regs = getMsg();
       },
 
       editItem (item) {
-        this.editedIndex = this.desserts.indexOf(item)
+        this.editedIndex = this.regs.indexOf(item)
         this.editedItem = Object.assign({}, item)
         this.dialog = true
       },
 
-      deleteItem (item) {
-        const index = this.desserts.indexOf(item)
-        confirm('Are you sure you want to delete this item?') && this.desserts.splice(index, 1)
+      showDeleteDialog (item) {
+        this.index = this.regs.indexOf(item)
+        this.delete_confirmation_dialog = true;
+      },
+
+      erase () {
+        this.delete_confirmation_dialog = false; 
+        this.regs.splice(this.index, 1);
       },
 
       close () {
@@ -232,9 +178,9 @@
 
       save () {
         if (this.editedIndex > -1) {
-          Object.assign(this.desserts[this.editedIndex], this.editedItem)
+          Object.assign(this.regs[this.editedIndex], this.editedItem)
         } else {
-          this.desserts.push(this.editedItem)
+          this.regs.push(this.editedItem)
         }
         this.close()
       },

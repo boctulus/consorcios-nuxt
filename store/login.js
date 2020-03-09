@@ -59,8 +59,8 @@ export const store = new Vuex.Store({
         accessToken: state => {
             return state.authUser.accessToken;
         },
-        refreshToken: stare => {
-            return stare.authUser.refreshToken;
+        refreshToken: state => {
+            return state.authUser.refreshToken;
         },
         logged: state => {
             return state.authUser.username != null;

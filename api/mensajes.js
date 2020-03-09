@@ -1,5 +1,5 @@
-const mensajes = [
-  {
+const arr = [
+  {  
     nombre: 'Juan Perez', 
     email: 'juanp@gmail.com', 
     telefono: '221 452 33 00', 
@@ -26,13 +26,12 @@ const mensajes = [
     telefono: '221 452 66666', 
     tema: 'Desinfección', 
     consulta: 'Pasan por favor por el edificio?'
-  },
-
-
+  }
 ];
 
+
 const getMsg = (cant) => {
-  return (cant) ? mensajes.slice(0, cant) : null;
+  return (cant != null || typeof cant != 'undefined') ? arr.slice(0, cant) : arr;
 };
 
 
