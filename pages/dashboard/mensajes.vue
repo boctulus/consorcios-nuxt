@@ -1,6 +1,6 @@
 <template>
   <div>            
-    <h1 class="mb-3">Mensajes</h1>
+    <h1 class="mb-5">Mensajes</h1>
   
     <v-layout row justify-center>
       <v-dialog v-model="delete_confirmation_dialog" persistent max-width="320">
@@ -35,19 +35,19 @@
             <v-container>
               <v-layout row>
                 <v-flex cols="12" sm="6" md="4">
-                  <v-text-field v-model="editedItem.tema" :class="{'disable-events': formMode!='edit'}" label="Tema"></v-text-field>
+                  <v-text-field v-model="editedItem.tema" :class="{'disable-events': formMode=='see'}" label="Tema"></v-text-field>
                 </v-flex>
                 <v-flex cols="12" sm="6" md="4">
-                  <v-text-field v-model="editedItem.consulta" :class="{'disable-events': formMode!='edit'}" label="Consulta"></v-text-field>
+                  <v-text-field v-model="editedItem.consulta" :class="{'disable-events': formMode=='see'}" label="Consulta"></v-text-field>
                 </v-flex>
                 <v-flex cols="12" sm="6" md="4">
-                  <v-text-field v-model="editedItem.nombre" :class="{'disable-events': formMode!='edit'}" label="Nombre"></v-text-field>
+                  <v-text-field v-model="editedItem.nombre" :class="{'disable-events': formMode=='see'}" label="Nombre"></v-text-field>
                 </v-flex>
                 <v-flex cols="12" sm="6" md="4">
-                  <v-text-field v-model="editedItem.telefono" :class="{'disable-events': formMode!='edit'}" label="Tel."></v-text-field>
+                  <v-text-field v-model="editedItem.telefono" :class="{'disable-events': formMode=='see'}" label="Tel."></v-text-field>
                 </v-flex>
                 <v-flex cols="12" sm="6" md="4">
-                  <v-text-field v-model="editedItem.email" :class="{'disable-events': formMode!='edit'}" label="E-mail"></v-text-field>
+                  <v-text-field v-model="editedItem.email" :class="{'disable-events': formMode=='see'}" label="E-mail"></v-text-field>
                 </v-flex>
               </v-layout>
             </v-container>

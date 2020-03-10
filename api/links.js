@@ -1,7 +1,7 @@
 const links = { 
   habitante: [ 
     { msg: 'Boletas',  link: '/dashboard/boletas', icon: 'fa-folder' },
-    { msg: 'Documentos',  link: '/dashboard/Documentos', icon: 'fa-clone' }
+    { msg: 'Documentos',  link: '/dashboard/documentos', icon: 'fa-clone' }
   ],
   admin:  [
     { msg: 'Mensajes',  link: '/dashboard/mensajes', icon: 'fa-envelope' },  

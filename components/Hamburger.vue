@@ -74,7 +74,8 @@ export default {
  h1 {
 	 text-transform: uppercase;
 }
- a {
+
+a {
 	 text-decoration: none;
 	 color: #95a5a6;
 	 margin: 0.5em 1.5em;

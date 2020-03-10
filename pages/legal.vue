@@ -14,7 +14,7 @@
 
         <b-row>
           <b-col class="mb-5" md="6" v-for="item in documents" v-bind:key="item.name">
-            <h2 style="font-size: 20px;"><strong><span class="pontano" style="color: #d0a28c;">{{item.name}}L</span></strong></h2>
+            <h2 style="font-size: 20px;"><strong><span class="pontano" style="color: #d0a28c;">{{item.name}}</span></strong></h2>
             <p>&nbsp;</p>   
 
             <div class="btn" style="text-align: center;"><span style="font-size: 1.2em;"><strong><a :href="item.file" target="_blank" rel="noopener noreferrer"><span class="aft">DESCARGAR</span></a></strong></span></div>

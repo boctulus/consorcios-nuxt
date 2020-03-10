@@ -1,6 +1,6 @@
 <template>
   <div>            
-    <h1 class="mb-3">Servicios</h1>
+    <h1 class="mb-5">Servicios</h1>
   
     <v-layout row justify-center>
       <v-dialog v-model="delete_confirmation_dialog" persistent max-width="320">
@@ -34,18 +34,18 @@
           <v-card-text>
             <v-container>
              
-              <v-text-field v-model="editedItem.name" label="Nombre" :class="{'disable-events': formMode!='edit'}" ></v-text-field>
+              <v-text-field v-model="editedItem.name" label="Nombre" :class="{'disable-events': formMode=='see'}" ></v-text-field>
        
               <label aria-hidden="true" class="v-label v-label--active theme--light" style="left: 0px; right: auto; position: absolute; font-size: 12px !important; margin-left: 32px;">Habilitado?</label>
-              <v-checkbox type="checkbox" v-model="editedItem.enabled" :label="editedItem.enabled | boolean" :class="{'disable-events': formMode!='edit'}"/>
+              <v-checkbox type="checkbox" v-model="editedItem.enabled" :label="editedItem.enabled | boolean" :class="{'disable-events': formMode=='see'}"/>
 
-              <v-text-field v-model="editedItem.img" label="Imagen" :class="{'disable-events': formMode!='edit'}"></v-text-field>
+              <v-text-field v-model="editedItem.img" label="Imagen" :class="{'disable-events': formMode=='see'}"></v-text-field>
               <div style="text-align:center;">
                 <img :src="editedItem.img" v-if="editedItem.img.match(/^(https:|http:)/)" />
                 <img :src="`/servicios/${editedItem.img}`" v-if="!editedItem.img.match(/^(https:|http:)/)" />
               </div>
 
-              <v-textarea v-model="editedItem.text" auto-grow label="Texto" :class="{'disable-events': formMode!='edit'}"></v-textarea>
+              <v-textarea v-model="editedItem.text" auto-grow label="Texto" :class="{'disable-events': formMode=='see'}"></v-textarea>
 
             </v-container>
           </v-card-text>

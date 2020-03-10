@@ -88,8 +88,8 @@ export default {
         console.log(this.$store.getters.roles);
 
         this.list = [
-            //{ msg: 'Panel de control',  link: '/dashboard', icon: 'fa-gears', divider: true },
-            { msg: 'Página de inicio',  link: '/home', icon: 'fa-home', divider: true }
+            { msg: 'Panel de control',  link: '/dashboard', icon: 'fa-gears', divider: true },
+            { msg: 'Inicio',  link: '/home', icon: 'fa-home' }
         ];
 
         this.$store.getters.roles.forEach(role => {

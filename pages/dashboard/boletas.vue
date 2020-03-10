@@ -1,12 +1,12 @@
 <template>
   <div>            
-    <h1 class="mb-5">Usuarios</h1>
+    <h1 class="mb-5">Boletas</h1>
   
-    <v-layout row justify-center>
+    <!--v-layout row justify-center>
       <v-dialog v-model="delete_confirmation_dialog" persistent max-width="320">
         <v-card>
           <v-card-title class="headline">Confirmación de borrado</v-card-title>
-          <v-card-text>Deseas borrar el usuario?</v-card-text>
+          <v-card-text>Deseas borrar?</v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn color="green darken-1" flat @click="delete_confirmation_dialog = false">Cancelar</v-btn>
@@ -14,18 +14,18 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
-    </v-layout>
+    </v-layout-->
 
  
     <v-layout row justify="center">
       <v-dialog v-model="dialog" persistent max-width="500px" :style="{ position: 'absolute', elevation: 100, zIndex:6000 }">
 
         <!-- New button -->
-        <template v-slot:activator="{ on }">
+        <!--template v-slot:activator="{ on }">
           <div style="text-align:right; width: 100%; margin-right: 6px; margin-bottom: 6px;">
             <v-btn color="primary" dark v-on="on" @click="formMode=null">Nuevo</v-btn>
           </div>  
-        </template>
+        </template-->
 
         <v-card>
           <v-card-title>
@@ -33,23 +33,26 @@
           </v-card-title>
           <v-card-text>
             <v-container>
-              <v-layout row>
-                <v-flex cols="12" sm="6" md="4">
-                  <v-text-field v-model="editedItem.nombre" :class="{'disable-events': formMode=='see'}" label="Nombre"></v-text-field>
-                </v-flex>
-                <v-flex cols="12" sm="6" md="4">
-                  <v-text-field v-model="editedItem.username" :class="{'disable-events': formMode=='see'}" label="Nombre de usuario"></v-text-field>
-                </v-flex>
-                <v-flex cols="12" sm="6" md="4">
-                  <v-text-field v-model="editedItem.password" :class="{'disable-events': formMode=='see'}" label="Contraseña"></v-text-field>
-                </v-flex>
-              </v-layout>
+             
+              <v-text-field v-model="editedItem.name" label="Nombre" :class="{'disable-events': formMode=='see'}" ></v-text-field>
+       
+              <label aria-hidden="true" class="v-label v-label--active theme--light" style="left: 0px; right: auto; position: absolute; font-size: 12px !important; margin-left: 32px;">Habilitado?</label>
+              <v-checkbox type="checkbox" v-model="editedItem.enabled" :label="editedItem.enabled | boolean" :class="{'disable-events': formMode=='see'}"/>
+
+              <v-text-field v-model="editedItem.img" label="Imagen" :class="{'disable-events': formMode=='see'}"></v-text-field>
+              <div style="text-align:center;">
+                <img :src="editedItem.img" v-if="editedItem.img.match(/^(https:|http:)/)" />
+                <img :src="`/servicios/${editedItem.img}`" v-if="!editedItem.img.match(/^(https:|http:)/)" />
+              </div>
+
+              <v-textarea v-model="editedItem.text" auto-grow label="Texto" :class="{'disable-events': formMode=='see'}"></v-textarea>
+
             </v-container>
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="blue darken-1" text style="color:#fff;" @click="close">Cerrar</v-btn>
-            <v-btn color="blue darken-1" text style="color:#fff;" @click="save" v-if="formMode == 'edit' || formMode == null">Guardar</v-btn>
+            <v-btn color="blue darken-1" style="color:#fff;" text @click="close">Cerrar</v-btn>
+            <v-btn color="blue darken-1" style="color:#fff;" text @click="save" v-if="formMode == 'edit' || formMode == null">Guardar</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -65,31 +68,20 @@
           class="elevation-1"
         >
             <template  v-slot:items="props">
-                <td >{{ props.item.nombre }}</td>
-                <td>{{ props.item.username }}</td>
+                <td>{{ props.item.type }}</td>
+                <td>{{ props.item.ticket_number }}</td>
+                <td>{{ props.item.from }}</td>
+                <td>{{ props.item.to }}</td>
+                <td>$ {{ props.item.amount | currency }}</td>
                 <td>      
+                    <a :href="props.item.file" target="_blank" rel="noopener noreferrer">     
                     <v-icon
                       small
-                      style="margin-right:0.9em;"
-                      @click="seeItem(props.item)"
+                      class="download"
                     >
-                      fa-eye
+                      fa-download
                     </v-icon>
-
-                    <v-icon
-                      small
-                      class="mr-2"
-                      @click="editItem(props.item)"
-                    >
-                      edit
-                    </v-icon>
-
-                    <v-icon
-                      small
-                      @click="showDeleteDialog(props.item)"
-                    >
-                      delete
-                    </v-icon>
+                  </a>
                 </td>   
             </template>            
 
@@ -99,34 +91,35 @@
 </template>
 
 <script>
-  import getData from '@/api/usuarios.js';
+  import getData from '@/api/boletas.js';
 
   export default {
     layout: 'dashboard',
     data: () => ({
       dialog: false,
       delete_confirmation_dialog: false,
-      formMode: null,
+      formMode: 'create',
       index: null,
       headers: [
-        { text: 'Nombre', value: 'nombre' },
-        { text: 'Usuario', value: 'username' },
+        { text: 'Servicio', value: 'type' },
+        { text: 'Númeración', value: 'ticket_number' },
+        { text: 'Desde', value: 'from' },
+        { text: 'Hasta', value: 'to' },
+        { text: 'Cantidad', value: 'amount' }
       ],
       regs: [],
       editedIndex: -1,
       editedItem: {
-        nombre: '',
-        email: '',
-        telefono: '',
-        tema: '',
-        consulta: ''
+        name: '',
+        text: '',
+        img: '',
+        enabled: false
       },
       defaultItem: {
-        nombre: '',
-        email: '',
-        telefono: '',
-        tema: '',
-        consulta: ''
+        name: '',
+        text: '',
+        img: '',
+        enabled: false
       },
     }),
 
@@ -134,16 +127,14 @@
       formTitle: function() {
         switch(this.formMode){
           case 'see': 
-            return 'Usuario';
+            return 'Servicio';
             break;
           case 'edit': 
-            return 'Editar Usuario';
+            return 'Editar Servicio';
             break;  
           case 'create': 
-            return 'Nuevo Usuario';
-            break;   
-          default: 
-             return 'Nuevo Usuario';   
+            return 'Nuevo Servicio';
+            break;
         }
       }
     },
@@ -156,6 +147,17 @@
 
     created () {
       this.initialize()
+    },
+
+    filters: {
+      boolean: function (value) {
+        value = value.toString()
+        return (value === 'true' || value === '1') ? 'si' : 'no';
+      },
+      currency: function (value) { 
+        let val = (value/1).toFixed(2).replace('.', ',')
+        return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+      }
     },
 
     methods: {
@@ -218,5 +220,5 @@
 
 
 <style scoped>
-  
+
 </style>
