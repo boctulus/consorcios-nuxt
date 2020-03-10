@@ -35,13 +35,13 @@
             <v-container>
               <v-layout row>
                 <v-flex cols="12" sm="6" md="4">
-                  <v-text-field v-model="editedItem.nombre" label="Nombre"></v-text-field>
+                  <v-text-field v-model="editedItem.nombre" :class="{'disable-events': formMode!='edit'}" label="Nombre"></v-text-field>
                 </v-flex>
                 <v-flex cols="12" sm="6" md="4">
-                  <v-text-field v-model="editedItem.username" label="Nombre de usuario"></v-text-field>
+                  <v-text-field v-model="editedItem.username" :class="{'disable-events': formMode!='edit'}" label="Nombre de usuario"></v-text-field>
                 </v-flex>
                 <v-flex cols="12" sm="6" md="4">
-                  <v-text-field v-model="editedItem.password" label="Contraseña"></v-text-field>
+                  <v-text-field v-model="editedItem.password" :class="{'disable-events': formMode!='edit'}" label="Contraseña"></v-text-field>
                 </v-flex>
               </v-layout>
             </v-container>

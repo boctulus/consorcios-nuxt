@@ -34,18 +34,18 @@
           <v-card-text>
             <v-container>
              
-              <v-text-field v-model="editedItem.name" label="Nombre" :disabled="formMode!='edit'"></v-text-field>
+              <v-text-field v-model="editedItem.name" label="Nombre" :class="{'disable-events': formMode!='edit'}" ></v-text-field>
        
               <label aria-hidden="true" class="v-label v-label--active theme--light" style="left: 0px; right: auto; position: absolute; font-size: 12px !important; margin-left: 32px;">Habilitado?</label>
-              <v-checkbox type="checkbox" v-model="editedItem.enabled" :label="editedItem.enabled | boolean" :disabled="formMode!='edit'"/>
+              <v-checkbox type="checkbox" v-model="editedItem.enabled" :label="editedItem.enabled | boolean" :class="{'disable-events': formMode!='edit'}"/>
 
-              <v-text-field v-model="editedItem.img" label="Imagen" :disabled="formMode!='edit'"></v-text-field>
+              <v-text-field v-model="editedItem.img" label="Imagen" :class="{'disable-events': formMode!='edit'}"></v-text-field>
               <div style="text-align:center;">
                 <img :src="editedItem.img" v-if="editedItem.img.match(/^(https:|http:)/)" />
                 <img :src="`/servicios/${editedItem.img}`" v-if="!editedItem.img.match(/^(https:|http:)/)" />
               </div>
 
-              <v-textarea v-model="editedItem.text" auto-grow label="Texto" :disabled="formMode!='edit'"></v-textarea>
+              <v-textarea v-model="editedItem.text" auto-grow label="Texto" :class="{'disable-events': formMode!='edit'}"></v-textarea>
 
             </v-container>
           </v-card-text>
@@ -228,6 +228,5 @@
 
 
 <style scoped>
-
 
 </style>

@@ -35,19 +35,19 @@
             <v-container>
               <v-layout row>
                 <v-flex cols="12" sm="6" md="4">
-                  <v-text-field v-model="editedItem.tema" label="Tema"></v-text-field>
+                  <v-text-field v-model="editedItem.tema" :class="{'disable-events': formMode!='edit'}" label="Tema"></v-text-field>
                 </v-flex>
                 <v-flex cols="12" sm="6" md="4">
-                  <v-text-field v-model="editedItem.consulta" label="Consulta"></v-text-field>
+                  <v-text-field v-model="editedItem.consulta" :class="{'disable-events': formMode!='edit'}" label="Consulta"></v-text-field>
                 </v-flex>
                 <v-flex cols="12" sm="6" md="4">
-                  <v-text-field v-model="editedItem.nombre" label="Nombre"></v-text-field>
+                  <v-text-field v-model="editedItem.nombre" :class="{'disable-events': formMode!='edit'}" label="Nombre"></v-text-field>
                 </v-flex>
                 <v-flex cols="12" sm="6" md="4">
-                  <v-text-field v-model="editedItem.telefono" label="Tel."></v-text-field>
+                  <v-text-field v-model="editedItem.telefono" :class="{'disable-events': formMode!='edit'}" label="Tel."></v-text-field>
                 </v-flex>
                 <v-flex cols="12" sm="6" md="4">
-                  <v-text-field v-model="editedItem.email" label="E-mail"></v-text-field>
+                  <v-text-field v-model="editedItem.email" :class="{'disable-events': formMode!='edit'}" label="E-mail"></v-text-field>
                 </v-flex>
               </v-layout>
             </v-container>
