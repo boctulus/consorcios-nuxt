@@ -41,7 +41,8 @@
 
               <v-text-field v-model="editedItem.img" label="Imagen"></v-text-field>
               <div style="text-align:center;">
-                 <img :src="`/servicios/${editedItem.img}`" />
+                <img :src="editedItem.img" v-if="editedItem.img.match(/http/)" />
+                <img :src="`/servicios/${editedItem.img}`" v-if="!editedItem.img.match(/$http/)" />
               </div>
 
               <v-textarea v-model="editedItem.text" auto-grow label="Texto"></v-textarea>
