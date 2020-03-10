@@ -67,7 +67,7 @@
             <template  v-slot:items="props">
                 <td >{{ props.item.nombre }}</td>
                 <td>{{ props.item.username }}</td>
-                <td>      
+                <td align="right">      
                     <v-icon
                       small
                       style="margin-right:0.9em;"

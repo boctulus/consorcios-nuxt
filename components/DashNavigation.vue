@@ -4,20 +4,19 @@
             <div v-if="drawer" class="drawer">
                 <div style="margin-top:5em;">
                     <v-list style="margin-top: 3em; background-color: #000000; color: #ffffff;">
-                            <li 
-                                v-for="(item, index) in computedList"
-                                v-bind:key="item.msg"
-                                v-bind:data-index="index"
-                                class="item"
-                            >
+                        <template
+                            v-for="(item, index) in computedList"
+                            v-bind:data-index="index"
+                        >
 
-                                <v-icon color="#CFA18B" style="padding-left:0.5em;">{{item.icon}}</v-icon>                                
-                                <a @click="navigate" class="link" v-if="!item.bookmark" :id="item.link">{{item.msg}}</a>
-                                <a @click="scrollToBookmark" class="link" v-if="item.bookmark" :id="item.link">{{item.msg}}</a>
-
-                                 <b-dropdown-divider v-if="typeof item.divider != 'undefined' && item.divider"></b-dropdown-divider>
-                            </li>                           
-
+                        <li v-bind:key="item.msg" @click="navigate" class="item" v-if="!item.bookmark" :id="item.link">
+                            <v-icon color="#CFA18B" style="padding-left:0.5em;">{{item.icon}}</v-icon>
+                            <span class="item_node engravers">
+                                {{item.msg}}
+                            </span>                            
+                        </li>
+                   
+                        </template>
                     </v-list>      
                 </div>
             </div>
@@ -209,26 +208,21 @@ export default {
     */
 }
 
-.link {
-    color: #ffffff;
-    padding-left: 1em;
-    font-size: 0.8em;
-}
-
 .list {
     list-style: none;
-}
-
-.item {
-    font-size: 1.2em;
-    line-height: 2.5em;
-    text-transform: uppercase;
 }
 
 .item:hover {
     text-decoration: none;
     cursor: pointer; 
     background-color: #321FDB;
+}
+
+.item_node {
+    padding-left: 0.5em;
+    font-size: 1.25em;
+    line-height: 2.5em;
+    text-transform: uppercase;
 }
 
 .drawer {
@@ -240,7 +234,7 @@ export default {
     left: 0;
   
     background-color:black;
-    width: 14.5em;
+    width: 16em;
     height: 100%;
 
     overflow-y: auto;
@@ -256,7 +250,7 @@ export default {
 
 .slide-fade-enter, .slide-fade-leave-to
 {
-  transform: translateX(-14.5em);
+  transform: translateX(-16em);
   opacity: 0;
 }
 

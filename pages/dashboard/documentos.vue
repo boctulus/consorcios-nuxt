@@ -213,9 +213,4 @@
 a {
 	 text-decoration: none;
 }
-
-.download:hover {
-  opacity: 0.5;
-  color:rgb(0, 183, 255); 
-}
 </style>
