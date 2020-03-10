@@ -115,7 +115,7 @@
     data: () => ({
       dialog: false,
       delete_confirmation_dialog: false,
-      formMode: null,
+      formMode: 'Nuevo Mensaje',
       index: null,
       headers: [
         { text: 'Tema', value: 'tema', align: 'start' },
@@ -153,9 +153,7 @@
             break;  
           case 'create': 
             return 'Nuevo Mensaje';
-            break;   
-          default: 
-             return 'Nuevo Mensaje';   
+            break;
         }
       }
     },

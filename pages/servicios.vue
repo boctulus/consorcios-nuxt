@@ -35,9 +35,8 @@
                 <b-button type="button" id="ask_info" @click="goContactForm">Pedir información</b-button> 
               </div> 
               <div style="text-align:center;">
-                <img :src="require(`../assets/servicios/${selected.img}.png`)" id="selected_img"/>
-              </div>  
-
+                <img :src="require(`@/assets/servicios/${selected.img}`)" id="selected_img"/>
+              </div> 
         
           </b-col>    
         </b-row> 
@@ -56,7 +55,7 @@
         <b-row>
          <b-col class="mb-5" sm="12" md="6" xl="3"  style="text-align:center;" v-for="item in serviciosComputados" v-bind:key="item.id">
            <div class="minicontainer" :id="item.id" @click="select(item.id)">
-              <p><img :title="item.alt"  style="border: 30px solid rgb(237, 237, 237); padding: 5px;" :src="require(`../assets/servicios/${item.img}.png`)" :alt="item.alt" width="150" height="150" ></p> 
+              <p><img :title="item.alt"  style="border: 30px solid rgb(237, 237, 237); padding: 5px;" :src="require(`../static/servicios/${item.img}`)" :alt="item.alt" width="150" height="150" ></p> 
 
               <h2 class="engravers" style="color: rgb(208, 162, 140); font-size: 2.5em; text-align: center;">{{item.name}}</h2>  
            </div>              
@@ -88,7 +87,8 @@ export default {
       let servicios = this.servicios;
 
       for (let i=0; i<servicios.length;i++){
-        servicios[i].alt = servicios[i].img.split('-').join(' ');
+        let img = servicios[i].img.split('.').slice(0, -1).join('.');
+        servicios[i].alt = img.split('-').join(' ');
       }
 
       return servicios.filter((e) => e.enabled); 
@@ -105,7 +105,7 @@ export default {
       this.selected = null;
       document.querySelector('#hamburger-icon').style.display = "block";
     },
-    
+
     goContactForm(){
       this.closeModal();
       setTimeout(() => {

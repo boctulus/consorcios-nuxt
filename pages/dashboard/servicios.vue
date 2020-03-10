@@ -33,20 +33,19 @@
           </v-card-title>
           <v-card-text>
             <v-container>
-              <v-layout row>
-                <v-flex cols="12" sm="6" md="4">
-                  <v-text-field v-model="editedItem.name" label="Nombre"></v-text-field>
-                </v-flex>
-                <v-flex cols="12" sm="6" md="4">
-                  <v-textarea v-model="editedItem.text" auto-grow label="Texto"></v-textarea>
-                </v-flex>
-                <v-flex cols="12" sm="6" md="4">
-                  <v-text-field v-model="editedItem.img" label="Imagen"></v-text-field>
-                </v-flex>
-                <v-flex cols="12" sm="6" md="4">
-                  <v-checkbox type="checkbox" v-model="editedItem.enabled" :label="editedItem.enabled | boolean"/>
-                </v-flex>
-              </v-layout>
+             
+              <v-text-field v-model="editedItem.name" label="Nombre"></v-text-field>
+       
+              <label aria-hidden="true" class="v-label v-label--active theme--light" style="left: 0px; right: auto; position: absolute; font-size: 12px !important; margin-left: 32px;">Habilitado?</label>
+              <v-checkbox type="checkbox" v-model="editedItem.enabled" :label="editedItem.enabled | boolean"/>
+
+              <v-text-field v-model="editedItem.img" label="Imagen"></v-text-field>
+              <div style="text-align:center;">
+                 <img :src="`/servicios/${editedItem.img}`" />
+              </div>
+
+              <v-textarea v-model="editedItem.text" auto-grow label="Texto"></v-textarea>
+
             </v-container>
           </v-card-text>
           <v-card-actions>
@@ -111,7 +110,7 @@
     data: () => ({
       dialog: false,
       delete_confirmation_dialog: false,
-      formMode: null,
+      formMode: 'create',
       index: null,
       headers: [
         { text: 'Nombre', value: 'name' },
@@ -146,9 +145,7 @@
             break;  
           case 'create': 
             return 'Nuevo Servicio';
-            break;   
-          default: 
-             return 'Nuevo Servicio';   
+            break;
         }
       }
     },
