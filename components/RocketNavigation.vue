@@ -153,7 +153,6 @@ export default {
     text-decoration: none;
     cursor: pointer;
     font-size: 1.15em;
-    filter: brightness(2);
 }
 
 .slide-fade-enter-active {

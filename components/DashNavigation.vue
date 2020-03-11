@@ -10,14 +10,14 @@
                         >
 
                             <template v-if="item.hasOwnProperty('link')">
-                                <n-link :to="item.link" v-bind:key="item.text" class="link">
+                                <a href="#" @click="navigate(item.link)" v-bind:key="item.text" class="link">
                                     <li  class="item">
                                         <v-icon color="#CFA18B" style="padding-left:0.5em;">
                                             {{item.icon}}
                                         </v-icon>
                                         <span class="item_node engravers">{{item.text}}</span>
                                     </li>
-                                </n-link>    
+                                </a>    
 
                                 <b-dropdown-divider v-if="typeof item.divider != 'undefined' && item.divider" v-bind:key="`'sep-' + ${item.text}`"></b-dropdown-divider>                            
                             </template> 
@@ -35,11 +35,11 @@
 
                                     <ul class="treeview-menu" v-for="(child, ix) in item.childs" v-bind:key="ix">
                                         <li>
-                                            <n-link :to="child.link" class="sub">
+                                            <a href="#" @click="navigate(child.link)" class="sub">
                                                 <div>
                                                     <i class="fa fa-circle-o"></i><span style="margin-left:1em;">{{ child.text }}</span>
                                                 </div>
-                                            </n-link>
+                                            </a>
                                         </li>
                                     </ul>     
                                 </li>
@@ -137,6 +137,14 @@ export default {
         logout: function() {
             this.$store.commit('logout');
             this.$router.push('/login');
+        },
+        navigate: function(to) {
+            this.drawer = false;   
+            setTimeout(() => {
+                this.$router.push({
+                    path: to
+               })
+            },500);  
         }
     },
     components: {

@@ -10,7 +10,7 @@ const links = {
     { text: 'Usuarios',  link: '/dashboard/usuarios', icon: 'fa-building' },
     { text: 'Archivos',  
       childs: [ 
-            { text: 'Servicios', link: '/dashboard/archivos/servicios' }, 
+            { text: 'Boletas', link: '/dashboard/archivos/boletas' }, 
             { text: 'Documentos', link: '/dashboard/archivos/documentos'} 
       ], 
       icon: 'fa-folder' 
