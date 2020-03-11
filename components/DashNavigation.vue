@@ -3,18 +3,45 @@
         <transition name="slide-fade">
             <div v-if="drawer" class="drawer">
                 <div style="margin-top:5em;">
-                    <v-list style="margin-top: 3em; background-color: #000000; color: #ffffff;">
+                    <v-list style="margin-top: 3em; background-color: #000000; color: #B8C7CE;">
                         <template
                             v-for="(item, index) in computedList"
                             v-bind:data-index="index"
                         >
 
-                        <li v-bind:key="item.msg" @click="navigate" class="item" v-if="!item.bookmark" :id="item.link">
-                            <v-icon color="#CFA18B" style="padding-left:0.5em;">{{item.icon}}</v-icon>
-                            <span class="item_node engravers">
-                                {{item.msg}}
-                            </span>                            
-                        </li>
+                            <template v-if="item.hasOwnProperty('link')">
+                                <n-link :to="item.link" v-bind:key="item.text" class="link">
+                                    <li  class="item">
+                                        <v-icon color="#CFA18B" style="padding-left:0.5em;">
+                                            {{item.icon}}
+                                        </v-icon>
+                                        <span class="item_node engravers">{{item.text}}</span>
+                                    </li>
+                                </n-link>                                
+                            </template> 
+
+                            <template v-if="item.hasOwnProperty('childs')">
+                                <li v-bind:key="item.text">
+                                    <div class="item">
+                                        <v-icon color="#CFA18B" style="padding-left:0.5em;">{{item.icon}}</v-icon>
+                                        <span class="item_node engravers">{{item.text}}</span>
+
+                                        <span style="position: absolute; right: 10px; margin-top: 10px;">
+                                            <i class="fa fa-angle-left"></i>
+                                        </span> 
+                                    </div>      
+
+                                    <ul class="treeview-menu" v-for="(child, ix) in item.childs" v-bind:key="ix">
+                                        <li>
+                                            <n-link :to="child.link" class="sub">
+                                                <div>
+                                                    <i class="fa fa-circle-o"></i><span style="margin-left:1em;">{{ child.text }}</span>
+                                                </div>
+                                            </n-link>
+                                        </li>
+                                    </ul>     
+                                </li>
+                            </template>   
                    
                         </template>
                     </v-list>      
@@ -87,22 +114,15 @@ export default {
         console.log(this.$store.getters.roles);
 
         this.list = [
-            { msg: 'Panel de control',  link: '/dashboard', icon: 'fa-gears', divider: true },
-            { msg: 'Inicio',  link: '/home', icon: 'fa-home' }
+            { text: 'Panel de control',  link: '/dashboard', icon: 'fa-gears', divider: true },
+            { text: 'Inicio',  link: '/home', icon: 'fa-home' }
         ];
 
         this.$store.getters.roles.forEach(role => {
             getLinks(role).forEach(e => {
                 this.list.push(e)
             });
-        });
-        
-        for (let i=0; i<this.list.length; i++){
-            if (this.list[i].link[0] == '#')
-                this.list[i].bookmark = true;
-            else     
-                this.list[i].bookmark = false;
-        }
+        });         
     },
     mounted() {
 
@@ -111,22 +131,6 @@ export default {
         closeDrawer: function() {
             this.drawer = false;
             console.log('CERRANDO..');
-        },
-        scrollToBookmark: function(element) {
-            this.drawer = false;   
-            setTimeout(() => {
-                VueScrollTo.scrollTo(element.target.id, 1000, {
-                    easing: 'ease-in-out'
-                })
-            },500);  
-        },
-        navigate: function(element) {
-            this.drawer = false;   
-            setTimeout(() => {
-                this.$router.push({
-                    path: element.target.id
-               })
-            },500);  
         },
         logout: function() {
             this.$store.commit('logout');
@@ -141,6 +145,25 @@ export default {
 
 
 <style scoped>  
+.treeview-menu {
+    list-style: none;
+    color:#B8C7CE !important;
+}
+
+.treeview-menu>li {
+    line-height: 2.5em;
+}
+
+.sub {
+    color: #B8C7CE;
+}
+
+.link, .sub:hover {
+    text-decoration: none;
+    cursor: pointer;
+    color: #fff;
+}
+
 #dropdown-right {
     position:fixed; 
     right: 0.5em; 

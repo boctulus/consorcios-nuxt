@@ -1,14 +1,20 @@
 const links = { 
   habitante: [ 
-    { msg: 'Boletas',  link: '/dashboard/boletas', icon: 'fa-folder' },
-    { msg: 'Documentos',  link: '/dashboard/documentos', icon: 'fa-clone' }
+    { text: 'Boletas',  link: '/dashboard/boletas', icon: 'fa-folder' },
+    { text: 'Documentos',  link: '/dashboard/documentos', icon: 'fa-clone' }
   ],
   admin:  [
-    { msg: 'Mensajes',  link: '/dashboard/mensajes', icon: 'fa-envelope' },  
-    { msg: 'Servicios',  link: '/dashboard/servicios', icon: 'fa-bell' },
-    { msg: 'Posts',  link: '/dashboard/posts', icon: 'fa-clone'},               
-    { msg: 'Usuarios',  link: '/dashboard/usuarios', icon: 'fa-building' },
-    { msg: 'Archivos',  link: '/dashboard/archivos', icon: 'fa-folder' }
+    { text: 'Mensajes',  link: '/dashboard/mensajes', icon: 'fa-envelope' },  
+    { text: 'Servicios',  link: '/dashboard/servicios', icon: 'fa-bell' },
+    { text: 'Posts',  link: '/dashboard/posts', icon: 'fa-clone'},               
+    { text: 'Usuarios',  link: '/dashboard/usuarios', icon: 'fa-building' },
+    { text: 'Archivos',  
+      childs: [ 
+            { text: 'Servicios', link: '/dashboard/archivos/servicios' }, 
+            { text: 'Documentos', link: '/dashboard/archivos/documentos'} 
+      ], 
+      icon: 'fa-folder' 
+    }
   ]
 }
 
