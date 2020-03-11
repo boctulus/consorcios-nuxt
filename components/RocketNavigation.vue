@@ -45,8 +45,8 @@
 <script>
 import Hamburger from '@/components/Hamburger';
 import Velocity from 'velocity-animate';
-
 import vClickOutside from 'v-click-outside';
+
 
 export default {
     name: 'RocketNavigation',

@@ -35,7 +35,7 @@
                 <b-button type="button" id="ask_info" @click="goContactForm">Pedir información</b-button> 
               </div> 
               <div style="text-align:center;">
-                <img :src="require(`@/assets/servicios/${selected.img}`)" id="selected_img"/>
+                <img :src="`/servicios/${selected.img}`" id="selected_img"/>
               </div> 
         
           </b-col>    

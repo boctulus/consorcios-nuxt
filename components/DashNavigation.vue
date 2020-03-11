@@ -17,7 +17,9 @@
                                         </v-icon>
                                         <span class="item_node engravers">{{item.text}}</span>
                                     </li>
-                                </n-link>                                
+                                </n-link>    
+
+                                <b-dropdown-divider v-if="typeof item.divider != 'undefined' && item.divider" v-bind:key="`'sep-' + ${item.text}`"></b-dropdown-divider>                            
                             </template> 
 
                             <template v-if="item.hasOwnProperty('childs')">
@@ -27,7 +29,7 @@
                                         <span class="item_node engravers">{{item.text}}</span>
 
                                         <span style="position: absolute; right: 10px; margin-top: 10px;">
-                                            <i class="fa fa-angle-left"></i>
+                                            <i class="fa fa-angle-down"></i>
                                         </span> 
                                     </div>      
 

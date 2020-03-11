@@ -59,12 +59,11 @@ module.exports = {
   plugins: [
     '@/plugins/vuetify',
     '@/plugins/bootstrap',
-
-    // ssr: false to only include it on client-side
+    
     {
       src: '~plugins/scrollto.js',
       ssr: false
-    }
+    }    
   ],
 
   /*
