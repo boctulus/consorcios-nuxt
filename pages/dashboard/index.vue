@@ -4,11 +4,11 @@
 
       <v-content>
             <v-container grid-list-md text-xs-center>
-                  <v-layout row wrap>
+                  <v-layout row wrap >
                       <template v-for="card in cards">  
                         <v-flex v-bind:key="card.name" style="margin-top: 20px;">
                               <a href="#" @click="navigate(card.to)" class="link">
-                                    <div class="imc">
+                                    <div class="imc" v-bind:style="{ width: computedWidth }">
                                           <div class="im overlay" :style="{backgroundImage:'url('+ card.img + ')', backgroundSize: 'cover'}" >
                                                 <span class="headline">{{card.name}}</span>
                                           </div>
@@ -25,25 +25,44 @@
 
 <script>
 import getCards from '@/api/cards.js';
+import { store } from '@/store/login.js'
 
 export default {  
-  layout: 'dashboard',
-  data: () => ({
-  }),
+      layout: 'dashboard',
+      store: store,
+      data: () => ({
+            cards: []
+      }),
 
-  created() {
-      this.cards = getCards();
-  },
+      computed: {
+            computedWidth: function () {
+                  return this.width;
+            }
+      },
 
-  methods: {
-      navigate: function(to) { 
-            setTimeout(() => {
-                  this.$router.push({
-                        path: to
-                  })
-            },500);  
-      }
-  }  
+      created() {
+            
+            this.$store.getters.roles.forEach(role => {
+                  getCards(role).forEach(e => {
+                        this.cards.push(e)
+                  });
+            });         
+
+            if (this.cards.length <= 3){
+                  console.log('cambiar');
+                  this.width = '90vh';
+            }
+      },
+
+      methods: {
+            navigate: function(to) { 
+                  setTimeout(() => {
+                        this.$router.push({
+                              path: to
+                        })
+                  },500);  
+            }
+      }  
 }
 </script>
 
@@ -53,6 +72,11 @@ export default {
       width: 280px;
       height: 200px;
       margin: 0 auto; 
+      transition: all .5s ease-in-out;
+}
+
+.imc:hover {
+      transform: scale(1.1);
 }
 
 .im {
@@ -62,7 +86,6 @@ export default {
       margin: 0 auto;
       font-size: 3.75rem;
       font-family: sans-serif;
-      color: white;
       max-width:100%;
       height: 100%;
 }
@@ -85,12 +108,10 @@ export default {
 .headline {
       opacity: 1;
       z-index: 999;
-      padding-top:30px;
 }
 
-.link:hover {
-    color: red;
-    font-size: 2em !important;
+.link {
+      color: white;
 }
 
 @media screen and (max-width: 320px) {

@@ -1,7 +1,21 @@
 TODO
 -----------
 
-- ChatBot en Vue 
+- Novedades (ultimos posts del blog?) en el Dashboard
+
+- Upload de archivos 
+
+https://serversideup.net/uploading-files-vuejs-axios/
+https://stackoverflow.com/questions/52645358/vuetify-file-uploads
+https://www.itsolutionstuff.com/post/file-upload-using-vue-js-axios-phpexample.html
+https://github.com/jannhama/vuetify-upload-btn
+https://github.com/vuetifyjs/vuetify/issues/238
+https://element.eleme.io/#/en-US/component/upload
+https://codepen.io/vahdet/pen/qBWPdWv
+https://stackoverflow.com/questions/44989162/file-upload-in-vuetify
+
+
+- ChatBot en Vue --- OK
 
     * Dirección? Donde están?
     * Teléfono? cómo los contacto?
