@@ -32,16 +32,9 @@
             <span class="headline">{{ formTitle }}</span>
           </v-card-title>
           <v-card-text>
-            <v-container>
-              <v-layout row>
-                <v-flex cols="12" sm="6" md="4">
                   <v-text-field v-model="editedItem.title" :class="{'disable-events': formMode=='see'}" label="Título"></v-text-field>
-                </v-flex>
-                <v-flex cols="12" sm="6" md="4">
-                  <v-text-field v-model="editedItem.text" :class="{'disable-events': formMode=='see'}" label="Texto"></v-text-field>
-                </v-flex>
-              </v-layout>
-            </v-container>
+               
+                  <vue-editor v-model="editedItem.text" :class="{'disable-events': formMode=='see'}" label="Texto" class="editor"></vue-editor>
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
@@ -66,7 +59,7 @@
                 <td>{{ props.item.text }}</td>
                 <td align="right">      
 
-                <v-menu bottom left offset-y style="color: #000 !important; z-index: 10000;">
+                <v-menu bottom left offset-y>
                   <template v-slot:activator="{ on }">
                   <v-btn
                       dark
@@ -102,6 +95,18 @@
                         edit
                       </v-icon>
                     </v-list-tile>
+
+                    <v-list-tile
+                      @click="showDeleteDialog(props.item)"
+                    >
+                      <v-icon
+                        small
+                        style="margin-right:0.9em;"
+                        @click="seeItem(props.item)"
+                      >
+                        delete
+                      </v-icon>
+                    </v-list-tile>
 								
                   </v-list>
                 </v-menu>
@@ -117,6 +122,7 @@
 
 <script>
   import getData from '@/api/posts.js';
+  import { VueEditor } from "vue2-editor";
 
   export default {
     layout: 'dashboard',
@@ -234,8 +240,12 @@
           this.regs.push(this.editedItem)
         }
         this.close()
-      },
+      }
     },
+
+    components: {
+      VueEditor
+    }
   }
 </script>
 
