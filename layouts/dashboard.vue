@@ -1,9 +1,11 @@
 <template>
-    <div id="dash_layout">
-      <DashNavigation>
-          <nuxt/>
-      </DashNavigation>
-    </div>
+        <v-app id="inspire">    
+             <div id="dash_layout">    
+                <DashNavigation>
+                    <nuxt/>
+                </DashNavigation>
+             </div>   
+        </v-app>        
 </template>
 
 

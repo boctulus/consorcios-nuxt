@@ -162,7 +162,7 @@ export default {
     methods: {
         closeDrawer: function() {
             this.drawer = false;
-            console.log('CERRANDO..');
+            //console.log('CERRANDO..');
         },
         logout: function() {
             this.$store.commit('logout');
@@ -294,7 +294,7 @@ export default {
     padding-left: 0.5em;
     font-size: 1.25em;
     line-height: 2.5em;
-    text-transform: uppercase;
+    /* text-transform: uppercase;  */
 }
 
 .drawer {

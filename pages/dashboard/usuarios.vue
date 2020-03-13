@@ -55,7 +55,7 @@
       </v-dialog>
     </v-layout>
 
-    <v-app id="inspire" style="
+    <div style="
         background: #fff;
     ">
 
@@ -94,7 +94,7 @@
             </template>            
 
         </v-data-table>
-    </v-app> 
+    </div> 
   </div>  
 </template>
 
