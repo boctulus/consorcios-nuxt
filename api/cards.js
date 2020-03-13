@@ -12,7 +12,7 @@ const arr = {
     },
     {  
       name: 'Novedades',
-      img: '/cards/n2_red.png',
+      img: '/cards/n5.png',
       to: '/dashboard/archivos/novedades'
     }
   ], 

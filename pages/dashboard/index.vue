@@ -8,9 +8,9 @@
                       <template v-for="card in cards">  
                         <v-flex v-bind:key="card.name" style="margin-top: 20px;">
                               <a href="#" @click="navigate(card.to)" class="link">
-                                    <div class="imc" v-bind:style="{ width: computedWidth }">
+                                    <div class="imc" v-bind:style="{ width: computedWidth, minHeight : computedMinHeight }">
                                           <div class="im overlay" :style="{backgroundImage:'url('+ card.img + ')', backgroundSize: 'cover'}" >
-                                                <span class="headline">{{card.name}}</span>
+                                                <span class="headline engravers" :style="{ fontSize: computedHeadlineFontSize }" >{{card.name}}</span>
                                           </div>
                                     </div>
                               </a>      
@@ -31,12 +31,21 @@ export default {
       layout: 'dashboard',
       store: store,
       data: () => ({
-            cards: []
+            cards: [],
+            headlineFontSize:  '2em !important'
       }),
 
       computed: {
             computedWidth: function () {
                   return this.width;
+            },
+
+            computedMinHeight: function () {
+                  return this.minHeight;
+            },
+
+            computedHeadlineFontSize: function () {
+                  return this.headlineFontSize;
             }
       },
 
@@ -49,9 +58,18 @@ export default {
             });         
 
             if (this.cards.length <= 3){
-                  console.log('cambiar');
-                  this.width = '90vh';
+                  this.width = '60vw';
+
+                  if (window.innerHeight < window.innerWidth){
+                     this.minHeight = parseInt(60 * 1.25) + 'vh';
+                  }  
+                  
+                  this.headlineFontSize = parseFloat(1.1  * 5 * window.innerWidth / 1200) + 'em !important';
             }
+      },
+
+      mounted() {
+
       },
 
       methods: {
@@ -84,8 +102,6 @@ export default {
       justify-content: center;
       align-items: center;
       margin: 0 auto;
-      font-size: 3.75rem;
-      font-family: sans-serif;
       max-width:100%;
       height: 100%;
 }
@@ -119,4 +135,5 @@ export default {
             width: 240px;
       }
 }
+
 </style>

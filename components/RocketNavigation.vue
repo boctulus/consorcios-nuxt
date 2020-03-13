@@ -47,6 +47,12 @@ import Hamburger from '@/components/Hamburger';
 import Velocity from 'velocity-animate';
 import vClickOutside from 'v-click-outside';
 
+import VueScrollTo from 'vue-scrollto'
+
+import Vue from 'vue'
+Vue.use(VueScrollTo)
+
+
 
 export default {
     name: 'RocketNavigation',

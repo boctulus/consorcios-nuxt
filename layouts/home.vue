@@ -26,6 +26,10 @@ export default {
 </script>
 
 <style>
+#home_layout {
+
+}
+
 .engravers {
     font-family: 'Engravers', Sans-serif !important;
 }

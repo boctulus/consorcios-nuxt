@@ -28,6 +28,13 @@ export default {
 </script>
 
 <style>
+#dash_layout {
+  background-image:  url(/bg/13.jpg);
+  background-size: cover;
+  min-height: 100vh;
+  color: #fff;
+}
+
 .engravers {
     font-family: 'Engravers', Sans-serif !important;
 }

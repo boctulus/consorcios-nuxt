@@ -73,9 +73,36 @@
                     </b-col>
 
                     <b-col>
-                        <b-dropdown id="dropdown-right" right text="" class="m-2">
-                            <b-dropdown-item href="#" @click="logout"><v-icon style="font-size:1.2em; padding-bottom: 2px;">logout</v-icon> Salir</b-dropdown-item>
-                        </b-dropdown>         
+                        <!--b-dropdown id="dropdown-right" right text="" class="m-2" style="backgound: #0077BFF !important">
+                            <b-dropdown-item href="#" @click="logout" ><v-icon style="font-size:1.2em; padding-bottom: 2px;">logout</v-icon> Salir</b-dropdown-item>
+                        </b-dropdown--> 
+
+                        <div id="dropdown-right">
+                            <v-menu bottom left offset-y>
+                                <template v-slot:activator="{ on }">
+                                <v-btn
+                                    dark
+                                    icon
+                                    v-on="on"
+                                >
+                                    <v-icon>more_vert</v-icon>
+                                </v-btn>
+                                </template>
+
+                                <v-list style="margin-top: 10px;">
+                                <v-list-tile
+                                    v-for="(dp, i) in dropdown_items"
+                                    :key="i"
+                                    @click="dp.action()"
+                                >
+                                    <v-icon style="font-size:1em;">{{ dp.icon }}</v-icon>
+                                    <v-list-tile-title>{{ dp.title }}</v-list-tile-title>
+                                </v-list-tile>
+                                </v-list>
+                            </v-menu>
+                        </div>
+                        
+
                     </b-col>
                 </b-row>                 
             </nav>
@@ -98,7 +125,10 @@ export default {
     data() {
         return {
             drawer: false,
-            list: []
+            list: [],
+            dropdown_items: [
+                {title: 'logout', 'action': this.logout, icon: 'logout' }
+            ]
         };
     },
     computed: {
@@ -155,6 +185,15 @@ export default {
 
 
 <style scoped>  
+
+/*
+.dropdown_bg {
+    color: #fff;
+    background-color:#007BFF !important;
+    border-color:#007BFF !important;
+} 
+*/
+
 .treeview-menu {
     list-style: none;
     color:#B8C7CE !important;
@@ -188,7 +227,7 @@ export default {
     left: 0;
     top: 0;
     height: 50px;
-    background-color:#808B97;
+    background-color: #2196F3; /* #808B97; */
 }
 
 .ham {
@@ -259,7 +298,7 @@ export default {
 }
 
 .drawer {
-    opacity: 1; 
+    opacity: 0.75; 
     z-index: 5000;
     
     position: fixed;
