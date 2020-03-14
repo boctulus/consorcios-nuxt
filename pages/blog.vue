@@ -14,24 +14,24 @@
 
         <b-row>
 
-          <b-col sm="12" md="6">
-              <b-row v-for="(post, ix) in postsPares" v-bind:key="ix" class="area_link" @mouseover="hover = ix"
+          <b-col sm="12" md="6" class="col_link">
+              <b-row v-for="(post, ix) in postsPares" v-bind:key="`'row-par-' + ${ix}`" class="area_link" @mouseover="hover = 'par-' + ix"
     @mouseleave="hover = null">
                   <a href="#" class="link">
                     <li class="link_wrapper">  
-                        <v-icon class="plus_link" :class="{ golden : hover == ix }">fa-plus-circle</v-icon>                    
+                        <v-icon class="plus_link" :class="{ golden : hover == 'par-' + ix}">fa-plus-circle</v-icon>                    
                         <span href="#" class="link text_link">{{ post.title }}</span>
                     </li>
                   </a>
               </b-row>
           </b-col>
 
-          <b-col sm="12" md="6">
-              <b-row v-for="(post, ix) in postsImpares" v-bind:key="ix" class="area_link" @mouseover="hover = ix"
+          <b-col sm="12" md="6" class="col_link">
+              <b-row v-for="(post, ix) in postsImpares" v-bind:key="`'row-impar-' + ${ix}`" class="area_link" @mouseover="hover = 'impar-' + ix"
     @mouseleave="hover = null">
                 <a href="#" class="link">
                   <li class="link_wrapper">  
-                      <v-icon class="plus_link" :class="{ golden : hover == ix }">fa-plus-circle</v-icon>                    
+                      <v-icon class="plus_link" :class="{ golden : hover == 'impar-' + ix }">fa-plus-circle</v-icon>                    
                       <span href="#" class="link text_link">{{ post.title }}</span>
                   </li>
                 </a>
@@ -85,21 +85,30 @@ export default {
 
 
 <style scoped>
+:root {
+    --color1: #D0A28C ;
+    --color2: #ccc;
+}
+
+.col_link {
+  padding-left: 0;
+  padding-right: 0; 
+}
+
 .area_link {
   background-color: #27292B; 
   margin-bottom: 10px; 
-  margin-left: 5px; 
-  margin-right: 5px;
+  margin-left: 0.5vw; 
+  margin-right: 0.5vw;
   height: 80px;
 }
 
 .area_link:hover {
   background-color: #4E8CFF !important;
-  color: #D0A28C;
 }
 
 .golden {
-  color: #D0A28C !important;
+  color: var(--color2) !important;
 }
 
 .link_wrapper {
@@ -109,12 +118,7 @@ export default {
 }
 
 .plus_link {
-  color: #ccc;
-}
-
-.plus_link:hover {
-  color: #D0A28C;
-  text-decoration: none;
+  color: var(--color1);
 }
 
 .text_link {
@@ -122,6 +126,7 @@ export default {
   color: #ccc;
   margin-left: 0.5rem;
 }
+
 
 #blog_cont {
   text-align: center;

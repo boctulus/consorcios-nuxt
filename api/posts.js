@@ -15,6 +15,7 @@ const arr = [
     <li>Industrial: aquellos en donde las unidades de propiedad exclusiva se destinan a actividades propias del ramo.</li>
     <li>Mixtos: aquellos en donde las unidades de propiedad exclusiva se destinan a dos o más de los usos señalados en los incisos anteriores.</li>
     </ol><p>Para mayores informes del servicio profesional para <strong>administración de condominios</strong> visita: <a href="https://administraciondecondominios.com.mx/administracion-de-condominios/">ADMINISTRACIÓN DE CONDOMINIOS</a>`,
+    url_segment: 'que-es-un-consorcio',
     created_by: 5,
     belongs_to: 5,
     created_at: '',
@@ -23,7 +24,8 @@ const arr = [
   {  
     id: 2,
     title: '¿Qué es una unidad de propiedad privativa?',
-    text: ``,
+    text: `bla bla bla`,
+    url_segment: 'que-es-unidad-residencial',
     created_by: 5,
     belongs_to: 5,
     created_at: '',
