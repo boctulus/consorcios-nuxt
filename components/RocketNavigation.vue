@@ -19,17 +19,17 @@
                             v-on:leave="leave"
                             class="list"
                         >
-
                             <li 
                                 v-for="(item, index) in computedList"
                                 v-bind:key="item.msg"
                                 v-bind:data-index="index"
-                                class="item"
+                                class="item link"
+                                @click="go(item.link)"
                             >
-                                <v-icon color="#CFA18B" style="margin-right:0.5em;">crop_din</v-icon>                                
-                                <a @click="navigate" class="link" v-if="!item.bookmark" :id="item.link">{{item.msg}}</a>
-                                <a @click="scrollToBookmark" class="link" v-if="item.bookmark" :id="item.link">{{item.msg}}</a>
+                                <v-icon color="#CFA18B" style="margin-right:0.5em;">crop_din</v-icon>  
+                                {{item.msg}}
                             </li>
+                            
                         </transition-group>
                     </v-list>      
                 </div>
@@ -69,27 +69,27 @@ export default {
             ]
         };
     },
+
     computed: {
         computedList: function () {
             return this.drawer ? this.list : []
         }
     },
+
     created() {
-        for (let i=0; i<this.list.length; i++){
-            if (this.list[i].link[0] == '#')
-                this.list[i].bookmark = true;
-            else     
-                this.list[i].bookmark = false;
-        }
+        
     },
+
     directives: {
       clickOutside: vClickOutside.directive
     },
+
     methods: {
         beforeEnter: function (elem) {
             elem.style.opacity = 0
             elem.style.height = 0
         },
+
         enter: function (elem, done) {
             var delay = elem.dataset.index * 150;
             setTimeout(function () {
@@ -100,6 +100,7 @@ export default {
                 )
             }, delay)
         },
+
         leave: function (elem, done) {
             var delay = elem.dataset.index * 100
             setTimeout(function () {
@@ -110,25 +111,37 @@ export default {
                 )
             }, delay)
         },
+
         closeDrawer: function() {
             this.drawer = false;
         },
-        scrollToBookmark: function(element) {
+
+        go: function(link) {
+            if (link[0] == '#'){
+                this.scrollToBookmark(link);
+            } else {
+                this.navigate(link);
+            }
+        },
+
+        scrollToBookmark: function(link) {
             this.drawer = false;   
             setTimeout(() => {
-                VueScrollTo.scrollTo(element.target.id, 1000, {
+                VueScrollTo.scrollTo(link, 1000, {
                     easing: 'ease-in-out'
                 })
             },500);  
         },
-        navigate: function(element) {
+
+        navigate: function(link) {
             this.drawer = false;   
             setTimeout(() => {
                 this.$router.push({
-                    path: element.target.id
+                    path: link
                })
             },500);  
         },
+        
         handleKey (event) {
             console.log(event);
             if (event.keyCode === 27) {

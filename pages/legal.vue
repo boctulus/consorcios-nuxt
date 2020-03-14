@@ -10,14 +10,14 @@
     <b-container style="color: #ffffff;"> 
        
        <!-- color: #808b97 -->
-        <h1 class="engravers text-mobile mt-3 mb-3">MARCO LEGAL</h1>
+        <h1 class="engravers text-mobile mt-1 mb-4">MARCO LEGAL</h1>
 
         <b-row>
           <b-col class="mb-5" md="6" v-for="item in documents" v-bind:key="item.name">
-            <h2 style="font-size: 20px;"><strong><span class="pontano" style="color: #d0a28c;">{{item.name}}</span></strong></h2>
+            <h2 style="font-size: 1.3rem;"><strong><span class="pontano" style="color: #d0a28c;">{{item.name}}</span></strong></h2>
             <p>&nbsp;</p>   
 
-            <div class="btn" style="text-align: center;"><span style="font-size: 1.2em;"><strong><a :href="item.file" target="_blank" rel="noopener noreferrer"><span class="aft">DESCARGAR</span></a></strong></span></div>
+            <div class="btn" style="text-align: center;"><span style="font-size: 1.2rem;"><strong><a :href="item.file" target="_blank" rel="noopener noreferrer"><span class="aft">DESCARGAR</span></a></strong></span></div>
           </b-col>
 
         </b-row>
@@ -124,19 +124,6 @@ a:hover {
     left: 3%; 
 } 
 
-/* texto pequeño en movil*/
-@media only screen and (max-width: 800px){
-    .text-mobile{
-        font-size: 3em !important;
-        /* text-align: left; */
-    }    
-}
-
-@media only screen and (max-width: 800px){
-    .text-mobile{
-        font-size: 3em !important;
-    }    
-}
 
 @media only screen and (max-width: 799px){
     .logo_container {
@@ -159,6 +146,45 @@ a:hover {
     .logo_wrapper {
       height: 160px !important;
     }
+}
+
+/* texto pequeño en movil*/
+@media only screen and (max-width: 800px){
+    .text-mobile{
+        font-size: 3em !important;
+        /* text-align: left; */
+    }    
+}
+
+@media screen and (max-width: 575px) {
+  h1 {
+    font-size: 1.8em !important;
+  }
+}
+
+@media screen and (min-width: 576px) and (max-width: 767px) {
+  h1 {
+    font-size: 2em !important;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px){
+  h1 {
+    font-size: 3em !important;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px){
+  h1 {
+    font-size: 4em !important;
+  }
+}
+
+@media screen and (min-width: 1200px){
+  h1 {
+    font-size: 5em !important;
+  }
+
 }
 
 </style>

@@ -10,7 +10,7 @@
     </div>  
 
     <div class="container" id="blog_cont">
-        <h1 style="color: #fff;" class="engravers text-mobile mt-1 mb-5">Blog</h1>
+        <h1 style="color: #fff;" class="engravers text-mobile mb-5">Blog</h1>
 
         <b-row>
 
