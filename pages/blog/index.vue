@@ -4,7 +4,7 @@
     <div class="logo_wrapper">
       <div class="logo_container">
           <n-link to="/home">
-            <v-img :src="require('../assets/logov2b_justo.png')" lazy-src class="logo" />
+            <v-img src="/logov2b_justo.png" lazy-src class="logo" />
           </n-link>
       </div>  
     </div>  
@@ -17,27 +17,27 @@
           <b-col sm="12" md="6" class="col_link">
               <b-row v-for="(post, ix) in postsPares" v-bind:key="`'row-par-' + ${ix}`" class="area_link" @mouseover="hover = 'par-' + ix"
     @mouseleave="hover = null">
-                  <a href="#" class="link">
+                  <n-link href="#" class="link post_link" :to="`blog/${post.url_segment}`" > 
                     <li class="link_wrapper">  
-                        <v-icon class="plus_link" :class="{ golden : hover == 'par-' + ix}">fa-plus-circle</v-icon>                    
+                        <v-icon class="plus_link" :class="{ color2 : hover == 'par-' + ix}">fa-plus-circle</v-icon>                    
                         <span href="#" class="link text_link">{{ post.title }}</span>
                     </li>
-                  </a>
+                  </n-link>
               </b-row>
           </b-col>
 
           <b-col sm="12" md="6" class="col_link">
-              <b-row v-for="(post, ix) in postsImpares" v-bind:key="`'row-impar-' + ${ix}`" class="area_link" @mouseover="hover = 'impar-' + ix"
+              <b-row v-for="(post, ix) in postsImpares" v-bind:key="`'row-par-' + ${ix}`" class="area_link" @mouseover="hover = 'par-' + ix"
     @mouseleave="hover = null">
-                <a href="#" class="link">
-                  <li class="link_wrapper">  
-                      <v-icon class="plus_link" :class="{ golden : hover == 'impar-' + ix }">fa-plus-circle</v-icon>                    
-                      <span href="#" class="link text_link">{{ post.title }}</span>
-                  </li>
-                </a>
+                  <n-link href="#" class="link post_link" :to="`blog/${post.url_segment}`">
+                    <li class="link_wrapper">  
+                        <v-icon class="plus_link" :class="{ color2 : hover == 'par-' + ix}">fa-plus-circle</v-icon>                    
+                        <span href="#" class="link text_link">{{ post.title }}</span>
+                    </li>
+                  </n-link>
               </b-row>
           </b-col>
-
+          
         </b-row>
 
     </div>
@@ -91,8 +91,8 @@ export default {
 }
 
 .col_link {
-  padding-left: 0;
-  padding-right: 0; 
+  padding-left: 15px;
+  padding-right: 15px; 
 }
 
 .area_link {
@@ -107,8 +107,12 @@ export default {
   background-color: #4E8CFF !important;
 }
 
-.golden {
-  color: var(--color2) !important;
+.color2 {
+  color: #ccc !important;
+}
+
+.post_link {
+  width: 100% !important;
 }
 
 .link_wrapper {
@@ -118,7 +122,7 @@ export default {
 }
 
 .plus_link {
-  color: var(--color1);
+  color: #D0A28C; /* var(--color1); */
 }
 
 .text_link {

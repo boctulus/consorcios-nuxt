@@ -2,7 +2,7 @@ const arr = [
   {  
     id: 1,
     title: '¿Qué es un condominio?',
-    text: `El sector inmobiliario en la ciudad de México esta en crecimiento, la falta de espacios para vivienda se reduce por lo que vivir en condominios es cada vez mas frecuente, pero ¿Qué es un condominio? El inmueble que como propiedad privada reúne un derecho singular y exclusivo sobre una unidad de propiedad exclusiva (departamento, casa o local) y un derecho de copropiedad sobre elementos y partes comunes (terreno, cimientos, estructura, muros de carga, techos, azoteas, fachadas, patios, jardines, andadores, vestíbulos, escaleras y sus cubos, equipos e instalaciones, etc.).</p>
+    content: `El sector inmobiliario en la ciudad de México esta en crecimiento, la falta de espacios para vivienda se reduce por lo que vivir en condominios es cada vez mas frecuente, pero ¿Qué es un condominio? El inmueble que como propiedad privada reúne un derecho singular y exclusivo sobre una unidad de propiedad exclusiva (departamento, casa o local) y un derecho de copropiedad sobre elementos y partes comunes (terreno, cimientos, estructura, muros de carga, techos, azoteas, fachadas, patios, jardines, andadores, vestíbulos, escaleras y sus cubos, equipos e instalaciones, etc.).</p>
     <p><img title="%C2%BFQu%C3%A9-es-un-condominio ¿Qué es un condominio? " class="alignnone size-full wp-image-518" src="https://administraciondecondominios.com.mx/habita/habitia-content/uploads/2017/08/%C2%BFQu%C3%A9-es-un-condominio.jpeg" alt="%C2%BFQu%C3%A9-es-un-condominio ¿Qué es un condominio? " width="276" height="183"></p>
     <p>Los condominios de acuerdo con sus características de estructura y uso, pueden ser:</p>
     <p>Por su estructura.</p>
@@ -24,7 +24,7 @@ const arr = [
   {  
     id: 2,
     title: '¿Qué es una unidad de propiedad privativa?',
-    text: `bla bla bla`,
+    content: `bla bla bla`,
     url_segment: 'que-es-unidad-residencial',
     created_by: 5,
     belongs_to: 5,
@@ -34,7 +34,8 @@ const arr = [
   {  
     id: 3,
     title: '¿Cuáles son las áreas y bienes de propiedad común?',
-    text: ``,
+    content: ``,
+    url_segment: '',
     created_by: 5,
     belongs_to: 5,
     created_at: '',
@@ -43,7 +44,8 @@ const arr = [
   {  
     id: null,
     title: `¿Quién es un consorcio?`,
-    text: '',
+    content: '',
+    url_segment: '',
     created_by: null,
     belongs_to: null,
     created_at: '',
@@ -52,7 +54,8 @@ const arr = [
   {  
     id: null,
     title: `¿Quién es un residente?`,
-    text: '',
+    content: '',
+    url_segment: '',
     created_by: null,
     belongs_to: null,
     created_at: '',
@@ -61,7 +64,8 @@ const arr = [
   {  
     id: null,
     title: `¿Cuáles son las disposiciones legales que regulan al condominio?`,
-    text: '',
+    content: '',
+    url_segment: '',
     created_by: null,
     belongs_to: null,
     created_at: '',
@@ -70,7 +74,8 @@ const arr = [
   {  
     id: null,
     title: `¿Cuál es la documentación indispensable del condominio?`,
-    text: '',
+    content: '',
+    url_segment: '',
     created_by: null,
     belongs_to: null,
     created_at: '',
@@ -79,7 +84,8 @@ const arr = [
   {  
     id: null,
     title: `¿Cuál es la documentación que debe tener un consorcio?`,
-    text: '',
+    content: '',
+    url_segment: '',
     created_by: null,
     belongs_to: null,
     created_at: '',
@@ -88,7 +94,8 @@ const arr = [
   {  
     id: null,
     title: `¿Qué es la escritura constitutiva del régimen de propiedad en condominio?`,
-    text: '',
+    content: '',
+    url_segment: '',
     created_by: null,
     belongs_to: null,
     created_at: '',
@@ -97,7 +104,8 @@ const arr = [
   {  
     id: null,
     title: `¿Qué es el reglamento interno del condominio?`,
-    text: '',
+    content: '',
+    url_segment: '',
     created_by: null,
     belongs_to: null,
     created_at: '',
@@ -106,7 +114,8 @@ const arr = [
   {  
     id: null,
     title: `¿Qué es la asamblea general de condóminos?`,
-    text: '',
+    content: '',
+    url_segment: '',
     created_by: null,
     belongs_to: null,
     created_at: '',
@@ -115,7 +124,8 @@ const arr = [
   {  
     id: null,
     title: `Condominios en la ciudad de La Plata`,
-    text: '',
+    content: '',
+    url_segment: '',
     created_by: null,
     belongs_to: null,
     created_at: '',
@@ -124,7 +134,8 @@ const arr = [
   {  
     id: null,
     title: `Administradora de condominios`,
-    text: '',
+    content: '',
+    url_segment: '',
     created_by: null,
     belongs_to: null,
     created_at: '',
@@ -133,7 +144,8 @@ const arr = [
   {  
     id: null,
     title: `Administración de inmuebles`,
-    text: '',
+    content: '',
+    url_segment: '',
     created_by: null,
     belongs_to: null,
     created_at: '',
@@ -142,7 +154,8 @@ const arr = [
   {  
     id: null,
     title: `¿Cuáles son las facultades de la asamblea general de condóminos?`,
-    text: '',
+    content: '',
+    url_segment: '',
     created_by: null,
     belongs_to: null,
     created_at: '',
@@ -151,7 +164,8 @@ const arr = [
   {  
     id: null,
     title: `¿Qué es el comité de vigilancia?`,
-    text: '',
+    content: '',
+    url_segment: '',
     created_by: null,
     belongs_to: null,
     created_at: '',
@@ -160,7 +174,8 @@ const arr = [
   {  
     id: null,
     title: `¿Qué es un administrador de condominios?`,
-    text: '',
+    content: '',
+    url_segment: '',
     created_by: null,
     belongs_to: null,
     created_at: '',
@@ -169,7 +184,8 @@ const arr = [
   {  
     id: null,
     title: `¿Es obligatorio que un consorcio sea administrador?`,
-    text: '',
+    content: '',
+    url_segment: '',
     created_by: null,
     belongs_to: null,
     created_at: '',
@@ -178,7 +194,8 @@ const arr = [
   {  
     id: null,
     title: `¿Qué son las cuotas de administración y mantenimiento?`,
-    text: '',
+    content: '',
+    url_segment: '',
     created_by: null,
     belongs_to: null,
     created_at: '',
@@ -187,7 +204,8 @@ const arr = [
   {  
     id: null,
     title: `¿Es obligatorio el pago de las cuotas de mantenimiento y administración?`,
-    text: '',
+    content: '',
+    url_segment: '',
     created_by: null,
     belongs_to: null,
     created_at: '',
@@ -196,7 +214,8 @@ const arr = [
   {  
     id: null,
     title: `¿Se permiten mascotas en el condominio?`,
-    text: '',
+    content: '',
+    url_segment: '',
     created_by: null,
     belongs_to: null,
     created_at: '',
@@ -205,7 +224,8 @@ const arr = [
   {  
     id: null,
     title: `Conservar áreas verdes`,
-    text: '',
+    content: '',
+    url_segment: '',
     created_by: null,
     belongs_to: null,
     created_at: '',
@@ -214,7 +234,8 @@ const arr = [
   {  
     id: null,
     title: `Ruido en el condominio`,
-    text: '',
+    content: '',
+    url_segment: '',
     created_by: null,
     belongs_to: null,
     created_at: '',
@@ -223,7 +244,8 @@ const arr = [
   {  
     id: null,
     title: `Separación de residuos en orgánico e inorgánico acorde a las nuevas disposiciones del gobierno de la ciudad de La Plata`,
-    text: '',
+    content: '',
+    url_segment: '',
     created_by: null,
     belongs_to: null,
     created_at: '',
@@ -232,7 +254,8 @@ const arr = [
   {  
     id: null,
     title: `Agresiones verbales`,
-    text: '',
+    content: '',
+    url_segment: '',
     created_by: null,
     belongs_to: null,
     created_at: '',
@@ -241,7 +264,8 @@ const arr = [
   {  
     id: null,
     title: `Condominio despues de un sismo`,
-    text: '',
+    content: '',
+    url_segment: '',
     created_by: null,
     belongs_to: null,
     created_at: '',
@@ -250,7 +274,8 @@ const arr = [
   {  
     id: null,
     title: `Administración de condominios software`,
-    text: '',
+    content: '',
+    url_segment: '',
     created_by: null,
     belongs_to: null,
     created_at: '',
@@ -259,7 +284,8 @@ const arr = [
   {  
     id: null,
     title: `Administración de condominios df`,
-    text: '',
+    content: '',
+    url_segment: '',
     created_by: null,
     belongs_to: null,
     created_at: '',

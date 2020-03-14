@@ -1,7 +1,9 @@
 TODO
 -----------
 
-- Novedades (ultimos posts del blog?) en el Dashboard
+- Página "404" p/ ejemplo para /posts/xxxx 
+
+- Novedades (ultimos posts del blog?) en el Dashboard  (no va)
 
 - Upload de archivos 
 
