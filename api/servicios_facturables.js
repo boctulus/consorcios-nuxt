@@ -13,7 +13,7 @@ const arr = [
   },
   {
     'id': 11,
-    'name':  'Ascendores'
+    'name':  'Ascensores'
   },
   {
     'id': 14,

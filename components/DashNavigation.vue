@@ -227,7 +227,7 @@ export default {
     left: 0;
     top: 0;
     height: 50px;
-    background-color: #2196F3; /* #808B97; */
+    background-color: #145EA8; /* #808B97; */
 }
 
 .ham {

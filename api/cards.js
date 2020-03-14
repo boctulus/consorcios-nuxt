@@ -10,11 +10,13 @@ const arr = {
       img: '/cards/d3.jpg',
       to: '/dashboard/archivos/documentos'
     },
+    /*
     {  
       name: 'Novedades',
       img: '/cards/n5.png',
       to: '/dashboard/archivos/novedades'
     }
+    */
   ], 
   admin: [
     {  

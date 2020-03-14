@@ -1,6 +1,6 @@
 <template>
-  <div :style="{'background-image': 'url(' + require('@/assets/administracion-profesional-de-condominios-1.jpg') + ')',minHeight:'100vh'}">
-  
+  <div :style="{'background': 'url(/administracion-profesional-de-condominios-1.jpg)', 'backgroundSize': 'cover' ,minHeight:'100vh'}">
+
     <div class="logo_container">
         <n-link to="/home">
           <v-img :src="require('../assets/logov2b_justo.png')" lazy-src class="logo" />
@@ -132,35 +132,33 @@ a:hover {
     }    
 }
 
-@media screen and (max-width: 575px) {
-  h1 {
-    font-size: 1.8em !important;
-  }
+@media only screen and (max-width: 800px){
+    .text-mobile{
+        font-size: 3em !important;
+    }    
 }
 
-@media screen and (min-width: 576px) and (max-width: 767px) {
-  h1 {
-    font-size: 2em !important;
-  }
+@media only screen and (max-width: 799px){
+    .logo_container {
+      width: 5.5em;  
+    }
 }
 
-@media screen and (min-width: 768px) and (max-width: 991px){
-  h1 {
-    font-size: 3em !important;
-  }
+@media only screen and (min-width: 800px) and (max-width: 1024px){
+    .logo_container {
+      width: 7em;  
+    }
+
+    .logo_wrapper {
+      height: 120px !important;
+    }
 }
 
-@media screen and (min-width: 992px) and (max-width: 1199px){
-  h1 {
-    font-size: 4em !important;
-  }
-}
 
-@media screen and (min-width: 1200px){
-  h1 {
-    font-size: 5em !important;
-  }
-
+@media only screen and (min-width: 1025px){
+    .logo_wrapper {
+      height: 160px !important;
+    }
 }
 
 </style>

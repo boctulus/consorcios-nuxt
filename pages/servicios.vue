@@ -1,11 +1,13 @@
 <template>
   <div :style="{backgroundColor: '#3C4043'}" >
 
-    <div class="logo_container">
-        <n-link to="/home">
-          <v-img :src="require('../assets/logov2b_justo.png')" lazy-src class="logo" />
-        </n-link>
-    </div>      
+    <div class="logo_wrapper">
+      <div class="logo_container">
+          <n-link to="/home">
+            <v-img :src="require('../assets/logov2b_justo.png')" lazy-src class="logo" />
+          </n-link>
+      </div>  
+    </div>    
 
     <!-- Modal -->
     <div id="serviceModal" v-if="selected != null" style="font-size: 0.8em;">
@@ -46,7 +48,7 @@
 
     <b-container style="color: #ffffff;"> 
       
-        <h1 class="engravers">SERVICIOS</h1>
+        <h1 class="mt-1 engravers text-mobile">SERVICIOS</h1>
 
         <div class="pontano mt-5 mb-5" style="font-size:1.5em; text-align: justify;">
           Nuestra especialidad es la ADMINISTRACIÓN DE CONSORCIOS, adicional a este servicio contamos con todas las soluciones necesarias para que vivas en un ambiente de tranquilidad y comodidad. Conoce más de nuestros servicios dando click en cada uno de ellos.
@@ -215,8 +217,16 @@ h1 {
   max-height: 100vh;
 }
 
+/* texto pequeño en movil*/
+@media only screen and (max-width: 800px){
+    .text-mobile{
+        font-size: 3em !important;
+        /* text-align: left; */
+    }    
+}
+
 @media screen and (max-width: 359px) {
-  h1 { font-size: 4.5em !important; padding-top: 0.5em; } 
+  h1 { font-size: 4.5em !important; } 
   .closeModal { font-size: 3em; }	
   .name { font-size: 2.5em;}	
 	.text { font-size: 1.25em; }
@@ -226,7 +236,7 @@ h1 {
 }
 
 @media screen and (min-width: 360px) and (max-width: 575px) {
-  h1 { font-size: 4.5em !important; padding-top: 0.5em; } 
+  h1 { font-size: 1.8em !important; } 
   .closeModal { font-size: 3.5em; }	
   .name { font-size: 2.5em;}	
 	.text { font-size: 1.5em; }	
@@ -236,7 +246,7 @@ h1 {
 }
 
 @media screen and (min-width: 576px) and (max-width: 767px) {
-  h1 { font-size: 5em !important;  padding-top: 0.5em; }
+  h1 { font-size: 2em !important; }
   .closeModal { font-size: 4em; }	
   .name { font-size: 3em;}	
 	.text { font-size: 1.6em; }	
@@ -245,7 +255,7 @@ h1 {
 }
 
 @media screen and (min-width: 768px) and (max-width: 991px){
-  h1 { font-size: 8em !important;  padding-top: 0.5em;} 
+  h1 { font-size: 3em !important; } 
   .closeModal { font-size: 5em; }	
   .name { font-size: 3.5em;}	
 	.text { font-size: 1.7em; }	
@@ -253,14 +263,14 @@ h1 {
 }
 
 @media screen and (min-width: 992px) and (max-width: 1199px){
-  h1 { font-size: 10em !important;  padding-top: 0.5em;} 
+  h1 { font-size: 4em !important; } 
   .closeModal { font-size: 5.5em; }	
   .name { font-size: 4em;}	
 	.text { font-size: 1.8em; }	
 }
 
 @media screen and (min-width: 1200px){
-  h1 { font-size: 12em !important; } 
+  h1 { font-size: 5em !important; } 
   .closeModal { font-size: 6em; }	
   .name { font-size: 4.5em;}	
 	.text { font-size: 2em; }	

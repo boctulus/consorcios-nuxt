@@ -43,6 +43,11 @@ h1 {
     font-family: 'Engravers', Sans-serif;
 }
 
+.logo_wrapper {
+  width: 100%;
+  height: 100px;
+}
+
 .logo_container {
     width: 10em;  
 }
@@ -80,6 +85,17 @@ h1 {
 @media only screen and (min-width: 800px) and (max-width: 1024px){
     .logo_container {
       width: 7em;  
+    }
+
+    .logo_wrapper {
+      height: 120px !important;
+    }
+}
+
+
+@media only screen and (min-width: 1025px){
+    .logo_wrapper {
+      height: 160px !important;
     }
 }
 </style>
