@@ -4,13 +4,13 @@
   
     <v-layout row justify-center>
       <v-dialog v-model="delete_confirmation_dialog" persistent max-width="320">
-        <v-card>
+        <v-card :style="{ position: 'absolute', elevation: 101, zIndex:10000 }">
           <v-card-title class="headline">Confirmación de borrado</v-card-title>
           <v-card-text>Deseas borrar?</v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="green darken-1" flat @click="delete_confirmation_dialog = false">Cancelar</v-btn>
-            <v-btn color="green darken-1" flat @click="erase">OK</v-btn>
+            <v-btn color="blue darken-1" @click="close_delete_confirmation_dialog()">Cancelar</v-btn>
+            <v-btn color="red darken-1" @click="erase">OK</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -239,6 +239,11 @@
       showDeleteDialog (item) {
         this.index = this.regs.indexOf(item);
         this.delete_confirmation_dialog = true;
+      },
+
+      close_delete_confirmation_dialog() {
+        this.delete_confirmation_dialog = false; 
+        this.dialog = false;
       },
 
       erase () {

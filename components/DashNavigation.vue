@@ -10,8 +10,8 @@
                         >
 
                             <template v-if="item.hasOwnProperty('link')">
-                                <a href="#" @click="navigate(item.link)" v-bind:key="item.text" class="link">
-                                    <li  class="item">
+                                <a href="#" @click="navigate(item.link)" v-bind:key="`link-${item.text}`" class="link">
+                                    <li class="item" style="width:100%;">
                                         <v-icon color="#CFA18B" style="padding-left:0.5em;">
                                             {{item.icon}}
                                         </v-icon>
@@ -57,7 +57,7 @@
                 <b-row>
                     <b-col>
                         <n-link to="/dashboard" class="logo_wrapper">
-                            <img :src="require('@/assets/logo_sm.png')" class="logo_img"/>
+                            <img src="/logo_sm.png" class="logo_img"/>
                             <span class="logo engravers">El Grove</span>
                         </n-link> 
                     </b-col>
@@ -72,11 +72,7 @@
                         <span v-if="username" id="username">{{ username }}</span>
                     </b-col>
 
-                    <b-col>
-                        <!--b-dropdown id="dropdown-right" right text="" class="m-2" style="backgound: #0077BFF !important">
-                            <b-dropdown-item href="#" @click="logout" ><v-icon style="font-size:1.2em; padding-bottom: 2px;">logout</v-icon> Salir</b-dropdown-item>
-                        </b-dropdown--> 
-
+                    <b-col>                        
                         <div id="dropdown-right">
                             <v-menu bottom left offset-y>
                                 <template v-slot:activator="{ on }">
@@ -107,7 +103,7 @@
                 </b-row>                 
             </nav>
 
-            <div class="content" @click="closeDrawer">
+            <div class="content" @click="close">
                 <nuxt-child/>
             </div>
         </b-container>
@@ -116,11 +112,13 @@
 </template>
 
 <script>
+import closeMixin from '@/mixins/close.js';
 import getLinks from '@/api/links.js';
 import { store } from '@/store/login.js'
 
 export default {
     name: 'DashNavigation',
+    mixins: [closeMixin],
     store: store,
     data() {
         return {
@@ -154,13 +152,13 @@ export default {
             getLinks(role).forEach(e => {
                 this.list.push(e)
             });
-        });         
+        });       
     },
     mounted() {
 
     },
     methods: {
-        closeDrawer: function() {
+        close: function() {
             this.drawer = false;
             //console.log('CERRANDO..');
         },
@@ -185,14 +183,9 @@ export default {
 
 
 <style scoped>  
-
-/*
-.dropdown_bg {
-    color: #fff;
-    background-color:#007BFF !important;
-    border-color:#007BFF !important;
-} 
-*/
+.logo_wrapper {
+    height: 50px;
+}
 
 .treeview-menu {
     list-style: none;

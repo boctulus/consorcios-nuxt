@@ -141,6 +141,11 @@
         this.delete_confirmation_dialog = true;
       },
 
+      close_delete_confirmation_dialog() {
+        this.delete_confirmation_dialog = false; 
+        this.dialog = false;
+      },
+
       erase () {
         this.delete_confirmation_dialog = false; 
         this.regs.splice(this.index, 1);

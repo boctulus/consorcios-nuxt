@@ -1,5 +1,5 @@
 <template>
-    <span v-click-outside="closeDrawer" @keydown="handleKey">
+    <div v-click-outside="close">
         <transition name="slide-fade">
             <div v-show="drawer" class="drawer">
                 <div style="margin-top:5em;">
@@ -39,13 +39,14 @@
         <nav class="nav">
             <Hamburger @click.native="drawer = !drawer" v-bind:class="[drawer ? 'active' : '']" style="z-index: 9999; position: fixed; right: 5%; top:3vh"></Hamburger>            
         </nav>
-    </span>
+    </div>
 </template>
 
 <script>
 import Hamburger from '@/components/Hamburger';
 import Velocity from 'velocity-animate';
 import vClickOutside from 'v-click-outside';
+import closeMixin from '@/mixins/close.js';
 
 import VueScrollTo from 'vue-scrollto'
 
@@ -53,9 +54,10 @@ import Vue from 'vue'
 Vue.use(VueScrollTo)
 
 
-
 export default {
     name: 'RocketNavigation',
+    mixins: [closeMixin],
+
     data() {
         return {
             drawer: false,
@@ -74,10 +76,6 @@ export default {
         computedList: function () {
             return this.drawer ? this.list : []
         }
-    },
-
-    created() {
-        
     },
 
     directives: {
@@ -112,7 +110,7 @@ export default {
             }, delay)
         },
 
-        closeDrawer: function() {
+        close: function() {
             this.drawer = false;
         },
 
@@ -140,14 +138,6 @@ export default {
                     path: link
                })
             },500);  
-        },
-        
-        handleKey (event) {
-            console.log(event);
-            if (event.keyCode === 27) {
-                this.closeDrawer();
-                event.preventDefault();
-            }
         }
     },
     components: {

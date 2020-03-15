@@ -2,7 +2,7 @@
     <div class="main_wrapper">
         <div class="business_sp_title" style="background: url(/administracion-profesional-de-condominios-1.jpg);">
             <div class="bs_single_post_navigation">
-                <n-link :to="`blog/${post.url_segment}`" class="link bs_next_project"><span>Sig.</span></n-link>
+                <n-link :to="this.next()" class="link bs_next_project"><span>Sig.</span></n-link>
             </div>
             
             <div class="wrapper">
@@ -15,17 +15,13 @@
             <article style="color: #fff !important; font-size:0.8em !important;">
                 <h1 class="engravers">{{ post.title }}</h1>
 
-                <div class="vc_span12 wpb_column vc_column_container mpc-column">
-                    <div class="vc_column-inner ">
+                <div class="wpb_wrapper">
+                    <div class="wpb_text_column wpb_content_element  ">
                         <div class="wpb_wrapper">
-                            <div class="wpb_text_column wpb_content_element  ">
-                                <div class="wpb_wrapper">
-                                    <p style="font-size:1.5em !important;" v-html="post.content"></p>
-                                </div>
-                            </div>
+                            <p style="font-size:1.5em !important;" v-html="post.content"></p>
                         </div>
                     </div>
-                </div>	
+                </div>             
             
             </article>
         </div>
@@ -40,19 +36,19 @@ export default {
 
     data() {
         return {
-            url_segment: null,
+            slug: null,
             posts: []
         }
     },
 
     computed: {
         post: function() {
-            return this.posts.find(p => { return  p.url_segment == this.url_segment });
+            return this.posts.find(p => { return  p.slug == this.slug });
         }
     },
 
     created () {
-        this.url_segment =  this.$route.params.url_segment;
+        this.slug =  this.$route.params.slug;
         this.initialize();
     },
 
@@ -64,12 +60,31 @@ export default {
       initialize () {
         this.posts = getData();
         //console.log(this.posts)
+      },
+
+      next () {
+          let ix = false;
+          for (let i=0; i< this.posts.length; i++){
+              if (this.posts[i].slug === this.post.slug){
+                  ix = i;
+                  break;
+              }
+          }
+
+          let next_post_slug;
+
+          if (ix == this.posts.length -1){
+              next_post_slug = this.posts[0].slug;
+          } else {
+              next_post_slug = this.posts[ix+1].slug;
+		  }  
+		  
+          return next_post_slug
       }
     },
     
     head:{
         link: [
-            ///////{ rel: 'stylesheet', href: require('@/assets/style/ext/style.css') },
             { rel: 'stylesheet', href: require('@/assets/style/ext/style_end.css') },
             { rel: 'stylesheet', href: require('@/assets/style/ext/custom.css') }
         ]

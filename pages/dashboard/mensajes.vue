@@ -85,13 +85,13 @@
                       fa-eye
                     </v-icon>
 
-                    <v-icon
+                    <!--v-icon
                       small
                       class="mr-2"
                       @click="editItem(props.item)"
                     >
                       edit
-                    </v-icon>
+                    </v-icon-->
 
                     <v-icon
                       small
@@ -195,6 +195,11 @@
       showDeleteDialog (item) {
         this.index = this.regs.indexOf(item);
         this.delete_confirmation_dialog = true;
+      },
+
+      close_delete_confirmation_dialog() {
+        this.delete_confirmation_dialog = false; 
+        this.dialog = false;
       },
 
       erase () {

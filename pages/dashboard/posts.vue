@@ -9,8 +9,8 @@
           <v-card-text>Deseas borrar?</v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="blue darken-1" flat @click="close_delete_confirmation_dialog()">Cancelar</v-btn>
-            <v-btn color="red darken-1" flat @click="erase">OK</v-btn>
+            <v-btn color="blue darken-1" @click="close_delete_confirmation_dialog()">Cancelar</v-btn>
+            <v-btn color="red darken-1" @click="erase">OK</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -35,7 +35,7 @@
           <v-card-text>
             <v-text-field v-model="editedItem.title" :class="{'disable-events': formMode=='see'}" label="Título"></v-text-field>
           
-            <vue-editor v-model="editedItem.text" :class="{'disable-events': formMode=='see'}" label="Texto" class="editor"></vue-editor>
+            <vue-editor v-model="editedItem.content" :class="{'disable-events': formMode=='see'}" label="Texto" class="editor"></vue-editor>
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
@@ -57,7 +57,7 @@
         >
             <template  v-slot:items="props">
                 <td width="33%">{{ props.item.title }}</td>
-                <td>{{ props.item.text  | stripHtml | firstWords(50) }}</td>
+                <td>{{ props.item.content  | stripHtml | firstWords(50) }}</td>
                 <td align="right">      
 
                 <v-menu bottom left offset-y>
@@ -136,7 +136,7 @@
       index: null,
       headers: [
         { text: 'Título', value: 'title' },
-        { text: 'Texto', value: 'text' },
+        { text: 'Texto', value: 'content' },
       ],
       regs: [],
       editedIndex: -1,

@@ -17,7 +17,7 @@
           <b-col sm="12" md="6" class="col_link">
               <b-row v-for="(post, ix) in postsPares" v-bind:key="`'row-par-' + ${ix}`" class="area_link" @mouseover="hover = 'par-' + ix"
     @mouseleave="hover = null">
-                  <n-link href="#" class="link post_link" :to="`blog/${post.url_segment}`" > 
+                  <n-link href="#" class="link post_link" :to="`blog/${post.slug}`" > 
                     <li class="link_wrapper">  
                         <v-icon class="plus_link" :class="{ color2 : hover == 'par-' + ix}">fa-plus-circle</v-icon>                    
                         <span href="#" class="link text_link">{{ post.title }}</span>
@@ -29,7 +29,7 @@
           <b-col sm="12" md="6" class="col_link">
               <b-row v-for="(post, ix) in postsImpares" v-bind:key="`'row-par-' + ${ix}`" class="area_link" @mouseover="hover = 'par-' + ix"
     @mouseleave="hover = null">
-                  <n-link href="#" class="link post_link" :to="`blog/${post.url_segment}`">
+                  <n-link href="#" class="link post_link" :to="`blog/${post.slug}`">
                     <li class="link_wrapper">  
                         <v-icon class="plus_link" :class="{ color2 : hover == 'par-' + ix}">fa-plus-circle</v-icon>                    
                         <span href="#" class="link text_link">{{ post.title }}</span>
@@ -91,8 +91,8 @@ export default {
 }
 
 .col_link {
-  padding-left: 15px;
-  padding-right: 15px; 
+  padding-left: 5px;
+  padding-right: 5px; 
 }
 
 .area_link {
