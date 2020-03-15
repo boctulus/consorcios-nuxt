@@ -184,7 +184,7 @@ export default {
 
 <style scoped>  
 .logo_wrapper {
-    height: 50px;
+    height: 50px !important;
 }
 
 .treeview-menu {

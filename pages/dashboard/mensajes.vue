@@ -9,8 +9,8 @@
           <v-card-text>Deseas borrar el mensaje?</v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="green darken-1" flat @click="delete_confirmation_dialog = false">Cancelar</v-btn>
-            <v-btn color="green darken-1" flat @click="erase">OK</v-btn>
+            <v-btn color="blue" style="color:#fff;" @click="close_delete_confirmation_dialog()">Cancelar</v-btn>
+            <v-btn color="red" style="color:#fff;" @click="erase">OK</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
