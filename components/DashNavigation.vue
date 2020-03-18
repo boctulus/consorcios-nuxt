@@ -92,7 +92,7 @@
                                     @click="dp.action()"
                                 >
                                     <v-icon style="font-size:1em;">{{ dp.icon }}</v-icon>
-                                    <v-list-tile-title>{{ dp.title }}</v-list-tile-title>
+                                    <v-list-tile-title style="margin-left:0.5em;">{{ dp.title }}</v-list-tile-title>
                                 </v-list-tile>
                                 </v-list>
                             </v-menu>
@@ -125,7 +125,7 @@ export default {
             drawer: false,
             list: [],
             dropdown_items: [
-                {title: 'logout', 'action': this.logout, icon: 'logout' }
+                {title: 'salir', 'action': this.logout, icon: 'logout' }
             ]
         };
     },

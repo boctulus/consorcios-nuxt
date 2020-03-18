@@ -14,14 +14,10 @@
         <div class="container mt-3" id="blog_post">
             <article style="color: #fff !important; font-size:0.8em !important;">
                 <h1 class="engravers">{{ post.title }}</h1>
-
-                <div class="wpb_wrapper">
-                    <div class="wpb_text_column wpb_content_element  ">
-                        <div class="wpb_wrapper">
-                            <p style="font-size:1.5em !important;" v-html="post.content"></p>
-                        </div>
-                    </div>
-                </div>             
+				
+				<div class="entry">
+					<p style="font-size:1.5em !important;" v-html="post.content"></p>
+				</div>      
             
             </article>
         </div>
@@ -85,8 +81,8 @@ export default {
     
     head:{
         link: [
-            { rel: 'stylesheet', href: require('@/assets/style/ext/style_end.css') },
-            { rel: 'stylesheet', href: require('@/assets/style/ext/custom.css') }
+           { rel: 'stylesheet', href: require('@/assets/style/ext/style_end.css') },
+           { rel: 'stylesheet', href: require('@/assets/style/ext/custom.css') }
         ]
     }
 }

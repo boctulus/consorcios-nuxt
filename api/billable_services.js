@@ -4,7 +4,7 @@ const arr = [
     'name':  'Agua'
   },
   {
-    'id': 13,
+    'id': 12,
     'name':  'Luz'
   },
   {

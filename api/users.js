@@ -1,35 +1,35 @@
 const arr = [
   {  
     id: 1,
-    nombre: 'Administración',
+    name: 'Administración',
     username: 'juanma',
     email: 'adm.elgrove@outlook.com',
     password: '*******'
   },
   {  
     id: 2,
-    nombre: 'El Águila', 
+    name: 'El Águila', 
     username: null,
     email: null,
     password: '*******'
   },
   {  
     id: 55,
-    nombre: 'Torres Gemelas', 
+    name: 'Torres Gemelas', 
     username: null,
     email: null,
     password: '*******'
   },
   {  
     id: 102,
-    nombre: 'El Fuerte',
+    name: 'El Fuerte',
     username: null,
     email: null,
     password: '*******'
   },
   {  
     id: 105,
-    nombre: 'Los Pitufos',
+    name: 'Los Pitufos',
     username: null,
     email: null,
     password: '*******'

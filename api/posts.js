@@ -1,3 +1,6 @@
+/* 
+  Insertar posts desde pruebas/posts.php
+*/
 const arr = [
   {  
     id: 1,

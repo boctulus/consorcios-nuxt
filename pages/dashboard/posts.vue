@@ -35,6 +35,7 @@
           <v-card-text>
             <v-text-field v-model="editedItem.title" :class="{'disable-events': formMode=='see'}" label="Título"></v-text-field>
           
+            <!-- editedItem.content --> 
             <vue-editor v-model="editedItem.content" :class="{'disable-events': formMode=='see'}" label="Texto" class="editor"></vue-editor>
           </v-card-text>
           <v-card-actions>
@@ -42,6 +43,7 @@
             <v-btn color="red darken-1" text style="color:#fff;" @click="close">Cerrar</v-btn>
             <v-btn color="blue darken-1" text style="color:#fff;" @click="save" v-if="formMode == 'edit' || formMode == null">Guardar</v-btn>
           </v-card-actions>
+
         </v-card>
       </v-dialog>
     </v-layout>
@@ -141,18 +143,22 @@
       regs: [],
       editedIndex: -1,
       editedItem: {
-        nombre: '',
-        email: '',
-        telefono: '',
-        tema: '',
-        consulta: ''
+        title: '',
+        content: '',
+        slug: '',
+        created_by: null,
+        belongs_to: null,
+        created_at: '',
+        updated_at: ''
       },
       defaultItem: {
-        nombre: '',
-        email: '',
-        telefono: '',
-        tema: '',
-        consulta: ''
+        title: '',
+        content: '',
+        slug: '',
+        created_by: null,
+        belongs_to: null,
+        created_at: '',
+        updated_at: ''
       },
     }),
 
@@ -177,7 +183,7 @@
     watch: {
       dialog (val) {
         val || this.close()
-      },
+      }
     },
 
     created () {

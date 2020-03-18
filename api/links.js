@@ -1,5 +1,5 @@
 const links = { 
-  habitante: [ 
+  copropietario: [ 
     { text: 'Boletas',  link: '/dashboard/boletas', icon: 'fa-folder' },
     { text: 'Documentos',  link: '/dashboard/documentos', icon: 'fa-clone' }
   ],

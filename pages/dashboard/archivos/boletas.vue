@@ -22,9 +22,24 @@
 
         <!-- New button -->
         <template v-slot:activator="{ on }">
-          <div style="text-align:right; width: 100%; margin-right: 6px; margin-bottom: 6px;">
-            <v-btn color="primary" dark v-on="on" @click="formMode=null">Nuevo</v-btn>
-          </div>  
+          <v-layout row>
+            <v-flex>
+              <v-select
+                :items="users"
+                item-text="name"
+                item-value="id"
+                v-model="u_selected"
+                label="Edificio"
+                style="margin-left:30px; margin-right:30px;"
+                dark
+              ></v-select>
+            </v-flex>
+            
+            <v-flex style="text-align:right;">
+              <v-btn color="primary" dark v-on="on" @click="formMode=null" style="margin-right:30px;">Nuevo</v-btn>
+            </v-flex>  
+          </v-layout>
+ 
         </template>
 
         <v-card>
@@ -43,20 +58,35 @@
                   items: [{id:1, nombre:"nombre 1"}]
                   <v-select :items="items" item-text="nombre" item-value="id" >
                 -->  
-                <v-flex cols="12" sm="6" md="4">                 
-                  <v-select v-model="editedItem.type" :items="tipos_servicio" :class="{'disable-events': formMode=='see'}" label="Servicio"></v-select>
+
+                <v-flex style="width:100%;">                 
+                  <v-select
+                    :items="users"
+                    item-text="name"
+                    item-value="id"
+                    v-model="editedItem.belongs_to"
+                    label="Edificio"
+                    :class="{'disable-events': formMode=='see'}"
+                  ></v-select>
+                </v-flex>
+
+                  <v-flex style="width:100%;">                 
+                    <v-select 
+                    v-model="editedItem.billable_id" 
+                    :items="tipos_servicio" 
+                    item-text="name"
+                    item-value="id"
+                    :class="{'disable-events': formMode=='see'}" 
+                    label="Concepto"
+                  ></v-select>
                 </v-flex>
 
                 <v-flex cols="12" sm="6" md="4">
-                  <v-text-field v-model="editedItem.ticket_number" :class="{'disable-events': formMode=='see'}" label="Numeración"></v-text-field>
+                  <v-text-field v-model="editedItem.detail" :class="{'disable-events': formMode=='see'}" label="Detalle"></v-text-field>
                 </v-flex>
 
                 <v-flex cols="12" sm="6" md="4">
-                  <v-text-field v-model="editedItem.from" :class="{'disable-events': formMode=='see'}" label="Desde"></v-text-field>
-                </v-flex>
-
-                <v-flex cols="12" sm="6" md="4">
-                  <v-text-field v-model="editedItem.to" :class="{'disable-events': formMode=='see'}" label="Hasta"></v-text-field>
+                  <v-text-field v-model="editedItem.period" :class="{'disable-events': formMode=='see'}" label="Período"></v-text-field>
                 </v-flex>
 
                 <v-flex cols="12" sm="6" md="4">
@@ -85,14 +115,13 @@
 
         <v-data-table
           :headers="headers"
-          :items="regs"
+          :items="computedRegs"
           class="elevation-1"
         >
             <template  v-slot:items="props">
-                <td>{{ props.item.type }}</td>
-                <td>{{ props.item.ticket_number }}</td>
-                <td>{{ props.item.from }}</td>
-                <td>{{ props.item.to }}</td>
+                <td>{{ getServicioById(props.item.billable_id).name }}</td>
+                <td>{{ props.item.detail }}</td>
+                <td>{{ props.item.period }}</td>
                 <td>{{ props.item.amount | currency }}</td>
                 <td>      
                     <v-icon
@@ -126,41 +155,49 @@
 </template>
 
 <script>
-  import getData from '@/api/boletas.js';
-  import getTipoServicio from '@/api/servicios_facturables.js';
+  import getData from '@/api/bills.js';
+  import getUsers from '@/api/users.js';
+  import getTipoServicio from '@/api/billable_services.js';
 
   export default {
     layout: 'dashboard',
     data: () => ({
+      users: [],
+      u_selected: null,
       dialog: false,
       delete_confirmation_dialog: false,
       formMode: 'create',
       index: null,
       headers: [
-        { text: 'Servicio', value: 'type' },
-        { text: 'Númeración', value: 'ticket_number' },
-        { text: 'Desde', value: 'from' },
-        { text: 'Hasta', value: 'to' },
-        { text: 'Cantidad', value: 'amount' }
+        { text: 'Concepto', value: 'billable_id' },
+        { text: 'Detalle', value: 'detail' },
+        { text: 'Período', value: 'period' },
+        { text: 'Importe', value: 'amount' }
       ],
       regs: [],
       tipos_servicio: [],
       editedIndex: -1,
       editedItem: {
-        name: '',
-        text: '',
-        img: '',
-        enabled: false
+        user: '',
+        billable_id: '',
+        detail: '',
+        period: '',
+        amount: 0
       },
       defaultItem: {
-        name: '',
-        text: '',
-        img: '',
-        enabled: false
+        user: '',
+        billable_id: '',
+        detail: '',
+        period: '',
+        amount: 0
       },
     }),
 
     computed: {
+      computedRegs: function() {
+        return this.u_selected === null ? this.regs : this.regs.filter((e) => e.belongs_to === this.u_selected);
+      },
+
       formTitle: function() {
         switch(this.formMode){
           case 'see': 
@@ -179,7 +216,7 @@
     watch: {
       dialog (val) {
         val || this.close()
-      },
+      }
     },
 
     created () {
@@ -204,12 +241,12 @@
     methods: {
       initialize () {
         this.regs = getData();
+        this.users = [ {id: null, name: 'Todos' }, ...getUsers() ];
+        this.tipos_servicio = getTipoServicio();
+      },
 
-        getTipoServicio().forEach(el => {
-          this.tipos_servicio.push(el.name);
-        });
-
-        console.log(this.tipos_servicio);
+      getServicioById (id) {
+        return this.tipos_servicio.find((e) => e.id == id);
       },
 
       /////////////////////////////////////////// ///////////////
@@ -280,4 +317,5 @@
 a {
 	 text-decoration: none;
 }
+
 </style>

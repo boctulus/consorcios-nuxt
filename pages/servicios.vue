@@ -4,7 +4,7 @@
     <div class="logo_wrapper">
       <div class="logo_container">
           <n-link to="/home">
-            <v-img :src="require('../assets/logov2b_justo.png')" lazy-src class="logo" />
+            <v-img src="/elgrove_nueva_tipo.png" lazy-src class="logo" />
           </n-link>
       </div>  
     </div>    
@@ -57,7 +57,7 @@
         <b-row>
          <b-col class="mb-5" sm="12" md="6" xl="3"  style="text-align:center;" v-for="item in serviciosComputados" v-bind:key="item.id">
            <div class="minicontainer" :id="item.id" @click="select(item.id)">
-              <p><img :title="item.alt"  style="border: 30px solid rgb(237, 237, 237); padding: 5px;" :src="require(`../static/servicios/${item.img}`)" :alt="item.alt" width="150" height="150" ></p> 
+              <p><img :title="item.alt"  style="border: 30px solid rgb(237, 237, 237); padding: 5px;" :src="`/servicios/${item.img}`" :alt="item.alt" width="150" height="150" ></p> 
 
               <h2 class="engravers" style="color: rgb(208, 162, 140); font-size: 2.5em; text-align: center;">{{item.name}}</h2>  
            </div>              
@@ -71,7 +71,7 @@
 </template>
 
 <script>
-import getData from '@/api/servicios.js';
+import getData from '@/api/services.js';
 
 export default {  
   layout: 'home',

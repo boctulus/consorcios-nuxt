@@ -1,5 +1,5 @@
 <template>
-		<v-img :src="require('../assets/administracion-profesional-de-condominios-1.jpg')" lazy-src style="height:100vh;">
+		<v-img src="/administracion-profesional-de-condominios-1.jpg" lazy-src style="height:100vh;">
         <b-container style="color: #ffffff;" class="d-flex h-100">
             <div class="justify-content-center align-self-center w-100">
               <ValidationObserver v-slot="{ handleSubmit }" ref="form">
@@ -23,7 +23,7 @@
                         <label for="edificio">Edificación</label><label class="gfield_required">*</label>
                           <validation-provider rules="required" v-slot="{ errors }">
                             <select v-model="selected" v-bind:class="{ required: errors[0] }" class="form-control input" name="selected" id="selected">
-                              <option v-for="(usuario, index) in usuarios" v-bind:key="index">{{ usuario.nombre }}</option>
+                              <option v-for="(usuario, index) in usuarios" v-bind:key="index">{{ usuario.name }}</option>
                             </select>
                             <span class="error_msg">{{ errors[0] }}</span>
                           </validation-provider>  
@@ -69,7 +69,7 @@
 import { ValidationProvider, extend, ValidationObserver } from 'vee-validate';
 import { required } from 'vee-validate/dist/rules';
 import { store } from '@/store/login.js'
-import getData from '@/api/usuarios.js';
+import getData from '@/api/users.js';
 
 extend('required', {
   ...required,
@@ -123,8 +123,8 @@ export default {
           this.$store.commit('saveRoles', ['admin']);
           this.$router.push('/dashboard');
         } else if (this.selected == "Los Pitufos"  && this.password == '123') {
-          this.$store.commit('saveUser', {username: this.selected, id: 5}); // hardcodeado
-          this.$store.commit('saveRoles', ['habitante']);
+          this.$store.commit('saveUser', {username: this.selected, id: 105}); // hardcodeado
+          this.$store.commit('saveRoles', ['copropietario']);
           this.$router.push('/dashboard');        
         } else {
           this.other_error = 'Usuario o contraseña incorrectos';

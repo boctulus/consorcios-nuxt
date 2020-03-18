@@ -5,7 +5,7 @@
                 <div style="margin-top:5em;">
                     <div style="text-align: center;">
                         <n-link to="/home">
-                            <img src="https://i.imgur.com/QyAAKtC.png" style="width: 8em;" /><!-- OK -->
+                            <img src="/elgrove_nueva_tipo.png" style="width: 8em;" /><!-- OK -->
                         </n-link>    
                     </div>
                     

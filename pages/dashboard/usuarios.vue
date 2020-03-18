@@ -35,7 +35,7 @@
             <v-container>
               <v-layout row>
                 <v-flex cols="12" sm="6" md="4">
-                  <v-text-field v-model="editedItem.nombre" :class="{'disable-events': formMode=='see'}" label="Nombre"></v-text-field>
+                  <v-text-field v-model="editedItem.name" :class="{'disable-events': formMode=='see'}" label="Nombre"></v-text-field>
                 </v-flex>
                 <v-flex cols="12" sm="6" md="4">
                   <v-text-field v-model="editedItem.username" :class="{'disable-events': formMode=='see'}" label="Nombre de usuario"></v-text-field>
@@ -65,7 +65,7 @@
           class="elevation-1"
         >
             <template  v-slot:items="props">
-                <td >{{ props.item.nombre }}</td>
+                <td >{{ props.item.name }}</td>
                 <td>{{ props.item.username }}</td>
                 <td align="right">      
                     <v-icon
@@ -99,7 +99,7 @@
 </template>
 
 <script>
-  import getData from '@/api/usuarios.js';
+  import getData from '@/api/users.js';
 
   export default {
     layout: 'dashboard',
@@ -109,24 +109,24 @@
       formMode: null,
       index: null,
       headers: [
-        { text: 'Nombre', value: 'nombre' },
+        { text: 'Nombre', value: 'name' },
         { text: 'Usuario', value: 'username' },
       ],
       regs: [],
       editedIndex: -1,
       editedItem: {
-        nombre: '',
+        name: '',
         email: '',
-        telefono: '',
-        tema: '',
-        consulta: ''
+        phone: '',
+        subject: '',
+        content: ''
       },
       defaultItem: {
-        nombre: '',
+        name: '',
         email: '',
-        telefono: '',
-        tema: '',
-        consulta: ''
+        phone: '',
+        subject: '',
+        content: ''
       },
     }),
 

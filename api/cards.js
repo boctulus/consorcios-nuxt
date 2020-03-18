@@ -1,14 +1,14 @@
 const arr = {
-  habitante: [ 
+  copropietario: [ 
     {  
       name: 'Boletas',
       img: '/cards/b1.jpg',
-      to: '/dashboard/archivos/boletas'
+      to: '/dashboard/boletas'
     },
     {  
       name: 'Documentos',
       img: '/cards/d3.jpg',
-      to: '/dashboard/archivos/documentos'
+      to: '/dashboard/documentos'
     },
     /*
     {  
@@ -48,6 +48,11 @@ const arr = {
       name: 'Documentos',
       img: '/cards/d3.jpg',
       to: '/dashboard/archivos/documentos'
+    },
+    {  
+      name: 'Slider',
+      img: '/cards/slider.png',
+      to: '/dashboard/slider'
     }
   ]  
 };

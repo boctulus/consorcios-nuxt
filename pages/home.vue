@@ -3,10 +3,10 @@
       <!--full-page ref="fullpage" :options="options" id="fullpage"-->
      
         <n-link to="/home">
-          <v-img :src="require('../assets/logov2b_justo.png')" lazy-src class="logo_container logo" />
+          <v-img src="/elgrove_nueva_tipo.png" lazy-src class="logo_container logo" />
         </n-link>
 
-        <v-img :src="require('../assets/administracion-profesional-de-condominios-1.jpg')" lazy-src class="section img img1 full_height_img" > 
+        <v-img src="/administracion-profesional-de-condominios-1.jpg" lazy-src class="section img img1 full_height_img" > 
 
           <div class="h1_wrapper">
             <h1 style="text-align: center; font-weight:700;">ADMINISTRACIÓN DE CONSORCIOS</h1>
@@ -58,55 +58,22 @@
                   paginationActiveColor="#D0A28C"
           >
 
-            <slide>
+            <slide v-for="(slide, ix) in slides" v-bind:key="ix">
               <div class="item">
-                      <img src="https://i.imgur.com/okn0Zy1.jpg" alt="images not found">
+                      <img :src="slide.img" alt="images not found">
                       <div class="cover">
                           <div class="container">
                               <div class="header-content">
                                   <div class="line animated bounceInLeft"></div>
-                                  <h2>Ofrecer soluciones efectivas en la administración de inmuebles</h2>
-                                  <h1>Misión</h1>
-                                  <h4>Brindando un alto estándar de eficiencia, confort, tranquilidad y seguridad a un precio razonable y justo.</h4>
+                                  <h2>{{ slide.line1 }}</h2>
+                                  <h1 style="padding-top:40px;">{{ slide.line2 }}</h1>
+                                  <h4>{{ slide.line3 }}</h4>
                               </div>
                           </div>
                       </div>
                 </div>
             </slide>    
 
-            <slide>
-                <div class="item">
-                      <img src="https://i.imgur.com/MT4sAY6.jpg" alt="images not found">
-                      <div class="cover">
-                          <div class="container">
-                              <div class="header-content">
-                                  <div class="line"></div>
-                                  <h2>Honestidad, claridad y excelente trato</h2>
-                                  <h1>Visión</h1>
-                                  <h4>Brindar un trato directo hacia nuestros clientes así como por el manejo eficiente de información por medio de tecnología de punta.</h4>
-                              </div>
-                          </div>
-                      </div>
-               </div>   
-            </slide>
-
-         
-
-            <slide>
-              <div class="item">
-                    <img src="https://i.imgur.com/jeORORh.jpg" alt="images not found">
-                    <div class="cover">
-                        <div class="container">
-                            <div class="header-content">
-                                <div class="line animated bounceInLeft"></div>
-                                <h2>Lo más importante son nuestros</h2>
-                                <h1>Valores</h1>
-                                <h4>Confianza, responsabilidad, transparencia, ética y respeto nos definen.</h4>
-                            </div>
-                        </div>
-                     </div>
-              </div>    
-            </slide>  
           </carousel>        
         </header>
 
@@ -147,9 +114,11 @@
 <script>
 import TextAnimation from '@/components/TextAnimation'
 import { Carousel, Slide } from 'vue-carousel';
+import getSlider from '@/api/home_slider.js';
 
 export default {  
   layout: 'home',
+  
   data: () => ({
     name: '',
     email: '',
@@ -162,9 +131,15 @@ export default {
     ],
     checkbox: null,
   }),
+
+  created() {
+    this.slides = getSlider();
+  },
+
   mounted() {
     //document.querySelector('#hamburger-icon').style.display = "block";
-  }, 
+  },
+
   methods: {
     submit () {
       this.$refs.observer.validate()
@@ -408,6 +383,22 @@ header .item .cover .header-content h4 {
 .quienes_img {
   margin-top:24px;
 }
+
+.carousel {
+  display: none;
+}
+
+@media screen and (min-width: 1024px) {
+	.carousel {
+    display:block !important;
+  }
+}
+
+@media screen and (orientation: portrait) {
+	.carousel {
+    display:none;
+  }
+}
 </style>
 
 <style>
@@ -436,18 +427,6 @@ header .item .cover .header-content h4 {
 
   .txt_anim_wrapper {
     display:none; 
-  }
-}
-
-@media screen and (min-width: 1024px) {
-	.carousel {
-    display:block;
-  }
-}
-
-@media screen and (orientation: portrait) {
-	.carousel {
-    display:none;
   }
 }
 

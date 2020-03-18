@@ -2,7 +2,7 @@ const arr = [
   {
     'id': 1,
     'name': 'administración general',
-    'text': 'La representación de la administración en un consorcio, es muy importante ya que sus funciones son las de preservar la equidad y armonía entre los consorcios, además de llevar los estados financieros, limpieza y mantenimiento que necesite el consorcio, cuotas de cada consorcio y la seguridad de sus habitantes entre otras necesidades.',
+    'text': 'La representación de la administración en un consorcio, es muy importante ya que sus funciones son las de preservar la equidad y armonía entre los consorcios, además de llevar los estados financieros, limpieza y mantenimiento que necesite el consorcio, cuotas de cada consorcio y la seguridad de sus copropietarios entre otras necesidades.',
     'img': 'administracion-general-la-plata.png',
     'enabled': true
   },

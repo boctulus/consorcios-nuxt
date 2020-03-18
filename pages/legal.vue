@@ -3,7 +3,7 @@
 
     <div class="logo_container">
         <n-link to="/home">
-          <v-img :src="require('../assets/logov2b_justo.png')" lazy-src class="logo" />
+          <v-img src="/elgrove_nueva_tipo.png" lazy-src class="logo" />
         </n-link>
     </div>   
 

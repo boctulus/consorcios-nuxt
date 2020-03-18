@@ -41,7 +41,7 @@
 
         <v-data-table
           :headers="headers"
-          :items="regs"
+          :items="computedDocuments"
           class="elevation-1"
         >
             <template  v-slot:items="props">
@@ -64,11 +64,12 @@
 </template>
 
 <script>
-  import getMsg from '@/api/documentos.js';
+  import getMsg from '@/api/documents.js';
 
   export default {
     layout: 'dashboard',
     data: () => ({
+      entity: 'documento',
       dialog: false,
       delete_confirmation_dialog: false,
       formMode: 'Nuevo Documento',
@@ -87,17 +88,23 @@
     }),
 
     computed: {
+      computedDocuments: function() {
+        return this.regs.filter((el) => el.belongs_to === this.$store.getters.id);
+      },
+
       formTitle: function() {
         switch(this.formMode){
           case 'see': 
-            return'Documento';
+            return this.capitalize(this.entity);
             break;
           case 'edit': 
-            return 'Editar Documento';
+            return 'Editar ' + this.capitalize(this.entity);
             break;  
           case 'create': 
-            return 'Nuevo Documento';
-            break;
+            return 'Crear ' + this.capitalize(this.entity);
+            break;   
+          default: 
+             return 'Crear ' + this.capitalize(this.entity);   
         }
       }
     },
@@ -115,6 +122,11 @@
     methods: {
       initialize () {
         this.regs = getMsg();
+      },
+
+      capitalize (s) {
+        if (typeof s !== 'string') return ''
+        return s.charAt(0).toUpperCase() + s.slice(1)
       },
 
       seeItem (item) {

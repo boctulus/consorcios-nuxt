@@ -1,5 +1,5 @@
 <template>
-		<v-img :src="require('../assets/profesionales-certificados-prosoc.png')"    lazy-src class="img img4" id="contacto">
+		<v-img src="/profesionales-certificados-prosoc.png"    lazy-src class="img img4" id="contacto">
           <b-container style="color: #ffffff;">        
                 <b-row class="mb-5 mt-5 mx-auto"><h3 class="form_h text-mobile">CONTACTO</h3></b-row>  
 
@@ -63,7 +63,7 @@
                                 <label for="servicio">SERVICIO</label><label class="gfield_required">*</label>
                                 <validation-provider rules="required" v-slot="{ errors }">
                                   <select v-model="servicio" v-bind:class="{ required: errors[0] }" class="form-control input" id="servicio">
-                                    <option v-for="(el_servicio, index) in servicios" v-bind:key="index">{{ el_servicio }}</option>
+                                    <option v-for="(el_servicio, index) in servicios" v-bind:key="index">{{ el_servicio.name }}</option>
                                   </select>
                                   <div class="error_msg">{{ errors[0] }}</div>
                                 </validation-provider>
@@ -103,6 +103,7 @@
 
 
 <script>
+import getData from '@/api/services.js';
 import { extend, ValidationProvider, ValidationObserver } from 'vee-validate'
 import * as rules from 'vee-validate/dist/rules'
 import es from 'vee-validate/dist/locale/es'
@@ -128,29 +129,14 @@ export default {
         servicio: null, 
         consulta: null,
         customErrors: [],
-        servicios: [
-          'Administración general',
-          'Cobro a deudores',
-          'Manejo de recursos',
-          'Seguridad',
-          'Mantenimiento general',
-          'Limpieza',
-          'Trabajos en altura',
-          'Lavado de tanques',
-          'Ascensores',
-          //'Arrendamiento y venta de propiedades',
-          //'Conserge',
-          //'Suministro y administración de Gas LP',
-          'Impermeabilización',
-          'Fumigación',
-          'Aire acondicionado',
-          'Bombas de agua',
-          'Jardinería',
-          //'Mantenimiento en oficinas',
-          //'Centros comerciales'
-        ]
+        servicios: []
        }
     },
+
+    created() {
+      this.servicios = getData();
+    },
+
     methods: {
       onSubmit() {
         console.log('SUBMITTING ...');

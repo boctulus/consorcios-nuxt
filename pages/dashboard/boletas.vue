@@ -1,7 +1,7 @@
 <template>
   <div>            
-    <h1 class="mb-5">Boletas</h1>
-  
+    <h1 class="mb-5">Boletas</h1> <!-- copropietario -->
+
     <!--v-layout row justify-center>
       <v-dialog v-model="delete_confirmation_dialog" persistent max-width="320">
         <v-card>
@@ -33,20 +33,56 @@
           </v-card-title>
           <v-card-text>
             <v-container>
-             
-              <v-text-field v-model="editedItem.name" label="Nombre" :class="{'disable-events': formMode=='see'}" ></v-text-field>
-       
-              <label aria-hidden="true" class="v-label v-label--active theme--light" style="left: 0px; right: auto; position: absolute; font-size: 12px !important; margin-left: 32px;">Habilitado?</label>
-              <v-checkbox type="checkbox" v-model="editedItem.enabled" :label="editedItem.enabled | boolean" :class="{'disable-events': formMode=='see'}"/>
+              <v-layout row>
 
-              <v-text-field v-model="editedItem.img" label="Imagen" :class="{'disable-events': formMode=='see'}"></v-text-field>
-              <div style="text-align:center;">
-                <img :src="editedItem.img" v-if="editedItem.img.match(/^(https:|http:)/)" />
-                <img :src="`/servicios/${editedItem.img}`" v-if="!editedItem.img.match(/^(https:|http:)/)" />
-              </div>
+                <!-- 
+                  el valor a hacer bind debe ser un array de objetos y le pasas los attributos en el item-value e item-text
 
-              <v-textarea v-model="editedItem.text" auto-grow label="Texto" :class="{'disable-events': formMode=='see'}"></v-textarea>
+                  Ejemplo: 
+                  
+                  items: [{id:1, nombre:"nombre 1"}]
+                  <v-select :items="items" item-text="nombre" item-value="id" >
+                -->  
 
+                <!--v-flex style="width:100%;">                 
+                  <v-select
+                    :items="users"
+                    item-text="name"
+                    item-value="id"
+                    v-model="editedItem.belongs_to"
+                    label="Edificio"
+                    :class="{'disable-events': formMode=='see'}"
+                  ></v-select>
+                </v-flex-->
+
+                  <v-flex style="width:100%;">                 
+                    <v-select 
+                    v-model="editedItem.billable_id" 
+                    :items="tipos_servicio" 
+                    item-text="name"
+                    item-value="id"
+                    :class="{'disable-events': formMode=='see'}" 
+                    label="Concepto"
+                  ></v-select>
+                </v-flex>
+
+                <v-flex cols="12" sm="6" md="4">
+                  <v-text-field v-model="editedItem.detail" :class="{'disable-events': formMode=='see'}" label="Detalle"></v-text-field>
+                </v-flex>
+
+                <v-flex cols="12" sm="6" md="4">
+                  <v-text-field v-model="editedItem.period" :class="{'disable-events': formMode=='see'}" label="Período"></v-text-field>
+                </v-flex>
+
+                <v-flex cols="12" sm="6" md="4">
+                  <v-text-field v-model="editedItem.amount" :class="{'disable-events': formMode=='see'}" label="Importe"></v-text-field>
+                </v-flex>
+
+                <v-flex cols="12" sm="6" md="4">
+                  <v-text-field v-model="editedItem.file" :class="{'disable-events': formMode=='see'}" label="Archivo"></v-text-field>
+                </v-flex>
+
+              </v-layout>
             </v-container>
           </v-card-text>
           <v-card-actions>
@@ -64,15 +100,14 @@
 
         <v-data-table
           :headers="headers"
-          :items="regs"
+          :items="computedBills"
           class="elevation-1"
         >
             <template  v-slot:items="props">
-                <td>{{ props.item.type }}</td>
-                <td>{{ props.item.ticket_number }}</td>
-                <td>{{ props.item.from }}</td>
-                <td>{{ props.item.to }}</td>
-                <td>$ {{ props.item.amount | currency }}</td>
+                <td>{{ getServicioById(props.item.billable_id).name }}</td>
+                <td>{{ props.item.detail }}</td>
+                <td>{{ props.item.period }}</td>
+                <td>{{ props.item.amount | currency }}</td>
                 <td>      
                     <a :href="props.item.file" target="_blank" rel="noopener noreferrer">     
                     <v-icon
@@ -91,39 +126,48 @@
 </template>
 
 <script>
-  import getData from '@/api/boletas.js';
+  import getData from '@/api/bills.js';
+  import getTipoServicio from '@/api/billable_services.js';
+  import { store } from '@/store/login.js'
 
   export default {
     layout: 'dashboard',
+    store: store,
     data: () => ({
       dialog: false,
       delete_confirmation_dialog: false,
       formMode: 'create',
       index: null,
       headers: [
-        { text: 'Servicio', value: 'type' },
-        { text: 'Númeración', value: 'ticket_number' },
-        { text: 'Desde', value: 'from' },
-        { text: 'Hasta', value: 'to' },
-        { text: 'Cantidad', value: 'amount' }
+        { text: 'Concepto', value: 'billable_id' },
+        { text: 'Detalle', value: 'detail' },
+        { text: 'Período', value: 'period' },
+        { text: 'Importe', value: 'amount' }
       ],
       regs: [],
+      tipos_servicio: [],
       editedIndex: -1,
       editedItem: {
-        name: '',
-        text: '',
-        img: '',
-        enabled: false
+        user: '',
+        billable_id: '',
+        detail: '',
+        period: '',
+        amount: 0
       },
       defaultItem: {
-        name: '',
-        text: '',
-        img: '',
-        enabled: false
+        user: '',
+        billable_id: '',
+        detail: '',
+        period: '',
+        amount: 0
       },
     }),
 
     computed: {
+      computedBills: function() {
+        return this.regs.filter((el) => el.belongs_to === this.$store.getters.id);
+      },
+
       formTitle: function() {
         switch(this.formMode){
           case 'see': 
@@ -147,13 +191,11 @@
 
     created () {
       this.initialize()
+
+      console.log('++++++++++++++++++++++++ USER_ID', this.$store.getters.id);
     },
 
     filters: {
-      boolean: function (value) {
-        value = value.toString()
-        return (value === 'true' || value === '1') ? 'si' : 'no';
-      },
       currency: function (value) { 
         let val = (value/1).toFixed(2).replace('.', ',')
         return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
@@ -163,6 +205,11 @@
     methods: {
       initialize () {
         this.regs = getData();
+        this.tipos_servicio = getTipoServicio();
+      },
+
+      getServicioById (id) {
+        return this.tipos_servicio.find((e) => e.id == id);
       },
 
       seeItem (item) {

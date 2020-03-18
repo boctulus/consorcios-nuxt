@@ -4,7 +4,7 @@
     <div class="logo_wrapper">
       <div class="logo_container">
           <n-link to="/home">
-            <v-img src="/logov2b_justo.png" lazy-src class="logo" />
+            <v-img src="/elgrove_nueva_tipo.png" lazy-src class="logo" />
           </n-link>
       </div>  
     </div>  

@@ -35,16 +35,16 @@
             <v-container>
               <v-layout row>
                 <v-flex cols="12" sm="6" md="4">
-                  <v-text-field v-model="editedItem.tema" :class="{'disable-events': formMode=='see'}" label="Tema"></v-text-field>
+                  <v-text-field v-model="editedItem.subject" :class="{'disable-events': formMode=='see'}" label="Tema"></v-text-field>
                 </v-flex>
                 <v-flex cols="12" sm="6" md="4">
-                  <v-text-field v-model="editedItem.consulta" :class="{'disable-events': formMode=='see'}" label="Consulta"></v-text-field>
+                  <v-text-field v-model="editedItem.content" :class="{'disable-events': formMode=='see'}" label="Consulta"></v-text-field>
                 </v-flex>
                 <v-flex cols="12" sm="6" md="4">
-                  <v-text-field v-model="editedItem.nombre" :class="{'disable-events': formMode=='see'}" label="Nombre"></v-text-field>
+                  <v-text-field v-model="editedItem.name" :class="{'disable-events': formMode=='see'}" label="Nombre"></v-text-field>
                 </v-flex>
                 <v-flex cols="12" sm="6" md="4">
-                  <v-text-field v-model="editedItem.telefono" :class="{'disable-events': formMode=='see'}" label="Tel."></v-text-field>
+                  <v-text-field v-model="editedItem.phone" :class="{'disable-events': formMode=='see'}" label="Tel."></v-text-field>
                 </v-flex>
                 <v-flex cols="12" sm="6" md="4">
                   <v-text-field v-model="editedItem.email" :class="{'disable-events': formMode=='see'}" label="E-mail"></v-text-field>
@@ -71,10 +71,10 @@
           class="elevation-1"
         >
             <template  v-slot:items="props">
-                <td >{{ props.item.tema }}</td>
-                <td>{{ props.item.consulta }}</td>
-                <td>{{ props.item.nombre}}</td>
-                <td>{{ props.item.telefono }}</td>
+                <td >{{ props.item.subject }}</td>
+                <td>{{ props.item.content }}</td>
+                <td>{{ props.item.name }}</td>
+                <td>{{ props.item.phone }}</td>
                 <td>{{ props.item.email }}</td>
                 <td>      
                     <v-icon
@@ -108,7 +108,7 @@
 </template>
 
 <script>
-  import getMsg from '@/api/mensajes.js';
+  import getMsg from '@/api/messages.js';
 
   export default {
     layout: 'dashboard',
@@ -118,27 +118,27 @@
       formMode: 'Nuevo Mensaje',
       index: null,
       headers: [
-        { text: 'Tema', value: 'tema', align: 'start' },
-        { text: 'Consulta', value: 'consulta' },
-        { text: 'Nombre', value: 'nombre' },
-        { text: 'Teléfono', value: 'telefono' },
+        { text: 'Tema', value: 'subject', align: 'start' },
+        { text: 'Consulta', value: 'content' },
+        { text: 'Nombre', value: 'name' },
+        { text: 'Teléfono', value: 'phone' },
         { text: 'E-mail', value: 'email' },
       ],
       regs: [],
       editedIndex: -1,
       editedItem: {
-        nombre: '',
+        name: '',
         email: '',
-        telefono: '',
-        tema: '',
-        consulta: ''
+        phone: '',
+        subject: '',
+        content: ''
       },
       defaultItem: {
-        nombre: '',
+        name: '',
         email: '',
-        telefono: '',
-        tema: '',
-        consulta: ''
+        phone: '',
+        subject: '',
+        content: ''
       },
     }),
 
