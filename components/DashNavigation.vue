@@ -113,7 +113,7 @@
 
 <script>
 import closeMixin from '@/mixins/close.js';
-import getLinks from '@/api/links.js';
+import getLinks from '@/api/nav_links.js';
 import { store } from '@/store/login.js'
 
 export default {
@@ -145,7 +145,7 @@ export default {
 
         this.list = [
             { text: 'Panel de control',  link: '/dashboard', icon: 'fa-gears', divider: true },
-            { text: 'Inicio',  link: '/home', icon: 'fa-home' }
+            //{ text: 'Inicio',  link: '/home', icon: 'fa-home' }
         ];
 
         this.$store.getters.roles.forEach(role => {

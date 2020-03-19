@@ -42,8 +42,8 @@
 
               <v-text-field v-model="editedItem.img" label="Imagen" :class="{'disable-events': formMode=='see'}"></v-text-field>
               <div style="text-align:center;">
-                <img :src="editedItem.img" v-if="editedItem.img.match(/^(https:|http:)/)" />
-                <img :src="`/servicios/${editedItem.img}`" v-if="!editedItem.img.match(/^(https:|http:)/)" />
+                <img style="max-width:90%;" :src="editedItem.img" v-if="editedItem.img.match(/^(https:|http:)/)" />
+                <img style="max-width:90%;" :src="`/servicios/${editedItem.img}`" v-if="!editedItem.img.match(/^(https:|http:)/)" />
               </div>
 
               <v-textarea v-model="editedItem.text" auto-grow label="Texto" :class="{'disable-events': formMode=='see'}"></v-textarea>

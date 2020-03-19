@@ -71,8 +71,14 @@ module.exports = {
   */
   modules: [
     'nuxt-fullpage.js',
-    'vue-scrollto/nuxt'
+    'vue-scrollto/nuxt',
+    '@nuxtjs/axios',
+    '@nuxtjs/auth'
   ],
+
+  axios: {
+    // proxyHeaders: false
+  },
 
   router: {
     middleware: [

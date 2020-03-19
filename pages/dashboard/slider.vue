@@ -106,7 +106,7 @@
 </template>
 
 <script>
-  import getData from '@/api/home_slider.js';
+  import getData from '@/api/slider.js';
 
   export default {
     layout: 'dashboard',

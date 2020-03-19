@@ -60,7 +60,8 @@
 
             <slide v-for="(slide, ix) in slides" v-bind:key="ix">
               <div class="item">
-                      <img :src="slide.img" alt="images not found">
+                      <img :src="slide.img" v-if="slide.img.match(/^(https:|http:)/)"  alt="images not found" />
+                      <img :src="`/home_slider/${slide.img}`" v-if="!slide.img.match(/^(https:|http:)/)"  alt="images not found" />
                       <div class="cover">
                           <div class="container">
                               <div class="header-content">
@@ -114,7 +115,7 @@
 <script>
 import TextAnimation from '@/components/TextAnimation'
 import { Carousel, Slide } from 'vue-carousel';
-import getSlider from '@/api/home_slider.js';
+import getSlider from '@/api/slider.js';
 
 export default {  
   layout: 'home',

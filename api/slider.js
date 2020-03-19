@@ -1,7 +1,7 @@
 const arr = [
   {  
     id: 1,
-    img: '/home_slider/0-mision.jpg',
+    img: '0-mision.jpg',
     line1: 'Ofrecer soluciones efectivas en la administración de inmuebles',
     line2: 'Misión',
     line3: 'Brindando un alto estándar de eficiencia, confort, tranquilidad y seguridad a un precio razonable y justo.',
@@ -9,7 +9,7 @@ const arr = [
   },
   {  
     id: 2,
-    img: '/home_slider/1-vision.jpg',
+    img: '1-vision.jpg',
     line1: 'Honestidad, claridad y excelente trato',
     line2: 'Visión',
     line3: 'Otorgar un trato directo hacia nuestros clientes así como por el manejo eficiente de información por medio de tecnología de punta.',
