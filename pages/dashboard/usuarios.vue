@@ -116,17 +116,14 @@
       editedIndex: -1,
       editedItem: {
         name: '',
-        email: '',
-        phone: '',
-        subject: '',
-        content: ''
+        username: '',
+        password: ''
       },
       defaultItem: {
+        id: null,
         name: '',
-        email: '',
-        phone: '',
-        subject: '',
-        content: ''
+        username: '',
+        password: ''
       },
     }),
 
@@ -160,7 +157,17 @@
 
     methods: {
       initialize () {
-        this.regs = getData();
+        let that = this;
+    
+        this.$axios.get('http://elgrove.co/api/v1/users')
+        .then(response => {
+            that.regs = response.data.data;
+        }).catch((error) => {
+            const response = error.response;
+            //console.log('Error', error);
+            console.log(response.data.error);
+            //this.error = response.data.error;
+        });
       },
 
       seeItem (item) {
@@ -190,12 +197,30 @@
       close_delete_confirmation_dialog() {
         this.delete_confirmation_dialog = false; 
         this.dialog = false;
+
+        console.log('Vas a borrar reg con id = '+ this.regs[this.index].id);
       },
 
       erase () {
         this.delete_confirmation_dialog = false; 
         this.formMode = null;
-        this.regs.splice(this.index, 1);
+        
+        const id = this.regs[this.index].id;
+        console.log('[ DELETE ] ID ==', id);
+        
+        this.$axios.request({
+              url: `http://elgrove.co/api/v1/users/${id}`,  
+              method: 'delete',
+              headers: {
+                  'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
+              }
+          }).then( res => {
+            this.regs.splice(this.index, 1);
+            console.log(res);
+
+          }).catch((error) => {
+              console.log('[ DELETE ] ERROR', error);
+          });
       },
 
       close () {
@@ -208,14 +233,49 @@
       },
 
       save () {
-        this.formMode = null;
+        //console.log('------[ SAVE ]-----');
 
         if (this.editedIndex > -1) {
-          Object.assign(this.regs[this.editedIndex], this.editedItem)
+          //console.log('EDITANDO...');
+
+          //console.log(this.regs[this.editedIndex]); ////
+          const id = this.regs[this.editedIndex].id;
+
+          this.$axios.request({
+            url: `http://elgrove.co/api/v1/users/${id}`,  
+            method: 'patch',
+            headers: {
+                'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
+            },
+            data: this.editedItem
+          }).then( ({ data }) => {
+            Object.assign(this.regs[this.editedIndex], this.editedItem);
+            // console.log(data);
+
+          }).catch((error) => {
+              console.log(error);
+          });
+
         } else {
-          this.regs.push(this.editedItem)
+          this.$axios.request({
+            url: `http://elgrove.co/api/v1/users`,  
+            method: 'post',
+            headers: {
+                'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
+            },
+            data: this.editedItem
+          }).then( ({ data }) => {
+            this.editedItem.id = data.data.id;
+            this.regs.push(this.editedItem);            
+            console.log(data);
+
+          }).catch((error) => {
+              console.log(error);
+          });
         }
-        this.close()
+
+        this.close();
+        this.formMode = null;
       },
     },
   }
