@@ -128,11 +128,9 @@
 <script>
   import getData from '@/api/bills.js';
   import getTipoServicio from '@/api/billable_services.js';
-  import { store } from '@/store/login.js'
 
   export default {
     layout: 'dashboard',
-    store: store,
     data: () => ({
       dialog: false,
       delete_confirmation_dialog: false,
@@ -165,7 +163,7 @@
 
     computed: {
       computedBills: function() {
-        return this.regs.filter((el) => el.belongs_to === this.$store.getters.id);
+        return this.regs.filter((el) => el.belongs_to === this.$store.getters['auth/get_user'].id);
       },
 
       formTitle: function() {

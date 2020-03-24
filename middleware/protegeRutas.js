@@ -1,11 +1,9 @@
-
 export default function protegeRutas(context) {
-    console.log('MIDDLEWARE !!!!');
-    console.log(context.store.getters['login/logged'])// {}
 
-    /*
-    if (context.route.path.match(/^\/dashboard/)){
-       context.redirect('/login');
+    //console.log(context.store.state.auth.authUser);
+
+    if (context.route.path.match(/^\/dashboard/) && context.store.state.auth.authUser.id == null) {
+        context.store.commit('auth/set_alert', 'Acceso no autorizado'); 
+        context.redirect('/login');
     }
-    */
 }

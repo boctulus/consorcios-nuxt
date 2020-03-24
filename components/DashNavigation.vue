@@ -114,12 +114,10 @@
 <script>
 import closeMixin from '@/mixins/close.js';
 import getLinks from '@/api/nav_links.js';
-import { store } from '@/store/login.js'
 
 export default {
     name: 'DashNavigation',
     mixins: [closeMixin],
-    store: store,
     data() {
         return {
             drawer: false,
@@ -134,21 +132,21 @@ export default {
             return this.drawer ? this.list : []
         },
         user: function () {
-            return this.$store.state.authUser;
+            return this.$store.getters['auth/get_user'];
         },
         username: function () {
-            return this.$store.getters.username;
+            return this.$store.getters['auth/get_user'].username;
         }
     },
     created() {
-        console.log(this.$store.getters.roles);
+        console.log(this.$store.getters['auth/get_user'].roles);
 
         this.list = [
             { text: 'Panel de control',  link: '/dashboard', icon: 'fa-gears', divider: true },
             //{ text: 'Inicio',  link: '/home', icon: 'fa-home' }
         ];
 
-        this.$store.getters.roles.forEach(role => {
+        this.$store.getters['auth/get_user'].roles.forEach(role => {
             getLinks(role).forEach(e => {
                 this.list.push(e)
             });
@@ -163,8 +161,10 @@ export default {
             //console.log('CERRANDO..');
         },
         logout: function() {
-            this.$store.commit('logout');
-            this.$router.push('/login');
+            this.$store.dispatch('auth/logout')
+            .then(resp => {
+                 this.$router.replace({ path: '/login' }); ///
+            })
         },
         navigate: function(to) {
             this.drawer = false;   

@@ -11,17 +11,21 @@
 
 <script>
 import DashNavigation from '@/components/DashNavigation';
-import { store } from '@/store/login.js'
 
 export default {
-    store: store,
-    created() {
-        if (!this.$store.getters.logged){
-           this.$router.push('/login') 
-        }        
+    computed: {
+        loginAlert() {
+            return this.$store.state.auth.alert;
+        }
     },
-    mounted() {
-        
+
+    watch: {
+        loginAlert(msg){
+            if (msg !== null) {
+            this.$store.commit('auth/set_alert', null);
+            alert(msg);
+            }
+        }
     },
     components: {
         DashNavigation

@@ -73,7 +73,11 @@ module.exports = {
     'nuxt-fullpage.js',
     'vue-scrollto/nuxt',
     '@nuxtjs/axios',
-    '@nuxtjs/auth'
+    //'@nuxtjs/auth',
+    ['nuxt-vuex-localstorage', {
+      mode: 'debug',
+      localStorage: ['auth']
+    }]
   ],
 
   axios: {

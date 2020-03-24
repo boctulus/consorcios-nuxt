@@ -22,9 +22,11 @@
                       <div class="form-group engravers label">
                         <label for="edificio">Edificación</label><label class="gfield_required">*</label>
                           <validation-provider rules="required" v-slot="{ errors }">
+                            
                             <select v-model="selected" v-bind:class="{ required: errors[0] }" class="form-control input" name="selected" id="selected">
                               <option v-for="(usuario, index) in usuarios" v-bind:key="index">{{ usuario.name }}</option>
                             </select>
+
                             <span class="error_msg">{{ errors[0] }}</span>
                           </validation-provider>  
                       </div>  
@@ -68,8 +70,7 @@
 <script>
 import { ValidationProvider, extend, ValidationObserver } from 'vee-validate';
 import { required } from 'vee-validate/dist/rules';
-import { store } from '@/store/login.js'
-import getData from '@/api/users.js';
+//import getData from '@/api/users.js';
 
 extend('required', {
   ...required,
@@ -77,7 +78,6 @@ extend('required', {
 });
 
 export default {  
-  store: store,
   layout: 'home',
   data() {
       return {
@@ -95,21 +95,42 @@ export default {
       this.other_error = null;
     }
   },
+
   created() {
-    this.usuarios = getData();  
+      let that = this;
+    
+      this.$axios.get('http://elgrove.co/api/v1/users?fields=id,name,username')
+      .then(response => {
+          that.usuarios = response.data.data;
+      }).catch((error) => {
+          const response = error.response;
+          //console.log('Error', error);
+          console.log(response.data.error);
+          //this.error = response.data.error;
+      });
   },
+
   methods: {
     onSubmit() {
-      console.log('SUBMITTING ...');
-      console.log([this.selected, this.password]);
+      //console.log('SUBMITTING ...');
+      //console.log([this.selected, this.password]);
 
       this.$refs.form.validate().then(success => {
         if (!success) {
           return;
         }
 
-        console.log('Submited !!!');
+        //console.log('Submited !!!');
+        const username = this.usuarios.find(e => e.name == this.selected)['username'];
 
+        //this.$store.commit('auth/login', { username : username, password: this.password });
+
+        this.$store.dispatch('auth/login', { username : username, password: this.password })
+        .then(() => this.$router.push('/dashboard'))
+        .catch(err => console.log(err))
+        
+
+        /*
         if (this.selected == "Administración" && this.password == 'gogogo'){
           // Resetting Values
           this.selected = this.password = '';
@@ -129,7 +150,10 @@ export default {
         } else {
           this.other_error = 'Usuario o contraseña incorrectos';
         }
+      */
+
       });
+      
       
     }
   },

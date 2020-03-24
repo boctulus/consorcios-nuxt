@@ -25,11 +25,9 @@
 
 <script>
 import getCards from '@/api/cards.js';
-import { store } from '@/store/login.js'
 
 export default {  
       layout: 'dashboard',
-      store: store,
       data: () => ({
             cards: [],
             headlineFontSize:  '2em !important'
@@ -51,7 +49,7 @@ export default {
 
       created() {
             
-            this.$store.getters.roles.forEach(role => {
+            this.$store.getters['auth/get_user'].roles.forEach(role => {
                   getCards(role).forEach(e => {
                         this.cards.push(e)
                   });
