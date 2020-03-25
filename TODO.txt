@@ -17,6 +17,13 @@ https://codepen.io/vahdet/pen/qBWPdWv
 https://stackoverflow.com/questions/44989162/file-upload-in-vuetify
 
 
+- Server side pagination
+
+https://stackoverflow.com/questions/55981409/is-it-possible-to-call-a-rest-api-on-vuetify-datatable-on-data-loading-searchin
+
+https://codepen.io/retrograde/pen/pmzQNP?editors=1010
+
+
 - ChatBot en Vue --- OK
 
     * Dirección? Donde están?

@@ -106,7 +106,7 @@
 </template>
 
 <script>
-  import getData from '@/api/slider.js';
+  //import getData from '@/api/slider.js';
 
   export default {
     layout: 'dashboard',
@@ -131,6 +131,7 @@
         enabled: false
       },
       defaultItem: {
+        id: null,
         line1: '',
         line2: '',
         line3: '',
@@ -174,7 +175,18 @@
 
     methods: {
       initialize () {
-        this.regs = getData();
+        this.$axios.get('http://elgrove.co/api/v1/slider', 
+        { 
+          headers: {
+            'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
+          }
+        })
+        .then(response => {
+            this.regs = response.data.data;
+        }).catch((error) => {
+            const response = error.response;
+            console.log(response.data.error);
+        });
       },
 
       seeItem (item) {
@@ -209,7 +221,23 @@
       erase () {
         this.delete_confirmation_dialog = false; 
         this.formMode = null;
-        this.regs.splice(this.index, 1);
+        
+        const id = this.regs[this.index].id;
+        //console.log('[ DELETE ] ID ==', id);
+        
+        this.$axios.request({
+            url: `http://elgrove.co/api/v1/slider/${id}`,  
+            method: 'delete',
+            headers: {
+                'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
+            }
+        }).then( res => {
+          this.regs.splice(this.index, 1);
+          console.log(res);
+
+        }).catch((error) => {
+            console.log('[ DELETE ] ERROR', error);
+        });
       },
 
       close () {
@@ -222,14 +250,49 @@
       },
 
       save () {
-        this.formMode = null;
-
         if (this.editedIndex > -1) {
-          Object.assign(this.regs[this.editedIndex], this.editedItem)
+          //console.log(this.regs[this.editedIndex]); ////
+          const id = this.regs[this.editedIndex].id;
+
+          this.$axios.request({
+            url: `http://elgrove.co/api/v1/slider/${id}`,  
+            method: 'patch',
+            headers: {
+                'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
+            },
+            data: this.editedItem
+          }).then( ({ data }) => {
+            Object.assign(this.regs[this.editedIndex], this.editedItem);
+            // console.log(data);
+
+          }).catch((error) => {
+              console.log(error);
+          });
+
         } else {
-          this.regs.push(this.editedItem)
+
+          this.$axios.request({
+            url: `http://elgrove.co/api/v1/slider`,  
+            method: 'post',
+            headers: {
+                'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
+            },
+            data: this.editedItem
+          }).then( ({ data }) => {
+
+            const uid = data.data.id;
+            
+            this.editedItem.id = uid;
+            this.regs.push(this.editedItem);  
+
+          }).catch((error) => {
+              console.log(error);
+          });
+
         }
-        this.close()
+
+        this.close();
+        this.formMode = null;
       },
     },
   }

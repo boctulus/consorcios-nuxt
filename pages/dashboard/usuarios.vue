@@ -99,7 +99,7 @@
 </template>
 
 <script>
-  import getData from '@/api/users.js';
+  //import getData from '@/api/users.js';
 
   export default {
     layout: 'dashboard',
@@ -110,7 +110,7 @@
       index: null,
       headers: [
         { text: 'Nombre', value: 'name' },
-        { text: 'Usuario', value: 'username' },
+        { text: 'Usuario', value: 'username' }
       ],
       regs: [],
       editedIndex: -1,
@@ -156,12 +156,15 @@
     },
 
     methods: {
-      initialize () {
-        let that = this;
-    
-        this.$axios.get('http://elgrove.co/api/v1/users')
+      initialize () {    
+        this.$axios.get('http://elgrove.co/api/v1/users', 
+        { 
+          headers: {
+            'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
+          }
+        })
         .then(response => {
-            that.regs = response.data.data;
+            this.regs = response.data.data;
         }).catch((error) => {
             const response = error.response;
             //console.log('Error', error);
@@ -178,6 +181,8 @@
       },
 
       editItem (item) {
+        console.log(item);
+
         this.editedIndex = this.regs.indexOf(item);
         this.editedItem = Object.assign({}, item);
         this.formMode = 'edit';
@@ -206,21 +211,21 @@
         this.formMode = null;
         
         const id = this.regs[this.index].id;
-        console.log('[ DELETE ] ID ==', id);
+        //console.log('[ DELETE ] ID ==', id);
         
         this.$axios.request({
-              url: `http://elgrove.co/api/v1/users/${id}`,  
-              method: 'delete',
-              headers: {
-                  'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
-              }
-          }).then( res => {
-            this.regs.splice(this.index, 1);
-            console.log(res);
+            url: `http://elgrove.co/api/v1/users/${id}`,  
+            method: 'delete',
+            headers: {
+                'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
+            }
+        }).then( res => {
+          this.regs.splice(this.index, 1);
+          console.log(res);
 
-          }).catch((error) => {
-              console.log('[ DELETE ] ERROR', error);
-          });
+        }).catch((error) => {
+            console.log('[ DELETE ] ERROR', error);
+        });
       },
 
       close () {
@@ -236,8 +241,6 @@
         //console.log('------[ SAVE ]-----');
 
         if (this.editedIndex > -1) {
-          //console.log('EDITANDO...');
-
           //console.log(this.regs[this.editedIndex]); ////
           const id = this.regs[this.editedIndex].id;
 
@@ -257,6 +260,7 @@
           });
 
         } else {
+
           this.$axios.request({
             url: `http://elgrove.co/api/v1/users`,  
             method: 'post',
@@ -265,13 +269,36 @@
             },
             data: this.editedItem
           }).then( ({ data }) => {
-            this.editedItem.id = data.data.id;
-            this.regs.push(this.editedItem);            
-            console.log(data);
+
+            const uid = data.data.id;
+            
+            this.editedItem.id = uid;
+            this.regs.push(this.editedItem);  
+
+            // debo insertar en user_roles con rol de copropietario (2)
+            this.$axios.request({
+                url: `http://elgrove.co/api/v1/user_roles`,  
+                method: 'post',
+                headers: {
+                    'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
+                },
+                data: {
+                  "belongs_to" : uid,
+                  "role_id": "2"
+                }
+            }).then( ({ data }) => {
+                  
+              //console.log('Registro de usuario completo');          
+              //console.log(data);
+
+            }).catch((error) => {
+                console.log(error);
+            });
 
           }).catch((error) => {
               console.log(error);
           });
+
         }
 
         this.close();

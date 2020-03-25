@@ -96,12 +96,11 @@ export default {
     }
   },
 
-  created() {
-      let that = this;
-    
+  created() {    
       this.$axios.get('http://elgrove.co/api/v1/users?fields=id,name,username')
       .then(response => {
-          that.usuarios = response.data.data;
+          //console.log(response);
+          this.usuarios = response.data.data;
       }).catch((error) => {
           const response = error.response;
           //console.log('Error', error);
@@ -125,33 +124,16 @@ export default {
 
         //this.$store.commit('auth/login', { username : username, password: this.password });
 
-        this.$store.dispatch('auth/login', { username : username, password: this.password })
-        .then(() => this.$router.push('/dashboard'))
-        .catch(err => console.log(err))
-        
 
-        /*
-        if (this.selected == "Administración" && this.password == 'gogogo'){
-          // Resetting Values
-          this.selected = this.password = '';
+          this.$store.dispatch('auth/login', { username : username, password: this.password })
+          .then(() => {
 
-          // Wait until the models are updated in the UI
-          this.$nextTick(() => {
-            this.$refs.form.reset();
-          });
-          
-          this.$store.commit('saveUser', {username: 'juanma', id: 1}); // hardcodeado
-          this.$store.commit('saveRoles', ['admin']);
-          this.$router.push('/dashboard');
-        } else if (this.selected == "Los Pitufos"  && this.password == '123') {
-          this.$store.commit('saveUser', {username: this.selected, id: 105}); // hardcodeado
-          this.$store.commit('saveRoles', ['copropietario']);
-          this.$router.push('/dashboard');        
-        } else {
-          this.other_error = 'Usuario o contraseña incorrectos';
-        }
-      */
-
+            this.$router.push('/dashboard');
+          }) 
+          .catch(err => {
+            //console.log(err);  
+            this.other_error = 'Usuario o contraseña incorrectos';
+          })
       });
       
       

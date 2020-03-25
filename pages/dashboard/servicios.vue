@@ -105,7 +105,7 @@
 </template>
 
 <script>
-  import getData from '@/api/services.js';
+  //import getData from '@/api/services.js';
 
   export default {
     layout: 'dashboard',
@@ -171,7 +171,19 @@
 
     methods: {
       initialize () {
-        this.regs = getData();
+        this.$axios.get('http://elgrove.co/api/v1/services', 
+        { 
+          headers: {
+            'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
+          }
+        })
+        .then(response => {
+            this.regs = response.data.data;
+            console.log(this.regs);
+        }).catch((error) => {
+            const response = error.response;
+            console.log(response.data.error);
+        });
       },
 
       seeItem (item) {
