@@ -121,6 +121,7 @@
         { text: 'Habilitado', value: 'enabled' },
       ],
       regs: [],
+      totalItems: null,
       editedIndex: -1,
       editedItem: {
         name: '',
@@ -134,6 +135,14 @@
         img: '',
         enabled: false
       },
+      loading: true,
+      pagination: {
+        rowsPerPage: 100,
+        descending: false,
+        sortBy: "name",
+        page: 1
+      },
+      search: '',
     }),
 
     computed: {
@@ -159,7 +168,11 @@
     },
 
     created () {
-      this.initialize()
+      //this.initialize()
+    },
+
+    mounted () {
+      this.fetchData();
     },
 
     filters: {
@@ -170,20 +183,47 @@
     },
 
     methods: {
-      initialize () {
-        this.$axios.get('http://elgrove.co/api/v1/services', 
-        { 
-          headers: {
-            'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
-          }
-        })
-        .then(response => {
-            this.regs = response.data.data;
-            console.log(this.regs);
-        }).catch((error) => {
-            const response = error.response;
-            console.log(response.data.error);
-        });
+      fetchData () {
+         return new Promise((resolve, reject) => {
+                const { sortBy, descending, page, rowsPerPage } = this.pagination;
+                //let search = this.search.trim().toLowerCase();
+
+                this.$axios.get('http://elgrove.co/api/v1/services' + 
+                  `?pageSize=${rowsPerPage}` +
+                  `&page=${page}` +
+                  `&order[${sortBy}]=` + (descending ? 'ASC' : 'DESC')
+                  /* +  "&searchVal=" + search, */, 
+                { 
+                  headers: {
+                    'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
+                  }
+                })
+                .then(response => {
+                    //this.regs = response.data.data;
+                    //console.log(this.regs);
+                    let items = response.data.data;
+                    const totalItems = response.data.paginator.total;
+
+                    /*
+                    if (search) {
+                        items = items.filter(item => {
+                            return Object.values(item)
+                                .join(",")
+                                .toLowerCase()
+                                .includes(search);
+                        });
+                    }
+                    */
+        
+                    this.regs = items;
+                    this.totalItems = totalItems;
+                    this.loading = false;
+                    resolve();
+                }).catch((error) => {
+                    const response = error.response;
+                    console.log(response.data.error);
+                });
+         });       
       },
 
       seeItem (item) {
