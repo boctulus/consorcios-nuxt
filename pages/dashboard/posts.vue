@@ -35,11 +35,25 @@
           
           <v-card-text>
             <v-text-field v-model="editedItem.title" :class="{'disable-events': formMode=='see'}" label="Título"></v-text-field>
+
+            <label aria-hidden="true" class="v-label v-label--active theme--light" style="left: 0px; right: auto; position: absolute; font-size: 12px !important; margin-left: 32px;">Habilitado?</label>
+            <v-checkbox type="checkbox" v-model="editedItem.enabled" :label="editedItem.enabled | boolean" :class="{'disable-events': formMode=='see'}"/>
           
             <!-- editedItem.content --> 
             <vue-editor v-model="editedItem.content" :class="{'disable-events': formMode=='see'}" label="Texto" class="editor"></vue-editor>
           
-            <v-text-field v-model="editedItem.slug" :class="{'disable-events': formMode=='see'}" label="Slug"></v-text-field>
+            <div style="margin-top: 40px;">
+              <div v-if="formMode != 'see'">
+                <label aria-hidden="true" class="v-label v-label--active theme--light" style="font-size: 12px !important;">Editar slug?</label>
+                <v-switch
+                  :label="slug_editable| boolean"
+                  v-model="slug_editable"
+                ></v-switch>
+              </div>
+
+              <v-text-field v-model="editedItem.slug" :class="{'disable-events': formMode=='see' || !slug_editable}" label="Slug"></v-text-field>
+            </div>
+
           </v-card-text>
 
           <v-card-actions>
@@ -76,6 +90,7 @@
             <template  v-slot:items="props">
                 <td width="33%">{{ props.item.title }}</td>
                 <td>{{ props.item.content  | stripHtml | firstWords(50) }}</td>
+                <td>{{ props.item.enabled | boolean }}</td>
                 <td align="right">      
 
                 <v-menu bottom left offset-y>
@@ -130,7 +145,6 @@
                   </v-list>
                 </v-menu>
 
-
                 </td>   
             </template>            
 
@@ -147,6 +161,7 @@
     layout: 'dashboard',
     data: () => ({
       entity: 'post',
+      slug_editable: true,
       dialog: false,
       delete_confirmation_dialog: false,
       formMode: null,
@@ -154,24 +169,27 @@
       headers: [
         { text: 'Título', value: 'title' },
         { text: 'Texto', value: 'content' },
+        { text: 'Habilitado', value: 'enabled' },
       ],
       regs: [],
       editedIndex: -1,
       editedItem: {
         title: '',
         content: '',
-        slug: ''
+        slug: '',
+        enabled: false
       },
       defaultItem: {
         id: null,
         title: '',
         content: '',
-        slug: ''
+        slug: '',
+        enabled: false
       },
       loading: true,
-      rowsPerPageItems: [5,20,100],
+      rowsPerPageItems: [10,25,100],
       pagination: {
-        rowsPerPage: 20,
+        rowsPerPage: 10,
         descending: false,
         sortBy: "title",
         page: 1,
@@ -215,7 +233,18 @@
               this.fetchData();
           },
           deep: true
-      }
+      },
+
+      'editedItem.title': function(val, old_val) {
+          if (!this.slug_editable)
+            return;
+
+          if ((old_val !== null || old_val === '') && (this.editedItem.slug !== null ||this.editedItem.slug === '')) {
+            const d = new Date();
+            this.editedItem.slug = val.toLowerCase().replace(/[.,!*¿?]/g,'').trim().split(' ').join('-') + 
+            '-' + d.getFullYear() + ("0" + (d.getMonth() + 1)).slice(-2) + ("0" + d.getDate()).slice(-2);
+          }
+      }  
     },
 
     mounted () {
@@ -223,6 +252,11 @@
     },
 
     filters: {
+      boolean: function (value) {
+        value = value.toString()
+        return (value === 'true' || value === '1') ? 'si' : 'no';
+      },
+
       stripHtml: function (html)
       {
         var tmp = document.createElement("DIV");
@@ -287,6 +321,7 @@
         this.editedItem = Object.assign({}, item);
         this.formMode = 'see';
         this.dialog = true;
+        this.slug_editable = false; 
       },
 
       editItem (item) {
@@ -294,18 +329,20 @@
         this.editedItem = Object.assign({}, item);
         this.formMode = 'edit';
         this.dialog = true;
+        this.slug_editable = false; 
       },
 
       showDialog(){
         this.formMode = 'create';
         this.dialog = true;
+        this.slug_editable = true; 
       },
 
       showDeleteDialog (item) {
         this.index = this.regs.indexOf(item);
-        this.dialog = true;
+        this.dialog = false;
 
-        setTimeout(() => { this.delete_confirmation_dialog = true; }, 500);
+        setTimeout(() => { this.delete_confirmation_dialog = true; }, 0);
       },
 
       close_delete_confirmation_dialog() {
