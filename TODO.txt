@@ -17,11 +17,18 @@ https://codepen.io/vahdet/pen/qBWPdWv
 https://stackoverflow.com/questions/44989162/file-upload-in-vuetify
 
 
-- Server side pagination
+- Server side pagination --OK
 
 https://stackoverflow.com/questions/55981409/is-it-possible-to-call-a-rest-api-on-vuetify-datatable-on-data-loading-searchin
 
 https://codepen.io/retrograde/pen/pmzQNP?editors=1010
+
+https://stackoverflow.com/questions/49080814/vuetify-using-datatable-with-external-data-from-an-api-with-vuex
+
+
+- Caja de búsqueda --OK 
+
+https://stackoverflow.com/questions/47630856/vue-js-vuetify-server-side-datatable-search-filter-not-working
 
 
 - ChatBot en Vue --- OK
