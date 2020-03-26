@@ -44,7 +44,7 @@
           
             <div style="margin-top: 40px;">
               <div v-if="formMode != 'see'">
-                <label aria-hidden="true" class="v-label v-label--active theme--light" style="font-size: 12px !important;">Editar slug?</label>
+                <label aria-hidden="true" class="v-label v-label--active theme--light" style="font-size: 12px !important;">Slug editable?</label>
                 <v-switch
                   :label="slug_editable| boolean"
                   v-model="slug_editable"
@@ -377,9 +377,11 @@
       close () {
         this.dialog = false;
         this.formMode = null;
+        this.slug_editable = true;
+
         setTimeout(() => {
-          this.editedItem = Object.assign({}, this.defaultItem)
-          this.editedIndex = -1
+          this.editedItem = Object.assign({}, this.defaultItem);
+          this.editedIndex = -1;
         }, 300)
       },
 
