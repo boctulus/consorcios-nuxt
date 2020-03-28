@@ -17,7 +17,7 @@
           <b-col sm="12" md="6" class="col_link">
               <b-row v-for="(post, ix) in postsPares" v-bind:key="`'row-par-' + ${ix}`" class="area_link" @mouseover="hover = 'par-' + ix"
     @mouseleave="hover = null">
-                  <n-link href="#" class="link post_link" :to="`blog/${post.slug}`" > 
+                  <n-link href="#" class="link post_link" :to="post.slug" > 
                     <li class="link_wrapper">  
                         <v-icon class="plus_link" :class="{ color2 : hover == 'par-' + ix}">fa-plus-circle</v-icon>                    
                         <span href="#" class="link text_link">{{ post.title }}</span>
@@ -29,7 +29,7 @@
           <b-col sm="12" md="6" class="col_link">
               <b-row v-for="(post, ix) in postsImpares" v-bind:key="`'row-par-' + ${ix}`" class="area_link" @mouseover="hover = 'par-' + ix"
     @mouseleave="hover = null">
-                  <n-link href="#" class="link post_link" :to="`blog/${post.slug}`">
+                  <n-link href="#" class="link post_link" :to="`/blog/${post.slug}`">
                     <li class="link_wrapper">  
                         <v-icon class="plus_link" :class="{ color2 : hover == 'par-' + ix}">fa-plus-circle</v-icon>                    
                         <span href="#" class="link text_link">{{ post.title }}</span>
@@ -45,30 +45,40 @@
 </template>
 
 <script>
-import getData from '@/api/posts.js';
+//import getData from '@/api/posts.js';
 
 export default {  
   layout: 'home',
 
   data: () => ({
     entity: 'post',
-    posts: [],
-    hover: null
+    regs: [],
+    hover: null,
+    loading: true,
+    rowsPerPageItems: [10,25,100],
+    pagination: {
+      rowsPerPage: 50,
+      descending: false,
+      page: 1,
+      totalItems: null,
+      sortBy: "created_at",   /* cambiar a created_at */
+    },
+    search: '',
   }),
   
-  created () {
-      this.initialize()
+  mounted () {
+    this.fetchData();
   },
 
   computed: {
     postsPares: function() {
-      return this.posts.filter((p, ix) => {
+      return this.regs.filter((p, ix) => {
         return ix % 2 == 0;
       })
     },
 
     postsImpares: function() {
-      return this.posts.filter((p, ix) => {
+      return this.regs.filter((p, ix) => {
         return ix % 2 != 0;
       })
     }
@@ -76,9 +86,45 @@ export default {
   },
 
   methods: {
-      initialize () {
-        this.posts = getData();
-      }
+      fetchData () {
+         return new Promise((resolve, reject) => {
+                const { sortBy, descending, page, rowsPerPage } = this.pagination;
+                let search = this.search.trim().toLowerCase();
+
+                this.$axios.get('http://elgrove.co/api/v1/posts' + 
+                  `?pageSize=${rowsPerPage}` +
+                  `&page=${page}` +
+                  `&orderBy[${sortBy}]=` + (descending ? 'ASC' : 'DESC') +
+                  `&content[contains]=${search}` , 
+                { 
+                  headers: {
+                    'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
+                  }
+                })
+                .then(response => {
+                    let items = response.data.data;
+                    const totalItems = response.data.paginator.total;
+                    
+                    if (search) {
+                        items = items.filter(item => {
+                            return Object.values(item)
+                                .join(",")
+                                .toLowerCase()
+                                .includes(search);
+                        });
+                    }
+                    
+                    this.regs = items;
+                    this.pagination.totalItems = totalItems;
+                    this.loading = false;
+                    resolve();
+                }).catch((error) => {
+                    //const response = error.response;
+                    console.log(error);
+                    reject('Error');
+                });
+         });   
+      },       
   }    
 }
 </script>

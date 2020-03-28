@@ -2,7 +2,12 @@
     <div class="main_wrapper">
         <div class="business_sp_title" style="background: url(/administracion-profesional-de-condominios-1.jpg);">
             <div class="bs_single_post_navigation">
-                <n-link :to="this.next()" class="link bs_next_project"><span>Sig.</span></n-link>
+				<!-- 
+					Sería ideal usar <n-link> pero carga el "to" antes que se ejecute created()
+
+					<n-link :to="this.next()" class="link bs_next_project"><span>Sig.</span></n-link>	
+				-->	
+                <a href="#" @click="next()" class="link bs_next_project"><span>Sig.</span></a>
             </div>
             
             <div class="wrapper">
@@ -25,57 +30,80 @@
 </template>
 
 <script>
-import getData from '@/api/posts.js';
+//import getData from '@/api/posts.js';
 
 export default {
     layout: 'home',
 
     data() {
         return {
-            slug: null,
-            posts: []
+			slug: null,
+			post: {},
+			posts: []
         }
     },
 
     computed: {
-        post: function() {
-            return this.posts.find(p => { return  p.slug == this.slug });
-        }
+       
     },
 
     created () {
-        this.slug =  this.$route.params.slug;
-        this.initialize();
+		this.slug =  this.$route.params.slug;
+		
+		this.$axios.get('http://elgrove.co/api/v1/posts?slug=' + this.slug, 
+		{ 
+			headers: {
+				
+			}
+		})
+		.then(response => {
+			//console.log(response.data.data[0]);
+			this.post = response.data.data[0];
+		}).catch((error) => {
+			const response = error.response;
+			console.log(response.data.error);
+		});
+
+
+		// All	
+		this.$axios.get('http://elgrove.co/api/v1/posts?fields=slug&pageSize=100', 
+		{ 
+			headers: {
+				
+			}
+		})
+		.then(response => {
+			//console.log(response.data.data);
+			this.posts = response.data.data;
+		}).catch((error) => {
+			const response = error.response;
+			console.log(response.data.error);
+		});
     },
 
     mounted() {
-        // this.asyncData();
+       
     },
     
-    methods: {
-      initialize () {
-        this.posts = getData();
-        //console.log(this.posts)
-      },
+    methods: {		
+		next () {
+			let next_post_slug;	
+			let ix = 0;
+			
+			for (let i=0; i< this.posts.length; i++){
+				if (this.posts[i].slug === this.slug){
+					ix = i;
+					break;
+				}				
+			}
 
-      next () {
-          let ix = false;
-          for (let i=0; i< this.posts.length; i++){
-              if (this.posts[i].slug === this.post.slug){
-                  ix = i;
-                  break;
-              }
-          }
-
-          let next_post_slug;
-
-          if (ix == this.posts.length -1){
-              next_post_slug = this.posts[0].slug;
-          } else {
-              next_post_slug = this.posts[ix+1].slug;
-		  }  
-		  
-          return next_post_slug
+			if (ix >= this.posts.length -2){
+				next_post_slug = this.posts[0].slug;
+			} else {
+				next_post_slug = this.posts[ix+1].slug;
+			} 
+			
+			this.$router.push(next_post_slug); 
       }
     },
     

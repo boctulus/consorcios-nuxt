@@ -312,6 +312,7 @@
                 }).catch((error) => {
                     //const response = error.response;
                     console.log(error);
+                    reject('Error');
                 });
          });   
       },       
