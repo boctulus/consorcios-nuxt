@@ -148,9 +148,9 @@
         enabled: false
       },
       loading: true,
-      rowsPerPageItems: [5,20,100],
+      rowsPerPageItems: [10,20,100],
       pagination: {
-        rowsPerPage: 5,
+        rowsPerPage: 10,
         descending: false,
         sortBy: "name",
         page: 1,
@@ -193,10 +193,6 @@
           },
           deep: true
       }
-    },
-
-    created () {
-     
     },
 
     mounted () {

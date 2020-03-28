@@ -17,6 +17,8 @@
     </v-layout>
 
  
+    <v-btn style="margin-left: 0;" @click="deleteSelected()">Borrar</v-btn>
+
     <v-layout row justify="center">
       <v-dialog v-model="dialog" persistent max-width="500px" :style="{ position: 'absolute', elevation: 100, zIndex:6000 }">
 
@@ -65,17 +67,39 @@
         background: #fff;
     ">
 
+        <div style="margin-left: 25px; margin-right: 25px; margin-bottom: 10px;">
+          <v-text-field v-model="search"
+            append-icon="search"
+            label="Buscar"
+            single-line
+            hide-details
+          ></v-text-field>
+        </div>
+
         <v-data-table
+          v-model="selected"
           :headers="headers"
           :items="regs"
+          :pagination.sync="pagination"
+          :rows-per-page-items="rowsPerPageItems"
+          :total-items="pagination.totalItems"
+          select-all
           class="elevation-1"
         >
+
             <template  v-slot:items="props">
-                <td >{{ props.item.subject }}</td>
-                <td>{{ props.item.content }}</td>
+              <tr>
+                <td>
+                  <v-checkbox
+                    v-model="props.selected"
+                    primary
+                    hide-details
+                  ></v-checkbox>
+                </td>
                 <td>{{ props.item.name }}</td>
-                <td>{{ props.item.phone }}</td>
-                <td>{{ props.item.email }}</td>
+                <td>{{ props.item.subject | firstWords(6) }}</td>
+                <td>{{ props.item.content | firstWords(10) }}</td>
+                
                 <td>      
                     <v-icon
                       small
@@ -98,8 +122,9 @@
                       @click="showDeleteDialog(props.item)"
                     >
                       delete
-                    </v-icon>
-                </td>   
+                    </v-icon> 
+                </td>
+              </tr>     
             </template>            
 
         </v-data-table>
@@ -118,12 +143,11 @@
       formMode: 'Nuevo Mensaje',
       index: null,
       headers: [
-        { text: 'Tema', value: 'subject', align: 'start' },
-        { text: 'Consulta', value: 'content' },
-        { text: 'Nombre', value: 'name' },
-        { text: 'Teléfono', value: 'phone' },
-        { text: 'E-mail', value: 'email' },
+        { text: 'Nombre', value: 'name', sortable: false  },
+        { text: 'Tema', value: 'subject', sortable: false },
+        { text: 'Consulta', value: 'content', sortable: false },
       ],
+      selected: [],
       regs: [],
       editedIndex: -1,
       editedItem: {
@@ -140,6 +164,16 @@
         subject: '',
         content: ''
       },
+      loading: true,
+      rowsPerPageItems: [10,20,100],
+      pagination: {
+        rowsPerPage: 10,
+        descending: false,
+        sortBy: "created_at",
+        page: 1,
+        totalItems: null,
+      },
+      search: ''
     }),
 
     computed: {
@@ -162,26 +196,77 @@
       dialog (val) {
         val || this.close()
       },
+
+      pagination: {
+          handler() {
+              this.fetchData();
+          },
+          deep: true
+      },
+
+      search: {
+          handler() {
+              this.fetchData();
+          },
+          deep: true
+      },
+
+      /*
+      selected: function(arr) {
+        console.log(arr);
+      }
+      */
     },
 
-    created () {
-      this.initialize()
+    mounted () {
+      this.fetchData();
     },
 
-    methods: {
-      initialize () {
-        this.$axios.get('http://elgrove.co/api/v1/messages', 
-        { 
-          headers: {
-            'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
-          }
-        })
-        .then(response => {
-            this.regs = response.data.data;
-        }).catch((error) => {
-            const response = error.response;
-            console.log(response.data.error);
-        });
+    filters: {
+      firstWords: function (str, n) {
+        const out = str.split(' ').slice(0,n).join(' ');
+        return out.length < str.length ? out + ' ...' : out;
+      }  
+    },
+
+    methods: {      
+      fetchData () {
+         return new Promise((resolve, reject) => {
+                const { sortBy, descending, page, rowsPerPage } = this.pagination;
+                let search = this.search.trim().toLowerCase();
+
+                this.$axios.get('http://elgrove.co/api/v1/messages?orderBy[created_at]=DESC' + 
+                  `&pageSize=${rowsPerPage}` +
+                  `&page=${page}` +
+                  `&orderBy[${sortBy}]=` + (descending ? 'ASC' : 'DESC') +
+                  `&content[contains]=${search}` , 
+                { 
+                  headers: {
+                    'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
+                  }
+                })
+                .then(response => {
+                    let items = response.data.data;
+                    const totalItems = response.data.paginator.total;
+                    
+                    if (search) {
+                        items = items.filter(item => {
+                            return Object.values(item)
+                                .join(",")
+                                .toLowerCase()
+                                .includes(search);
+                        });
+                    }
+                    
+                    this.regs = items;
+                    this.pagination.totalItems = totalItems;
+                    this.loading = false;
+                    resolve();
+                }).catch((error) => {
+                    //const response = error.response;
+                    console.log(error);
+                });
+         });       
       },
 
       seeItem (item) {
@@ -228,11 +313,59 @@
             }
         }).then( res => {
           this.regs.splice(this.index, 1);
+          this.pagination.totalItems--;
           console.log(res);
 
         }).catch((error) => {
             console.log('[ DELETE ] ERROR', error);
         });
+      },
+
+      deleteSelected () {
+        const refs = [];
+        this.selected.forEach(row => {
+           refs.push(row.id); 
+        });
+
+        //console.log(refs);
+
+        this.$axios.request({
+            url: `http://elgrove.co/api/v1/collections`,  
+            method: 'post',
+            headers: {
+                'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
+            },
+            data: { 
+              entity: 'messages',
+              refs: refs
+            }  
+          }).then( ({ data }) => {
+            const id = data.data.id;
+
+            this.$axios.request({
+                url: `http://elgrove.co/api/v1/collections/${id}`,  
+                method: 'delete',
+                headers: {
+                    'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
+                }
+            }).then( res => {              
+              console.log(res);
+
+              this.selected.forEach(item => {
+                this.index = this.regs.indexOf(item);
+                this.regs.splice(this.index, 1);
+                this.pagination.totalItems--;
+              })
+         
+            }).catch((error) => {
+                console.log('[ DELETE ] ERROR', error);
+            });
+
+          }).catch((error) => {
+              const response = error.response;
+              console.log(response.data.error);
+              console.log(response.data.error_detail);
+          });
       },
 
       close () {
@@ -278,9 +411,14 @@
             
             this.editedItem.id = uid;
             this.regs.push(this.editedItem);  
+            this.pagination.totalItems++;
 
           }).catch((error) => {
-              console.log(error);
+              const response = error.response;
+              //console.log('Error', error);
+              console.log(response.data.error);
+              console.log(response.data.error_detail);
+              //this.error = response.data.error;
           });
 
         }
