@@ -20,12 +20,12 @@
     <v-layout row justify="center">
       <v-dialog v-model="dialog" persistent max-width="500px" :style="{ position: 'absolute', elevation: 100, zIndex:6000 }">
 
-        <!-- New button -->
+        
         <template v-slot:activator="{ on }">
           <v-layout row>
             <v-flex>
               <v-select
-                :items="users"
+                :items="users_all"
                 item-text="name"
                 item-value="id"
                 v-model="u_selected"
@@ -35,6 +35,7 @@
               ></v-select>
             </v-flex>
             
+            <!-- New button -->
             <v-flex style="text-align:right;">
               <v-btn color="primary" dark v-on="on" @click="formMode=null" style="margin-right:30px;">Nuevo</v-btn>
             </v-flex>  
@@ -113,11 +114,23 @@
         background: #fff;
     ">
 
-        <v-data-table
-          :headers="headers"
-          :items="computedRegs"
-          class="elevation-1"
-        >
+          <!--div style="margin-left: 25px; margin-right: 25px; margin-bottom: 10px;">
+            <v-text-field v-model="search"
+              append-icon="search"
+              label="Buscar"
+              single-line
+              hide-details
+            ></v-text-field>
+          </div-->
+
+          <v-data-table
+            :headers="headers"
+            :items="computedRegs"
+            :pagination.sync="pagination"
+            :rows-per-page-items="rowsPerPageItems"
+            :total-items="pagination.totalItems"
+            class="elevation-1"
+          >
             <template  v-slot:items="props">
                 <td>{{ getServicioById(props.item.billable_id).name }}</td>
                 <td>{{ props.item.detail }}</td>
@@ -155,9 +168,9 @@
 </template>
 
 <script>
-  import getData from '@/api/bills.js';
+  //import getData from '@/api/bills.js';
   import getUsers from '@/api/users.js';
-  import getTipoServicio from '@/api/billable_services.js';
+  //import getTipoServicio from '@/api/billable_services.js';
 
   export default {
     layout: 'dashboard',
@@ -178,19 +191,29 @@
       tipos_servicio: [],
       editedIndex: -1,
       editedItem: {
-        user: '',
+        belongs_to: null,
         billable_id: '',
         detail: '',
         period: '',
         amount: 0
       },
       defaultItem: {
-        user: '',
+        belongs_to: null,
         billable_id: '',
         detail: '',
         period: '',
         amount: 0
       },
+      loading: true,
+      rowsPerPageItems: [10,20,100],
+      pagination: {
+        rowsPerPage: 10,
+        descending: false,
+        sortBy: "created_at",
+        page: 1,
+        totalItems: null,
+      },
+      search: '',
     }),
 
     computed: {
@@ -216,11 +239,27 @@
     watch: {
       dialog (val) {
         val || this.close()
+      },
+
+      pagination: {
+          handler() {
+              this.fetchData();
+          },
+          deep: true
+      },
+
+      search: {
+          handler() {
+              this.fetchData();
+          },
+          deep: true
       }
     },
 
-    created () {
-      this.initialize()
+    mounted () {
+      this.fetchData();
+      this.fetchUsers();
+      this.fetchTiposServicio();
     },
 
     filters: {
@@ -239,10 +278,74 @@
     },
 
     methods: {
-      initialize () {
-        this.regs = getData();
-        this.users = [ {id: null, name: 'Todos' }, ...getUsers() ];
-        this.tipos_servicio = getTipoServicio();
+      fetchUsers() {
+        // this.users = [ {id: null, name: 'Todos' }, ...getUsers() ];
+
+        this.$axios.request({
+                url: `http://elgrove.co/api/v1/users?fields=id,name&pageSize=100`,  
+                method: 'get',
+                headers: {
+                    'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
+                }
+            }).then( ({ data }) => {
+              this.users = data.data;
+              this.users_all = [ {id: null, name: 'Todos' }, ...this.users ];
+            }).catch((error) => {
+                console.log(error);
+            });
+      },
+
+      fetchTiposServicio() {
+        this.$axios.request({
+                url: `http://elgrove.co/api/v1/billable_services?pageSize=100`,  
+                method: 'get',
+                headers: {
+                    'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
+                }
+            }).then( ({ data }) => {
+              this.tipos_servicio = data.data;
+            }).catch((error) => {
+                console.log(error);
+            });
+      },
+
+
+      fetchData () {
+         return new Promise((resolve, reject) => {
+                const { sortBy, descending, page, rowsPerPage } = this.pagination;
+                let search = this.search.trim().toLowerCase();
+
+                this.$axios.get('http://elgrove.co/api/v1/bills' + 
+                  `?pageSize=${rowsPerPage}` +
+                  `&page=${page}` +
+                  `&orderBy[${sortBy}]=` + (descending ? 'ASC' : 'DESC'), 
+                { 
+                  headers: {
+                    'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
+                  }
+                })
+                .then(response => {
+                    let items = response.data.data;
+                    const totalItems = response.data.paginator.total;
+                    
+                    if (search) {
+                        items = items.filter(item => {
+                            return Object.values(item)
+                                .join(",")
+                                .toLowerCase()
+                                .includes(search);
+                        });
+                    }
+                    
+                    this.regs = items;
+                    this.pagination.totalItems = totalItems;
+                    this.loading = false;
+                    resolve();
+                }).catch((error) => {
+                    //const response = error.response;
+                    console.log(error);
+                });
+         });       
       },
 
       getServicioById (id) {
@@ -283,10 +386,27 @@
         this.dialog = false;
       },
 
-      erase () {
+       erase () {
         this.delete_confirmation_dialog = false; 
         this.formMode = null;
-        this.regs.splice(this.index, 1);
+        
+        const id = this.regs[this.index].id;
+        //console.log('[ DELETE ] ID ==', id);
+        
+        this.$axios.request({
+            url: `http://elgrove.co/api/v1/bills/${id}`,  
+            method: 'delete',
+            headers: {
+                'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
+            }
+        }).then( res => {
+          this.regs.splice(this.index, 1);
+          this.pagination.totalItems--;
+          console.log(res);
+
+        }).catch((error) => {
+            console.log('[ DELETE ] ERROR', error);
+        });
       },
 
       close () {
@@ -299,15 +419,57 @@
       },
 
       save () {
-        this.formMode = null;
-
         if (this.editedIndex > -1) {
-          Object.assign(this.regs[this.editedIndex], this.editedItem)
+          //console.log(this.regs[this.editedIndex]); ////
+          const id = this.regs[this.editedIndex].id;
+
+          this.$axios.request({
+            url: `http://elgrove.co/api/v1/bills/${id}`,  
+            method: 'patch',
+            headers: {
+                'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
+            },
+            data: this.editedItem
+          }).then( ({ data }) => {
+            Object.assign(this.regs[this.editedIndex], this.editedItem);
+            // console.log(data);
+
+          }).catch((error) => {
+              console.log(error);
+          });
+
         } else {
-          this.regs.push(this.editedItem)
+
+
+
+          this.$axios.request({
+            url: `http://elgrove.co/api/v1/bills`,  
+            method: 'post',
+            headers: {
+                'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
+            },
+            data: this.editedItem
+          }).then( ({ data }) => {
+
+            const uid = data.data.id;
+            
+            this.editedItem.id = uid;
+            this.regs.push(this.editedItem);  
+            this.pagination.totalItems++;
+
+          }).catch((error) => {
+              const response = error.response;
+              //console.log('Error', error);
+              console.log(response.data.error);
+              console.log(response.data.error_detail);
+              //this.error = response.data.error;
+          });
         }
-        this.close()
+        this.close();
+        this.formMode = null;
       },
+
+
     },
   }
 </script>
