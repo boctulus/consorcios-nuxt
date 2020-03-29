@@ -6,7 +6,7 @@
       <v-dialog v-model="delete_confirmation_dialog" persistent max-width="320">
         <v-card>
           <v-card-title class="headline">Confirmación de borrado</v-card-title>
-          <v-card-text>Deseas borrar el mensaje?</v-card-text>
+          <v-card-text>Deseas borrar?</v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn color="blue" style="color:#fff;" @click="close_delete_confirmation_dialog()">Cancelar</v-btn>

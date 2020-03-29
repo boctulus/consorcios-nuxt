@@ -119,21 +119,17 @@ export default {
           return;
         }
 
-        //console.log('Submited !!!');
         const username = this.usuarios.find(e => e.name == this.selected)['username'];
 
-        //this.$store.commit('auth/login', { username : username, password: this.password });
+        this.$store.dispatch('auth/login', { username : username, password: this.password })
+        .then(() => {
 
-
-          this.$store.dispatch('auth/login', { username : username, password: this.password })
-          .then(() => {
-
-            this.$router.push('/dashboard');
-          }) 
-          .catch(err => {
-            //console.log(err);  
-            this.other_error = 'Usuario o contraseña incorrectos';
-          })
+          this.$router.push('/dashboard');
+        }) 
+        .catch(err => {
+          //console.log(err);  
+          this.other_error = 'Usuario o contraseña incorrectos';
+        })
       });
       
       

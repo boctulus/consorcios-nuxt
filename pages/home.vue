@@ -115,7 +115,7 @@
 <script>
 import TextAnimation from '@/components/TextAnimation'
 import { Carousel, Slide } from 'vue-carousel';
-import getSlider from '@/api/slider.js';
+//import getSlider from '@/api/slider.js';
 
 export default {  
   layout: 'home',
@@ -124,6 +124,7 @@ export default {
     name: '',
     email: '',
     select: null,
+    slides: [],
     items: [
       'Item 1',
       'Item 2',
@@ -133,18 +134,25 @@ export default {
     checkbox: null,
   }),
 
-  created() {
-    this.slides = getSlider();
-  },
-
-  mounted() {
-    //document.querySelector('#hamburger-icon').style.display = "block";
+  mounted () {
+      this.fetchSlides();
   },
 
   methods: {
+    fetchSlides() {
+      this.$axios.get('http://elgrove.co/api/v1/slider?enabled=1&pageSize=100')
+      .then(response => {
+          this.slides = response.data.data;
+      }).catch((error) => {
+          const response = error.response;
+          console.log(response.data.error);
+      });
+    },
+
     submit () {
       this.$refs.observer.validate()
     },
+
     clear () {
       this.name = ''
       this.email = ''

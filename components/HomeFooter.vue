@@ -139,8 +139,8 @@ export default {
 
     methods: {
       onSubmit() {
-        console.log('SUBMITTING ...');
-        console.log([this.nombre, this.email, this.telefono, this.servicio, this.consulta]);
+        //console.log('SUBMITTING ...');
+        //console.log([this.nombre, this.email, this.telefono, this.servicio, this.consulta]);
 
         this.$refs.form.validate().then(success => {
           if (!success) {
@@ -149,13 +149,36 @@ export default {
 
           console.log('Submited !!!');
 
-          // Resetting Values
-          this.nombre = this.mail = this.telefono = this.servicio = this.consulta = '';
+          this.$axios.request({
+            url: `http://elgrove.co/api/v1/messages`,  
+            method: 'post',
+            headers: {
+                
+            },
+            data: {
+              name:  this.nombre, 
+              email: this.email, 
+              phone: this.telefono, 
+              subject: this.servicio, 
+              content: this.consulta
+            }
+          }).then( ({ data }) => {
+            this.nombre = this.email = this.telefono = this.servicio = this.consulta = ''; 
+            
+            // Wait until the models are updated in the UI
+            this.$nextTick(() => {
+              this.$refs.form.reset();
+            });
 
-          // Wait until the models are updated in the UI
-          this.$nextTick(() => {
-            this.$refs.form.reset();
+            // mostrar toast agradeciendo */
+            console.log(data);
+
+          }).catch((error) => {
+              const response = error.response;
+              console.log(response.data.error);
+              console.log(response.data.error_detail);
           });
+
         });
         
       }
@@ -173,6 +196,10 @@ export default {
 </script>
 
 <style scoped>
+
+.error_msg {
+  font-size: 0.8em;
+}
 
 #servicio {
     background-color: transparent !important;

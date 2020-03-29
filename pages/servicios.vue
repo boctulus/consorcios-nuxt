@@ -83,7 +83,7 @@ export default {
   created() {
     //  this.servicios = getData();
 
-    this.$axios.get('http://elgrove.co/api/v1/services')
+    this.$axios.get('http://elgrove.co/api/v1/services?enabled=1')
     .then(response => {
         this.servicios = response.data.data;
     }).catch((error) => {

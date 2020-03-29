@@ -189,8 +189,7 @@
 
     created () {
       this.initialize()
-
-      console.log('++++++++++++++++++++++++ USER_ID', this.$store.getters.id);
+      //console.log('++++++++++++++++++++++++ USER_ID', this.$store.getters.id);
     },
 
     filters: {

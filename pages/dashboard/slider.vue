@@ -67,6 +67,9 @@
         <v-data-table
           :headers="headers"
           :items="regs"
+          :pagination.sync="pagination"
+          :rows-per-page-items="rowsPerPageItems"
+          :total-items="pagination.totalItems"
           class="elevation-1"
         >
             <template  v-slot:items="props">
@@ -138,6 +141,16 @@
         img: '',
         enabled: true
       },
+      loading: true,
+      rowsPerPageItems: [10,20,100],
+      pagination: {
+        rowsPerPage: 10,
+        descending: false,
+        sortBy: "line2",
+        page: 1,
+        totalItems: null,
+      },
+      search: '',
     }),
 
     computed: {
@@ -160,10 +173,24 @@
       dialog (val) {
         val || this.close()
       },
+
+      pagination: {
+          handler() {
+              this.fetchData();
+          },
+          deep: true
+      },
+
+      search: {
+          handler() {
+              this.fetchData();
+          },
+          deep: true
+      }
     },
 
-    created () {
-      this.initialize()
+    mounted () {
+      this.fetchData();
     },
 
     filters: {
@@ -174,19 +201,43 @@
     },
 
     methods: {
-      initialize () {
-        this.$axios.get('http://elgrove.co/api/v1/slider', 
-        { 
-          headers: {
-            'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
-          }
-        })
-        .then(response => {
-            this.regs = response.data.data;
-        }).catch((error) => {
-            const response = error.response;
-            console.log(response.data.error);
-        });
+      fetchData () {
+         return new Promise((resolve, reject) => {
+                const { sortBy, descending, page, rowsPerPage } = this.pagination;
+                let search = this.search.trim().toLowerCase();
+
+                this.$axios.get('http://elgrove.co/api/v1/slider' + 
+                  `?pageSize=${rowsPerPage}` +
+                  `&page=${page}` +
+                  `&orderBy[${sortBy}]=` + (descending ? 'ASC' : 'DESC') +
+                  `&line2[contains]=${search}` , 
+                { 
+                  headers: {
+                    'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
+                  }
+                })
+                .then(response => {
+                    let items = response.data.data;
+                    const totalItems = response.data.paginator.total;
+                    
+                    if (search) {
+                        items = items.filter(item => {
+                            return Object.values(item)
+                                .join(",")
+                                .toLowerCase()
+                                .includes(search);
+                        });
+                    }
+                    
+                    this.regs = items;
+                    this.pagination.totalItems = totalItems;
+                    this.loading = false;
+                    resolve();
+                }).catch((error) => {
+                    //const response = error.response;
+                    console.log(error);
+                });
+         });       
       },
 
       seeItem (item) {
@@ -233,6 +284,7 @@
             }
         }).then( res => {
           this.regs.splice(this.index, 1);
+          this.pagination.totalItems--;
           console.log(res);
 
         }).catch((error) => {
@@ -284,16 +336,20 @@
             
             this.editedItem.id = uid;
             this.regs.push(this.editedItem);  
+            this.pagination.totalItems++;
 
           }).catch((error) => {
-              console.log(error);
+              const response = error.response;
+              //console.log('Error', error);
+              console.log(response.data.error);
+              console.log(response.data.error_detail);
+              //this.error = response.data.error;
           });
-
         }
-
         this.close();
         this.formMode = null;
       },
+
     },
   }
 </script>

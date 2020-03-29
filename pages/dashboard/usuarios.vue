@@ -6,7 +6,7 @@
       <v-dialog v-model="delete_confirmation_dialog" persistent max-width="320">
         <v-card>
           <v-card-title class="headline">Confirmación de borrado</v-card-title>
-          <v-card-text>Deseas borrar el mensaje?</v-card-text>
+          <v-card-text>Deseas borrar?</v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn color="blue" style="color:#fff;" @click="close_delete_confirmation_dialog()">Cancelar</v-btn>
@@ -59,9 +59,21 @@
         background: #fff;
     ">
 
+          <div style="margin-left: 25px; margin-right: 25px; margin-bottom: 10px;">
+            <v-text-field v-model="search"
+              append-icon="search"
+              label="Buscar"
+              single-line
+              hide-details
+            ></v-text-field>
+          </div>
+
         <v-data-table
           :headers="headers"
           :items="regs"
+          :pagination.sync="pagination"
+          :rows-per-page-items="rowsPerPageItems"
+          :total-items="pagination.totalItems"
           class="elevation-1"
         >
             <template  v-slot:items="props">
@@ -125,6 +137,16 @@
         username: '',
         password: ''
       },
+      loading: true,
+      rowsPerPageItems: [10,20,100],
+      pagination: {
+        rowsPerPage: 10,
+        descending: false,
+        sortBy: "name",
+        page: 1,
+        totalItems: null,
+      },
+      search: '',
     }),
 
     computed: {
@@ -149,28 +171,64 @@
       dialog (val) {
         val || this.close()
       },
+
+      pagination: {
+          handler() {
+              this.fetchData();
+          },
+          deep: true
+      },
+
+      search: {
+          handler() {
+              this.fetchData();
+          },
+          deep: true
+      }
     },
 
-    created () {
-      this.initialize()
+    mounted () {
+      this.fetchData();
     },
 
     methods: {
-      initialize () {    
-        this.$axios.get('http://elgrove.co/api/v1/users', 
-        { 
-          headers: {
-            'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
-          }
-        })
-        .then(response => {
-            this.regs = response.data.data;
-        }).catch((error) => {
-            const response = error.response;
-            //console.log('Error', error);
-            console.log(response.data.error);
-            //this.error = response.data.error;
-        });
+      fetchData () {
+         return new Promise((resolve, reject) => {
+                const { sortBy, descending, page, rowsPerPage } = this.pagination;
+                let search = this.search.trim().toLowerCase();
+
+                this.$axios.get('http://elgrove.co/api/v1/users' + 
+                  `?pageSize=${rowsPerPage}` +
+                  `&page=${page}` +
+                  `&orderBy[${sortBy}]=` + (descending ? 'ASC' : 'DESC') +
+                  `&name[contains]=${search}` , 
+                { 
+                  headers: {
+                    'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
+                  }
+                })
+                .then(response => {
+                    let items = response.data.data;
+                    const totalItems = response.data.paginator.total;
+                    
+                    if (search) {
+                        items = items.filter(item => {
+                            return Object.values(item)
+                                .join(",")
+                                .toLowerCase()
+                                .includes(search);
+                        });
+                    }
+                    
+                    this.regs = items;
+                    this.pagination.totalItems = totalItems;
+                    this.loading = false;
+                    resolve();
+                }).catch((error) => {
+                    //const response = error.response;
+                    console.log(error);
+                });
+         });       
       },
 
       seeItem (item) {
@@ -181,7 +239,7 @@
       },
 
       editItem (item) {
-        console.log(item);
+        //console.log(item);
 
         this.editedIndex = this.regs.indexOf(item);
         this.editedItem = Object.assign({}, item);
@@ -203,7 +261,7 @@
         this.delete_confirmation_dialog = false; 
         this.dialog = false;
 
-        console.log('Vas a borrar reg con id = '+ this.regs[this.index].id);
+        //console.log('Vas a borrar reg con id = '+ this.regs[this.index].id);
       },
 
       erase () {
@@ -221,7 +279,8 @@
             }
         }).then( res => {
           this.regs.splice(this.index, 1);
-          console.log(res);
+          this.pagination.totalItems--;
+          //console.log(res);
 
         }).catch((error) => {
             console.log('[ DELETE ] ERROR', error);
@@ -290,6 +349,7 @@
                   
               //console.log('Registro de usuario completo');          
               //console.log(data);
+              this.pagination.totalItems++;
 
             }).catch((error) => {
                 console.log(error);
