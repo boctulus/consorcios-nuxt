@@ -469,16 +469,17 @@
                   'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
               },
               data: this.editedItem
-            }).then (({data}) => {
-              const uid = data.data.id; 
-            
-              this.editedItem.id = uid;  
-              this.regs.push(this.editedItem);  
-              this.pagination.totalItems++;
+            });
 
-              this.close();
-              this.formMode = null;
-            })  
+            const uid = response2.data.data.id; 
+          
+            this.editedItem.id = uid;  
+            this.regs.push(this.editedItem);  
+            this.pagination.totalItems++;
+
+            this.close();
+            this.formMode = null;
+
           } catch (error) {
             console.error(error);
           }          
