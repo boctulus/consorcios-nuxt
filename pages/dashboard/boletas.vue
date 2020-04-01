@@ -169,13 +169,13 @@
       formTitle: function() {
         switch(this.formMode){
           case 'see': 
-            return 'Servicio';
+            return 'Boleta';
             break;
           case 'edit': 
-            return 'Editar Servicio';
+            return 'Editar Boleta';
             break;  
           case 'create': 
-            return 'Nuevo Servicio';
+            return 'Nueva Boleta';
             break;
         }
       }

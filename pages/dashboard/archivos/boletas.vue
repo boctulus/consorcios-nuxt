@@ -94,8 +94,10 @@
                   <v-text-field v-model="editedItem.amount" :class="{'disable-events': formMode=='see'}" label="Importe"></v-text-field>
                 </v-flex>
 
-                <v-flex cols="12" sm="6" md="4">
-                  <v-text-field v-model="editedItem.file" :class="{'disable-events': formMode=='see'}" label="Archivo"></v-text-field>
+                <v-flex cols="12" sm="6" md="4" style="width:100%">
+                  <!--v-text-field v-model="editedItem.file" :class="{'disable-events': formMode=='see'}" label="Archivo"></v-text-field-->
+
+                  <input type="file" id="file" ref="file" v-on:change="onChangeFileUpload()"/>
                 </v-flex>
 
               </v-layout>
@@ -131,8 +133,8 @@
             :total-items="pagination.totalItems"
             class="elevation-1"
           >
-            <template  v-slot:items="props">
-                <td>{{ getServicioById(props.item.billable_id).name }}</td>
+            <template  v-slot:items="props">              
+                <td>{{ getServicioById(props.item.billable_id)['name'] }}</td>
                 <td>{{ props.item.detail }}</td>
                 <td>{{ props.item.period }}</td>
                 <td>{{ props.item.amount | currency }}</td>
@@ -168,41 +170,42 @@
 </template>
 
 <script>
-  //import getData from '@/api/bills.js';
-  import getUsers from '@/api/users.js';
-  //import getTipoServicio from '@/api/billable_services.js';
 
   export default {
     layout: 'dashboard',
     data: () => ({
       users: [],
+      users_all: [],
       u_selected: null,
       dialog: false,
       delete_confirmation_dialog: false,
       formMode: 'create',
       index: null,
       headers: [
-        { text: 'Concepto', value: 'billable_id' },
-        { text: 'Detalle', value: 'detail' },
-        { text: 'Período', value: 'period' },
-        { text: 'Importe', value: 'amount' }
+        { text: 'Concepto', value: 'billable_id', sortable: false },
+        { text: 'Detalle', value: 'detail', sortable: false },
+        { text: 'Período', value: 'period', sortable: false },
+        { text: 'Importe', value: 'amount', sortable: false }
       ],
       regs: [],
       tipos_servicio: [],
+      file:  null,
       editedIndex: -1,
       editedItem: {
         belongs_to: null,
         billable_id: '',
         detail: '',
         period: '',
-        amount: 0
+        amount: 0,
+        file_id: null
       },
       defaultItem: {
         belongs_to: null,
         billable_id: '',
         detail: '',
         period: '',
-        amount: 0
+        amount: 0,
+        file_id: null
       },
       loading: true,
       rowsPerPageItems: [10,20,100],
@@ -224,13 +227,13 @@
       formTitle: function() {
         switch(this.formMode){
           case 'see': 
-            return 'Servicio';
+            return 'Boleta';
             break;
           case 'edit': 
-            return 'Editar Servicio';
+            return 'Editar Boleta';
             break;  
           case 'create': 
-            return 'Nuevo Servicio';
+            return 'Nueva Boleta';
             break;
         }
       }
@@ -278,6 +281,20 @@
     },
 
     methods: {
+      onChangeFileUpload(){
+        this.file = this.$refs.file.files[0];
+      },
+
+      forceFileDownload(response, filename){
+        const url = window.URL.createObjectURL(new Blob([response.data]))
+
+        const link = document.createElement('a')
+        link.href = url
+        link.setAttribute('download', filename) 
+        document.body.appendChild(link)
+        link.click()
+      },
+
       fetchUsers() {
         // this.users = [ {id: null, name: 'Todos' }, ...getUsers() ];
 
@@ -349,7 +366,12 @@
       },
 
       getServicioById (id) {
-        return this.tipos_servicio.find((e) => e.id == id);
+        let servicio = this.tipos_servicio.find((e) => e.id == id);
+        if (typeof servicio == 'undefined')
+          return {id:id, name:''};
+
+        //console.log(`SERVICIO para id=${id} = '${servicio}'`)
+        return servicio;
       },
 
       /////////////////////////////////////////// ///////////////
@@ -418,6 +440,50 @@
         }, 300)
       },
 
+      async insert () {
+        try {
+            let formData = new FormData();
+            formData.append('file', this.file);
+            
+            const response = await this.$axios.post('http://elgrove.co/api/v1/files',
+                formData,
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                        'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
+                    }
+                }
+            );
+
+            const file_id = response.data.data.uploaded[0].id;
+            this.editedItem.file_id = file_id; // requiero del file_id 
+          } catch (error) {
+            console.error(error);
+          }
+
+          try {
+            const response2 = await this.$axios.request({
+              url: `http://elgrove.co/api/v1/bills`,  
+              method: 'post',
+              headers: {
+                  'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
+              },
+              data: this.editedItem
+            }).then (({data}) => {
+              const uid = data.data.id; 
+            
+              this.editedItem.id = uid;  
+              this.regs.push(this.editedItem);  
+              this.pagination.totalItems++;
+
+              this.close();
+              this.formMode = null;
+            })  
+          } catch (error) {
+            console.error(error);
+          }          
+      },
+
       save () {
         if (this.editedIndex > -1) {
           //console.log(this.regs[this.editedIndex]); ////
@@ -434,39 +500,18 @@
             Object.assign(this.regs[this.editedIndex], this.editedItem);
             // console.log(data);
 
+            this.close();
+            this.formMode = null;
+
           }).catch((error) => {
               console.log(error);
           });
 
         } else {
-
-
-
-          this.$axios.request({
-            url: `http://elgrove.co/api/v1/bills`,  
-            method: 'post',
-            headers: {
-                'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
-            },
-            data: this.editedItem
-          }).then( ({ data }) => {
-
-            const uid = data.data.id;
-            
-            this.editedItem.id = uid;
-            this.regs.push(this.editedItem);  
-            this.pagination.totalItems++;
-
-          }).catch((error) => {
-              const response = error.response;
-              //console.log('Error', error);
-              console.log(response.data.error);
-              console.log(response.data.error_detail);
-              //this.error = response.data.error;
-          });
+          this.insert();   
         }
-        this.close();
-        this.formMode = null;
+
+       
       },
 
 

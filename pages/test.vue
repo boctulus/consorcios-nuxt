@@ -2,73 +2,91 @@
     <div style="margin-top: 50px;">
         <h1>Página de prebas</h1>
 
-        <v-btn @click="hacerRequest()">Hacer request</v-btn>
-        
-        <hr/>
+        <label>Archivo
+            <input type="file" id="file" ref="file" v-on:change="onChangeFileUpload()"/>
+        </label>
+        <v-btn v-on:click="submitForm()">Subir</v-btn>
 
-        <v-btn @click="cargarDatos()">Cargar datos</v-btn>
+
+        <p/>
+        <button @click="downloadWithAxios">Download file</button>
+
     </div>
 </template>
 
 
 <script>
-import getData from '@/api/services.js';
 
 export default {    
+    data(){
+      return {
+        file: '',
+        url:'http://elgrove.co/download/get/44'
+      }
+    },
 
     methods: {
-        cargarDatos() {
-            let regs = getData();            
-            
-            for (let i=0; i<regs.length; i++){
-                let reg = regs[i];
-                //console.log(data.enabled);
+      /* Upload */ 
 
-                   
-                if (reg.enabled ===  true)
-                    reg.enabled = '1';
-                else if (reg.enabled === false)
-                    reg.enabled = '0';   
-                
-
-                console.log(reg);    
-                
-                this.$axios.request({
-                    url: `http://elgrove.co/api/v1/services`,  
-                    method: 'post',
+      submitForm(){
+            let formData = new FormData();
+            formData.append('file', this.file);
+  
+            this.$axios.post('http://elgrove.co/api/v1/files',
+                formData,
+                {
                     headers: {
-                        'Authorization': `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImlhdCI6MTU4NTA3NjU1NiwiZXhwIjoxNTk0MDc2NTU2LCJpcCI6IjEyNy4wLjAuMSIsInVpZCI6MzMyLCJyb2xlcyI6WyJhZG1pbiJdLCJjb25maXJtZWRfZW1haWwiOm51bGwsInBlcm1pc3Npb25zIjpbXX0.UlUXiLCqhHFFwfhjwt4SgBtJ1v68ZvKAp8Drg-z5Ro8`
-                    },  
-                    data: reg
-                }).then( res => {
-                    console.log(res);
+                        'Content-Type': 'multipart/form-data',
+                        'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
+                    }
+                }
+            ).then(function({data}){
+              console.log(data.data.uploaded[0].id);
+            })
+            .catch(function(){
+              console.log('File upload failure');
+            });
+      },
+  
+      onChangeFileUpload(){
+        this.file = this.$refs.file.files[0];
+      },
 
-                }).catch((error) => {
-                    console.log(error);
-                });
-                
-            }
-            
+      /*      
+        Download 
+      
+         https://codepen.io/nigamshirish/pen/ZMpvRa?editors=1010
+      */
 
-        },
+    forceFileDownload(response, filename){
+      const url = window.URL.createObjectURL(new Blob([response.data]))
 
-        hacerRequest() {
-            this.$axios.request({
-            url: `http://elgrove.co/api/v1/messages/104`,  
-            method: 'patch',
-            headers: {
-                // boctulus (admin)
-                'Authorization': `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImlhdCI6MTU4NTA3NjU1NiwiZXhwIjoxNTk0MDc2NTU2LCJpcCI6IjEyNy4wLjAuMSIsInVpZCI6MzMyLCJyb2xlcyI6WyJhZG1pbiJdLCJjb25maXJtZWRfZW1haWwiOm51bGwsInBlcm1pc3Npb25zIjpbXX0.UlUXiLCqhHFFwfhjwt4SgBtJ1v68ZvKAp8Drg-z5Ro8`
-            },  
-            data: { phone: '7777777' }
-          }).then( ({ data }) => {
-             console.log(data);
+      const link = document.createElement('a')
+      link.href = url
+      link.setAttribute('download', filename) 
+      document.body.appendChild(link)
+      link.click()
+    },
+    
+   
+    downloadWithAxios(){
 
-          }).catch((error) => {
-              console.log(error);
-          });
+      this.$axios.get('http://elgrove.co/download/get/44', 
+      { 
+        responseType: 'arraybuffer',
+        headers: {
+          'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
         }
-
+      })
+      .then(response => {
+          this.forceFileDownload(response, 'imagen.jpg');
+      }).catch((error) => {
+          //const response = error.response;
+          console.log(error);
+      });
     }
+
+  }    
+  
 }
 </script>

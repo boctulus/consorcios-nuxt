@@ -168,7 +168,7 @@ export default {
             // Wait until the models are updated in the UI
             this.$nextTick(() => {
               this.$refs.form.reset();
-            });
+            }); 
 
             // mostrar toast agradeciendo */
             console.log(data);

@@ -13,7 +13,6 @@ https://www.itsolutionstuff.com/post/file-upload-using-vue-js-axios-phpexample.h
 https://github.com/jannhama/vuetify-upload-btn
 https://github.com/vuetifyjs/vuetify/issues/238
 https://element.eleme.io/#/en-US/component/upload
-https://codepen.io/vahdet/pen/qBWPdWv
 https://stackoverflow.com/questions/44989162/file-upload-in-vuetify
 
 
@@ -61,12 +60,12 @@ Secret key: 6LewRtsUAAAAAKj9ALweWgfCNEz0YuI1cwvBphnY
 
 - Partes administrables :
 
-* Entradas del blog
-* Texto de servicios
-* Archivos PDF para descarga en sección privada
-* Contraseñas para cada edificio
+* Entradas del blog -- OK
+* Texto de servicios  -- OK
+* Archivos PDF para descarga en sección privada 
+* Contraseñas para cada edificio -- OK
 * Aprobación de reviews X
-* Leer mensajes creados desde form de contacto 
+* Leer mensajes creados desde form de contacto  -- OK
 * Leer pedidos de cotizacion 
 
 - Intentar reemplazar scrollTo por otros en javascript vanilla para lograr que Nuxt funcione en modo 'universal'

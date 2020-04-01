@@ -1,0 +1,23 @@
+POST /api/v1/files
+
+Con el header
+
+	Content-type: multipart/form-data	
+
+(PHP lo recibe en $_FILES)
+
+
+- Envio uno o varios archivos a /api/v1/files
+- Devuelvo un JSON con los ids de los archivos 
+(se debe chequear que los archivos le pertenezcan al usuario o sea el admin)
+- Envio el "metadata" junto con el o los ids a /api/v1/mi_endpoint
+- Devuelvo el id del recurso creado 	
+	
+---x---
+You basically have three choices:
+
+- Base64 encode the file, at the expense of increasing the data size by around 33%, and add processing overhead in both the server and the client for encoding/decoding.
+
+- Send the file first in a multipart/form-data POST, and return an ID to the client. The client then sends the metadata with the ID, and the server re-associates the file and the metadata.
+
+- Send the metadata first, and return an ID to the client. The client then sends the file with the ID, and the server re-associates the file and the metadata.
