@@ -149,6 +149,7 @@
       users: [],
       users_all: [],
       u_selected: null,
+      prev: {},
       dialog: false,
       delete_confirmation_dialog: false,
       formMode: 'create',
@@ -355,6 +356,8 @@
         this.editedItem = Object.assign({}, item);
         this.formMode = 'edit';
         this.dialog = true;
+
+        this.prev.belongs_to = this.regs[this.editedIndex].belongs_to;
       },
 
       showDialog(){
@@ -493,8 +496,9 @@
       async update() {
         const id = this.regs[this.editedIndex].id;
         
+        let file_id = this.regs[this.editedIndex].file_id;
+
         if (this.file !== null){
-          let file_id = this.regs[this.editedIndex].file_id;
 
           try {
             const response0 = await this.$axios.request({
@@ -530,7 +534,26 @@
           } catch (error) {
             console.error(error);
           }
-        }              
+        } else {
+
+          if (this.editedItem.belongs_to !== this.prev.belongs_to){
+            //console.log('OJO! cambio el propietario');
+
+            this.$axios.request({
+              url: `http://elgrove.co/api/v1/files/${file_id}`,  
+              method: 'patch',
+              headers: {
+                  'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
+              },
+              data: { belongs_to: this.editedItem.belongs_to }
+            }).then(({data}) => {
+              // console.log(data.data);        
+            }).catch((error) => {
+                console.log(error);
+            });  
+          }
+
+        }                  
 
         try {
           const response =  await this.$axios.request({

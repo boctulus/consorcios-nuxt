@@ -20,7 +20,6 @@
     <v-layout row justify="center">
       <v-dialog v-model="dialog" persistent max-width="500px" :style="{ position: 'absolute', elevation: 100, zIndex:6000 }">
 
-        
         <template v-slot:activator="{ on }">
           <v-layout row>
             <v-flex>
@@ -178,6 +177,7 @@
       users: [],
       users_all: [],
       u_selected: null,
+      prev: {},
       dialog: false,
       delete_confirmation_dialog: false,
       formMode: 'create',
@@ -400,6 +400,9 @@
         this.editedItem = Object.assign({}, item);
         this.formMode = 'edit';
         this.dialog = true;
+
+        this.prev.belongs_to = this.regs[this.editedIndex].belongs_to;
+        console.log(this.prev.belongs_to);
       },
 
       showDialog(){
@@ -538,9 +541,9 @@
       async update() {
         const id = this.regs[this.editedIndex].id;
         
-        if (this.file !== null){
-          let file_id = this.regs[this.editedIndex].file_id;
+        let file_id = this.regs[this.editedIndex].file_id;
 
+        if (this.file !== null){
           try {
             const response0 = await this.$axios.request({
               url: `http://elgrove.co/api/v1/files/${file_id}`,  
@@ -575,6 +578,25 @@
           } catch (error) {
             console.error(error);
           }
+        } else {
+
+          if (this.editedItem.belongs_to !== this.prev.belongs_to){
+            //console.log('OJO! cambio el propietario');
+
+            this.$axios.request({
+              url: `http://elgrove.co/api/v1/files/${file_id}`,  
+              method: 'patch',
+              headers: {
+                  'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
+              },
+              data: { belongs_to: this.editedItem.belongs_to }
+            }).then(({data}) => {
+              // console.log(data.data);        
+            }).catch((error) => {
+                console.log(error);
+            });  
+          }
+
         }              
 
         try {
