@@ -281,20 +281,6 @@
     },
 
     methods: {
-      onChangeFileUpload(){
-        this.file = this.$refs.file.files[0];
-      },
-
-      forceFileDownload(response, filename){
-        const url = window.URL.createObjectURL(new Blob([response.data]))
-
-        const link = document.createElement('a')
-        link.href = url
-        link.setAttribute('download', filename) 
-        document.body.appendChild(link)
-        link.click()
-      },
-
       fetchUsers() {
         // this.users = [ {id: null, name: 'Todos' }, ...getUsers() ];
 
@@ -374,11 +360,6 @@
         return servicio;
       },
 
-      /////////////////////////////////////////// ///////////////
-      file_uploaded (obj) {
-        console.log('File uploaded', obj);
-      },
-
       seeItem (item) {
         this.editedIndex = this.regs.indexOf(item);
         this.editedItem = Object.assign({}, item);
@@ -408,7 +389,7 @@
         this.dialog = false;
       },
 
-       erase () {
+      erase () {
         this.delete_confirmation_dialog = false; 
         this.formMode = null;
         
@@ -440,12 +421,100 @@
         }, 300)
       },
 
+      onChangeFileUpload(){
+        this.file = this.$refs.file.files[0];
+        //console.log(this.file);
+      },
+
+      resetFile() {
+        const input = this.$refs.file
+        input.type = 'text'
+        input.type = 'file'
+      },
+  
+      forceFileDownload(response, filename){
+        const url = window.URL.createObjectURL(new Blob([response.data]))
+
+        const link = document.createElement('a')
+        link.href = url
+        link.setAttribute('download', filename) 
+        document.body.appendChild(link)
+        link.click()
+      },
+
       async insert () {
+
+        // insert
         try {
-            let formData = new FormData();
+          let formData = new FormData();
+          formData.append('file', this.file);
+          
+          const response = await this.$axios.post('http://elgrove.co/api/v1/files',
+              formData,
+              {
+                  headers: {
+                      'Content-Type': 'multipart/form-data',
+                      'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
+                  }
+              }
+          );
+
+          //console.log(response);
+          const file_id = response.data.data.uploaded[0].id;
+          this.editedItem.file_id = file_id; // requiero del file_id 
+        } catch (error) {
+          console.error(error);
+        }
+
+        try {
+          const response2 = await this.$axios.request({
+            url: `http://elgrove.co/api/v1/bills`,  
+            method: 'post',
+            headers: {
+                'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
+            },
+            data: this.editedItem
+          });
+
+          const uid = response2.data.data.id; 
+        
+          this.editedItem.id = uid;  
+          this.regs.push(this.editedItem);  
+          this.pagination.totalItems++;
+
+          this.close();
+          this.formMode = null;
+
+        } catch (error) {
+          console.error(error);
+        }   
+        
+        this.resetFile();
+      },
+
+      async update() {
+        const id = this.regs[this.editedIndex].id;
+        
+        if (this.file !== null){
+          let file_id = this.regs[this.editedIndex].file_id;
+
+          try {
+            const response0 = await this.$axios.request({
+              url: `http://elgrove.co/api/v1/files/${file_id}`,  
+              method: 'delete',
+              headers: {
+                  'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
+              }
+            });            
+          } catch (error) {
+            console.error(error);
+          }
+
+          try {
+            let formData = new FormData();  // undefined
             formData.append('file', this.file);
             
-            const response = await this.$axios.post('http://elgrove.co/api/v1/files',
+            const response0 = await this.$axios.post('http://elgrove.co/api/v1/files',
                 formData,
                 {
                     headers: {
@@ -455,64 +524,44 @@
                 }
             );
 
-            const file_id = response.data.data.uploaded[0].id;
+            //console.log('POST FILE', response0);
+
+            file_id = response0.data.data.uploaded[0].id;
             this.editedItem.file_id = file_id; // requiero del file_id 
           } catch (error) {
             console.error(error);
           }
+        }              
 
-          try {
-            const response2 = await this.$axios.request({
-              url: `http://elgrove.co/api/v1/bills`,  
-              method: 'post',
-              headers: {
-                  'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
-              },
-              data: this.editedItem
-            });
-
-            const uid = response2.data.data.id; 
-          
-            this.editedItem.id = uid;  
-            this.regs.push(this.editedItem);  
-            this.pagination.totalItems++;
-
-            this.close();
-            this.formMode = null;
-
-          } catch (error) {
-            console.error(error);
-          }          
-      },
-
-      save () {
-        if (this.editedIndex > -1) {
-          //console.log(this.regs[this.editedIndex]); ////
-          const id = this.regs[this.editedIndex].id;
-
-          this.$axios.request({
+        try {
+          const response =  await this.$axios.request({
             url: `http://elgrove.co/api/v1/bills/${id}`,  
             method: 'patch',
             headers: {
                 'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
             },
             data: this.editedItem
-          }).then( ({ data }) => {
-            Object.assign(this.regs[this.editedIndex], this.editedItem);
-            // console.log(data);
-
-            this.close();
-            this.formMode = null;
-
-          }).catch((error) => {
-              console.log(error);
           });
 
+          Object.assign(this.regs[this.editedIndex], this.editedItem);
+          // console.log(data);
+
+          this.close();
+          this.formMode = null;
+
+        } catch (error) {
+            console.log(error); 
+        }  
+
+        this.resetFile();
+      },
+
+      async save () {
+        if (this.editedIndex > -1) {
+          this.update();
         } else {
           this.insert();   
-        }
-
-       
+        }       
       },
 
 
