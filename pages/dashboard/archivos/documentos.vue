@@ -20,12 +20,12 @@
     <v-layout row justify="center">
       <v-dialog v-model="dialog" persistent max-width="500px" :style="{ position: 'absolute', elevation: 100, zIndex:6000 }">
 
-        <!-- New button -->
+        
         <template v-slot:activator="{ on }">
           <v-layout row>
             <v-flex>
               <v-select
-                :items="users"
+                :items="users_all"
                 item-text="name"
                 item-value="id"
                 v-model="u_selected"
@@ -35,6 +35,7 @@
               ></v-select>
             </v-flex>
             
+            <!-- New button -->
             <v-flex style="text-align:right;">
               <v-btn color="primary" dark v-on="on" @click="formMode=null" style="margin-right:30px;">Nuevo</v-btn>
             </v-flex>  
@@ -45,20 +46,13 @@
         <v-card>
           <v-card-title>
             <span class="headline">{{ formTitle }}</span>
+            <a href="#" class="cross_close" @click="close">✕</a>
           </v-card-title>
+
           <v-card-text>
             <v-container>
               <v-layout row>
-
-                <!-- 
-                  el valor a hacer bind debe ser un array de objetos y le pasas los attributos en el item-value e item-text
-
-                  Ejemplo: 
-                  
-                  items: [{id:1, nombre:"nombre 1"}]
-                  <v-select :items="items" item-text="nombre" item-value="id" >
-                -->  
-
+               
                 <v-flex style="width:100%;">                 
                   <v-select
                     :items="users"
@@ -74,9 +68,10 @@
                   <v-text-field v-model="editedItem.name" :class="{'disable-events': formMode=='see'}" label="Nombre"></v-text-field>
                 </v-flex>
 
-                <v-flex cols="12" sm="6" md="4"><!--- debe ser un componente para subir archivos -->
-                  <v-text-field v-model="editedItem.file" :class="{'disable-events': formMode=='see'}" label="Archivo"></v-text-field>
-                </v-flex>
+                <v-flex cols="12" sm="6" md="4" style="width:100%">
+                  <input type="file" id="file" ref="file" v-on:change="onChangeFileUpload()" v-if="formMode != 'see'" />
+                  <span v-else><v-icon>fa-download</v-icon><a href="#" @click="fileDownload()" style="margin-left:1em;">{{ filename }}</a></span>
+                </v-flex> 
 
               </v-layout>
             </v-container>
@@ -94,15 +89,27 @@
         background: #fff;
     ">
 
-        <v-data-table
-          :headers="headers"
-          :items="computedRegs"
-          class="elevation-1"
-        >
+          <!--div style="margin-left: 25px; margin-right: 25px; margin-bottom: 10px;">
+            <v-text-field v-model="search"
+              append-icon="search"
+              label="Buscar"
+              single-line
+              hide-details
+            ></v-text-field>
+          </div-->
+
+          <v-data-table
+            :headers="headers"
+            :items="computedRegs"
+            :pagination.sync="pagination"
+            :rows-per-page-items="rowsPerPageItems"
+            :total-items="pagination.totalItems"
+            class="elevation-1"
+          >
             <template  v-slot:items="props">
                 <td>{{ props.item.name }}</td>
-                <td>{{ props.item.file }}</td>
-                <td>      
+                <td>{{ getNameByUserId(props.item.belongs_to) }}</td>
+                <td>          
                     <v-icon
                       small
                       style="margin-right:0.9em;"
@@ -134,36 +141,48 @@
 </template>
 
 <script>
-  import getData from '@/api/documents.js';
-  import getUsers from '@/api/users.js';
 
   export default {
     layout: 'dashboard',
     data: () => ({
-      users: [],
-      u_selected: null,
       entity: 'documento',
+      users: [],
+      users_all: [],
+      u_selected: null,
       dialog: false,
       delete_confirmation_dialog: false,
       formMode: 'create',
       index: null,
       headers: [
         { text: 'Nombre', value: 'name' },
-        { text: 'Archivo', value: 'file' },
+        { text: 'Edificio', value: 'belongs_to' },
       ],
       regs: [],
-      tipos_servicio: [],
+      file:  null,
+      file_obj: null,
       editedIndex: -1,
       editedItem: {
+		    belongs_to: null,
         name: '',
-        file: '',
+        file_id: null,
         enabled: false
       },
       defaultItem: {
+	  	  belongs_to: null,
         name: '',
-        file: '',
+        file_id: null,
         enabled: true
       },
+      loading: true,
+      rowsPerPageItems: [10,20,100],
+      pagination: {
+        rowsPerPage: 10,
+        descending: false,
+        sortBy: "created_at",
+        page: 1,
+        totalItems: null,
+      },
+      search: '',
     }),
 
     computed: {
@@ -185,17 +204,37 @@
           default: 
              return 'Crear ' + this.capitalize(this.entity);   
         }
+      },  
+
+      filename: function() {
+        return this.file_obj == null ? { "filename": '', "id": this.editedItem.id } : this.file_obj.filename;
       }
+      
     },
 
     watch: {
       dialog (val) {
         val || this.close()
+      },
+
+      pagination: {
+          handler() {
+              this.fetchData();
+          },
+          deep: true
+      },
+
+      search: {
+          handler() {
+              this.fetchData();
+          },
+          deep: true
       }
     },
 
-    created () {
-      this.initialize()
+    mounted () {
+      this.fetchData();
+      this.fetchUsers();
     },
 
     filters: {
@@ -214,30 +253,101 @@
     },
 
     methods: {
-      initialize () {
-        this.regs = getData();
-        this.users = [ {id: null, name: 'Todos' }, ...getUsers() ];
-      },
-
       capitalize (s) {
         if (typeof s !== 'string') return ''
         return s.charAt(0).toUpperCase() + s.slice(1)
       },
 
-      getServicioById (id) {
-        return this.tipos_servicio.find((e) => e.id == id);
+      fetchUsers() {
+        // this.users = [ {id: null, name: 'Todos' }, ...getUsers() ];
+
+        this.$axios.request({
+                url: `http://elgrove.co/api/v1/users?fields=id,name&pageSize=100`,  
+                method: 'get',
+                headers: {
+                    'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
+                }
+            }).then( ({ data }) => {
+              this.users = data.data;
+              this.users_all = [ {id: null, name: 'Todos' }, ...this.users ];
+            }).catch((error) => {
+                console.log(error);
+            });
       },
 
-      /////////////////////////////////////////// ///////////////
-      file_uploaded (obj) {
-        console.log('File uploaded', obj);
+      getNameByUserId(user_id){
+        const u = this.users.find((e) => e.id === user_id);
+
+        if (typeof u == 'undefined')
+          return 'Inexistente *';
+
+        return u.name;  
+      },
+
+      fetchData () {
+         return new Promise((resolve, reject) => {
+                const { sortBy, descending, page, rowsPerPage } = this.pagination;
+                let search = this.search.trim().toLowerCase();
+
+                this.$axios.get('http://elgrove.co/api/v1/documents' + 
+                  `?pageSize=${rowsPerPage}` +
+                  `&page=${page}` +
+                  `&orderBy[${sortBy}]=` + (descending ? 'ASC' : 'DESC'), 
+                { 
+                  headers: {
+                    'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
+                  }
+                })
+                .then(response => {
+                    let items = response.data.data;
+                    const totalItems = response.data.paginator.total;
+                    
+                    if (search) {
+                        items = items.filter(item => {
+                            return Object.values(item)
+                                .join(",")
+                                .toLowerCase()
+                                .includes(search);
+                        });
+                    }
+                    
+                    this.regs = items;
+                    this.pagination.totalItems = totalItems;
+                    this.loading = false;
+                    resolve();
+                }).catch((error) => {
+                    //const response = error.response;
+                    console.log(error);
+                });
+         });       
       },
 
       seeItem (item) {
         this.editedIndex = this.regs.indexOf(item);
         this.editedItem = Object.assign({}, item);
         this.formMode = 'see';
-        this.dialog = true;
+
+        const file_id = this.editedItem.file_id;
+
+        this.$axios.request({
+            url: `http://elgrove.co/api/v1/files/${file_id}?fields=filename`,  
+            method: 'get',
+            headers: {
+                'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
+            }
+        }).then(({data}) => {
+          //console.log(data.data.filename);
+
+          this.file_obj = {
+            "filename": data.data.filename,
+            "id": file_id
+          }          
+
+          this.dialog = true;
+        
+        }).catch((error) => {
+            console.log(error);
+        });   
       },
 
       editItem (item) {
@@ -265,7 +375,24 @@
       erase () {
         this.delete_confirmation_dialog = false; 
         this.formMode = null;
-        this.regs.splice(this.index, 1);
+        
+        const id = this.regs[this.index].id;
+        //console.log('[ DELETE ] ID ==', id);
+        
+        this.$axios.request({
+            url: `http://elgrove.co/api/v1/documents/${id}`,  
+            method: 'delete',
+            headers: {
+                'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
+            }
+        }).then( res => {
+          this.regs.splice(this.index, 1);
+          this.pagination.totalItems--;
+          console.log(res);
+
+        }).catch((error) => {
+            console.log('[ DELETE ] ERROR', error);
+        });
       },
 
       close () {
@@ -277,16 +404,166 @@
         }, 300)
       },
 
-      save () {
-        this.formMode = null;
-
-        if (this.editedIndex > -1) {
-          Object.assign(this.regs[this.editedIndex], this.editedItem)
-        } else {
-          this.regs.push(this.editedItem)
-        }
-        this.close()
+      onChangeFileUpload(){
+        this.file = this.$refs.file.files[0];
+        //console.log(this.file);
       },
+
+      resetFile() {
+        const input = this.$refs.file
+        input.type = 'text'
+        input.type = 'file'
+      },
+  
+      forceFileDownload(response, filename){
+        const url = window.URL.createObjectURL(new Blob([response.data]))
+
+        const link = document.createElement('a')
+        link.href = url
+        link.setAttribute('download', filename) 
+        document.body.appendChild(link)
+        link.click()
+      },
+
+      fileDownload(){
+        this.$axios.get('http://elgrove.co/download/get/'+ this.file_obj.id, 
+        { 
+          responseType: 'arraybuffer',
+          headers: {
+            'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
+          }
+        })
+        .then(response => {
+            this.forceFileDownload(response, this.file_obj.filename);
+        }).catch((error) => {
+            //const response = error.response;
+            console.log(error);
+        });
+      },
+
+      async insert () {
+        try {
+          let formData = new FormData();
+          formData.append('file', this.file);
+          formData.append('belongs_to', this.editedItem.belongs_to); 
+          
+          const response = await this.$axios.post('http://elgrove.co/api/v1/files',
+              formData,
+              {
+                  headers: {
+                      'Content-Type': 'multipart/form-data',
+                      'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
+                  }
+              }
+          );
+
+          //console.log(response);
+          const file_id = response.data.data.uploaded[0].id;
+          this.editedItem.file_id = file_id; // requiero del file_id 
+        } catch (error) {
+          console.error(error);
+        }
+
+        try {
+          const response2 = await this.$axios.request({
+            url: `http://elgrove.co/api/v1/documents`,  
+            method: 'post',
+            headers: {
+                'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
+            },
+            data: this.editedItem
+          });
+
+          const id = response2.data.data.id; 
+        
+          this.editedItem.id = id;  
+          this.regs.push(this.editedItem);  
+          this.pagination.totalItems++;
+
+          this.close();
+          this.formMode = null;
+
+        } catch (error) {
+          console.error(error);
+        }   
+        
+        this.resetFile();
+      },
+
+      async update() {
+        const id = this.regs[this.editedIndex].id;
+        
+        if (this.file !== null){
+          let file_id = this.regs[this.editedIndex].file_id;
+
+          try {
+            const response0 = await this.$axios.request({
+              url: `http://elgrove.co/api/v1/files/${file_id}`,  
+              method: 'delete',
+              headers: {
+                  'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
+              }
+            });            
+          } catch (error) {
+            console.error(error);
+          }
+
+          try {
+            let formData = new FormData();  
+            formData.append('file', this.file);
+            formData.append('belongs_to',this.regs[this.editedIndex].belongs_to); //////
+            
+            const response0 = await this.$axios.post('http://elgrove.co/api/v1/files',
+                formData,
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                        'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
+                    }
+                }
+            );
+
+            //console.log('POST FILE', response0);
+
+            file_id = response0.data.data.uploaded[0].id;
+            this.editedItem.file_id = file_id; // requiero del file_id 
+          } catch (error) {
+            console.error(error);
+          }
+        }              
+
+        try {
+          const response =  await this.$axios.request({
+            url: `http://elgrove.co/api/v1/documents/${id}`,  
+            method: 'patch',
+            headers: {
+                'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
+            },
+            data: this.editedItem
+          });
+
+          Object.assign(this.regs[this.editedIndex], this.editedItem);
+          // console.log(data);
+
+          this.close();
+          this.formMode = null;
+
+        } catch (error) {
+            console.log(error); 
+        }  
+
+        this.resetFile();
+      },
+
+      async save () {
+        if (this.editedIndex > -1) {
+          this.update();
+        } else {
+          this.insert();   
+        }       
+      },
+
+
     },
   }
 </script>
@@ -297,4 +574,16 @@ a {
 	 text-decoration: none;
 }
 
+.cross_close {
+    position: absolute; 
+    right: 10px; 
+    font-size: 1.5rem;
+    color: #ccc;
+    cursor: pointer !important;
+  }
+
+  .cross_close:hover {
+    text-decoration: none;
+    color: #000;
+  }
 </style>

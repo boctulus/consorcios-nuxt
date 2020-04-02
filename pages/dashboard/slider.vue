@@ -32,7 +32,7 @@
             <span class="headline">{{ formTitle }}</span>
             <a href="#" class="cross_close" @click="close">✕</a>
           </v-card-title>
-          
+
           <v-card-text>
             <v-container>
              
@@ -286,7 +286,7 @@
         }).then( res => {
           this.regs.splice(this.index, 1);
           this.pagination.totalItems--;
-          console.log(res);
+          //console.log(res);
 
         }).catch((error) => {
             console.log('[ DELETE ] ERROR', error);

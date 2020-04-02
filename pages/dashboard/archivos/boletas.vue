@@ -490,6 +490,7 @@
         try {
           let formData = new FormData();
           formData.append('file', this.file);
+          formData.append('belongs_to', this.editedItem.belongs_to);
           
           const response = await this.$axios.post('http://elgrove.co/api/v1/files',
               formData,
@@ -555,6 +556,7 @@
           try {
             let formData = new FormData();  // undefined
             formData.append('file', this.file);
+            formData.append('belongs_to',this.regs[this.editedIndex].belongs_to); //////
             
             const response0 = await this.$axios.post('http://elgrove.co/api/v1/files',
                 formData,

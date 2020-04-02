@@ -31,6 +31,7 @@ export default {
       submitForm(){
             let formData = new FormData();
             formData.append('file', this.file);
+            formData.append('belongs_to',349);
   
             this.$axios.post('http://elgrove.co/api/v1/files',
                 formData,
