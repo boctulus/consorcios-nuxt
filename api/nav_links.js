@@ -2,7 +2,7 @@ const links = {
   copropietario: [ 
     { text: 'Home',  
       childs: [ 
-            { text: 'Ir al inicio', link: '/home' }
+        { text: 'Ir al inicio', link: '/home' }
       ], 
       icon: 'fa-home' 
     },
@@ -12,8 +12,8 @@ const links = {
   admin:  [
     { text: 'Home',  
       childs: [ 
-            { text: 'Ir al inicio', link: '/home' }, 
-            { text: 'Slider', link: '/dashboard/slider' }, 
+        { text: 'Ir al inicio', link: '/home' }, 
+        { text: 'Slider', link: '/dashboard/slider' }, 
       ], 
       icon: 'fa-home' 
     },
@@ -23,8 +23,8 @@ const links = {
     { text: 'Usuarios',  link: '/dashboard/usuarios', icon: 'fa-building' },
     { text: 'Archivos',  
       childs: [ 
-            { text: 'Boletas', link: '/dashboard/archivos/boletas' }, 
-            { text: 'Documentos', link: '/dashboard/archivos/documentos'} 
+        { text: 'Boletas', link: '/dashboard/archivos/boletas' }, 
+        { text: 'Documentos', link: '/dashboard/archivos/documentos'} 
       ], 
       icon: 'fa-folder' 
     }

@@ -81,7 +81,7 @@
                 <td>{{ props.item.detail }}</td>
                 <td>{{ props.item.period }}</td>
                 <td>{{ props.item.amount | currency }}</td>
-                <td>      
+                <td style="text-align:right;">      
                     <v-icon
                       small
                       style="margin-right:0.9em;"

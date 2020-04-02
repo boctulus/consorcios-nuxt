@@ -103,7 +103,6 @@
 
 
 <script>
-import getData from '@/api/services.js';
 import { extend, ValidationProvider, ValidationObserver } from 'vee-validate'
 import * as rules from 'vee-validate/dist/rules'
 import es from 'vee-validate/dist/locale/es'
@@ -133,9 +132,15 @@ export default {
        }
     },
 
-    created() {
-      this.servicios = getData();
-    },
+    mounted() {
+    this.$axios.get('http://elgrove.co/api/v1/services?enabled=1')
+    .then(response => {
+        this.servicios = response.data.data;
+    }).catch((error) => {
+        const response = error.response;
+        console.log(response.data.error);
+    });
+  },
 
     methods: {
       onSubmit() {
