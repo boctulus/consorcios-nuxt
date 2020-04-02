@@ -32,6 +32,7 @@
             <span class="headline">{{ formTitle }}</span>
             <a href="#" class="cross_close" @click="close">✕</a>
           </v-card-title>
+          
           <v-card-text>
             <v-container>
              

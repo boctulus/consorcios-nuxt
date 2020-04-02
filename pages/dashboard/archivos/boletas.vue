@@ -46,7 +46,9 @@
         <v-card>
           <v-card-title>
             <span class="headline">{{ formTitle }}</span>
+            <a href="#" class="cross_close" @click="close">✕</a>
           </v-card-title>
+
           <v-card-text>
             <v-container>
               <v-layout row>
@@ -95,10 +97,9 @@
                 </v-flex>
 
                 <v-flex cols="12" sm="6" md="4" style="width:100%">
-                  <!--v-text-field v-model="editedItem.file" :class="{'disable-events': formMode=='see'}" label="Archivo"></v-text-field-->
-
-                  <input type="file" id="file" ref="file" v-on:change="onChangeFileUpload()"/>
-                </v-flex>
+                  <input type="file" id="file" ref="file" v-on:change="onChangeFileUpload()" v-if="formMode != 'see'" />
+                  <span v-else><v-icon>fa-download</v-icon><a href="#" @click="fileDownload()" style="margin-left:1em;">{{ filename }}</a></span>
+                </v-flex> 
 
               </v-layout>
             </v-container>
@@ -190,6 +191,7 @@
       regs: [],
       tipos_servicio: [],
       file:  null,
+      file_obj: null,
       editedIndex: -1,
       editedItem: {
         belongs_to: null,
@@ -236,7 +238,12 @@
             return 'Nueva Boleta';
             break;
         }
+      },   
+
+      filename: function() {
+        return this.file_obj == null ? { "filename": '', "id": this.editedItem.id } : this.file_obj.filename;
       }
+      
     },
 
     watch: {
@@ -364,7 +371,28 @@
         this.editedIndex = this.regs.indexOf(item);
         this.editedItem = Object.assign({}, item);
         this.formMode = 'see';
-        this.dialog = true;
+
+        const file_id = this.editedItem.file_id;
+
+        this.$axios.request({
+            url: `http://elgrove.co/api/v1/files/${file_id}?fields=filename`,  
+            method: 'get',
+            headers: {
+                'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
+            }
+        }).then(({data}) => {
+          //console.log(data.data.filename);
+
+          this.file_obj = {
+            "filename": data.data.filename,
+            "id": file_id
+          }          
+
+          this.dialog = true;
+        
+        }).catch((error) => {
+            console.log(error);
+        });   
       },
 
       editItem (item) {
@@ -442,9 +470,23 @@
         link.click()
       },
 
-      async insert () {
+      fileDownload(){
+        this.$axios.get('http://elgrove.co/download/get/'+ this.file_obj.id, 
+        { 
+          responseType: 'arraybuffer',
+          headers: {
+            'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
+          }
+        })
+        .then(response => {
+            this.forceFileDownload(response, this.file_obj.filename);
+        }).catch((error) => {
+            //const response = error.response;
+            console.log(error);
+        });
+      },
 
-        // insert
+      async insert () {
         try {
           let formData = new FormData();
           formData.append('file', this.file);
@@ -575,4 +617,16 @@ a {
 	 text-decoration: none;
 }
 
+.cross_close {
+    position: absolute; 
+    right: 10px; 
+    font-size: 1.5rem;
+    color: #ccc;
+    cursor: pointer !important;
+  }
+
+  .cross_close:hover {
+    text-decoration: none;
+    color: #000;
+  }
 </style>

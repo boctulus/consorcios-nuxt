@@ -30,7 +30,9 @@
         <v-card>
           <v-card-title>
             <span class="headline">{{ formTitle }}</span>
+            <a href="#" class="cross_close" @click="close">✕</a>
           </v-card-title>
+
           <v-card-text>
             <v-container>
               <v-layout row>
@@ -370,5 +372,16 @@
 
 
 <style scoped>
+.cross_close {
+    position: absolute; 
+    right: 10px; 
+    font-size: 1.5rem;
+    color: #ccc;
+    cursor: pointer !important;
+  }
 
+  .cross_close:hover {
+    text-decoration: none;
+    color: #000;
+  }
 </style>
