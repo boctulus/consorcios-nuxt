@@ -50,6 +50,11 @@ const arr = {
       to: '/dashboard/archivos/documentos'
     },
     {  
+      name: 'Legales',
+      img: '/cards/legal1.jpg',
+      to: '/dashboard/archivos/legal'
+    },
+    {  
       name: 'Slider',
       img: '/cards/slider.png',
       to: '/dashboard/slider'

@@ -13,11 +13,11 @@
         <h1 class="engravers text-mobile mt-1 mb-4">MARCO LEGAL</h1>
 
         <b-row>
-          <b-col class="mb-5" md="6" v-for="item in documents" v-bind:key="item.name">
-            <h2 style="font-size: 1.3rem;"><strong><span class="pontano" style="color: #d0a28c;">{{item.name}}</span></strong></h2>
+          <b-col class="mb-5" md="6" v-for="item in regs" v-bind:key="item.name">
+            <h2 style="font-size: 1.3rem;"><strong><span class="pontano" style="color: #d0a28c;">{{ item.name.toUpperCase() }}</span></strong></h2>
             <p>&nbsp;</p>   
 
-            <div class="btn" style="text-align: center;"><span style="font-size: 1.2rem;"><strong><a :href="item.file" target="_blank" rel="noopener noreferrer"><span class="aft">DESCARGAR</span></a></strong></span></div>
+            <div class="btn" style="text-align: center;"><span style="font-size: 1.2rem;"><strong><a href="#" @click="download(item.file_id)"><span class="aft">DESCARGAR</span></a></strong></span></div>
           </b-col>
 
         </b-row>
@@ -33,29 +33,119 @@
 export default {  
   layout: 'home',
   data: () => ({
-    documents: [
-      {
-        'name': 'LEY DE PROPIEDAD EN CONDOMINIO DE INMUEBLES PARA EL DISTRITO FEDERAL',
-        'file': 'http://www.paot.org.mx/centro/leyes/df/pdf/2015/LEY_PROPIEDAD_CONDOMINIO_INMUEBLES_13_01_2015.pdf'
+    regs: [],
+    file_obj: null,
+    loading: true,
+    rowsPerPageItems: [10,20,100],
+    pagination: {
+      rowsPerPage: 100,
+      descending: false,
+      sortBy: "created_at",
+      page: 1,
+      totalItems: null,
+    },
+    search: '',
+  }),
+  
+  computed: {
+    filename: function() {
+      return this.file_obj == null ? { "filename": '', "id": this.editedItem.id } : this.file_obj.filename;
+    }
+  },
+
+  mounted () {
+    this.fetchData();
+  },
+
+  methods: {
+    fetchData () {
+        return new Promise((resolve, reject) => {
+          const { sortBy, descending, page, rowsPerPage } = this.pagination;
+          let search = this.search.trim().toLowerCase();
+
+          this.$axios.get('http://elgrove.co/api/v1/legal_documents' + 
+            `?pageSize=${rowsPerPage}` +
+            `&page=${page}` +
+            `&orderBy[${sortBy}]=` + (descending ? 'ASC' : 'DESC'), 
+          { 
+            headers: {
+             
+            }
+          })
+          .then(response => {
+              let items = response.data.data;
+              const totalItems = response.data.paginator.total;
+              
+              if (search) {
+                  items = items.filter(item => {
+                      return Object.values(item)
+                          .join(",")
+                          .toLowerCase()
+                          .includes(search);
+                  });
+              }
+              
+              this.regs = items;
+              this.pagination.totalItems = totalItems;
+              this.loading = false;
+              resolve();
+          }).catch((error) => {
+              //const response = error.response;
+              console.log(error);
+              reject(error);
+          });
+         });       
       },
-      {
-        'name': 'REGLAMENTO DE LA LEY DE PROPIEDAD EN CONDOMINIO DE INMUEBLES PARA EL DISTRITO FEDERAL',
-        'file': 'http://www.aldf.gob.mx/archivo-0f05874fac7a0a4b94b9935dd0998eae.pdf'
+
+      forceFileDownload(response, filename){
+        const url = window.URL.createObjectURL(new Blob([response.data]))
+
+        const link = document.createElement('a')
+        link.href = url
+        link.setAttribute('download', filename) 
+        document.body.appendChild(link)
+        link.click()
       },
-      {
-        'name': 'LEY DE CULTURA CÍVICA D.F.',
-        'file': 'http://www.aldf.gob.mx/archivo-0f05874fac7a0a4b94b9935dd0998eae.pdf'
+
+      fileDownload(){
+        this.$axios.get('http://elgrove.co/download/get/'+ this.file_obj.id, 
+        { 
+          responseType: 'arraybuffer',
+          headers: {
+            // 'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
+          }
+        })
+        .then(response => {
+            this.forceFileDownload(response, this.file_obj.filename);
+        }).catch((error) => {
+            //const response = error.response;
+            console.log(error);
+        });
       },
-      {
-        'name': 'LEY DE PROPIEDAD EN CONDOMINIO EDO. DE MEX.',
-        'file': 'http://www.aldf.gob.mx/archivo-0f05874fac7a0a4b94b9935dd0998eae.pdf'
-      },
-      {
-        'name': 'LEY DE PROCURADURÍA SOCIAL DEL D.F.',
-        'file': 'http://www.aldf.gob.mx/archivo-0f05874fac7a0a4b94b9935dd0998eae.pdf'
+
+      download(file_id) {
+        this.$axios.request({
+            url: `http://elgrove.co/api/v1/files/${file_id}?fields=filename`,  
+            method: 'get',
+            headers: {
+                // 'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
+            }
+        }).then(({data}) => {
+          //console.log(data.data.filename);
+
+          this.file_obj = {
+            "filename": data.data.filename,
+            "id": file_id
+          }          
+
+          this.fileDownload();
+        
+        }).catch((error) => {
+            console.log(error);
+        });    
+
       }
-    ]
-  })  
+  }
 }
 </script>
 

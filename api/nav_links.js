@@ -24,7 +24,8 @@ const links = {
     { text: 'Archivos',  
       childs: [ 
         { text: 'Boletas', link: '/dashboard/archivos/boletas' }, 
-        { text: 'Documentos', link: '/dashboard/archivos/documentos'} 
+        { text: 'Documentos', link: '/dashboard/archivos/documentos'}, 
+        { text: 'Legales', link: '/dashboard/archivos/legal'}
       ], 
       icon: 'fa-folder' 
     }

@@ -402,7 +402,7 @@
         this.dialog = true;
 
         this.prev.belongs_to = this.regs[this.editedIndex].belongs_to;
-        console.log(this.prev.belongs_to);
+        //console.log(this.prev.belongs_to);
       },
 
       showDialog(){
@@ -458,9 +458,10 @@
       },
 
       resetFile() {
-        const input = this.$refs.file
-        input.type = 'text'
-        input.type = 'file'
+        const input = this.$refs.file;
+        input.type = 'text';
+        input.type = 'file';
+        this.file = null;
       },
   
       forceFileDownload(response, filename){
@@ -522,9 +523,9 @@
             data: this.editedItem
           });
 
-          const uid = response2.data.data.id; 
+          const id = response2.data.data.id; 
         
-          this.editedItem.id = uid;  
+          this.editedItem.id = id;  
           this.regs.push(this.editedItem);  
           this.pagination.totalItems++;
 
@@ -536,6 +537,7 @@
         }   
         
         this.resetFile();
+        this.prev.belongs_to = this.editedItem.belongs_to;
       },
 
       async update() {
@@ -544,6 +546,8 @@
         let file_id = this.regs[this.editedIndex].file_id;
 
         if (this.file !== null){
+          console.log('ACAAAAAAAAA', this.file);
+
           try {
             const response0 = await this.$axios.request({
               url: `http://elgrove.co/api/v1/files/${file_id}`,  
@@ -580,8 +584,13 @@
           }
         } else {
 
+          //console.log('this.regs[this.editedIndex].belongs_to', this.regs[this.editedIndex].belongs_to);
+          //console.log('prev',this.prev.belongs_to);
+          //console.log('this.editedItem.belongs_to',this.editedItem.belongs_to);  
+
           if (this.editedItem.belongs_to !== this.prev.belongs_to){
             //console.log('OJO! cambio el propietario');
+            //console.log('Ahora: '+ this.editedItem.belongs_to);
 
             this.$axios.request({
               url: `http://elgrove.co/api/v1/files/${file_id}`,  

@@ -1,6 +1,6 @@
 <template>
   <div>            
-    <h1 class="mb-5">Documentos</h1> <!-- ADMIN -->
+    <h1 class="mb-5">Documentos legales (comunes)</h1> <!-- ADMIN -->
   
     <v-layout row justify-center>
       <v-dialog v-model="delete_confirmation_dialog" persistent max-width="320">
@@ -23,18 +23,6 @@
         
         <template v-slot:activator="{ on }">
           <v-layout row>
-            <v-flex>
-              <v-select
-                :items="users_all"
-                item-text="name"
-                item-value="id"
-                v-model="u_selected"
-                label="Edificio"
-                style="margin-left:30px; margin-right:30px;"
-                dark
-              ></v-select>
-            </v-flex>
-            
             <!-- New button -->
             <v-flex style="text-align:right;">
               <v-btn color="primary" dark v-on="on" @click="formMode=null" style="margin-right:30px;">Nuevo</v-btn>
@@ -52,17 +40,6 @@
           <v-card-text>
             <v-container>
               <v-layout row>
-               
-                <v-flex style="width:100%;">                 
-                  <v-select
-                    :items="users"
-                    item-text="name"
-                    item-value="id"
-                    v-model="editedItem.belongs_to"
-                    label="Edificio"
-                    :class="{'disable-events': formMode=='see'}"
-                  ></v-select>
-                </v-flex>
 
                 <v-flex cols="12" sm="6" md="4">
                   <v-text-field v-model="editedItem.name" :class="{'disable-events': formMode=='see'}" label="Nombre"></v-text-field>
@@ -100,7 +77,7 @@
 
           <v-data-table
             :headers="headers"
-            :items="computedRegs"
+            :items="regs"
             :pagination.sync="pagination"
             :rows-per-page-items="rowsPerPageItems"
             :total-items="pagination.totalItems"
@@ -108,7 +85,6 @@
           >
             <template  v-slot:items="props">
                 <td>{{ props.item.name }}</td>
-                <td>{{ getNameByUserId(props.item.belongs_to) }}</td>
                 <td>          
                     <v-icon
                       small
@@ -155,8 +131,7 @@
       formMode: 'create',
       index: null,
       headers: [
-        { text: 'Nombre', value: 'name' },
-        { text: 'Edificio', value: 'belongs_to' },
+        { text: 'Nombre', value: 'name' }
       ],
       regs: [],
       file:  null,
@@ -187,9 +162,6 @@
     }),
 
     computed: {
-      computedRegs: function() {
-        return this.u_selected === null ? this.regs : this.regs.filter((e) => e.belongs_to === this.u_selected);
-      },
 
       formTitle: function() {
         switch(this.formMode){
@@ -235,7 +207,6 @@
 
     mounted () {
       this.fetchData();
-      this.fetchUsers();
     },
 
     filters: {
@@ -258,68 +229,42 @@
         if (typeof s !== 'string') return ''
         return s.charAt(0).toUpperCase() + s.slice(1)
       },
-
-      fetchUsers() {
-        // this.users = [ {id: null, name: 'Todos' }, ...getUsers() ];
-
-        this.$axios.request({
-                url: `http://elgrove.co/api/v1/users?fields=id,name&pageSize=100`,  
-                method: 'get',
-                headers: {
-                    'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
-                }
-            }).then( ({ data }) => {
-              this.users = data.data;
-              this.users_all = [ {id: null, name: 'Todos' }, ...this.users ];
-            }).catch((error) => {
-                console.log(error);
-            });
-      },
-
-      getNameByUserId(user_id){
-        const u = this.users.find((e) => e.id === user_id);
-
-        if (typeof u == 'undefined')
-          return 'Inexistente *';
-
-        return u.name;  
-      },
-
+      
       fetchData () {
-         return new Promise((resolve, reject) => {
-                const { sortBy, descending, page, rowsPerPage } = this.pagination;
-                let search = this.search.trim().toLowerCase();
+        return new Promise((resolve, reject) => {
+          const { sortBy, descending, page, rowsPerPage } = this.pagination;
+          let search = this.search.trim().toLowerCase();
 
-                this.$axios.get('http://elgrove.co/api/v1/documents' + 
-                  `?pageSize=${rowsPerPage}` +
-                  `&page=${page}` +
-                  `&orderBy[${sortBy}]=` + (descending ? 'ASC' : 'DESC'), 
-                { 
-                  headers: {
-                    'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
-                  }
-                })
-                .then(response => {
-                    let items = response.data.data;
-                    const totalItems = response.data.paginator.total;
-                    
-                    if (search) {
-                        items = items.filter(item => {
-                            return Object.values(item)
-                                .join(",")
-                                .toLowerCase()
-                                .includes(search);
-                        });
-                    }
-                    
-                    this.regs = items;
-                    this.pagination.totalItems = totalItems;
-                    this.loading = false;
-                    resolve();
-                }).catch((error) => {
-                    //const response = error.response;
-                    console.log(error);
-                });
+          this.$axios.get('http://elgrove.co/api/v1/legal_documents' + 
+            `?pageSize=${rowsPerPage}` +
+            `&page=${page}` +
+            `&orderBy[${sortBy}]=` + (descending ? 'ASC' : 'DESC'), 
+          { 
+            headers: {
+              'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
+            }
+          })
+          .then(response => {
+              let items = response.data.data;
+              const totalItems = response.data.paginator.total;
+              
+              if (search) {
+                  items = items.filter(item => {
+                      return Object.values(item)
+                          .join(",")
+                          .toLowerCase()
+                          .includes(search);
+                  });
+              }
+              
+              this.regs = items;
+              this.pagination.totalItems = totalItems;
+              this.loading = false;
+              resolve();
+          }).catch((error) => {
+              //const response = error.response;
+              console.log(error);
+          });
          });       
       },
 
@@ -383,7 +328,7 @@
         //console.log('[ DELETE ] ID ==', id);
         
         this.$axios.request({
-            url: `http://elgrove.co/api/v1/documents/${id}`,  
+            url: `http://elgrove.co/api/v1/legal_documents/${id}`,  
             method: 'delete',
             headers: {
                 'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
@@ -449,7 +394,7 @@
         try {
           let formData = new FormData();
           formData.append('file', this.file);
-          formData.append('belongs_to', this.editedItem.belongs_to); 
+          formData.append('belongs_to', this.$store.state.auth.authUser.id); 
           
           const response = await this.$axios.post('http://elgrove.co/api/v1/files',
               formData,
@@ -470,7 +415,7 @@
 
         try {
           const response2 = await this.$axios.request({
-            url: `http://elgrove.co/api/v1/documents`,  
+            url: `http://elgrove.co/api/v1/legal_documents`,  
             method: 'post',
             headers: {
                 'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
@@ -516,7 +461,7 @@
           try {
             let formData = new FormData();  
             formData.append('file', this.file);
-            formData.append('belongs_to',this.regs[this.editedIndex].belongs_to); //////
+            formData.append('belongs_to', this.$store.state.auth.authUser.id); //////
             
             const response0 = await this.$axios.post('http://elgrove.co/api/v1/files',
                 formData,
@@ -535,30 +480,11 @@
           } catch (error) {
             console.error(error);
           }
-        } else {
-
-          if (this.editedItem.belongs_to !== this.prev.belongs_to){
-            //console.log('OJO! cambio el propietario');
-
-            this.$axios.request({
-              url: `http://elgrove.co/api/v1/files/${file_id}`,  
-              method: 'patch',
-              headers: {
-                  'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
-              },
-              data: { belongs_to: this.editedItem.belongs_to }
-            }).then(({data}) => {
-              // console.log(data.data);        
-            }).catch((error) => {
-                console.log(error);
-            });  
-          }
-
-        }                  
+        } // else              
 
         try {
           const response =  await this.$axios.request({
-            url: `http://elgrove.co/api/v1/documents/${id}`,  
+            url: `http://elgrove.co/api/v1/legal_documents/${id}`,  
             method: 'patch',
             headers: {
                 'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
