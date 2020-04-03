@@ -394,7 +394,8 @@
         try {
           let formData = new FormData();
           formData.append('file', this.file);
-          formData.append('belongs_to', this.$store.state.auth.authUser.id); 
+          formData.append('belongs_to', this.$store.state.auth.authUser.id);
+          formData.append('guest_access', 1); 
           
           const response = await this.$axios.post('http://elgrove.co/api/v1/files',
               formData,
