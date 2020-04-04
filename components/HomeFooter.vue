@@ -133,7 +133,7 @@ export default {
     },
 
     mounted() {
-    this.$axios.get('http://elgrove.co/api/v1/services?enabled=1')
+    this.$axios.get('/services?enabled=1')
     .then(response => {
         this.servicios = response.data.data;
     }).catch((error) => {
@@ -155,7 +155,7 @@ export default {
           console.log('Submited !!!');
 
           this.$axios.request({
-            url: `http://elgrove.co/api/v1/messages`,  
+            url: `/messages`,  
             method: 'post',
             headers: {
                 

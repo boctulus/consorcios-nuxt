@@ -33,7 +33,7 @@ export default {
             formData.append('file', this.file);
             formData.append('belongs_to',349);
   
-            this.$axios.post('http://elgrove.co/api/v1/files',
+            this.$axios.post('/files',
                 formData,
                 {
                     headers: {

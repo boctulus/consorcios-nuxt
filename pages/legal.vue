@@ -63,7 +63,7 @@ export default {
           const { sortBy, descending, page, rowsPerPage } = this.pagination;
           let search = this.search.trim().toLowerCase();
 
-          this.$axios.get('http://elgrove.co/api/v1/legal_documents' + 
+          this.$axios.get('/legal_documents' + 
             `?pageSize=${rowsPerPage}` +
             `&page=${page}` +
             `&orderBy[${sortBy}]=` + (descending ? 'ASC' : 'DESC'), 
@@ -125,7 +125,7 @@ export default {
 
       download(file_id) {
         this.$axios.request({
-            url: `http://elgrove.co/api/v1/files/${file_id}?fields=filename`,  
+            url: `/files/${file_id}?fields=filename`,  
             method: 'get',
             headers: {
                 // 'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`

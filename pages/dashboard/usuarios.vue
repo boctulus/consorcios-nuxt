@@ -199,7 +199,7 @@
                 const { sortBy, descending, page, rowsPerPage } = this.pagination;
                 let search = this.search.trim().toLowerCase();
 
-                this.$axios.get('http://elgrove.co/api/v1/users' + 
+                this.$axios.get('/users' + 
                   `?pageSize=${rowsPerPage}` +
                   `&page=${page}` +
                   `&orderBy[${sortBy}]=` + (descending ? 'ASC' : 'DESC') +
@@ -274,7 +274,7 @@
         //console.log('[ DELETE ] ID ==', id);
         
         this.$axios.request({
-            url: `http://elgrove.co/api/v1/users/${id}`,  
+            url: `/users/${id}`,  
             method: 'delete',
             headers: {
                 'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
@@ -306,7 +306,7 @@
           const id = this.regs[this.editedIndex].id;
 
           this.$axios.request({
-            url: `http://elgrove.co/api/v1/users/${id}`,  
+            url: `/users/${id}`,  
             method: 'patch',
             headers: {
                 'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
@@ -323,7 +323,7 @@
         } else {
 
           this.$axios.request({
-            url: `http://elgrove.co/api/v1/users`,  
+            url: `/users`,  
             method: 'post',
             headers: {
                 'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
@@ -338,7 +338,7 @@
 
             // debo insertar en user_roles con rol de copropietario (2)
             this.$axios.request({
-                url: `http://elgrove.co/api/v1/user_roles`,  
+                url: `/user_roles`,  
                 method: 'post',
                 headers: {
                     'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`

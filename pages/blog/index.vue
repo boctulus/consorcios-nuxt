@@ -91,14 +91,14 @@ export default {
                 const { sortBy, descending, page, rowsPerPage } = this.pagination;
                 let search = this.search.trim().toLowerCase();
 
-                this.$axios.get('http://elgrove.co/api/v1/posts' + 
+                this.$axios.get('/posts' + 
                   `?pageSize=${rowsPerPage}` +
                   `&page=${page}` +
                   `&orderBy[${sortBy}]=` + (descending ? 'ASC' : 'DESC') +
                   `&content[contains]=${search}` , 
                 { 
                   headers: {
-                    'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
+                    // 'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
                   }
                 })
                 .then(response => {

@@ -207,7 +207,7 @@
                 const { sortBy, descending, page, rowsPerPage } = this.pagination;
                 let search = this.search.trim().toLowerCase();
 
-                this.$axios.get('http://elgrove.co/api/v1/slider' + 
+                this.$axios.get('/slider' + 
                   `?pageSize=${rowsPerPage}` +
                   `&page=${page}` +
                   `&orderBy[${sortBy}]=` + (descending ? 'ASC' : 'DESC') +
@@ -278,7 +278,7 @@
         //console.log('[ DELETE ] ID ==', id);
         
         this.$axios.request({
-            url: `http://elgrove.co/api/v1/slider/${id}`,  
+            url: `/slider/${id}`,  
             method: 'delete',
             headers: {
                 'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
@@ -308,7 +308,7 @@
           const id = this.regs[this.editedIndex].id;
 
           this.$axios.request({
-            url: `http://elgrove.co/api/v1/slider/${id}`,  
+            url: `/slider/${id}`,  
             method: 'patch',
             headers: {
                 'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
@@ -325,7 +325,7 @@
         } else {
 
           this.$axios.request({
-            url: `http://elgrove.co/api/v1/slider`,  
+            url: `/slider`,  
             method: 'post',
             headers: {
                 'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`

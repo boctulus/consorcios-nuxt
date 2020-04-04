@@ -81,7 +81,7 @@ module.exports = {
   ],
 
   axios: {
-    // proxyHeaders: false
+    baseURL: process.env.NODE_ENV == 'development' ? "http://elgrove.co/api/v1" : "https://elgrove.co/api/v1"
   },
 
   router: {

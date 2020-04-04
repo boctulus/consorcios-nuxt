@@ -97,7 +97,7 @@ export default {
   },
 
   created() {    
-      this.$axios.get('http://elgrove.co/api/v1/users?fields=id,name,username')
+      this.$axios.get('/users?fields=id,name,username')
       .then(response => {
           //console.log(response);
           this.usuarios = response.data.data;

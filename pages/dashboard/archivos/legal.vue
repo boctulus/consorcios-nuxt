@@ -235,7 +235,7 @@
           const { sortBy, descending, page, rowsPerPage } = this.pagination;
           let search = this.search.trim().toLowerCase();
 
-          this.$axios.get('http://elgrove.co/api/v1/legal_documents' + 
+          this.$axios.get('/legal_documents' + 
             `?pageSize=${rowsPerPage}` +
             `&page=${page}` +
             `&orderBy[${sortBy}]=` + (descending ? 'ASC' : 'DESC'), 
@@ -276,7 +276,7 @@
         const file_id = this.editedItem.file_id;
 
         this.$axios.request({
-            url: `http://elgrove.co/api/v1/files/${file_id}?fields=filename`,  
+            url: `/files/${file_id}?fields=filename`,  
             method: 'get',
             headers: {
                 'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
@@ -328,7 +328,7 @@
         //console.log('[ DELETE ] ID ==', id);
         
         this.$axios.request({
-            url: `http://elgrove.co/api/v1/legal_documents/${id}`,  
+            url: `/legal_documents/${id}`,  
             method: 'delete',
             headers: {
                 'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
@@ -397,7 +397,7 @@
           formData.append('belongs_to', this.$store.state.auth.authUser.id);
           formData.append('guest_access', 1); 
           
-          const response = await this.$axios.post('http://elgrove.co/api/v1/files',
+          const response = await this.$axios.post('/files',
               formData,
               {
                   headers: {
@@ -416,7 +416,7 @@
 
         try {
           const response2 = await this.$axios.request({
-            url: `http://elgrove.co/api/v1/legal_documents`,  
+            url: `/legal_documents`,  
             method: 'post',
             headers: {
                 'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
@@ -449,7 +449,7 @@
 
           try {
             const response0 = await this.$axios.request({
-              url: `http://elgrove.co/api/v1/files/${file_id}`,  
+              url: `/files/${file_id}`,  
               method: 'delete',
               headers: {
                   'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
@@ -464,7 +464,7 @@
             formData.append('file', this.file);
             formData.append('belongs_to', this.$store.state.auth.authUser.id); //////
             
-            const response0 = await this.$axios.post('http://elgrove.co/api/v1/files',
+            const response0 = await this.$axios.post('/files',
                 formData,
                 {
                     headers: {
@@ -485,7 +485,7 @@
 
         try {
           const response =  await this.$axios.request({
-            url: `http://elgrove.co/api/v1/legal_documents/${id}`,  
+            url: `/legal_documents/${id}`,  
             method: 'patch',
             headers: {
                 'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`

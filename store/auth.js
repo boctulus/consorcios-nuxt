@@ -63,7 +63,7 @@ export const actions = {
 
             let payload = {};
         
-            this.$axios.post('http://elgrove.co/auth/login', {
+            this.$axios.post('/auth/login', {
                 username: username,
                 password: password
 
@@ -76,7 +76,7 @@ export const actions = {
                 payload.roles =  response.data.data.roles;
 
                 this.$axios.request({
-                    url: 'http://elgrove.co/api/v1/me',
+                    url: '/me',
                     method: 'get',
                     headers: {
                         'Authorization': `Bearer ${response.data.data.access_token}`
@@ -115,7 +115,7 @@ export const actions = {
 
             let payload = {};
         
-            this.$axios.post('http://elgrove.co/auth/register', {
+            this.$axios.post('/auth/register', {
                 name: name,
                 username: username,
                 password: password

@@ -140,7 +140,7 @@ export default {
 
   methods: {
     fetchSlides() {
-      this.$axios.get('http://elgrove.co/api/v1/slider?enabled=1&pageSize=100')
+      this.$axios.get('/slider?enabled=1&pageSize=100')
       .then(response => {
           this.slides = response.data.data;
       }).catch((error) => {

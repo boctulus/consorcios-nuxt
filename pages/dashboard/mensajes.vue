@@ -237,7 +237,7 @@
                 const { sortBy, descending, page, rowsPerPage } = this.pagination;
                 let search = this.search.trim().toLowerCase();
 
-                this.$axios.get('http://elgrove.co/api/v1/messages?orderBy[created_at]=DESC' + 
+                this.$axios.get('/messages?orderBy[created_at]=DESC' + 
                   `&pageSize=${rowsPerPage}` +
                   `&page=${page}` +
                   `&orderBy[${sortBy}]=` + (descending ? 'ASC' : 'DESC') +
@@ -308,7 +308,7 @@
         //console.log('[ DELETE ] ID ==', id);
         
         this.$axios.request({
-            url: `http://elgrove.co/api/v1/messages/${id}`,  
+            url: `/messages/${id}`,  
             method: 'delete',
             headers: {
                 'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
@@ -332,7 +332,7 @@
         //console.log(refs);
 
         this.$axios.request({
-            url: `http://elgrove.co/api/v1/collections`,  
+            url: `/collections`,  
             method: 'post',
             headers: {
                 'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
@@ -345,7 +345,7 @@
             const id = data.data.id;
 
             this.$axios.request({
-                url: `http://elgrove.co/api/v1/collections/${id}`,  
+                url: `/collections/${id}`,  
                 method: 'delete',
                 headers: {
                     'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
@@ -384,7 +384,7 @@
           const id = this.regs[this.editedIndex].id;
 
           this.$axios.request({
-            url: `http://elgrove.co/api/v1/messages/${id}`,  
+            url: `/messages/${id}`,  
             method: 'patch',
             headers: {
                 'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
@@ -401,7 +401,7 @@
         } else {
 
           this.$axios.request({
-            url: `http://elgrove.co/api/v1/messages`,  
+            url: `/messages`,  
             method: 'post',
             headers: {
                 'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`

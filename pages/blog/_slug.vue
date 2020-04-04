@@ -50,7 +50,7 @@ export default {
     created () {
 		this.slug =  this.$route.params.slug;
 		
-		this.$axios.get('http://elgrove.co/api/v1/posts?slug=' + this.slug, 
+		this.$axios.get('/posts?slug=' + this.slug, 
 		{ 
 			headers: {
 				
@@ -66,7 +66,7 @@ export default {
 
 
 		// All	
-		this.$axios.get('http://elgrove.co/api/v1/posts?fields=slug&pageSize=100', 
+		this.$axios.get('/posts?fields=slug&pageSize=100', 
 		{ 
 			headers: {
 				
