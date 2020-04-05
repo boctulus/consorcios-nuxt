@@ -1,8 +1,8 @@
 {
-  "name": "nuxt-material-admin",
+  "name": "elgrove",
   "version": "1.0.0",
-  "description": "vue-material-admin integration with Nuxt.js",
-  "author": "Mohamed Eddami",
+  "description": "Administración de consorcios con Nuxt.js",
+  "author": "Pablo Bozzolo",
   "private": true,
   "scripts": {
     "dev": "nuxt",
