@@ -82,7 +82,7 @@ module.exports = {
 
   // local ó dominio real
   //
-  // process.env.NODE_ENV == 'development' ? "http://elgrove.co/v1" : "http://administracionelgrove.com/v1"
+  // process.env.NODE_ENV == 'development' ? "http://elgrove.co/v1" : "https://api.administracionelgrove.com/v1"
   axios: {
     baseURL: "https://api.administracionelgrove.com/v1"
   },
