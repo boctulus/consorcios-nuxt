@@ -84,7 +84,7 @@ module.exports = {
   //
   // process.env.NODE_ENV == 'development' ? "http://elgrove.co/v1" : "http://administracionelgrove.com/v1"
   axios: {
-    baseURL: "https://administracionelgrove.com/v1"
+    baseURL: "https://api.administracionelgrove.com/v1"
   },
 
   router: {
