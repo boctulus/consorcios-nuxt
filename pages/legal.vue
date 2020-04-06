@@ -108,6 +108,7 @@ export default {
       },
 
       fileDownload(){
+        // http://elgrove.co
         this.$axios.get('http://elgrove.co/download/get/'+ this.file_obj.id, 
         { 
           responseType: 'arraybuffer',
