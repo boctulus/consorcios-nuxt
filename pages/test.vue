@@ -21,7 +21,7 @@ export default {
     data(){
       return {
         file: '',
-        url:'http://elgrove.co/download/get/44'
+        url:'https://api.administracionelgrove.com/download/get/44'
       }
     },
 
@@ -72,7 +72,7 @@ export default {
    
     downloadWithAxios(){
 
-      this.$axios.get('http://elgrove.co/download/get/44', 
+      this.$axios.get('https://api.administracionelgrove.com/download/get/44', 
       { 
         responseType: 'arraybuffer',
         headers: {

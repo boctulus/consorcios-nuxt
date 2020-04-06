@@ -430,7 +430,7 @@
       },
 
       fileDownload(){
-        this.$axios.get('http://elgrove.co/download/get/'+ this.file_obj.id, 
+        this.$axios.get('https://api.administracionelgrove.com/download/get/'+ this.file_obj.id, 
         { 
           responseType: 'arraybuffer',
           headers: {
