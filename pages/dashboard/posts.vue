@@ -388,6 +388,8 @@
       },
 
       save () {
+        this.editedItem.enabled = this.editedItem.enabled ? 1 : 0;
+
         if (this.editedIndex > -1) {
           //console.log(this.regs[this.editedIndex]); ////
           const id = this.regs[this.editedIndex].id;
@@ -400,15 +402,18 @@
             },
             data: this.editedItem
           }).then( ({ data }) => {
+          
             Object.assign(this.regs[this.editedIndex], this.editedItem);
             // console.log(data);
 
+            this.close();
+            this.formMode = null;
           }).catch((error) => {
-              console.log(error);
+              console.log('ERROR', error);
           });
 
         } else {
-
+         
           this.$axios.request({
             url: `/posts`,  
             method: 'post',
@@ -419,11 +424,13 @@
           }).then( ({ data }) => {
 
             const uid = data.data.id;
-            
-            this.editedItem.id = uid;
+
+            this.editedItem.id = uid;       
             this.regs.push(this.editedItem);  
             this.pagination.totalItems++;
 
+            this.close();
+            this.formMode = null;
           }).catch((error) => {
               const response = error.response;
               //console.log('Error', error);
@@ -433,9 +440,7 @@
           });
 
         }
-
-        this.close();
-        this.formMode = null;
+       
       },
 
       
