@@ -51,7 +51,7 @@
 
           <v-card-text>
             <v-container>
-              <v-layout row>
+              <v-layout row style="flex-direction: column !important;">
                
                 <v-flex style="width:100%;">                 
                   <v-select

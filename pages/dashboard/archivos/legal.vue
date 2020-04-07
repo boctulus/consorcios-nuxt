@@ -39,7 +39,7 @@
 
           <v-card-text>
             <v-container>
-              <v-layout row>
+              <v-layout row style="flex-direction: column !important;">
 
                 <v-flex cols="12" sm="6" md="4">
                   <v-text-field v-model="editedItem.name" :class="{'disable-events': formMode=='see'}" label="Nombre"></v-text-field>
@@ -463,6 +463,7 @@
             let formData = new FormData();  
             formData.append('file', this.file);
             formData.append('belongs_to', this.$store.state.auth.authUser.id); //////
+            formData.append('guest_access', 1); 
             
             const response0 = await this.$axios.post('/files',
                 formData,

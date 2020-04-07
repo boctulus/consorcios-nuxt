@@ -35,7 +35,7 @@
 
           <v-card-text>
             <v-container>
-              <v-layout row>
+              <v-layout row style="flex-direction: column !important;">
                 <v-flex cols="12" sm="6" md="4">
                   <v-text-field v-model="editedItem.name" :class="{'disable-events': formMode=='see'}" label="Nombre"></v-text-field>
                 </v-flex>

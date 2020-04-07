@@ -58,6 +58,11 @@ const arr = {
       name: 'Slider',
       img: '/cards/slider.png',
       to: '/dashboard/slider'
+    },
+    {  
+      name: 'Contacto',
+      img: '/cards/contact_us_card.jpg',
+      to: '/dashboard/contacto'
     }
   ]  
 };

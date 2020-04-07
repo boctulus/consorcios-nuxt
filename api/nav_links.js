@@ -14,6 +14,7 @@ const links = {
       childs: [ 
         { text: 'Ir al inicio', link: '/home' }, 
         { text: 'Slider', link: '/dashboard/slider' }, 
+        { text: 'Contacto', link: '/dashboard/contacto' }
       ], 
       icon: 'fa-home' 
     },

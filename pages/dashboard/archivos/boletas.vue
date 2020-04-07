@@ -50,7 +50,7 @@
 
           <v-card-text>
             <v-container>
-              <v-layout row>
+              <v-layout row style="flex-direction: column !important;">
 
                 <!-- 
                   el valor a hacer bind debe ser un array de objetos y le pasas los attributos en el item-value e item-text

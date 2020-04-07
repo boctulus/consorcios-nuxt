@@ -5,9 +5,9 @@
 
                 <b-row class="w-100">
                   <b-col md="6" class="engravers">
-                    <b-row class="mb-3 ml-auto info">Teléfono: (221) 15 545-2109</b-row>
-                    <b-row class="mb-3 ml-auto info">Correo: adm.elgrove@outlook.com</b-row>
-                    <b-row class="mb-3 ml-auto info" style="padding-bottom: 10px;">Dirección: calle 28 nro 167, La Plata, Bs As</b-row>
+                    <b-row class="mb-3 ml-auto info">Teléfono: {{ contactData.phone }}</b-row>
+                    <b-row class="mb-3 ml-auto info">Correo: {{ contactData.email }}</b-row>
+                    <b-row class="mb-3 ml-auto info" style="padding-bottom: 10px;">Dirección: {{ contactData.address }}</b-row>
                     <b-row class="mb-3 ml-auto info">                      
                       <img src="https://i.imgur.com/npweaNh.png" alt="" width="20" height="20" style="margin-top: 2px"/>
                       <span class="engravers" style="color: #ffffff; padding-left:8px;"><n-link to="/blog" style="color: white; text-decoration: none; font-size: 20px;">BLOG </n-link></span>
@@ -119,30 +119,55 @@ for (let rule in rules){
 } 
 
 export default {
-     name: 'HomeFooter',
-     data() {
-      return {
-        nombre: null,
-        telefono: null, 
-        email: null, 
-        servicio: null, 
-        consulta: null,
-        customErrors: [],
-        servicios: []
-       }
-    },
+    name: 'HomeFooter',
+    data() {
+     return {
+      contactData: {
+        phone: '',
+        address: '',
+        email: ''
+      },
+      nombre: null,
+      telefono: null, 
+      email: null, 
+      servicio: null, 
+      consulta: null,
+      customErrors: [],
+      servicios: []
+      }
+  },
 
-    mounted() {
-    this.$axios.get('/services?enabled=1')
-    .then(response => {
-        this.servicios = response.data.data;
-    }).catch((error) => {
-        const response = error.response;
-        console.log(response.data.error);
-    });
+   mounted() {
+    this.fetchServicios();
+    this.fetchContactData();
   },
 
     methods: {
+      fetchServicios() {
+        this.$axios.get('/services?enabled=1')
+        .then(response => {
+            this.servicios = response.data.data;
+        }).catch((error) => {
+            const response = error.response;
+            console.log(response.data.error);
+        });
+      },
+
+      fetchContactData() {
+        this.$axios.get('/contact_data', 
+        { })
+        .then(response => {
+            //console.log(response);
+            this.contactData.phone = response.data.data[0].phone;
+            this.contactData.email = response.data.data[0].email;
+            this.contactData.address = response.data.data[0].address;
+            
+        }).catch((error) => {
+            //const response = error.response;
+            console.log(error);
+        }); 
+      },
+
       onSubmit() {
         //console.log('SUBMITTING ...');
         //console.log([this.nombre, this.email, this.telefono, this.servicio, this.consulta]);
