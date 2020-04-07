@@ -1,3 +1,99 @@
+- Colocar los DNS correspondientes:
+
+A	
+api.administracionelgrove.com
+66.97.43.53
+0	14400	
+
+NS	
+administracionelgrove.com
+ns1.donweb.com
+0	14400	
+
+NS	
+administracionelgrove.com
+ns2.donweb.com
+0	14400	
+
+SOA	
+administracionelgrove.com
+ns3.hostmar.com root.hostmar.com 2020040704 28800 7200 2000000 86400
+0	14400	
+
+A	
+administracionelgrove.com
+66.97.43.53
+0	14400	
+
+
+- No olvidar agregar la IP / (sub) dominios en /etc/hosts
+
+66.97.43.53     api.administracionelgrove.com
+66.97.43.53     administracionelgrove.com
+66.97.43.53     www.administracionelgrove.com
+
+
+- Poner AllowOverride All en  /etc/apache2/apache2.conf
+
+<Directory /var/www/>
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+</Directory>
+
+- Crear dos virtual-hosts, uno para la API y otro para el front:
+
+
+$ cat /etc/apache2/sites-available/api.conf
+
+<VirtualHost *:80>
+
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/elgrove_php/public
+        ServerName api.administracionelgrove.com
+
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+</VirtualHost>
+
+$ cat /etc/apache2/sites-available/front.conf
+
+
+<VirtualHost *:80>
+
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/elgrove_front/dist
+        ServerName administracionelgrove.com
+        ServerAlias www.administracionelgrove.com
+
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+</VirtualHost>
+
+Crear sendos archivos para SSL : api-ssl.conf y front-ssl.conf
+
+
+- Crear los certificados SSL para el dominio y para el subdominio de la API:
+
+sudo certbot -d api.administracionelgrove.com
+sudo certbot -d administracionelgrove.com -d www.administacionelgrove.com
+
+
+- Para copiar los archivos, compilar y copiar desde local usar SCP:
+
+consorcios-nuxt $  npx nuxt build
+consorcios-nuxt $  scp -P 5344 -r dist boctulus@66.97.43.53:/var/www/elgrove_front 
+
+
+- Para evitar que si se escribe directamente una url salte un 404 de Apache usar un .htaccess en /var/www/elgrove_front 
+
+ErrorDocument 404 /index.html
+
+
 - La url de inicio se setea en \pages\index.vue 
 
 export default {
@@ -7,13 +103,3 @@ export default {
         }
 }
 
-Igualmente en \pages\login.vue hay una redirección a /dashboard
-
-methods: {
-      login() {
-        this.loading = true;
-        setTimeout(() => {
-          this.$router.push('/dashboard');
-        }, 1000);
-      }
-    }
