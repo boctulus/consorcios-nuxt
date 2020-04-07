@@ -34,13 +34,17 @@ import OpenIcon from 'vue-beautiful-chat/src/assets/logo-no-bg.svg'
 import FileIcon from 'vue-beautiful-chat/src/assets/file.svg'
 import CloseIconSvg from 'vue-beautiful-chat/src/assets/close.svg'
 
-//const IA = require('@/util/IA')
 import classify from '@/util/IA';
 
 export default {
   name: 'ChatBot',
   data() {
     return {
+      contactData: {
+        phone: '',
+        address: '',
+        email: ''
+      },
       icons:{
         open:{
           img: OpenIcon,
@@ -111,13 +115,34 @@ export default {
       messageStyling: true // enables *bold* /emph/ _underline_ and such (more info at github.com/mattezza/msgdown)
     }
   },
+
+  mounted() {
+    this.fetchContactData();
+  },
+
   methods: {
+    fetchContactData() {
+      this.$axios.get('/contact_data', 
+      { })
+      .then(response => {
+          //console.log(response);
+          this.contactData.phone = response.data.data[0].phone;
+          this.contactData.email = response.data.data[0].email;
+          this.contactData.address = response.data.data[0].address;
+          
+      }).catch((error) => {
+          //const response = error.response;
+          console.log(error);
+      }); 
+    },
+    
     sendMessage (text) {
       if (text.length > 0) {
         this.newMessagesCount = this.isChatOpen ? this.newMessagesCount : this.newMessagesCount + 1
         this.onMessageWasSent({ author: 'bot', type: 'text', data: { text } })
       }
     },
+
     onMessageWasSent (message) {
       // called when the user sends a message
       this.messageList = [ ...this.messageList, message ];
@@ -126,6 +151,7 @@ export default {
         this.answer(message.data.text);
       }
     },
+
     answer (text) {
       if (text.toLowerCase() == 'hola'){
         this.sendMessage('¡Hola!, ¿Tienes alguna duda?');
@@ -133,9 +159,9 @@ export default {
       }
       
       let respuestas = {
-        'email': 'El correo es ' + 'adm.elgrove@outlook.com',
-        'direccion': 'Nos encontramos en  ' + 'calle 28 # 167, La Plata, Bs As', 
-        'telefono': 'Para comunicarse con Administración El Grove puede hacerlo al ' + '(221) 15 545-2109',
+        'email': 'El correo es ' + this.contactData.email,
+        'direccion': 'Nos encontramos en  ' + this.contactData.address, 
+        'telefono': 'Para comunicarse con Administración El Grove puede hacerlo al ' + this.contactData.phone,
         'horarios': 'El horario de atención es de ' + 'lunes a viernes de 9 a 17' + ' Hs', 
         'urgencia': 'Atendemos casos de urgencia las 24 Hs ***',
         'servicios': 'Te envio a la sección de servicios para que veas cuales brindamos',
@@ -175,27 +201,33 @@ export default {
       }
 
     },
+
     openChat () {
       // called when the user clicks on the fab button to open the chat
       this.isChatOpen = true
       this.newMessagesCount = 0
     },
+
     closeChat () {
       // called when the user clicks on the botton to close the chat
       this.isChatOpen = false
     },
+
     handleScrollToTop () {
       // called when the user scrolls message list to top
       // leverage pagination for loading another page of messages
-  	},
+    },
+    
     handleOnType () {
       console.log('Emit typing event')
     },
+
     editMessage(message){
       const m = this.messageList.find(m=>m.id === message.id);
       m.isEdited = true;
       m.data.text = message.data.text;
     }
+
   },
   created() {
     

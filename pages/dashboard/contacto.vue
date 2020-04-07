@@ -5,17 +5,20 @@
             <v-card>
                 <v-card-text class="tt">
                     <v-text-field v-model="editedItem.phone" label="Teléfono" class="pontano"></v-text-field>
+                    <span class="err" v-if="backendValidationErrors['phone']">{{ backendValidationErrors['phone'] }}</span>
                 </v-card-text>
 
                 <v-card-text class="tt">
                     <v-text-field v-model="editedItem.email" label="E-mail" class="pontano"></v-text-field>
+                    <span class="err" v-if="backendValidationErrors['email']">{{ backendValidationErrors['email'] }}</span>
                 </v-card-text>
 
                 <v-card-text class="tt">
                     <v-text-field v-model="editedItem.address" label="Dirección" class="pontano"></v-text-field>
+                    <span class="err" v-if="backendValidationErrors['address']">{{ backendValidationErrors['address'] }}</span>
                 </v-card-text>
 
-                <div style="text-align:right;">
+                <div style="text-align:right; padding-bottom:20px; padding-right: 5px;">
                     <v-btn color="blue darken-1" style="color:#fff;" @click="save">Guardar</v-btn>
                 </div>
                 
@@ -34,7 +37,17 @@
         phone: '',
         address: '',
         email: ''
-      }     
+      },
+      backendValidationErrors: {
+          'phone': null,
+          'email': null,
+          'address': null
+      },
+      defaultBackendValidationErrors: {
+          'phone': null,
+          'email': null,
+          'address': null
+      }      
     }),
 
     mounted() {
@@ -65,7 +78,7 @@
 
       save () {       
           const id = this.editedItem.id; 
-
+          
           this.$axios.request({
             url: `/contact_data/${id}`,  
             method: 'patch',
@@ -74,10 +87,23 @@
             },
             data: this.editedItem
           }).then( ({ data }) => {
+
+            Object.assign(this.backendValidationErrors, this.defaultBackendValidationErrors);
             // console.log(data);
 
           }).catch((error) => {
-              console.log(error);
+                console.log(error);
+
+                let data =  error.response.data;
+
+                if (data.error == 'Data validation error'){
+                    for (const [key, arr] of Object.entries(data.error_detail)) {
+                        arr.forEach(e => {
+                            console.log(key + ' : ' + e.error_detail);
+                            this.backendValidationErrors[key] = e.error_detail;
+                        });
+                    }
+                }
           });
     },
   }
@@ -86,5 +112,13 @@
 
 
 <style scoped>
+
+.err {
+    color: rgb(255,51,51);
+    font-family: Engravers, sans-serif;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 17px;
+}
 
 </style>

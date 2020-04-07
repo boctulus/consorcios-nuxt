@@ -14,7 +14,7 @@
                     </b-row>
                     <b-row class="mx-auto">
                       <!-- https://www.maps.ie/create-google-map/ -->
-                      <div style="width: 100%"><iframe width="100%" height="308" src="https://maps.google.com/maps?width=100%&amp;height=308&amp;hl=en&amp;q=CALLE%2028%20NRO%20167%2C%20LA%20PLATA%2C%20ARGENTINA+(El%20Grove)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"><a href="https://www.maps.ie/coordinates.html">gps coordinates</a></iframe></div>
+                      <div style="width: 100%"><iframe width="100%" height="308" :src="`https://maps.google.com/maps?width=100%&amp;height=308&amp;hl=en&amp;q=${mapsAddress}&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed`" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"><a href="https://www.maps.ie/coordinates.html">gps coordinates</a></iframe></div>
                     </b-row>
                   </b-col>
 
@@ -135,6 +135,12 @@ export default {
       customErrors: [],
       servicios: []
       }
+  },
+
+  computed: {
+    mapsAddress: function() {
+      return encodeURI(this.contactData.address  + ", LA PLATA, ARGENTINA");
+    }
   },
 
    mounted() {

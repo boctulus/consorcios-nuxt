@@ -77,10 +77,20 @@ $ cat /etc/apache2/sites-available/front.conf
 Crear sendos archivos para SSL : api-ssl.conf y front-ssl.conf
 
 
+- Habilitar el Mod Rewrite 
+
+sudo a2enmod rewrite
+
+Está habilitado?
+
+sudo apache2ctl -M | grep rewrite
+
+
 - Crear los certificados SSL para el dominio y para el subdominio de la API:
 
 sudo certbot -d api.administracionelgrove.com
 sudo certbot -d administracionelgrove.com -d www.administacionelgrove.com
+
 
 
 - Para copiar los archivos, compilar y copiar desde local usar SCP:

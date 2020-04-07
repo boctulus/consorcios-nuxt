@@ -89,7 +89,7 @@ export default {
         },
 
         enter: function (elem, done) {
-            var delay = elem.dataset.index * 150;
+            var delay = 0;
             setTimeout(function () {
                 Velocity(
                     elem,
@@ -172,7 +172,13 @@ export default {
   transition: all .6s cubic-bezier(1.0, 0.5,    0.8, 1.0);
 }
 
-.slide-fade-enter, .slide-fade-leave-to
+.slide-fade-enter
+{
+  transform: translateX(21em);
+  opacity: 0;
+}
+
+.slide-fade-leave-to
 {
   transform: translateX(21em);
   opacity: 0;
