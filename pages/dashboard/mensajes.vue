@@ -42,7 +42,7 @@
                   <v-text-field v-model="editedItem.subject" :class="{'disable-events': formMode=='see'}" label="Tema"></v-text-field>
                 </v-flex>
                 <v-flex cols="12" sm="6" md="4">
-                  <v-textarea v-model="editedItem.content" :class="{'disable-events': formMode=='see'}" label="Consulta"></v-textarea>
+                  <v-textarea v-model="editedItem.content" :readonly="{'disable-events': formMode=='see'}" style="overflow: auto;" label="Consulta"></v-textarea>
                 </v-flex>
                 <v-flex cols="12" sm="6" md="4">
                   <v-text-field v-model="editedItem.name" :class="{'disable-events': formMode=='see'}" label="Nombre"></v-text-field>

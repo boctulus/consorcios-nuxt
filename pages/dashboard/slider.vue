@@ -47,8 +47,8 @@
                 <img style="max-width:90%;" :src="`/home_slider/${editedItem.img}`" v-if="!editedItem.img.match(/^(https:|http:)/)" />
               </div>
 
-              <v-textarea v-model="editedItem.line1" label="Línea anterior" auto-grow :class="{'disable-events': formMode=='see'}" style="margin-top:20px"></v-textarea>
-              <v-textarea v-model="editedItem.line3" label="Línea posterior" auto-grow :class="{'disable-events': formMode=='see'}" ></v-textarea>
+              <v-textarea v-model="editedItem.line1" label="Línea anterior" auto-grow :readonly="{'disable-events': formMode=='see'}" style="margin-top:20px"></v-textarea>
+              <v-textarea v-model="editedItem.line3" label="Línea posterior" auto-grow :readonly="{'disable-events': formMode=='see'}" ></v-textarea>
 
             </v-container>
           </v-card-text>
@@ -251,6 +251,7 @@
       editItem (item) {
         this.editedIndex = this.regs.indexOf(item);
         this.editedItem = Object.assign({}, item);
+        this.editedItem.enabled = (this.editedItem.enabled == 1) ? true : false;
         this.formMode = 'edit';
         this.dialog = true;
       },

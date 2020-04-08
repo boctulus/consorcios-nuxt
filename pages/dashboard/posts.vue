@@ -244,7 +244,13 @@
             this.editedItem.slug = val.toLowerCase().replace(/[.,!*¿?]/g,'').trim().split(' ').join('-') + 
             '-' + d.getFullYear() + ("0" + (d.getMonth() + 1)).slice(-2) + ("0" + d.getDate()).slice(-2);
           }
-      }  
+      },
+      
+      /*
+      'editedItem.enabled': function(val, old_val) {
+        console.log('VAL', val);
+      }
+      */
     },
 
     mounted () {
@@ -252,6 +258,11 @@
     },
 
     filters: {
+      toBoolean: function (value) {
+        value = value.toString()
+        return value === 0 ? 'true' : 'false';
+      },
+
       boolean: function (value) {
         value = value.toString()
         return (value === 'true' || value === '1') ? 'si' : 'no';
@@ -329,6 +340,7 @@
       editItem (item) {
         this.editedIndex = this.regs.indexOf(item);
         this.editedItem = Object.assign({}, item);
+        this.editedItem.enabled = (this.editedItem.enabled == 1) ? true : false;
         this.formMode = 'edit';
         this.dialog = true;
         this.slug_editable = false; 
