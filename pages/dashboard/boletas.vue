@@ -55,6 +55,18 @@
       </v-dialog>
     </v-layout>
 
+     <div>                
+        <v-select 
+        v-model="billable_selected" 
+        :items="tipos_servicio_all" 
+        item-text="name"
+        item-value="id"
+        :class="{'disable-events': formMode=='see'}" 
+        label="Concepto"
+      ></v-select>
+    </div>
+
+
     <div style="
         background: #fff;
     ">
@@ -67,10 +79,10 @@
               hide-details
             ></v-text-field>
           </div-->
-
+          
           <v-data-table
             :headers="headers"
-            :items="regs"
+            :items="computedRegs"
             :pagination.sync="pagination"
             :rows-per-page-items="rowsPerPageItems"
             :total-items="pagination.totalItems"
@@ -117,6 +129,7 @@
       ],
       regs: [],
       tipos_servicio: [],
+      billable_selected: null,
       file:  null,
       file_obj: null,
       editedIndex: -1,
@@ -149,7 +162,10 @@
     }),
 
     computed: {
-      
+      computedRegs: function() {
+        return this.billable_selected === null ? this.regs : this.regs.filter((e) => e.billable_id === this.billable_selected);
+      },
+ 
       formTitle: function() {
         switch(this.formMode){
           case 'see': 
@@ -238,6 +254,7 @@
                 }
             }).then( ({ data }) => {
               this.tipos_servicio = data.data;
+              this.tipos_servicio_all = [ {id: null, name: 'Todos' }, ...this.tipos_servicio ];
             }).catch((error) => {
                 console.log(error);
             });

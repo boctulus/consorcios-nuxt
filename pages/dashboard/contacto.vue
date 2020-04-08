@@ -18,6 +18,11 @@
                     <span class="err" v-if="backendValidationErrors['address']">{{ backendValidationErrors['address'] }}</span>
                 </v-card-text>
 
+                <v-card-text class="tt">
+                    <v-text-field v-model="editedItem.opening_hours" label="Horario de atención" class="pontano"></v-text-field>
+                    <span class="err" v-if="backendValidationErrors['opening_hours']">{{ backendValidationErrors['opening_hours'] }}</span>
+                </v-card-text>
+
                 <div style="text-align:right; padding-bottom:20px; padding-right: 5px;">
                     <v-btn color="blue darken-1" style="color:#fff;" @click="save">Guardar</v-btn>
                 </div>
@@ -41,12 +46,14 @@
       backendValidationErrors: {
           'phone': null,
           'email': null,
-          'address': null
+          'address': null,
+          'opening_hours': null
       },
       defaultBackendValidationErrors: {
           'phone': null,
           'email': null,
-          'address': null
+          'address': null,
+          'opening_hours': null
       }      
     }),
 
@@ -69,6 +76,7 @@
             this.editedItem.phone = response.data.data[0].phone;
             this.editedItem.email = response.data.data[0].email;
             this.editedItem.address = response.data.data[0].address;
+            this.editedItem.opening_hours = response.data.data[0].opening_hours;
             
         }).catch((error) => {
             //const response = error.response;

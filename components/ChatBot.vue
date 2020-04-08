@@ -43,7 +43,8 @@ export default {
       contactData: {
         phone: '',
         address: '',
-        email: ''
+        email: '',
+        opening_hours: ''
       },
       icons:{
         open:{
@@ -129,6 +130,7 @@ export default {
           this.contactData.phone = response.data.data[0].phone;
           this.contactData.email = response.data.data[0].email;
           this.contactData.address = response.data.data[0].address;
+          this.contactData.opening_hours =  response.data.data[0].opening_hours;
           
       }).catch((error) => {
           //const response = error.response;
@@ -162,7 +164,7 @@ export default {
         'email': 'El correo es ' + this.contactData.email,
         'direccion': 'Nos encontramos en  ' + this.contactData.address, 
         'telefono': 'Para comunicarse con Administración El Grove puede hacerlo al ' + this.contactData.phone,
-        'horarios': 'El horario de atención es de ' + 'lunes a viernes de 9 a 17' + ' Hs', 
+        'horarios': 'El horario de atención es de ' + this.contactData.opening_hours + ' Hs', 
         'urgencia': 'Atendemos casos de urgencia las 24 Hs ***',
         'servicios': 'Te envio a la sección de servicios para que veas cuales brindamos',
         'contacto': 'Te envio a la sección de contacto para que veas cuales brindamos',

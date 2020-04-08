@@ -72,7 +72,7 @@
                   ></v-select>
                 </v-flex>
 
-                  <v-flex style="width:100%;">                 
+                 <v-flex style="width:100%;">                 
                     <v-select 
                     v-model="editedItem.billable_id" 
                     :items="tipos_servicio" 
