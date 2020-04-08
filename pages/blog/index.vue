@@ -12,7 +12,7 @@
     <div class="container" id="blog_cont">
         <h1 style="color: #fff;" class="engravers text-mobile mb-5">Blog</h1>
 
-        <b-row>
+        <b-row v-if="regs.length !=0">
 
           <b-col sm="12" md="6" class="col_link">
               <b-row v-for="(post, ix) in postsPares" v-bind:key="`'row-par-' + ${ix}`" class="area_link" @mouseover="hover = 'par-' + ix"
@@ -39,6 +39,8 @@
           </b-col>
           
         </b-row>
+
+        <span style="font-size: 2em;" v-else>No hay posts en el blog</span>
 
     </div>
   </div>

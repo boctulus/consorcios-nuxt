@@ -332,6 +332,7 @@
       seeItem (item) {
         this.editedIndex = this.regs.indexOf(item);
         this.editedItem = Object.assign({}, item);
+        this.editedItem.enabled = (this.editedItem.enabled == 1) ? true : false;
         this.formMode = 'see';
         this.dialog = true;
         this.slug_editable = false; 
