@@ -25,6 +25,15 @@ administracionelgrove.com
 66.97.43.53
 0	14400	
 
+- Para configurar los registro MX apuntando al servidor cloud, lo que debes hacer es asignar los dns:
+
+ns9.hostmar.com
+ns10.hostmar.com
+
+A tu dominio, para que luego desde aqui, apuntemos la zona dns al IP del cloud server, y luego de conectar, realizar el segundo paso, para configurar los envios debes utilizar :
+
+mail.TuDOMINIO.com
+y puerto: 587
 
 - No olvidar agregar la IP / (sub) dominios en /etc/hosts
 

@@ -87,7 +87,16 @@
               <v-img   :src="require('../assets/torre_juan2.png')" lazy-src class="quienes_img" style="margin-bottom: 50px;"   />
             </b-col>
 
-            <b-col sm="12" md="6"  class="mt-3">  
+            <b-col sm="12" md="6"  style="margin-top: 52px;" v-if="post != null">  
+              <div style="line-height: 2em;">
+                <p><span class="engravers text-mobile" style="color: rgb(128, 139, 151); font-size: 5em; --darkreader-inline-color:#b8b3a8;">{{ post.title }}</span></p>
+              </div>
+
+              <div class="pontano" style="font-size: 23px; padding-top: 15px; padding-bottom: 30px; text-align: justify; color: rgb(184, 179, 168) !important;" v-html="post.content"></div>
+            </b-col>
+
+            <!-- sino existe el post con slug "home"  -->
+            <b-col sm="12" md="6"  style="margin-top: 52px;" v-else>  
               <div style="line-height: 2em;">
                 <p><span class="engravers text-mobile" style="color: rgb(128, 139, 151); font-size: 5em; --darkreader-inline-color:#b8b3a8;" >¿QUIÉNES</span></p>
                 <p><span class="engravers text-mobile" style="color: rgb(128, 139, 151); font-size: 5em; --darkreader-inline-color:#b8b3a8;" >SOMOS?</span></p>
@@ -100,7 +109,6 @@
 
                   EL GROVE sabe sacar el aprovecho máximo a los recursos monetarios y activos físicos con el fin de mejorar la calidad de vida. Obteniendo los mejores niveles de sana convivencia, seguridad, limpieza, mantenimiento y la mayor plusvalía para el consorcio.
               </div>
-
             </b-col>
 
           </b-row>
@@ -132,13 +140,32 @@ export default {
       'Item 4',
     ],
     checkbox: null,
+    post: null
   }),
 
   mounted () {
       this.fetchSlides();
+      this.fetchHomePost();
   },
 
   methods: {
+    fetchHomePost() {
+        this.$axios.get('/posts?slug=home&enabled=1', 
+        { 
+          headers: {
+            
+          }
+        })
+        .then(response => {
+          //console.log(response);
+          this.post = response.data.data[0];
+          console.log(post);
+        }).catch((error) => {
+          const response = error.response;
+          console.log(response.data.error);
+        });
+    },
+
     fetchSlides() {
       this.$axios.get('/slider?enabled=1&pageSize=100')
       .then(response => {

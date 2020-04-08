@@ -191,7 +191,7 @@
       pagination: {
         rowsPerPage: 10,
         descending: false,
-        sortBy: "title",
+        sortBy: "created_at",
         page: 1,
         totalItems: null,
       },
