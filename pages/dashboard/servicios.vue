@@ -309,7 +309,7 @@
 
       save () {
         if (this.editedIndex > -1) {
-          //console.log(this.regs[this.editedIndex]); ////
+          //console.log('this.editedItem', this.editedItem); ////
           const id = this.regs[this.editedIndex].id;
 
           this.$axios.request({
@@ -320,8 +320,12 @@
             },
             data: this.editedItem
           }).then( ({ data }) => {
+            //console.log('this.editedItem', this.editedItem);  //////
             Object.assign(this.regs[this.editedIndex], this.editedItem);
             // console.log(data);
+
+            this.close();
+            this.formMode = null;
 
           }).catch((error) => {
               console.log(error);
@@ -344,6 +348,9 @@
             this.regs.push(this.editedItem);  
             this.pagination.totalItems++;
 
+            this.close();
+            this.formMode = null;
+
           }).catch((error) => {
               const response = error.response;
               //console.log('Error', error);
@@ -352,8 +359,6 @@
               //this.error = response.data.error;
           });
         }
-        this.close();
-        this.formMode = null;
       },
       
     },

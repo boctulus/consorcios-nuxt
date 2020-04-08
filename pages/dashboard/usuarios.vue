@@ -315,6 +315,8 @@
           }).then( ({ data }) => {
             Object.assign(this.regs[this.editedIndex], this.editedItem);
             // console.log(data);
+            this.close();
+            this.formMode = null;
 
           }).catch((error) => {
               console.log(error);
@@ -353,6 +355,9 @@
               //console.log(data);
               this.pagination.totalItems++;
 
+              this.close();
+              this.formMode = null;
+
             }).catch((error) => {
                 console.log(error);
             });
@@ -362,9 +367,6 @@
           });
 
         }
-
-        this.close();
-        this.formMode = null;
       },
     },
   }
