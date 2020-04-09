@@ -55,16 +55,15 @@
       </v-dialog>
     </v-layout>
 
-     <div>                
-        <v-select 
-        v-model="billable_selected" 
-        :items="tipos_servicio_all" 
-        item-text="name"
-        item-value="id"
-        :class="{'disable-events': formMode=='see'}" 
-        label="Concepto"
-      ></v-select>
-    </div>
+
+    <v-select 
+      v-model="billable_selected" 
+      :items="tipos_servicio_all" 
+      item-text="name"
+      item-value="id"
+      :class="{'disable-events': formMode=='see'}" 
+      label="Concepto"
+    ></v-select>
 
 
     <div style="
@@ -129,6 +128,7 @@
       ],
       regs: [],
       tipos_servicio: [],
+      tipos_servicio_all: null,
       billable_selected: null,
       file:  null,
       file_obj: null,
@@ -203,6 +203,10 @@
               this.fetchData();
           },
           deep: true
+      },
+
+      billable_selected (val) {
+        this.fetchData();
       }
     },
 
@@ -266,10 +270,16 @@
                 const { sortBy, descending, page, rowsPerPage } = this.pagination;
                 let search = this.search.trim().toLowerCase();
 
-                this.$axios.get('/bills' + 
+                let url = '/bills' + 
                   `?pageSize=${rowsPerPage}` +
                   `&page=${page}` +
-                  `&orderBy[${sortBy}]=` + (descending ? 'ASC' : 'DESC'), 
+                  `&orderBy[${sortBy}]=` + (descending ? 'ASC' : 'DESC');
+
+                if (this.billable_selected != null) {
+                  url += '&billable_id=' + this.billable_selected;
+                }  
+                
+                this.$axios.get(url, 
                 { 
                   headers: {
                     'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
@@ -291,6 +301,7 @@
                     this.regs = items;
                     this.pagination.totalItems = totalItems;
                     this.loading = false;
+
                     resolve();
                 }).catch((error) => {
                     //const response = error.response;

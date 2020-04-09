@@ -230,6 +230,10 @@
               this.fetchData();
           },
           deep: true
+      },
+
+      u_selected (val) {
+        this.fetchData();
       }
     },
 
@@ -290,10 +294,16 @@
                 const { sortBy, descending, page, rowsPerPage } = this.pagination;
                 let search = this.search.trim().toLowerCase();
 
-                this.$axios.get('/documents' + 
+                let url = '/documents' + 
                   `?pageSize=${rowsPerPage}` +
                   `&page=${page}` +
-                  `&orderBy[${sortBy}]=` + (descending ? 'ASC' : 'DESC'), 
+                  `&orderBy[${sortBy}]=` + (descending ? 'ASC' : 'DESC');
+
+                if (this.u_selected != null) {
+                  url += '&belongs_to=' + this.u_selected;
+                }   
+
+                this.$axios.get(url, 
                 { 
                   headers: {
                     'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`

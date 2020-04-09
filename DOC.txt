@@ -105,7 +105,7 @@ sudo certbot -d administracionelgrove.com -d www.administacionelgrove.com
 - Para copiar los archivos, compilar y copiar desde local usar SCP:
 
 consorcios-nuxt $  npx nuxt build
-consorcios-nuxt $  scp -P 5344 -r dist boctulus@66.97.43.53:/var/www/elgrove_front 
+$ scp -P 5344 -r  /mnt/c/xampp/htdocs/vue/consorcios-nuxt/dist/  dist boctulus@66.97.43.53:/var/www/elgrove_front
 
 
 - Para evitar que si se escribe directamente una url salte un 404 de Apache usar un .htaccess en /var/www/elgrove_front 

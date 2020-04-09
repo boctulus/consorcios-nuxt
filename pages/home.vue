@@ -159,10 +159,10 @@ export default {
         .then(response => {
           //console.log(response);
           this.post = response.data.data[0];
-          console.log(post);
         }).catch((error) => {
+          console.log('ERROR', error);
           const response = error.response;
-          console.log(response.data.error);
+          console.log('ERROR RESPONSE', response);
         });
     },
 
