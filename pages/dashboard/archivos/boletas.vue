@@ -219,6 +219,7 @@
         totalItems: null,
       },
       search: '',
+      filtering: true
     }),
 
     computed: {
@@ -253,7 +254,10 @@
 
       pagination: {
           handler() {
-              this.fetchData();
+              // evito que se dispare (de vuelta) cuando aplico un filtro
+              if (!this.filtering){
+                this.fetchData();
+              }
           },
           deep: true
       },
@@ -325,46 +329,57 @@
 
 
       fetchData () {
-         return new Promise((resolve, reject) => {
-                const { sortBy, descending, page, rowsPerPage } = this.pagination;
-                let search = this.search.trim().toLowerCase();
+        console.log ('Fetch data');
 
-                let url = '/bills' + 
-                  `?pageSize=${rowsPerPage}` +
-                  `&page=${page}` +
-                  `&orderBy[${sortBy}]=` + (descending ? 'ASC' : 'DESC');
+        return new Promise((resolve, reject) => {
+          const { sortBy, descending, page, rowsPerPage } = this.pagination;
+          let search = this.search.trim().toLowerCase();
 
-                if (this.u_selected != null) {
-                  url += '&belongs_to=' + this.u_selected;
-                }  
+          let url = '/bills' + 
+            `?pageSize=${rowsPerPage}` +
+            `&page=${page}` +
+            `&orderBy[${sortBy}]=` + (descending ? 'ASC' : 'DESC');
 
-                this.$axios.get(url, 
-                { 
-                  headers: {
-                    'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
-                  }
-                })
-                .then(response => {
-                    let items = response.data.data;
-                    const totalItems = response.data.paginator.total;
-                    
-                    if (search) {
-                        items = items.filter(item => {
-                            return Object.values(item)
-                                .join(",")
-                                .toLowerCase()
-                                .includes(search);
-                        });
-                    }
-                    
-                    this.regs = items;
-                    this.pagination.totalItems = totalItems;
-                    this.loading = false;
-                    resolve();
-                }).catch((error) => {
-                    //const response = error.response;
-                    console.log(error);
-                });
+          if (this.u_selected != null) {
+            url += '&belongs_to=' + this.u_selected;
+          }  
+
+          this.$axios.get(url, 
+          { 
+            headers: {
+              'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
+            }
+          })
+          .then(response => {
+              let items = response.data.data;
+              const totalItems = response.data.paginator.total;
+              
+              if (search) {
+                  items = items.filter(item => {
+                      return Object.values(item)
+                          .join(",")
+                          .toLowerCase()
+                          .includes(search);
+                  });
+              }
+              
+              this.regs = items;
+              this.pagination.totalItems = totalItems;
+              this.loading = false;
+
+              /////////////////////////
+              this.filtering = true; 
+
+              this.$nextTick(()=>{ 
+                this.filtering = false;
+              });
+              /////////////////////////
+
+              resolve();
+          }).catch((error) => {
+              //const response = error.response;
+              console.log(error);
+          });
          });       
       },
 

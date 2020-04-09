@@ -159,6 +159,7 @@
         totalItems: null,
       },
       search: '',
+      filtering: true
     }),
 
     computed: {
@@ -193,7 +194,10 @@
 
       pagination: {
           handler() {
-              this.fetchData();
+              // evito que se dispare (de vuelta) cuando aplico un filtro
+              if (!this.filtering){
+                this.fetchData();
+              }
           },
           deep: true
       },
@@ -266,6 +270,8 @@
 
 
       fetchData () {
+        console.log ('Fetch data');
+
          return new Promise((resolve, reject) => {
                 const { sortBy, descending, page, rowsPerPage } = this.pagination;
                 let search = this.search.trim().toLowerCase();
@@ -297,10 +303,18 @@
                                 .includes(search);
                         });
                     }
-                    
+
                     this.regs = items;
                     this.pagination.totalItems = totalItems;
                     this.loading = false;
+
+                    /////////////////////////
+                    this.filtering = true; 
+
+                    this.$nextTick(()=>{ 
+                      this.filtering = false;
+                    });
+                    /////////////////////////
 
                     resolve();
                 }).catch((error) => {
@@ -385,7 +399,7 @@
         }).then( res => {
           this.regs.splice(this.index, 1);
           this.pagination.totalItems--;
-          console.log(res);
+          //console.log(res);
 
         }).catch((error) => {
             console.log('[ DELETE ] ERROR', error);

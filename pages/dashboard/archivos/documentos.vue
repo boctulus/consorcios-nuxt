@@ -184,6 +184,7 @@
         totalItems: null,
       },
       search: '',
+      filtering: true
     }),
 
     computed: {
@@ -220,7 +221,10 @@
 
       pagination: {
           handler() {
-              this.fetchData();
+              // evito que se dispare (de vuelta) cuando aplico un filtro
+              if (!this.filtering){
+                this.fetchData();
+              }
           },
           deep: true
       },
@@ -325,6 +329,15 @@
                     this.regs = items;
                     this.pagination.totalItems = totalItems;
                     this.loading = false;
+
+                    /////////////////////////
+                    this.filtering = true; 
+
+                    this.$nextTick(()=>{ 
+                      this.filtering = false;
+                    });
+                    /////////////////////////
+
                     resolve();
                 }).catch((error) => {
                     //const response = error.response;

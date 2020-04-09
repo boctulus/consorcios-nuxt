@@ -1,6 +1,10 @@
 TODO
 -----------
 
+- Upload de archivos al servidor en vez de como Base64
+
+https://github.com/quilljs/quill/issues/1089
+
 - Página "404" p/ ejemplo para /posts/xxxx 
 
 - Novedades (ultimos posts del blog?) en el Dashboard  (no va)
