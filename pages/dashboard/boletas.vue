@@ -26,19 +26,19 @@
                   ></v-select>
                 </v-flex>
 
-                <v-flex sm6 md4>
+                <v-flex cols="12" sm="6" md="4">
                   <v-text-field v-model="editedItem.detail" :class="{'disable-events': formMode=='see'}" label="Detalle"></v-text-field>
                 </v-flex>
 
-                <v-flex sm6 md4>
+                <v-flex cols="12" sm="6" md="4">
                   <v-text-field v-model="editedItem.period" :class="{'disable-events': formMode=='see'}" label="Período"></v-text-field>
                 </v-flex>
 
-                <v-flex sm6 md4>
+                <v-flex cols="12" sm="6" md="4">
                   <v-text-field v-model="editedItem.amount" :class="{'disable-events': formMode=='see'}" label="Importe"></v-text-field>
                 </v-flex>
 
-                <v-flex sm6 md4 style="width:100%">
+                <v-flex cols="12" sm="6" md="4" style="width:100%">
                   <input type="file" id="file" ref="file" v-on:change="onChangeFileUpload()" v-if="formMode != 'see'" />
                   <span v-else><v-icon>fa-download</v-icon><a href="#" @click="fileDownload()" style="margin-left:1em;">{{ filename }}</a></span>
                 </v-flex> 
