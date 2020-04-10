@@ -12,12 +12,13 @@
             
             <div class="wrapper">
                 <h1 class="engravers">{{ post.title }}</h1>
-                <span class="sp_b_date pontano">4 agosto, 2017</span>
+                <!--span class="sp_b_date pontano">4 agosto, 2017</span-->
             </div>
         </div>
 
-        <div class="container mt-3" id="blog_post">
-            <article style="color: #fff !important; font-size:0.8em !important;">
+
+        <div class="container" id="blog_post">
+            <article style="color: #fff !important; font-size:0.8em !important; margin-top:40px;">
                 <h1 class="engravers">{{ post.title }}</h1>
 				
 				<div class="entry">
@@ -66,7 +67,7 @@ export default {
 
 
 		// All	
-		this.$axios.get('/posts?fields=slug&pageSize=100', 
+		this.$axios.get('/posts?enabled=1&fields=slug&pageSize=100', 
 		{ 
 			headers: {
 				

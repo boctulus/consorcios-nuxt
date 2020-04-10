@@ -40,8 +40,11 @@
           
         </b-row>
 
-        <span style="font-size: 2em;" v-else>No hay posts en el blog</span>
-
+    
+        <template v-else>
+          <span style="font-size: 2em;" v-if="!loading">No hay posts en el blog</span>
+        </template>
+   
     </div>
   </div>
 </template>
@@ -121,6 +124,7 @@ export default {
                     this.loading = false;
                     resolve();
                 }).catch((error) => {
+                    this.loading = false;
                     //const response = error.response;
                     console.log(error);
                     console.log(error.response);

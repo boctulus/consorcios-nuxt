@@ -571,7 +571,7 @@
         let file_id = this.regs[this.editedIndex].file_id;
 
         if (this.file !== null){
-          console.log('ACAAAAAAAAA', this.file);
+          //console.log('ACAAAAAAAAA', this.file);
 
           try {
             const response0 = await this.$axios.request({
@@ -657,6 +657,8 @@
       },
 
       async save () {
+        this.editedItem.amount = this.editedItem.amount.replace(',', '.');
+        
         if (this.editedIndex > -1) {
           this.update();
         } else {
