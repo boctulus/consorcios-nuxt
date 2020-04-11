@@ -98,7 +98,14 @@
                 
                 <span id="theend"></span>
           </b-container>
+
+          <div style="text-align: center; color: #ccc;">
+            Programación: Pablo Bozzolo (2020) <br/>
+
+            <n-link to="xxx">Página de prueba</n-link>
+          </div>
         </v-img>	
+        
 </template>
 
 
@@ -143,7 +150,7 @@ export default {
     }
   },
 
-   mounted() {
+  mounted() {
     this.fetchServicios();
     this.fetchContactData();
   },
@@ -227,7 +234,13 @@ export default {
     components: {
       ValidationProvider,
       ValidationObserver
-    }
+    },
+
+    head:{
+      link: [
+          { rel: 'stylesheet', href: require('@/assets/style/home.css') }
+      ]
+    },
 }
 </script>
 

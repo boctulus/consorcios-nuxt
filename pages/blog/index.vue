@@ -96,7 +96,7 @@ export default {
                 const { sortBy, descending, page, rowsPerPage } = this.pagination;
                 let search = this.search.trim().toLowerCase();
 
-                this.$axios.get('/posts?enabled=1' + 
+                this.$axios.get('/posts?enabled=1&slug[neq]=home' + 
                   `&pageSize=${rowsPerPage}` +
                   `&page=${page}` +
                   `&orderBy[${sortBy}]=` + (descending ? 'ASC' : 'DESC') +

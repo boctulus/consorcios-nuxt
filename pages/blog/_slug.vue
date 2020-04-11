@@ -19,7 +19,7 @@
 
         <div class="container" id="blog_post">
             <article style="color: #fff !important; font-size:0.8em !important; margin-top:40px;">
-                <h1 class="engravers">{{ post.title }}</h1>
+                <!--h1 class="engravers">{{ post.title }}</h1-->
 				
 				<div class="entry">
 					<p style="font-size:1.5em !important;" v-html="post.content"></p>
@@ -106,13 +106,6 @@ export default {
 			
 			this.$router.push(next_post_slug); 
       }
-    },
-    
-    head:{
-        link: [
-           { rel: 'stylesheet', href: require('@/assets/style/ext/style_end.css') },
-           { rel: 'stylesheet', href: require('@/assets/style/ext/custom.css') }
-        ]
     }
 }
 </script>

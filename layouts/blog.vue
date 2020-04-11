@@ -27,11 +27,7 @@ export default {
       link: [
           { rel: 'stylesheet', href: require('@/assets/style/home.css') }
       ]
-  },
-  
-  //mounted() {
-  //  console.log('PATH', $nuxt.$route.path); /* PATH /blog */
-  //}
+  }  
 }
 </script>
 
