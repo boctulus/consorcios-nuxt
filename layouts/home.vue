@@ -25,7 +25,7 @@ export default {
 
   head:{
       link: [
-          { rel: 'stylesheet', href: require('@/assets/style/home.css') }
+        { rel: 'stylesheet', href: require('@/assets/style/home.css') }
       ]
   },
   

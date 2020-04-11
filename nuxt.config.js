@@ -75,14 +75,14 @@ module.exports = {
     '@nuxtjs/axios',
     //'@nuxtjs/auth',
     ['nuxt-vuex-localstorage', {
-      mode: 'debug',
+      mode: process.env.NODE_ENV,                  //////////////
       localStorage: ['auth']
     }]
   ],
 
   // local ó dominio real
   //
-  // process.env.NODE_ENV == 'development' ? "http://elgrove.co/v1" : "https://api.administracionelgrove.com/v1"
+  // process.env.NODE_ENV === 'development' ? "http://elgrove.co/v1" : "https://api.administracionelgrove.com/v1"
   axios: {
     baseURL: "https://api.administracionelgrove.com/api/v1"
   },
@@ -93,14 +93,19 @@ module.exports = {
     ]
   },
 
+  dev: process.env.NODE_ENV !== 'production',
+
   /*
   ** Build configuration
   */
   build: {
+    extractCSS: process.env.NODE_ENV === 'production',
+
     transpile: [
       'vuetify/lib',
       'vee-validate/dist/rules',
     ],
+
     plugins: [
       new VuetifyLoaderPlugin(),
       /*
@@ -110,11 +115,13 @@ module.exports = {
       })
       */
     ],
+
     loaders: {
       stylus: {
         import: ["~assets/style/variables.styl"]
       }
     },
+
 
     /*
     ** You can extend webpack config here

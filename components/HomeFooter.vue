@@ -100,9 +100,7 @@
           </b-container>
 
           <div style="text-align: center; color: #ccc;">
-            Programación: Pablo Bozzolo (2020) <br/>
-
-            <n-link to="xxx">Página de prueba</n-link>
+            Programación: Pablo Bozzolo (2020)
           </div>
         </v-img>	
         
