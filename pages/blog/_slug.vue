@@ -67,7 +67,7 @@ export default {
 
 
 		// All	
-		this.$axios.get('/posts?enabled=1&fields=slug&pageSize=100', 
+		this.$axios.get('/posts?enabled=1&fields=slug&pageSize=100&slug[neq]=home', 
 		{ 
 			headers: {
 				
