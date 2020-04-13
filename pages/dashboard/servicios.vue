@@ -46,7 +46,7 @@
                 <img style="max-width:90%;" :src="`/servicios/${editedItem.img}`" v-if="!editedItem.img.match(/^(https:|http:)/)" />
               </div>
 
-              <v-textarea v-model="editedItem.text" auto-grow label="Texto" :readonly="{'disable-events': formMode=='see'}" style="overflow: auto;"></v-textarea>
+              <v-textarea v-model="editedItem.text" auto-grow label="Texto" :readonly="formMode == 'see' ? true : false" style="overflow: auto;"></v-textarea>
 
             </v-container>
           </v-card-text>
