@@ -47,8 +47,8 @@
                 <img style="max-width:90%;" :src="`/home_slider/${editedItem.img}`" v-if="!editedItem.img.match(/^(https:|http:)/)" />
               </div>
 
-              <v-textarea v-model="editedItem.line1" label="Línea anterior" auto-grow :readonly="readonly" style="margin-top:20px"></v-textarea>
-              <v-textarea v-model="editedItem.line3" label="Línea posterior" auto-grow :readonly="readonly"></v-textarea>
+              <v-textarea v-model="editedItem.line1" label="Línea anterior" auto-grow :readonly="formMode == 'see' ? true : false" style="margin-top:20px"></v-textarea>
+              <v-textarea v-model="editedItem.line3" label="Línea posterior" auto-grow :readonly="formMode == 'see' ? true : false"></v-textarea>
 
             </v-container>
           </v-card-text>
