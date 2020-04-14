@@ -29,7 +29,8 @@ const links = {
         { text: 'Legales', link: '/dashboard/archivos/legal'}
       ], 
       icon: 'fa-folder' 
-    }
+    },
+    { text: 'Alex Bot',  link: '/dashboard/bot', icon: 'fa-building' },
   ]
 }
 

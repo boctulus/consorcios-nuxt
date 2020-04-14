@@ -419,7 +419,7 @@
         if (this.editedIndex > -1) {
           const id = this.regs[this.editedIndex].id;
 
-          console.log(this.editedItem);
+          //console.log(this.editedItem);
 
           this.$axios.request({
             url: `/ai_questions/${id}`,  
