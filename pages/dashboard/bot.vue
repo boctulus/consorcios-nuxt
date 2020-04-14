@@ -41,12 +41,14 @@
           
             <v-text-field v-model="editedItem.answer" :class="{'disable-events': formMode=='see'}" label="Respuesta"></v-text-field>
 
+            <v-text-field v-model="editedItem.goto" :class="{'disable-events': formMode=='see'}" label="Ir a"></v-text-field>
+
             <div class="mb-2">
-              <span style="rgba(87,87,87); font-familly: Roboto, sans-serif; font-size: 16px; ">Tags</span>
+              <span style="color: #757575; font-familly: Roboto, sans-serif; font-size: 16px; ">Tags</span>
             </div>
 
             <vue-tags-input
-              v-model="editedItem.keywords"
+              v-model="tag"
               :tags="tags"
               @tags-changed="newTags => tags = newTags"
               :class="{'disable-events': formMode=='see'}"
@@ -177,12 +179,14 @@
         question: '',
         answer: '',
         keywords: '',
+        goto: '',
         enabled: false
       },
       defaultItem: {
         question: '',
         answer: '',
         keywords: '',
+        goto: '',
         enabled: false
       },
       loading: true,
@@ -321,6 +325,13 @@
         this.editedIndex = this.regs.indexOf(item);
         this.editedItem = Object.assign({}, item);
         this.editedItem.enabled = (this.editedItem.enabled == 1) ? true : false;
+
+        this.tags = [];
+        const keywords = JSON.parse(this.editedItem.keywords);
+        keywords.forEach(keyword => {
+          this.tags.push({"text": keyword,"tiClasses": ["ti-valid"]})
+        });
+
         this.formMode = 'see';
         this.dialog = true;
         this.slug_editable = false; 
@@ -330,6 +341,13 @@
         this.editedIndex = this.regs.indexOf(item);
         this.editedItem = Object.assign({}, item);
         this.editedItem.enabled = (this.editedItem.enabled == 1) ? true : false;
+
+        this.tags = [];
+        const keywords = JSON.parse(this.editedItem.keywords);
+        keywords.forEach(keyword => {
+          this.tags.push({"text": keyword,"tiClasses": ["ti-valid"]})
+        });
+
         this.formMode = 'edit';
         this.dialog = true;
         this.slug_editable = false; 
@@ -380,7 +398,7 @@
       close () {
         this.dialog = false;
         this.formMode = null;
-        this.slug_editable = true;
+        this.tags = [];
 
         setTimeout(() => {
           this.editedItem = Object.assign({}, this.defaultItem);
@@ -391,9 +409,17 @@
       save () {
         this.editedItem.enabled = this.editedItem.enabled ? 1 : 0;
 
+        let keywords = [];
+        this.tags.forEach(e => {
+          if (e.tiClasses[0] == 'ti-valid')
+            keywords.push(e.text);
+        });
+        this.editedItem.keywords = JSON.stringify(keywords);
+
         if (this.editedIndex > -1) {
-          //console.log(this.regs[this.editedIndex]); ////
           const id = this.regs[this.editedIndex].id;
+
+          console.log(this.editedItem);
 
           this.$axios.request({
             url: `/ai_questions/${id}`,  
@@ -468,7 +494,7 @@
     color: #000;
   }
 
-  .ti-input, .ti-tags {
-    width: 100% !important;
+  .vue-tags-input {
+    max-width: 1000px;
   }
 </style>

@@ -1,14 +1,23 @@
-const TrainingSet = require('@/static/data/trainingData.json')
-//const natural = require('natural')
-//const var_dump = require('var_dump')
+let TrainingSet = [];
+let types = [];
 
-var types = new Set();
+function loadData(data) {
+  TrainingSet = data;
 
-for(let i=0; i<TrainingSet.length; i++){
-  TrainingSet[i].keyword = sanitize(TrainingSet[i].keyword); 
-} 
+  for(let i=0; i<TrainingSet.length; i++){
+    TrainingSet[i].keywords = JSON.parse(TrainingSet[i].keywords); 
+    TrainingSet[i].keywords = TrainingSet[i].keywords.map(x => sanitize(x));
+    types.push(TrainingSet[i].question);
+  } 
+
+  //console.log('TS', TrainingSet);
+  //console.log(types);
+}
 
 function sanitize(str){
+  if (typeof str === 'undefined'  || str === null)
+    return null;
+
   return str.toLowerCase()
             .replace(/[?]/, ' ')
             .replace(/[¿]/, ' ')  
@@ -25,44 +34,27 @@ function tokenize(phrase)
   return tokens;
 }
 
-function buildDict(trainingData) 
-{
-  let dict = [];
-  for (let i=0; i<trainingData.length; i++){
-    dict.push(trainingData[i].keyword);
-
-    Object.keys(trainingData[i].result).forEach((e) => {
-      types.add(e);
-    })
-  }
-  return dict;
-}
-
-const dict = buildDict(TrainingSet);
-//console.log(dict);
-//console.log(types);
-
 const classify = (str) => {
- str = sanitize(str); 
- let tokens = tokenize(str);
- let ws = []; 
+  str = sanitize(str);
+  let tokens = tokenize(str);
+  let ws = []; 
 
- types.forEach(e => {
-   ws[e] = 0;
- });
+  types.forEach(t => {
+    ws[t] = 0;
+  });
 
- TrainingSet.forEach(dato => {
-   if (tokens.includes(dato.keyword)){
-    //console.log('* ' + dato.keyword);
+  TrainingSet.forEach(dato => {
+    dato.keywords.forEach(keyword => {      
+      if (tokens.includes(keyword)){
+        ws[dato.question]++;
+      }
+    });    
+  });
 
-    for (var type in dato.result) {
-      ws[type] += dato.result[type];
-    }
-
-   }
- });
-
- return ws;
+  return ws;
 }
 
-export default classify;
+export default {
+  loadData,
+  classify  
+};

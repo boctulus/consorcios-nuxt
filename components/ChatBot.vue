@@ -34,12 +34,13 @@ import OpenIcon from 'vue-beautiful-chat/src/assets/logo-no-bg.svg'
 import FileIcon from 'vue-beautiful-chat/src/assets/file.svg'
 import CloseIconSvg from 'vue-beautiful-chat/src/assets/close.svg'
 
-import classify from '@/util/IA';
+import IA from '@/util/IA';
 
 export default {
   name: 'ChatBot',
   data() {
     return {
+      questions: [],
       contactData: {
         phone: '',
         address: '',
@@ -119,9 +120,23 @@ export default {
 
   mounted() {
     this.fetchContactData();
+    this.fetchQuestions();
   },
 
   methods: {
+    fetchQuestions() {
+      this.$axios.get('/ai_questions?enabled=1&pageSize=100', 
+      { 
+        headers: {
+          //'Authorization': `Bearer ${this.$store.state.auth.authUser.accessToken}`
+        }
+      })
+      .then(response => {
+          this.questions = response.data.data;
+          IA.loadData(this.questions);
+      });
+    },
+
     fetchContactData() {
       this.$axios.get('/contact_data', 
       { })
@@ -159,25 +174,11 @@ export default {
         this.sendMessage('¡Hola!, ¿Tienes alguna duda?');
         return;
       }
-      
-      let respuestas = {
-        'email': 'El correo es ' + this.contactData.email,
-        'direccion': 'Nos encontramos en  ' + this.contactData.address, 
-        'telefono': 'Para comunicarse con Administración El Grove puede hacerlo al ' + this.contactData.phone,
-        'horarios': 'El horario de atención es de ' + this.contactData.opening_hours + ' Hs', 
-        'urgencia': 'Atendemos casos de urgencia las 24 Hs ***',
-        'servicios': 'Te envio a la sección de servicios para que veas cuales brindamos',
-        'contacto': 'Te envio a la sección de contacto para que veas cuales brindamos',
-        'saludo': 'Buenas :)',
-        'insulto':  'What?!'
-      }
 
-      let result_arr = classify(text);
+      let result_arr = IA.classify(text);
 
-      if (result_arr.urgencia > 0 && result_arr.telefono == 0){
-        result_arr.telefono = 1;
-      }
-
+      /*
+      // generalizar
       if (result_arr.servicios > 0){
         setTimeout(()=>{
           this.$router.push('/servicios')
@@ -189,11 +190,43 @@ export default {
           this.$router.push('#contacto')
         }, 1500)
       }
+      */
+
+      let that = this;
+      let regex = /(\$[a-z]+)/g
 
       let respuesta = false;
-      for (let e in result_arr){
-        if (result_arr[e] > 0 ){
-         this.sendMessage(respuestas[e]);
+      for (let e in result_arr) {
+        if (result_arr[e] > 0 ) {
+    
+          this.questions.forEach(q => {
+            if (q.question === e){
+              //console.log(q.answer); 
+
+              let error = false;
+              q.answer = q.answer.replace(regex, function(fullMatch, captured){
+                if (typeof that.contactData[captured.substr(1)] != 'undefined'){
+                  return that.contactData[captured.substr(1)];
+                } else { 
+                  console.log(`Variable ${captured} is undefined`);
+                  error = true;  
+                }  
+              });
+
+              if (!error) {
+                this.sendMessage(q.answer); 
+
+                if (q['goto'] !== null){
+                  setTimeout(()=>{
+                    this.$router.push(q['goto'])
+                  }, 1500)
+                }
+              }
+
+            }
+    
+          });
+
          respuesta = true;
         }
       }
