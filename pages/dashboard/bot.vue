@@ -44,7 +44,7 @@
             <v-text-field v-model="editedItem.goto" :class="{'disable-events': formMode=='see'}" label="Ir a"></v-text-field>
 
             <div class="mb-2">
-              <span style="color: #757575; font-familly: Roboto, sans-serif; font-size: 16px; ">Tags</span>
+              <span style="color: #757575; font-familly: Roboto, sans-serif; font-size: 16px; ">Tags (keywords)</span>
             </div>
 
             <vue-tags-input

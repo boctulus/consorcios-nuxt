@@ -14,8 +14,8 @@
       :showEmoji="false"
       :showFile="false"
       :showTypingIndicator="showTypingIndicator"
-	  :showLauncher="true"
-	  :showCloseButton="true"
+      :showLauncher="true"
+      :showCloseButton="true"
       :colors="colors"
       :alwaysScrollToBottom="alwaysScrollToBottom"
       :messageStyling="messageStyling"
@@ -157,6 +157,9 @@ export default {
       if (text.length > 0) {
         this.newMessagesCount = this.isChatOpen ? this.newMessagesCount : this.newMessagesCount + 1
         this.onMessageWasSent({ author: 'bot', type: 'text', data: { text } })
+
+        // probar auto scroll to bottom 
+        // https://stackoverflow.com/a/270628/980631
       }
     },
 
@@ -193,7 +196,7 @@ export default {
       */
 
       let that = this;
-      let regex = /(\$[a-z]+)/g
+      let regex = /(\$[a-z_]+)/g
 
       let respuesta = false;
       for (let e in result_arr) {

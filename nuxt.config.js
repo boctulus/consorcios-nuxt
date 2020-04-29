@@ -76,7 +76,7 @@ module.exports = {
     //'@nuxtjs/auth',
     ['nuxt-vuex-localstorage', {
       mode: process.env.NODE_ENV,                  //////////////
-      localStorage: ['auth']
+      localStorage: ['auth','extras']
     }]
   ],
 

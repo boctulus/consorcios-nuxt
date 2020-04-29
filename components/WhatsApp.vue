@@ -8,7 +8,7 @@
 				<button type="button" class="closePopup" @click="toogle">
 					<i class="material-icons icon-font-color">close</i>
 				</button>
-				<p>Hola 😊 te colaboro?</p>
+				<p>¡Hola! ¿Tenes alguna duda?</p>
 			</div>
 			<div class="content-whatsapp -bottom">
 				<input class="whats-input" v-model="text" id="whats-in" type="text" Placeholder="Escriba el mensaje..." />
